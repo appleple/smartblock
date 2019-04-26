@@ -8,8 +8,8 @@ import { options, menu } from './prose-config';
 import './styles/base.css';
 import { EditorView } from 'prosemirror-view';
 import { Node } from 'prosemirror-model';
-import scrollToElement from 'scroll-to-element';
-import { getScrollTop, getOffset } from './utili';
+import scrollTo from 'scroll-to';
+import { getScrollTop, getOffset, getViewport } from './utili';
 
 const Input = styled('div')`
   width: 100%;
@@ -44,11 +44,19 @@ export default class App extends React.Component {
             onChange={(doc: Node) => {
               const selected = this.container.querySelector('.selected') as HTMLDivElement;
               if (selected) {
-                const top = getScrollTop() + window.innerHeight;
+                const viewport = getViewport();
+                const top = getScrollTop() + viewport.height;
                 const offsetTop = getOffset(selected).top;
                 const height = selected.offsetHeight;
                 if (offsetTop + height + 80 >= top) {
-                  scrollToElement(selected);
+                  if (/iPod|iPhone|iPad/.test(navigator.platform) && document.activeElement) {
+                    const activeElement = document.activeElement as HTMLElement;
+                    if (activeElement.isContentEditable) {
+                      scrollTo(0, offsetTop + height + 80 + viewport.keyboardHeight);
+                    }
+                  } else {
+                    scrollTo(0, offsetTop + height + 80);
+                  }
                 }
               }
             }}
