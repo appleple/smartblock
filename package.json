@@ -6,7 +6,7 @@
   "type": "lib/index.d.ts",
   "scripts": {
     "test": "jest",
-    "dev": "webpack-dev-server --config webpack.dev.js",
+    "dev": "webpack-dev-server --config webpack.dev.js --host 0.0.0.0",
     "build": "webpack --config webpack.prod.js",
     "build:lib": "tsc",
     "np": "np --no-cleanup",

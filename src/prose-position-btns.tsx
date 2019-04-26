@@ -23,11 +23,11 @@ const PositionBtnGroup = styled.div`
   position: absolute;
   z-index: 10;
   animation: ${fadeIn} 0.3s;
-  margin-top: 30px;
   border-radius: 5px;
   box-shadow: 0 3px 40px 8px rgba(116,116,116,0.2);
   padding: 10px 0;
   overflow: hidden;
+  background-color: #FFF;
 `;
 
 const ButtonStyle = styled.button`
@@ -97,9 +97,10 @@ export default class PositionBtns extends React.Component<PositionProps, Positio
     this.menuRef = React.createRef();
   }
 
-  calculateStyle (props) {
-    const { view } = props
-    const { selection } = view.state
+  calculateStyle (props: PositionProps) {
+    const { view } = this.props;
+    const { state } = view;
+    const { selection } = state;
 
     if (!selection) {
       return {
@@ -108,11 +109,37 @@ export default class PositionBtns extends React.Component<PositionProps, Positio
       }
     }
 
-    const coords = view.coordsAtPos(selection.$anchor.pos - selection.$anchor.parentOffset);
+    const { $anchor } = selection;
+    const resolvedPos = state.doc.resolve($anchor.pos) as any;
+    const rowNumber = resolvedPos.path[1];
+    let i = 0;
+    const [ firstNode ] = findChildren(state.doc, (_node) => {
+      if (rowNumber === i || rowNumber + 1 === i) {
+        i++;
+        return true;
+      }
+      i++;
+      return false;
+    }, false);
 
-    return {
-      right: 0,
-      top: coords.top
+    const coords = view.coordsAtPos(firstNode.pos);
+    const dom = view.nodeDOM(firstNode.pos) as HTMLElement;
+    
+
+    if (coords.top === 0) {
+      return {
+        top: -1000
+      }
+    } else if (dom && dom.offsetHeight) {
+      return {
+        right: 0,
+        top: coords.top + dom.offsetHeight
+      }
+    } else {
+      return {
+        right: 0,
+        top: coords.top
+      }
     }
   }
 
