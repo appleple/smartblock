@@ -1,0 +1,13 @@
+.ProseMirror {
+
+}
+
+.ProseMirror p {
+  padding: 5px;
+  transition: background-color .3s;
+  border-radius: 2px;
+}
+
+.ProseMirror .selected {
+  background-color: #e0f7fa;
+}

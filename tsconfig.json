@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "es6",
+    "moduleResolution": "node",
+    "outDir": "./lib",
+    "sourceMap": true,
+    "declaration": true,
+    "strict": false,
+    "jsx": "react",
+    "lib": [
+      "es2018",
+      "dom"
+    ]
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "**/__tests__/*"]
+}
