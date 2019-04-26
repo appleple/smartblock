@@ -10,6 +10,7 @@ import {
   faTrash
 } from '@fortawesome/fontawesome-free-solid'
 import { Node } from 'prosemirror-model';
+import { getOffset } from './utili';
 
 const fadeIn = keyframes`
   from {
@@ -126,6 +127,7 @@ export default class PositionBtns extends React.Component<PositionProps, Positio
 
     const coords = view.coordsAtPos(firstNode.pos);
     const dom = view.nodeDOM(firstNode.pos) as HTMLElement;
+    const elementTop = getOffset(dom).top;
     
     if (coords.top === 0) {
       return {
@@ -134,12 +136,12 @@ export default class PositionBtns extends React.Component<PositionProps, Positio
     } else if (dom && dom.offsetHeight) {
       return {
         right: 0,
-        top: coords.top + dom.offsetHeight
+        top: elementTop + dom.offsetHeight
       }
     } else {
       return {
         right: 0,
-        top: coords.top
+        top: elementTop
       }
     }
   }
