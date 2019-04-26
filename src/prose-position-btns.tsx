@@ -1,12 +1,13 @@
 import * as React from 'react';
 import styled, { keyframes } from 'styled-components';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import { setTextSelection, findParentNodeClosestToPos, findChildren } from 'prosemirror-utils';
+import { setTextSelection, findChildren } from 'prosemirror-utils';
 import { EditorView } from 'prosemirror-view';
 import map from 'lodash/map';
 import {
   faArrowUp,
-  faArrowDown
+  faArrowDown,
+  faTrash
 } from '@fortawesome/fontawesome-free-solid'
 import { Node } from 'prosemirror-model';
 
@@ -22,6 +23,7 @@ const fadeIn = keyframes`
 const PositionBtnGroup = styled.div`
   position: absolute;
   z-index: 10;
+  max-width: 280px;
   animation: ${fadeIn} 0.3s;
   border-radius: 5px;
   box-shadow: 0 3px 40px 8px rgba(116,116,116,0.2);
@@ -125,7 +127,6 @@ export default class PositionBtns extends React.Component<PositionProps, Positio
     const coords = view.coordsAtPos(firstNode.pos);
     const dom = view.nodeDOM(firstNode.pos) as HTMLElement;
     
-
     if (coords.top === 0) {
       return {
         top: -1000
@@ -181,7 +182,29 @@ export default class PositionBtns extends React.Component<PositionProps, Positio
       const insertTransaction = view.state.tr.insert(firstIndex2 + firstNode2.nodeSize, firstNode.node);
       view.dispatch(insertTransaction);
       view.dispatch(setTextSelection(firstIndex2 + firstNode2.nodeSize)(view.state.tr));
+      view.state.tr.scrollIntoView();
     }
+  }
+
+  deleteSelection() {
+    const { view } = this.props;
+    const { state } = view;
+    const { selection } = state;
+    const { $anchor } = selection;
+    const resolvedPos = state.doc.resolve($anchor.pos) as any;
+    const rowNumber = resolvedPos.path[1];
+    let i = 0;
+    const [ firstNode ] = findChildren(state.doc, (_node) => {
+      if (rowNumber === i) {
+        i++;
+        return true;
+      }
+      i++;
+      return false;
+    }, false);
+    const firstIndex = firstNode.pos;
+    const removeTransaction = state.tr.delete(firstIndex, firstIndex + firstNode.node.content.size + 2);
+    view.dispatch(removeTransaction);
   }
 
   moveSectionUp() {
@@ -210,6 +233,7 @@ export default class PositionBtns extends React.Component<PositionProps, Positio
       const insertTransaction = view.state.tr.insert(firstIndex2 + firstNode2.nodeSize, firstNode.node);
       view.dispatch(insertTransaction);
       view.dispatch(setTextSelection(firstIndex2)(view.state.tr));
+      view.state.tr.scrollIntoView();
     }
   }
  
@@ -228,6 +252,9 @@ export default class PositionBtns extends React.Component<PositionProps, Positio
       </ButtonStyle>
       <ButtonStyle onClick={this.moveSectionDown.bind(this)}>
         <FontAwesomeIcon icon={faArrowDown} />
+      </ButtonStyle>
+      <ButtonStyle onClick={this.deleteSelection.bind(this)}>
+        <FontAwesomeIcon icon={faTrash} />
       </ButtonStyle>
     </PositionBtnGroup>)
   }
