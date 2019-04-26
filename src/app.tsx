@@ -7,6 +7,9 @@ import Floater from './prose-floater';
 import { options, menu } from './prose-config';
 import './styles/base.css';
 import { EditorView } from 'prosemirror-view';
+import { Node } from 'prosemirror-model';
+import scrollToElement from 'scroll-to-element';
+import { getScrollTop, getOffset } from './utili';
 
 const Input = styled('div')`
   width: 100%;
@@ -17,6 +20,7 @@ const Container = styled.div`
   max-width: 780px;
   margin: 0 auto;
   position: relative;
+  padding: 40px 0 80px 0;
 `;
 
 interface ProseRender {
@@ -24,24 +28,41 @@ interface ProseRender {
   view: EditorView;
 }
 
-export default () => {
- return (
-  <Container>
-    <Input>
-      <Editor
-        options={options}
-        onChange={(doc: any) => {
-        }}
-        render={({ editor, view } : ProseRender) => (
-          <React.Fragment>
-            <PositionBtns view={view} menu={{ blocks: menu.blocks }} />
-            <Floater view={view}>
-              <InlineMenuBar menu={{ marks: menu.marks }} view={view} />
-            </Floater>
-            {editor}
-          </React.Fragment>
-        )}
-      />
-    </Input>
-</Container>);
+export default class App extends React.Component {
+  container: HTMLElement;
+
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <Container ref={(ref) => this.container = ref}>
+        <Input>
+          <Editor
+            options={options}
+            onChange={(doc: Node) => {
+              const selected = this.container.querySelector('.selected') as HTMLDivElement;
+              if (selected) {
+                const top = getScrollTop() + window.innerHeight;
+                const offsetTop = getOffset(selected).top;
+                const height = selected.offsetHeight;
+                if (offsetTop + height + 80 >= top) {
+                  scrollToElement(selected);
+                }
+              }
+            }}
+            render={({ editor, view } : ProseRender) => (
+              <React.Fragment>
+                <PositionBtns view={view} menu={{ blocks: menu.blocks }} />
+                <Floater view={view}>
+                  <InlineMenuBar menu={{ marks: menu.marks }} view={view} />
+                </Floater>
+                {editor}
+              </React.Fragment>
+            )}
+          />
+        </Input>
+    </Container>);
+  }
 }

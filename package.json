@@ -67,6 +67,7 @@
     "prosemirror-view": "^1.8.9",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "scroll-to-element": "^2.0.3",
     "styled-components": "^4.2.0"
   }
 }
