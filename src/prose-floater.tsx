@@ -12,10 +12,11 @@ const fadeIn = keyframes`
 
 const FloaterStyle = styled.div`
   position: absolute;
-  z-index: 10;
+  z-index: 12;
   animation: ${fadeIn} 0.3s;
   margin-top: 8px;
   border-radius: 5px;
+  background-color: #FFF;
   box-shadow: 0 3px 40px 8px rgba(116,116,116,0.2);
 `;
 
@@ -75,12 +76,12 @@ class Floater extends React.Component<FloaterProps, FloaterState> {
       }
     }
 
-    const coords = view.coordsAtPos(selection.$anchor.pos)
-
-    const { offsetWidth } = this.menuRef.current
+    const coords = view.coordsAtPos(selection.$anchor.pos);
+    const app = document.querySelector('#container') as HTMLDivElement;
+    const width = app.offsetWidth;
 
     return {
-      left: coords.left - ((window.innerWidth - 780) / 2),
+      left: coords.left - ((window.innerWidth - width) / 2),
       top: coords.top + 20
     }
   }

@@ -20,7 +20,7 @@ const Container = styled.div`
   max-width: 780px;
   margin: 0 auto;
   position: relative;
-  padding: 40px 0 80px 0;
+  padding: 10px 0 80px 0;
 `;
 
 interface ProseRender {
@@ -37,7 +37,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <Container ref={(ref) => this.container = ref}>
+      <Container id="container" ref={(ref) => this.container = ref}>
         <Input>
           <Editor
             options={options}
@@ -52,7 +52,7 @@ export default class App extends React.Component {
                   if (/iPod|iPhone|iPad/.test(navigator.platform) && document.activeElement) {
                     const activeElement = document.activeElement as HTMLElement;
                     if (activeElement.isContentEditable) {
-                      scrollTo(0, offsetTop + height + 80 + viewport.keyboardHeight);
+                      scrollTo(0, offsetTop);
                     }
                   } else {
                     scrollTo(0, offsetTop + height + 80);
