@@ -40,7 +40,6 @@ const Button = ({ state, dispatch }) => (item, key) => (
     type={'button'}
     active={item.active && item.active(state)}
     title={item.title}
-    disabled={item.enable && !item.enable(state)}
     onMouseDown={e => {
       e.preventDefault()
       item.run(state, dispatch)

@@ -38,12 +38,19 @@ const ButtonStyle = styled.button`
   ${props => {
     if (props.active) {
       return `
-        color: #000;
+        color: blue;
       `;
     } else {
       return `
-        color: #777;
+      color: #777;
       `
+    }
+  }}
+  ${props => {
+    if (props.disabled) {
+      return `
+        opacity: .4;
+      `;
     }
   }}
   background: #fff;
@@ -58,8 +65,6 @@ const ButtonStyle = styled.button`
 `;
 
 const Button = ({ state, dispatch }: Partial<EditorView>) => (item, key: string) => {
-  
-  console.log(item.active && item.active(state));
 
   return (<ButtonStyle
     key={key}

@@ -1,4 +1,4 @@
-import { joinUp, lift, setBlockType, toggleMark, wrapIn } from 'prosemirror-commands';
+import { joinUp, lift, toggleMark, wrapIn, setBlockType } from 'prosemirror-commands';
 import { redo, undo } from 'prosemirror-history';
 import { wrapInList } from 'prosemirror-schema-list'
 import { setTextSelection, findChildren } from 'prosemirror-utils';
@@ -6,6 +6,7 @@ import { setTextSelection, findChildren } from 'prosemirror-utils';
 
 import schema from './schema'
 import icons from './icons'
+import { EditorState, Selection } from 'prosemirror-state';
 
 
 const markActive = type => state => {
@@ -30,8 +31,6 @@ const blockActive = (type, attrs = {}) => state => {
     i++;
     return false;
   }, false);
-
-  console.log(firstNode, type, attrs);
 
   return to <= $from.end() && firstNode.node.hasMarkup(type)
 }
