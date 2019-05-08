@@ -24,16 +24,16 @@ const blockActive = (type, attrs = {}) => state => {
   const rowNumber = resolvedPos.path[1];
   let i = 0;
   const [ firstNode ] = findChildren(state.doc, (_node) => {
-    if (rowNumber === i || rowNumber + 1 === i) {
-      i++;
+    if (rowNumber === i) {
       return true;
     }
     i++;
     return false;
   }, false);
 
+  console.log(firstNode, type, attrs);
 
-  return to <= $from.end() && firstNode.node.hasMarkup(type, attrs)
+  return to <= $from.end() && firstNode.node.hasMarkup(type)
 }
 
 const canInsert = type => state => {
