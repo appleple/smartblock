@@ -1,12 +1,9 @@
-import { joinUp, lift, toggleMark, wrapIn, setBlockType } from 'prosemirror-commands';
+import { lift, toggleMark, wrapIn, setBlockType } from 'prosemirror-commands';
 import { redo, undo } from 'prosemirror-history';
 import { wrapInList } from 'prosemirror-schema-list'
-import { setTextSelection, findChildren } from 'prosemirror-utils';
-// import { addColumnAfter, addColumnBefore } from 'prosemirror-tables'
-
+import { findChildren } from 'prosemirror-utils';
 import schema from './schema'
 import icons from './icons'
-import { EditorState, Selection } from 'prosemirror-state';
 
 
 const markActive = type => state => {
