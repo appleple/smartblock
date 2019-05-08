@@ -1,10 +1,12 @@
-import { joinUp, lift, setBlockType, toggleMark, wrapIn } from 'prosemirror-commands'
-import { redo, undo } from 'prosemirror-history'
+import { joinUp, lift, setBlockType, toggleMark, wrapIn } from 'prosemirror-commands';
+import { redo, undo } from 'prosemirror-history';
 import { wrapInList } from 'prosemirror-schema-list'
+import { setTextSelection, findChildren } from 'prosemirror-utils';
 // import { addColumnAfter, addColumnBefore } from 'prosemirror-tables'
 
 import schema from './schema'
 import icons from './icons'
+
 
 const markActive = type => state => {
   const { from, $from, to, empty } = state.selection
@@ -15,13 +17,23 @@ const markActive = type => state => {
 }
 
 const blockActive = (type, attrs = {}) => state => {
-  const { $from, to, node } = state.selection
+  const { selection } = state;
+  const { $from, to } = state.selection
+  const { $anchor } = selection;
+  const resolvedPos = state.doc.resolve($anchor.pos) as any;
+  const rowNumber = resolvedPos.path[1];
+  let i = 0;
+  const [ firstNode ] = findChildren(state.doc, (_node) => {
+    if (rowNumber === i || rowNumber + 1 === i) {
+      i++;
+      return true;
+    }
+    i++;
+    return false;
+  }, false);
 
-  if (node) {
-    return node.hasMarkup(type, attrs)
-  }
 
-  return to <= $from.end() && $from.parent.hasMarkup(type, attrs)
+  return to <= $from.end() && firstNode.node.hasMarkup(type, attrs)
 }
 
 const canInsert = type => state => {

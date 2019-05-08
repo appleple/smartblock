@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled, { keyframes } from 'styled-components';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import { setTextSelection, findChildren } from 'prosemirror-utils';
+import { EditorState, Transaction } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import map from 'lodash/map';
 import {
@@ -39,6 +40,10 @@ const ButtonStyle = styled.button`
       return `
         color: #000;
       `;
+    } else {
+      return `
+        color: #777;
+      `
     }
   }}
   background: #fff;
@@ -47,14 +52,16 @@ const ButtonStyle = styled.button`
   -webkit-appearance: none;
   font-size: 20px;
   cursor: pointer;
-  color: #777;
   padding: 5px 10px;
   margin-right: 5px;
   text-align: center;
 `;
 
-const Button = ({ state, dispatch }) => (item, key) => (
-  <ButtonStyle
+const Button = ({ state, dispatch }: Partial<EditorView>) => (item, key: string) => {
+  
+  console.log(item.active && item.active(state));
+
+  return (<ButtonStyle
     key={key}
     type={'button'}
     active={item.active && item.active(state)}
@@ -65,7 +72,7 @@ const Button = ({ state, dispatch }) => (item, key) => (
       item.run(state, dispatch)
     }}
   >{item.content}</ButtonStyle>
-);
+)};
 
 const findNodePosition = (doc: Node, target: Node) => {
   let ret = -1;
