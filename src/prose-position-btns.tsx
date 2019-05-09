@@ -74,9 +74,9 @@ const Button = ({ state, dispatch }: Partial<EditorView>) => (item, key: string)
     disabled={item.enable && !item.enable(state)}
     onMouseDown={e => {
       e.preventDefault()
-      item.run(state, dispatch)
+      item.onClick(state, dispatch)
     }}
-  >{item.content}</ButtonStyle>
+  >{item.icon}</ButtonStyle>
 )};
 
 const findNodePosition = (doc: Node, target: Node) => {

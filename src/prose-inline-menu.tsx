@@ -36,9 +36,9 @@ const Button = ({ state, dispatch }) => (item, key) => (
     disabled={item.enable && !item.enable(state)}
     onMouseDown={e => {
       e.preventDefault()
-      item.run(state, dispatch)
+      item.onClick(state, dispatch)
     }}
-  >{item.content}</ButtonStyle>
+  >{item.icon}</ButtonStyle>
 )
 
 const MenuBar = ({ menu, children, view }: { menu: any, children?: React.ReactChildren, view: EditorView}) => (

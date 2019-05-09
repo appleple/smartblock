@@ -9,7 +9,7 @@ render(<App html={`
   <li>リスト1</li>
   <li>リスト2</li>
 </ul>
-`} 
+`}
 json={{
   type: 'doc',
   content: [
