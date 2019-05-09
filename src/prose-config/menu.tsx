@@ -98,7 +98,6 @@ export default {
           toggleMark(schema.marks.link)(state, dispatch)
           return true
         }
-
         const href = promptForURL()
         if (!href) return false
 

@@ -5,8 +5,6 @@ import {
   faBold,
   faItalic,
   faCode,
-  faSuperscript,
-  faSubscript,
   faUnderline,
   faStrikethrough,
   faLink,
