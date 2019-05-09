@@ -7,7 +7,7 @@ import Floater from './prose-floater';
 import { options, menu } from './prose-config';
 import './styles/base.css';
 import { EditorView } from 'prosemirror-view';
-import { Node } from 'prosemirror-model';
+import { Node, DOMParser, DOMSerializer } from 'prosemirror-model';
 import scrollTo from 'scroll-to';
 import { getScrollTop, getOffset, getViewport } from './utili';
 
@@ -28,22 +28,54 @@ interface ProseRender {
   view: EditorView;
 }
 
-console.log(options);
+type OutputJson = {
+  [key: string]: any
+}
 
-export default class App extends React.Component {
+type AppProps = {
+  onChange(json: OutputJson): void;
+  json: OutputJson;
+  html: string;
+}
+
+type AppState = {
+  doc: Node
+}
+
+export default class App extends React.Component<AppProps, AppState> {
   container: HTMLElement;
+
+  static defaultProps = {
+    json: {
+      type: 'doc',
+      content: [{
+        type: 'paragraph',
+        content: []
+      }]
+    },
+    html: ''
+  }
 
   constructor(props) {
     super(props);
+    const html = props.html;
+    const div = document.createElement('div');
+    div.innerHTML = html;
+    const doc = DOMParser.fromSchema(options.schema).parse(div);
+    this.state = { doc };
   }
 
   render() {
+    
+    const { doc } = this.state;
+    const editorOptions = {...options, doc };
+
     return (
       <Container id="container" ref={(ref) => this.container = ref}>
         <Input>
           <Editor
             place
-            options={options}
+            options={editorOptions}
             onChange={(doc: Node) => {
               const selected = this.container.querySelector('.selected') as HTMLDivElement;
               if (selected) {
@@ -61,6 +93,16 @@ export default class App extends React.Component {
                     scrollTo(0, offsetTop + height + 80);
                   }
                 }
+              }
+              if (this.props.onChange) {
+                const json = doc.toJSON();
+                const fragment = DOMSerializer.fromSchema(options.schema).serializeFragment(doc.content);
+                const div = document.createElement('div');
+                div.appendChild(fragment);
+                const html = div.innerHTML;
+                this.props.onChange({
+                  json, html
+                });
               }
             }}
             render={({ editor, view } : ProseRender) => (
