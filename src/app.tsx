@@ -28,6 +28,8 @@ interface ProseRender {
   view: EditorView;
 }
 
+console.log(options);
+
 export default class App extends React.Component {
   container: HTMLElement;
 
@@ -40,6 +42,7 @@ export default class App extends React.Component {
       <Container id="container" ref={(ref) => this.container = ref}>
         <Input>
           <Editor
+            place
             options={options}
             onChange={(doc: Node) => {
               const selected = this.container.querySelector('.selected') as HTMLDivElement;
