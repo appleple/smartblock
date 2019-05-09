@@ -34,8 +34,8 @@ type OutputJson = {
 
 type AppProps = {
   onChange(json: OutputJson): void;
-  json: OutputJson;
-  html: string;
+  json?: OutputJson;
+  html?: string;
 }
 
 type AppState = {
@@ -45,24 +45,26 @@ type AppState = {
 export default class App extends React.Component<AppProps, AppState> {
   container: HTMLElement;
 
-  static defaultProps = {
-    json: {
-      type: 'doc',
-      content: [{
-        type: 'paragraph',
-        content: []
-      }]
-    },
-    html: ''
-  }
-
   constructor(props) {
     super(props);
     const html = props.html;
+    const json = props.json;
+    let realHtml = html;
+    if (json) {
+      const node = Node.fromJSON(options.schema, json);
+      realHtml = this.getHtmlFromNode(node);
+    }
     const div = document.createElement('div');
-    div.innerHTML = html;
+    div.innerHTML = realHtml;
     const doc = DOMParser.fromSchema(options.schema).parse(div);
     this.state = { doc };
+  }
+
+  getHtmlFromNode(doc: Node) {
+    const fragment = DOMSerializer.fromSchema(options.schema).serializeFragment(doc.content);
+    const div = document.createElement('div');
+    div.appendChild(fragment);
+    return div.innerHTML;
   }
 
   render() {
@@ -96,10 +98,7 @@ export default class App extends React.Component<AppProps, AppState> {
               }
               if (this.props.onChange) {
                 const json = doc.toJSON();
-                const fragment = DOMSerializer.fromSchema(options.schema).serializeFragment(doc.content);
-                const div = document.createElement('div');
-                div.appendChild(fragment);
-                const html = div.innerHTML;
+                const html = this.getHtmlFromNode(doc);
                 this.props.onChange({
                   json, html
                 });

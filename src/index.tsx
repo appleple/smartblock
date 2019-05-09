@@ -11,7 +11,18 @@ render(<App html={`
   <li>リスト2</li>
 </ul>
 `} 
-
+json={{
+  type: 'doc',
+  content: [
+  {
+    type: 'paragraph',
+    content: [{
+      type: 'text',
+      text: 'Example Paragraph'
+    }]
+  }
+]}}
 onChange={({json, html}) => {
   console.log(json, html);
-}}/>, document.querySelector('#app'));
+}}/>, 
+document.querySelector('#app'));
