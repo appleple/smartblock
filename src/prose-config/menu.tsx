@@ -29,7 +29,7 @@ const blockActive = (type, attrs = {}) => state => {
     return false;
   }, false);
 
-  return to <= $from.end() && firstNode.node.hasMarkup(type)
+  return to <= $from.end() && firstNode.node.hasMarkup(type, attrs)
 }
 
 const canInsert = type => state => {
