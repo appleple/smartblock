@@ -8,6 +8,10 @@
   border-radius: 2px;
 }
 
+.ProseMirror li > p {
+  margin: 0;
+}
+
 .ProseMirror .selected {
   background-color: #e0f7fa;
 }
