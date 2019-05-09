@@ -5,6 +5,7 @@ import BulletList from './bullet-list';
 import OrderedList from './ordered-list';
 
 import Underline from './underline';
+import Strike from './strike';
 
 export default [
   //blocks
@@ -14,5 +15,6 @@ export default [
   new BulletList(),
   new OrderedList(),
   //marks
-  new Underline()
+  new Underline(),
+  new Strike()
 ];

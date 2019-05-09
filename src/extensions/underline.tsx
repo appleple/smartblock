@@ -27,7 +27,6 @@ export default class Underline implements Extension {
     return <FontAwesomeIcon icon={faUnderline} />
   }
   onClick (state, dispatch) {
-    console.log(state.schema);
     toggleMark(state.schema.marks.underline)(state, dispatch);
   }
 }
