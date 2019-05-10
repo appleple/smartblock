@@ -13,7 +13,7 @@ import keys from './prose-config/keys';
 import { Node, DOMParser, DOMSerializer } from 'prosemirror-model';
 import { chainCommands } from 'prosemirror-commands';
 import scrollTo from 'scroll-to';
-import { getScrollTop, getOffset, getViewport } from './utili';
+import { getScrollTop, getOffset, getViewport } from './util';
 import extensions from './extensions';
 import { Extension } from './types';
 

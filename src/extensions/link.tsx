@@ -3,14 +3,7 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faLink } from '@fortawesome/fontawesome-free-solid'
 import { toggleMark } from 'prosemirror-commands';
 import { Extension } from '../types';
-
-const markActive = type => state => {
-  const { from, $from, to, empty } = state.selection
-
-  return empty
-    ? type.isInSet(state.storedMarks || $from.marks())
-    : state.doc.rangeHasMark(from, to, type)
-}
+import { markActive } from '../util';
 
 const promptForURL = () => {
   let url = window && window.prompt('Enter the URL', 'https://')
@@ -45,6 +38,9 @@ export default class Link implements Extension {
   }
   get icon() {
     return <FontAwesomeIcon icon={faLink} />
+  }
+  active (state) {
+    return markActive(state.schema.marks.link)(state);
   }
   onClick (state, dispatch) {
     if (markActive(state.schema.marks.link)(state)) {

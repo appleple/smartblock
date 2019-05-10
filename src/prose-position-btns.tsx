@@ -11,7 +11,7 @@ import {
   faTrash
 } from '@fortawesome/fontawesome-free-solid'
 import { Node } from 'prosemirror-model';
-import { getOffset } from './utili';
+import { getOffset } from './util';
 
 const fadeIn = keyframes`
   from {

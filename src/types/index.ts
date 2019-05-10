@@ -1,5 +1,6 @@
 import { Node, Schema } from "prosemirror-model";
-import { Plugin } from "prosemirror-state";
+import { Plugin, EditorState } from "prosemirror-state";
+import { Transform } from "prosemirror-transform";
 
 interface ExtensionSchema {
   content?: string,
@@ -18,5 +19,8 @@ export interface Extension {
   icon?: JSX.Element | string;
   plugins?: (() => Plugin<any, any>)[];
   showMenu: boolean,
+  active?(state: EditorState): boolean
+  enable?(state: EditorState): boolean
+  onClick?(state: EditorState, dispatch: Transform): void
   keys?(schema: Schema): {[key: string]: any }
 }

@@ -3,6 +3,7 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faParagraph } from '@fortawesome/fontawesome-free-solid'
 import { setBlockType } from 'prosemirror-commands';
 import { Extension } from '../types';
+import { blockActive } from '../util';
 
 export default class Paragraph implements Extension {
   get name() {
@@ -23,6 +24,12 @@ export default class Paragraph implements Extension {
   }
   get icon() {
     return <FontAwesomeIcon icon={faParagraph} />
+  }
+  active(state) {
+    return blockActive(state.schema.nodes.paragraph)(state)
+  }
+  enable(state) {
+    return setBlockType(state.schema.nodes.paragraph)(state);
   }
   onClick (state, dispatch) {
     setBlockType(state.schema.nodes.paragraph)(state, dispatch);

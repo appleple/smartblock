@@ -3,6 +3,7 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faListOl } from '@fortawesome/fontawesome-free-solid'
 import { wrapInList } from 'prosemirror-schema-list'
 import { Extension } from '../types';
+import { blockActive } from '../util';
 
 export default class BulletList implements Extension {
   get name() {
@@ -21,6 +22,12 @@ export default class BulletList implements Extension {
   }
   get icon() {
     return <FontAwesomeIcon icon={faListOl} />
+  }
+  active(state) {
+    return blockActive(state.schema.nodes.ordered_list)(state)
+  }
+  enable(state) {
+    return wrapInList(state.schema.nodes.ordered_list)(state);
   }
   onClick (state, dispatch) {
     wrapInList(state.schema.nodes.ordered_list)(state, dispatch);

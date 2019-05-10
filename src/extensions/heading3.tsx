@@ -3,6 +3,7 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faHeading } from '@fortawesome/fontawesome-free-solid'
 import { setBlockType } from 'prosemirror-commands';
 import { Extension } from '../types';
+import { blockActive } from '../util';
 
 export default class Heading3 implements Extension {
   get name() {
@@ -24,6 +25,12 @@ export default class Heading3 implements Extension {
   }
   get icon() {
     return 'H2'
+  }
+  active(state) {
+    return blockActive(state.schema.nodes.heading3)(state)
+  }
+  enable(state) {
+    return setBlockType(state.schema.nodes.heading3)(state);
   }
   onClick (state, dispatch) {
     setBlockType(state.schema.nodes.heading3)(state, dispatch);

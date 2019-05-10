@@ -3,6 +3,7 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faBold } from '@fortawesome/fontawesome-free-solid'
 import { toggleMark } from 'prosemirror-commands';
 import { Extension } from '../types';
+import { markActive } from '../util';
 
 export default class Strong implements Extension {
   get name() {
@@ -25,6 +26,9 @@ export default class Strong implements Extension {
   }
   get icon() {
     return <FontAwesomeIcon icon={faBold} />
+  }
+  active (state) {
+    return markActive(state.schema.marks.strong)(state);
   }
   onClick (state, dispatch) {
     toggleMark(state.schema.marks.strong)(state, dispatch);
