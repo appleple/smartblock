@@ -1,15 +1,14 @@
 import * as React from 'react'
 import styled from 'styled-components';
 import { Editor } from '@aeaton/react-prosemirror';
-import InlineMenuBar from './prose-inline-menu';
-import PositionBtns from './prose-position-btns';
-import Floater from './prose-floater';
-import plugins from './prose-config/plugins';
+import InlineMenuBar from './inline-menu';
+import PositionBtns from './menu';
+import plugins from './config/plugins';
 import './styles/base.css';
 import { EditorView } from 'prosemirror-view';
 import { Schema } from 'prosemirror-model';
 import { keymap } from 'prosemirror-keymap';
-import keys from './prose-config/keys';
+import keys from './config/keys';
 import { Node, DOMParser, DOMSerializer } from 'prosemirror-model';
 import { chainCommands } from 'prosemirror-commands';
 import scrollTo from 'scroll-to';
