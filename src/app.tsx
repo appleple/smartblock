@@ -217,9 +217,7 @@ export default class App extends React.Component<AppProps, AppState> {
             render={({ editor, view } : ProseRender) => (
               <React.Fragment>
                 <PositionBtns view={view} menu={{ blocks: this.getMenu(blocks) }} />
-                <Floater view={view}>
-                  <InlineMenuBar menu={{ marks: this.getMenu(marks) }} view={view} />
-                </Floater>
+                <InlineMenuBar menu={{ marks: this.getMenu(marks) }} view={view} />
                 {editor}
               </React.Fragment>
             )}
