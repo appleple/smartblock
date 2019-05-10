@@ -6,16 +6,18 @@ import { setBlockType } from 'prosemirror-commands';
 
 class MediaComponent extends React.Component {
 
-  onChange(e) {
+  constructor(props) {
+    super(props);
+  }
+
+  onClick(e) {
     console.log(e);
   }
 
   render() {
     return (<div>
-      ファイルを選択!!
-      <input type="text" />
-      <input type="file" onChange={this.onChange.bind(this)} />
-      <button>click!</button>
+      
+      <button onClick={this.onClick.bind(this)}>click!</button>
     </div>)
   }
 }
