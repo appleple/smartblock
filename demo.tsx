@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { render } from 'react-dom';
 import App from './src/';
+import './styles/base.css';
 
 render(<App html={`
 <p>Hello World</p>

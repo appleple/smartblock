@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { Extension } from '../types';
 export default class Underline implements Extension {
     readonly name: string;

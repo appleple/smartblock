@@ -1,5 +1,4 @@
 import * as React from 'react';
-import './styles/base.css';
 import { Schema } from 'prosemirror-model';
 import { Node } from 'prosemirror-model';
 import { Extension } from './types';

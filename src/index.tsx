@@ -5,7 +5,6 @@ import Editor from './editor';
 import InlineMenuBar from './inline-menu';
 import PositionBtns from './menu';
 import plugins from './config/plugins';
-import './styles/base.css';
 import { EditorView } from 'prosemirror-view';
 import { Schema } from 'prosemirror-model';
 import { keymap } from 'prosemirror-keymap';
