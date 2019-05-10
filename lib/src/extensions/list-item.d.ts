@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { Extension } from '../types';
 import { Schema } from "prosemirror-model";
 export default class ListItem implements Extension {
@@ -10,7 +9,7 @@ export default class ListItem implements Extension {
         parseDOM: {
             tag: string;
         }[];
-        toDOM(): import("react").Key[];
+        toDOM(): (string | number)[];
         defining: boolean;
     };
     keys(schema: Schema): {

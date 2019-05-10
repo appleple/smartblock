@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { Extension } from '../types';
 export default class Link implements Extension {
     readonly name: string;

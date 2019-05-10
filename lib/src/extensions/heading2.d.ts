@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Extension } from '../types';
 export default class Heading2 implements Extension {
     readonly name: string;
@@ -10,7 +9,7 @@ export default class Heading2 implements Extension {
         parseDOM: {
             tag: string;
         }[];
-        toDOM(node: any): React.Key[];
+        toDOM(node: any): (string | number)[];
     };
     readonly icon: JSX.Element;
     active(state: any): boolean;

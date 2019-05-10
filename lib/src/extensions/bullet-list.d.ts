@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Extension } from '../types';
 export default class BulletList implements Extension {
     readonly name: string;
@@ -9,7 +8,7 @@ export default class BulletList implements Extension {
         parseDOM: {
             tag: string;
         }[];
-        toDOM(): React.Key[];
+        toDOM(): (string | number)[];
     };
     readonly icon: JSX.Element;
     active(state: any): boolean;

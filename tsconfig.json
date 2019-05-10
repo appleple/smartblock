@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "commonjs",
+    "module": "es6",
     "moduleResolution": "node",
     "outDir": "./lib",
     "sourceMap": true,
@@ -13,6 +13,6 @@
       "dom"
     ]
   },
-  "include": ["src", "index.tsx"],
-  "exclude": ["node_modules", "**/__tests__/*"]
+  "include": ["src"],
+  "exclude": ["node_modules", "**/__tests__/*", "lib"]
 }
