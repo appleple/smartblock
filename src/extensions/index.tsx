@@ -12,6 +12,8 @@ import Link from './link';
 
 import Lift from './lift';
 
+import Media from './media';
+
 export default [
   //blocks
   new Paragraph(),
@@ -26,5 +28,7 @@ export default [
   new Strong(),
   new Link(),
   //utility
-  new Lift()
+  new Lift(),
+
+  new Media()
 ];

@@ -19,6 +19,7 @@ export interface Extension {
   icon?: JSX.Element | string;
   plugins?: (() => Plugin<any, any>)[];
   showMenu: boolean,
+  render?(node: Node): React.ReactNode,
   active?(state: EditorState): boolean
   enable?(state: EditorState): boolean
   onClick?(state: EditorState, dispatch: Transform): void

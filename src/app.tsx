@@ -1,6 +1,7 @@
 import * as React from 'react'
+import * as ReactDOM from 'react-dom';
 import styled from 'styled-components';
-import { Editor } from '@aeaton/react-prosemirror';
+import Editor from './editor';
 import InlineMenuBar from './inline-menu';
 import PositionBtns from './menu';
 import plugins from './config/plugins';
@@ -169,6 +170,31 @@ export default class App extends React.Component<AppProps, AppState> {
     return [...plugins, ...customPlugins, keyPlugin];
   }
 
+  getNodeViews() {
+    const { extensions } = this.props;
+    let views = {};
+    extensions.forEach((extension) => {
+      if (extension.render) {
+        views[extension.name] = (node: Node, view, getPos) => {
+          const dom = document.createElement('div');
+          setTimeout(() => {
+            ReactDOM.render(<>
+              {extension.render(node)}
+            </>, dom);
+          }, 100);
+          return {
+            dom,
+            node,
+            view,
+            getPos,
+            innerView: null
+          };
+        }
+      }
+    });
+    return views;
+  }
+
   getMenu(extensions: Extension[]) {
     return extensions.filter((extension) => extension.showMenu);
   }
@@ -180,13 +206,14 @@ export default class App extends React.Component<AppProps, AppState> {
     const editorOptions = { schema, plugins: this.getPlugins(), doc };
     const blocks = this.getBlocks(extensions);
     const marks = this.getMarks(extensions);
+    const nodeViews = this.getNodeViews();
 
     return (
       <Container id="container" ref={(ref) => this.container = ref}>
         <Input>
           <Editor
-            place
             options={editorOptions}
+            nodeViews={nodeViews}
             onChange={(doc: Node) => {
               const selected = this.container.querySelector('.selected') as HTMLDivElement;
               if (selected) {

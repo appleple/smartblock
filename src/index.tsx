@@ -22,6 +22,5 @@ json={{
   }
 ]}}
 onChange={({json, html}) => {
-  console.log(json, html);
 }}/>, 
 document.querySelector('#app'));
