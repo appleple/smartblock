@@ -15,7 +15,7 @@ interface ExtensionSchema {
 export interface Extension {
   name: string;
   schema: ExtensionSchema;
-  icon?: JSX.Element;
+  icon?: JSX.Element | string;
   plugins?: (() => Plugin<any, any>)[];
   showMenu: boolean,
   keys?(schema: Schema): {[key: string]: any }
