@@ -2,6 +2,7 @@
 import { Node, Schema } from "prosemirror-model";
 import { Plugin, EditorState } from "prosemirror-state";
 import { Transform } from "prosemirror-transform";
+import { EditorView } from "prosemirror-view";
 interface ExtensionSchema {
     content?: string;
     group?: string;
@@ -20,7 +21,7 @@ export interface Extension {
     icon?: JSX.Element | string;
     plugins?: (() => Plugin<any, any>)[];
     showMenu: boolean;
-    render?(node: Node): React.ReactNode;
+    render?(node: Node, view: EditorView, getPos: () => number): React.ReactNode;
     active?(state: EditorState): boolean;
     enable?(state: EditorState): boolean;
     onClick?(state: EditorState, dispatch: Transform): void;

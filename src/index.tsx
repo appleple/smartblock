@@ -178,7 +178,7 @@ export default class App extends React.Component<AppProps, AppState> {
           const dom = document.createElement('div');
           setTimeout(() => {
             ReactDOM.render(<>
-              {extension.render(node)}
+              {extension.render(node, view, getPos)}
             </>, dom);
           }, 100);
 
