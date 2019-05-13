@@ -174,13 +174,13 @@ export default class App extends React.Component<AppProps, AppState> {
     let views = {};
     extensions.forEach((extension) => {
       if (extension.render) {
-        views[extension.name] = (node: Node, view, getPos) => {
+        views[extension.name] = (node: Node, view: EditorView, getPos) => {
           const dom = document.createElement('div');
           setTimeout(() => {
             ReactDOM.render(<>
               {extension.render(node, view, getPos)}
             </>, dom);
-          }, 100);
+          }, 1);
 
           return {
             dom
