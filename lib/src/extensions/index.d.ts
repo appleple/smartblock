@@ -9,6 +9,5 @@ import Strike from './strike';
 import Strong from './strong';
 import Link from './link';
 import Lift from './lift';
-import Media from './media';
-declare const _default: (Paragraph | Heading2 | Heading3 | ListItem | BulletList | OrderedList | Underline | Strike | Strong | Link | Lift | Media)[];
+declare const _default: (Paragraph | Heading2 | Heading3 | ListItem | BulletList | OrderedList | Underline | Strike | Strong | Link | Lift)[];
 export default _default;
