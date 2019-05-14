@@ -186,6 +186,9 @@ export default class App extends React.Component<AppProps, AppState> {
             dom,
             ignoreMutation() {
               return true;
+            },
+            stopEvent() {
+              return true;
             }
           };
 
