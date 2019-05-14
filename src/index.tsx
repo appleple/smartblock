@@ -176,11 +176,11 @@ export default class App extends React.Component<AppProps, AppState> {
       if (extension.render) {
         views[extension.name] = (node: Node, view: EditorView, getPos) => {
           const dom = document.createElement('div');
-          setTimeout(() => {
+          requestAnimationFrame(() => {
             ReactDOM.render(<>
               {extension.render(node, view, getPos)}
             </>, dom);
-          }, 1);
+          });
 
           return {
             dom,
