@@ -183,7 +183,10 @@ export default class App extends React.Component<AppProps, AppState> {
           }, 1);
 
           return {
-            dom
+            dom,
+            ignoreMutation() {
+              return true;
+            }
           };
 
         }

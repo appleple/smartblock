@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { Extension } from '../types';
 export default class BulletList implements Extension {
     readonly name: string;

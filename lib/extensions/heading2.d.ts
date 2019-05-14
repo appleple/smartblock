@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { Extension } from '../types';
 export default class Heading2 implements Extension {
     readonly name: string;
