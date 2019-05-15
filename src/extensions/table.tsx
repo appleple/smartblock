@@ -3,7 +3,8 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faTable } from '@fortawesome/fontawesome-free-solid'
 import {addColumnAfter, addColumnBefore, deleteColumn, addRowAfter, addRowBefore, deleteRow,
   mergeCells, splitCell, setCellAttr, toggleHeaderRow, toggleHeaderColumn, toggleHeaderCell,
-  goToNextCell, deleteTable, fixTable, tableEditing, columnResizing, tableNodes}  from "prosemirror-tables";
+  goToNextCell, fixTable, tableEditing, columnResizing, tableNodes}  from "prosemirror-tables";
+import { createTable } from 'prosemirror-utils';
 import { setBlockType } from 'prosemirror-commands';
 
 import { Extension } from '../types';
@@ -54,6 +55,9 @@ export default class Table implements Extension {
   }
   onClick (state, dispatch) {
     // console.log(state.tr);
+    // fixTable(state, dispatch);
+    const table = createTable(state.schema);
+    dispatch(state.tr.replaceSelectionWith(table));
     // state.tr.replaceSelectionWithNode(state.schema.nodes.table);
     // setBlockType(state.schema.nodes.table)(state, dispatch);
   }
@@ -77,6 +81,12 @@ export default class Table implements Extension {
       <Button onClick={() => {
         addRowAfter(state, dispatch);
       }}>下に行を追加</Button>
+      <Button onClick={() => {
+        mergeCells(state, dispatch);
+      }}>セルの結合</Button>
+      <Button onClick={() => {
+        splitCell(state, dispatch);
+      }}>セルの分割</Button>
     </>)
   }
   keys() {
