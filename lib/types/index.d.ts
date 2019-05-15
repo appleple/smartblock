@@ -18,8 +18,11 @@ interface ExtensionSchema {
 export interface Extension {
     name: string;
     schema: ExtensionSchema;
+    schemaDependencies?: {
+        [key: string]: ExtensionSchema;
+    };
     icon?: JSX.Element | string;
-    plugins?: (() => Plugin<any, any>)[];
+    plugins?: Plugin<any, any>[];
     showMenu: boolean;
     render?(node: Node, view: EditorView, getPos: () => number): React.ReactNode;
     active?(state: EditorState): boolean;

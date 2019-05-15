@@ -28,6 +28,7 @@ export default class PositionBtns extends React.Component<PositionProps, Positio
     moveSectionDown(): void;
     deleteSelection(): void;
     moveSectionUp(): void;
+    getActiveMenu(): JSX.Element;
     render(): JSX.Element;
 }
 export {};
