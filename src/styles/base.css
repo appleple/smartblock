@@ -70,3 +70,7 @@
 .ProseMirror th {
   border-color: #333;
 }
+
+.ProseMirror table {
+  margin-bottom: 15px;
+}
