@@ -111,8 +111,19 @@ export default class App extends React.Component<AppProps, AppState> {
     return marksSchema;
   }
 
+  getSchemaBlockDependencies(extensions: Extension[]) {
+    const schemas = extensions.reduce((schema, curr) => {
+      if (curr.schemaDependencies) {
+        return Object.assign({}, schema, curr.schemaDependencies );
+      }
+      return schema;
+    }, {});
+    return schemas;
+  }
+
   getSchemaFromExtensions(extensions: Extension[]) {
     let nodes = this.getBlockSchemas(extensions);
+    const nodeDependencies = this.getSchemaBlockDependencies(extensions);
     const base = { 
       doc: {
         content: 'block+'
@@ -128,7 +139,7 @@ export default class App extends React.Component<AppProps, AppState> {
         toDOM() { return ['br'] }
       }
     };
-    nodes = { ...nodes , ...base }
+    nodes = { ...nodes , ...base, ...nodeDependencies }
     const marks = this.getMarkSchemas(extensions);
     return new Schema({ nodes, marks } as { nodes: any, marks: any });
   }

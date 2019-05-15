@@ -4,6 +4,7 @@ import Heading3 from './heading3';
 import ListItem from './list-item';
 import BulletList from './bullet-list';
 import OrderedList from './ordered-list';
+import Table from './table';
 
 import Underline from './underline';
 import Strike from './strike';
@@ -20,6 +21,7 @@ export default [
   new ListItem(),
   new BulletList(),
   new OrderedList(),
+  new Table(),
   //marks
   new Underline(),
   new Strike(),
