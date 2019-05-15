@@ -18,6 +18,9 @@ export default class Heading3 implements Extension {
       content: "inline*",
       group: "block",
       defining: true,
+      attrs: {
+        align: { default: 'left' } 
+      },
       parseDOM: [
         {tag: "h3"},
       ],
