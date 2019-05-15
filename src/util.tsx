@@ -71,6 +71,10 @@ export const blockActive = (type) => state => {
     return false;
   }, false);
 
+  if (!firstNode) {
+    return false;
+  }
+
   return to <= $from.end() && firstNode.node.type.name === type.name
 }
 

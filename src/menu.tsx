@@ -108,6 +108,12 @@ export default class PositionBtns extends React.Component<PositionProps, Positio
       return false;
     }, false);
 
+    if (!firstNode) {
+      return {
+        top: -1000
+      }
+    }
+
     const coords = view.coordsAtPos(firstNode.pos);
     const dom = view.nodeDOM(firstNode.pos) as HTMLElement;
     const elementTop = getOffset(dom).top;
