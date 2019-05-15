@@ -10,10 +10,21 @@ export default class Heading2 implements Extension {
         parseDOM: {
             tag: string;
         }[];
-        toDOM(node: any): (string | number)[];
+        attrs: {
+            align: {
+                default: string;
+            };
+        };
+        toDOM(node: any): (string | number | {
+            style: string;
+        })[];
     };
     readonly icon: JSX.Element;
     active(state: any): boolean;
     enable(state: any): boolean;
+    customMenu({ state, dispatch }: {
+        state: any;
+        dispatch: any;
+    }): JSX.Element;
     onClick(state: any, dispatch: any): void;
 }
