@@ -65,3 +65,8 @@
 .ProseMirror p.empty-node:first-child::before {
   content: "さぁ書き始めよう！";
 }
+
+.ProseMirror td,
+.ProseMirror th {
+  border-color: #333;
+}

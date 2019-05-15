@@ -54,12 +54,8 @@ export default class Table implements Extension {
     return setBlockType(state.schema.nodes.table)(state);
   }
   onClick (state, dispatch) {
-    // console.log(state.tr);
-    // fixTable(state, dispatch);
     const table = createTable(state.schema);
     dispatch(state.tr.replaceSelectionWith(table));
-    // state.tr.replaceSelectionWithNode(state.schema.nodes.table);
-    // setBlockType(state.schema.nodes.table)(state, dispatch);
   }
   customMenu({ state, dispatch }) {
     return (<>
