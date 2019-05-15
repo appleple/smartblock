@@ -34,7 +34,6 @@ export default class Paragraph implements Extension {
     return <FontAwesomeIcon icon={faParagraph} />
   }
   active(state) {
-    console.log(state.schema.nodes.paragraph);
     return blockActive(state.schema.nodes.paragraph)(state)
   }
   enable(state) {
