@@ -5,8 +5,10 @@ import {addColumnAfter, addColumnBefore, deleteColumn, addRowAfter, addRowBefore
   mergeCells, splitCell, setCellAttr, toggleHeaderRow, toggleHeaderColumn, toggleHeaderCell,
   goToNextCell, deleteTable, fixTable, tableEditing, columnResizing, tableNodes}  from "prosemirror-tables";
 import { setBlockType } from 'prosemirror-commands';
+
 import { Extension } from '../types';
 import { blockActive } from '../util';
+import Button from '../components/Button';
 
 const schemas = tableNodes({
   group: 'block',
@@ -52,8 +54,30 @@ export default class Table implements Extension {
   }
   onClick (state, dispatch) {
     // console.log(state.tr);
-    state.tr.replaceSelectionWithNode(state.schema.nodes.table);
+    // state.tr.replaceSelectionWithNode(state.schema.nodes.table);
     // setBlockType(state.schema.nodes.table)(state, dispatch);
+  }
+  customMenu({ state, dispatch }) {
+    return (<>
+      <Button onClick={() => {
+        deleteColumn(state, dispatch);
+      }}>列を削除</Button>
+      <Button onClick={() => {
+        deleteRow(state, dispatch);
+      }}>行を削除</Button>
+      <Button onClick={() => {
+        addColumnBefore(state, dispatch);
+      }}>左に列を追加</Button>
+      <Button onClick={() => {
+        addColumnAfter(state, dispatch);
+      }}>右に列を追加</Button>
+      <Button onClick={() => {
+        addRowBefore(state, dispatch);
+      }}>上に行を追加</Button>
+      <Button onClick={() => {
+        addRowAfter(state, dispatch);
+      }}>下に行を追加</Button>
+    </>)
   }
   keys() {
     return {
