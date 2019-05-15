@@ -56,7 +56,7 @@ export const markActive = type => state => {
     : state.doc.rangeHasMark(from, to, type)
 }
 
-export const blockActive = (type, attrs = {}) => state => {
+export const blockActive = (type) => state => {
   const { selection } = state;
   const { $from, to } = state.selection
   const { $anchor } = selection;
@@ -71,7 +71,7 @@ export const blockActive = (type, attrs = {}) => state => {
     return false;
   }, false);
 
-  return to <= $from.end() && firstNode.node.hasMarkup(type, attrs)
+  return to <= $from.end() && firstNode.node.type.name === type.name
 }
 
 export const canInsert = type => state => {

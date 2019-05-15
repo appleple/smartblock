@@ -1,9 +1,10 @@
 import * as React from 'react';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faParagraph } from '@fortawesome/fontawesome-free-solid'
+import { faParagraph, faAlignLeft, faAlignCenter, faAlignRight } from '@fortawesome/fontawesome-free-solid'
 import { setBlockType } from 'prosemirror-commands';
 import { Extension } from '../types';
 import { blockActive } from '../util';
+import Button from '../components/Button';
 
 export default class Paragraph implements Extension {
   get name() {
@@ -19,17 +20,44 @@ export default class Paragraph implements Extension {
       parseDOM: [{
         tag: 'p'
       }],
-      toDOM: () => ["p", 0]
+      attrs: {
+        align: { default: 'left' } 
+      },
+      toDOM: (node) => {
+        return ["p", {
+          style: `text-align: ${node.attrs.align}`
+        }, 0]
+      }
     }
   }
   get icon() {
     return <FontAwesomeIcon icon={faParagraph} />
   }
   active(state) {
+    console.log(state.schema.nodes.paragraph);
     return blockActive(state.schema.nodes.paragraph)(state)
   }
   enable(state) {
     return setBlockType(state.schema.nodes.paragraph)(state);
+  }
+  customMenu({ state, dispatch }) {
+    return (<>
+      <Button onClick={() => {
+        setBlockType(state.schema.nodes.paragraph, {
+          align: 'left'
+        })(state, dispatch);
+      }}><FontAwesomeIcon icon={faAlignLeft} /></Button>
+      <Button onClick={() => {
+        setBlockType(state.schema.nodes.paragraph, {
+          align: 'center'
+        })(state, dispatch);
+      }}><FontAwesomeIcon icon={faAlignCenter} /></Button>
+      <Button onClick={() => {
+        setBlockType(state.schema.nodes.paragraph, {
+          align: 'right'
+        })(state, dispatch);
+      }}><FontAwesomeIcon icon={faAlignRight} /></Button>
+    </>)
   }
   onClick (state, dispatch) {
     setBlockType(state.schema.nodes.paragraph)(state, dispatch);

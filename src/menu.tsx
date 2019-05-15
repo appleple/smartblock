@@ -12,6 +12,7 @@ import {
 } from '@fortawesome/fontawesome-free-solid'
 import { Node } from 'prosemirror-model';
 import { getOffset } from './util';
+import ButtonStyle from './components/Button';
 
 const fadeIn = keyframes`
   from {
@@ -32,36 +33,6 @@ const PositionBtnGroup = styled.div`
   padding: 10px 0;
   overflow: hidden;
   background-color: #FFF;
-`;
-
-const ButtonStyle = styled.button`
-  ${props => {
-    if (props.active) {
-      return `
-        color: blue;
-      `;
-    } else {
-      return `
-      color: #777;
-      `
-    }
-  }}
-  ${props => {
-    if (props.disabled) {
-      return `
-        opacity: .4;
-      `;
-    }
-  }}
-  background: #fff;
-  border: none;
-  appearance: none;
-  -webkit-appearance: none;
-  font-size: 20px;
-  cursor: pointer;
-  padding: 5px 10px;
-  margin-right: 5px;
-  text-align: center;
 `;
 
 const Button = ({ state, dispatch }: Partial<EditorView>) => (item, key: string) => {
@@ -250,10 +221,27 @@ export default class PositionBtns extends React.Component<PositionProps, Positio
       view.state.tr.scrollIntoView();
     }
   }
+
+  getActiveMenu() {
+    const { menu, view } = this.props;
+    const { state } = view;
+
+    const activeItem = menu.blocks.find((item) => {
+      if (item.active && item.active(state)) {
+        return true;
+      }
+      return false;
+    });
+    if (activeItem && activeItem.customMenu) {
+      return <>{activeItem.customMenu(view)}</>;
+    }
+    return (<></>);
+  }
  
   render() {
     const { style } = this.state;
     const { menu, view } = this.props;
+    const CustomMenu = this.getActiveMenu();
 
     return (<PositionBtnGroup style={style} ref={this.menuRef}>
       {map(menu, (item, key) => (
@@ -270,6 +258,9 @@ export default class PositionBtns extends React.Component<PositionProps, Positio
       <ButtonStyle onClick={this.deleteSelection.bind(this)}>
         <FontAwesomeIcon icon={faTrash} />
       </ButtonStyle>
+      <div>
+      {CustomMenu}
+      </div>
     </PositionBtnGroup>)
   }
 }
