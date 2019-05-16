@@ -1,18 +1,19 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom';
 import styled from 'styled-components';
-import Editor from './editor';
-import InlineMenuBar from './inline-menu';
-import PositionBtns from './menu';
-import plugins from './config/plugins';
 import { EditorView } from 'prosemirror-view';
 import { Schema } from 'prosemirror-model';
 import { keymap } from 'prosemirror-keymap';
-import keys from './config/keys';
 import { Node, DOMParser, DOMSerializer } from 'prosemirror-model';
 import { chainCommands } from 'prosemirror-commands';
 import scrollTo from 'scroll-to';
-import { getScrollTop, getOffset, getViewport } from './util';
+
+import Editor from './components/editor';
+import InlineMenuBar from './components/inline-menu';
+import PositionBtns from './components/menu';
+import plugins from './config/plugins';
+import keys from './config/keys';
+import { getScrollTop, getOffset, getViewport } from './utils';
 import extensions from './extensions';
 import { Extension } from './types';
 

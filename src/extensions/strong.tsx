@@ -3,7 +3,7 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faBold } from '@fortawesome/fontawesome-free-solid'
 import { toggleMark } from 'prosemirror-commands';
 import { Extension } from '../types';
-import { markActive } from '../util';
+import { markActive } from '../utils';
 
 export default class Strong implements Extension {
   get name() {

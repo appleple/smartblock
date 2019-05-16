@@ -2,6 +2,7 @@ import * as React from 'react';
 import map from 'lodash/map';
 import styled, { keyframes } from 'styled-components';
 import { EditorView } from 'prosemirror-view';
+import { getOffset } from '../utils';
 
 const fadeIn = keyframes`
   from {
@@ -60,7 +61,7 @@ const Button = ({ state, dispatch }) => (item, key) => (
   >{item.icon}</ButtonStyle>
 )
 
-const calculateStyle = (view) => {
+const calculateStyle = (view: EditorView) => {
   const { selection } = view.state
 
   if (!selection || selection.empty) {
@@ -70,13 +71,18 @@ const calculateStyle = (view) => {
     }
   }
 
+  const dom = view.domAtPos(selection.$anchor.pos);
+  const flag = dom.node instanceof Element;
+  const element = flag ? dom.node as HTMLElement : dom.node.parentElement;
+  const elementTop = getOffset(element).top;
+
   const coords = view.coordsAtPos(selection.$anchor.pos);
   const app = document.querySelector('#container') as HTMLDivElement;
   const width = app.offsetWidth;
 
   return {
     left: coords.left - ((window.innerWidth - width) / 2),
-    top: coords.top + 20
+    top: elementTop + element.offsetHeight
   }
 }
 

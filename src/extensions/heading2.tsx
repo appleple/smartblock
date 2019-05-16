@@ -3,8 +3,8 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faHeading, faAlignLeft, faAlignCenter, faAlignRight } from '@fortawesome/fontawesome-free-solid'
 import { setBlockType } from 'prosemirror-commands';
 import { Extension } from '../types';
-import { blockActive } from '../util';
-import Button from '../components/Button';
+import { blockActive } from '../utils';
+import Button from '../components/button';
 
 export default class Heading2 implements Extension {
   get name() {

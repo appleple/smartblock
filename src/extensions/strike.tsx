@@ -3,7 +3,7 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faStrikethrough } from '@fortawesome/fontawesome-free-solid'
 import { toggleMark } from 'prosemirror-commands';
 import { Extension } from '../types';
-import { markActive } from '../util';
+import { markActive } from '../utils';
 
 export default class StrikeThrough implements Extension {
   get name() {

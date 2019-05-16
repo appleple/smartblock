@@ -3,7 +3,7 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faList } from '@fortawesome/fontawesome-free-solid'
 import { wrapInList } from 'prosemirror-schema-list'
 import { Extension } from '../types';
-import { blockActive } from '../util';
+import { blockActive } from '../utils';
 
 export default class BulletList implements Extension {
   get name() {

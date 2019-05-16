@@ -3,7 +3,7 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faUnderline } from '@fortawesome/fontawesome-free-solid'
 import { toggleMark } from 'prosemirror-commands';
 import { Extension } from '../types';
-import { markActive } from '../util';
+import { markActive } from '../utils';
 
 export default class Underline implements Extension {
   get name() {

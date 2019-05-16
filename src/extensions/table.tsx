@@ -9,8 +9,8 @@ import { setBlockType } from 'prosemirror-commands';
 import { NodeSelection } from 'prosemirror-state';
 
 import { Extension } from '../types';
-import { blockActive } from '../util';
-import Button from '../components/Button';
+import { blockActive } from '../utils';
+import Button from '../components/button';
 
 const schemas = tableNodes({
   group: 'block',

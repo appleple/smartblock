@@ -3,7 +3,7 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faLink } from '@fortawesome/fontawesome-free-solid'
 import { toggleMark } from 'prosemirror-commands';
 import { Extension } from '../types';
-import { markActive } from '../util';
+import { markActive } from '../utils';
 
 const promptForURL = () => {
   let url = window && window.prompt('Enter the URL', 'https://')
