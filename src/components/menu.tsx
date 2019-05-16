@@ -1,16 +1,8 @@
 import * as React from 'react';
 import styled, { keyframes } from 'styled-components';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import { setTextSelection, findChildren } from 'prosemirror-utils';
-import { EditorState, Transaction } from 'prosemirror-state';
+import { findChildren } from 'prosemirror-utils';
 import { EditorView } from 'prosemirror-view';
 import map from 'lodash/map';
-import {
-  faArrowUp,
-  faArrowDown,
-  faTrash
-} from '@fortawesome/fontawesome-free-solid'
-import { Node } from 'prosemirror-model';
 import { getOffset } from '../utils';
 import ButtonStyle from './button';
 
@@ -35,8 +27,8 @@ const PositionBtnGroup = styled.div`
   background-color: #FFF;
 `;
 
-const Button = ({ state, dispatch }: Partial<EditorView>) => (item, key: string) => {
-
+const Button = (view) => (item, key: string) => {
+  const { state, dispatch } = view;
   return (<ButtonStyle
     key={key}
     type={'button'}
@@ -45,20 +37,10 @@ const Button = ({ state, dispatch }: Partial<EditorView>) => (item, key: string)
     disabled={item.enable && !item.enable(state)}
     onMouseDown={e => {
       e.preventDefault()
-      item.onClick(state, dispatch)
+      item.onClick(state, dispatch, view)
     }}
   >{item.icon}</ButtonStyle>
 )};
-
-const findNodePosition = (doc: Node, target: Node) => {
-  let ret = -1;
-  doc.descendants((node, pos) => {
-    if (node.eq(target)) {
-      ret = pos;
-    }
-  });
-  return ret;
-}
 
 interface PositionProps {
   view: EditorView,
@@ -147,87 +129,6 @@ export default class PositionBtns extends React.Component<PositionProps, Positio
     })
   }
 
-  moveSectionDown() {
-    const { view } = this.props;
-    const { state } = view;
-    const { selection } = state;
-    const { $anchor } = selection;
-    const resolvedPos = state.doc.resolve($anchor.pos) as any;
-    const rowNumber = resolvedPos.path[1];
-    let i = 0;
-    const [ firstNode, secondNode ] = findChildren(state.doc, (_node) => {
-      if (rowNumber === i || rowNumber + 1 === i) {
-        i++;
-        return true;
-      }
-      i++;
-      return false;
-    }, false);
-    if (secondNode) {
-      const firstIndex = firstNode.pos;
-      const secondIndex = secondNode.pos;
-      const removeTransaction = state.tr.delete(firstIndex, secondIndex);
-      view.dispatch(removeTransaction);
-      const firstNode2 = removeTransaction.doc.content.child(rowNumber);
-      const firstIndex2 = findNodePosition(removeTransaction.doc, firstNode2);
-      const insertTransaction = view.state.tr.insert(firstIndex2 + firstNode2.nodeSize, firstNode.node);
-      view.dispatch(insertTransaction);
-      view.dispatch(setTextSelection(firstIndex2 + firstNode2.nodeSize)(view.state.tr));
-      view.state.tr.scrollIntoView();
-    }
-  }
-
-  deleteSelection() {
-    const { view } = this.props;
-    const { state } = view;
-    const { selection } = state;
-    const { $anchor } = selection;
-    const resolvedPos = state.doc.resolve($anchor.pos) as any;
-    const rowNumber = resolvedPos.path[1];
-    let i = 0;
-    const [ firstNode ] = findChildren(state.doc, (_node) => {
-      if (rowNumber === i) {
-        i++;
-        return true;
-      }
-      i++;
-      return false;
-    }, false);
-    const firstIndex = firstNode.pos;
-    const removeTransaction = state.tr.delete(firstIndex, firstIndex + firstNode.node.content.size + 2);
-    view.dispatch(removeTransaction);
-  }
-
-  moveSectionUp() {
-    const { view } = this.props;
-    const { state } = view;
-    const { selection } = state;
-    const { $anchor } = selection;
-    const resolvedPos = state.doc.resolve($anchor.pos) as any;
-    const rowNumber = resolvedPos.path[1] as number;
-    let i = 0;
-    const [ firstNode, secondNode ] = findChildren(state.doc, (_node) => {
-      if (rowNumber === i || rowNumber - 1 === i) {
-        i++;
-        return true;
-      }
-      i++;
-      return false;
-    }, false);
-    if (firstNode) {
-      const firstIndex = firstNode.pos;
-      const secondIndex = secondNode.pos;
-      const removeTransaction = state.tr.delete(firstIndex, secondIndex);
-      view.dispatch(removeTransaction);
-      const firstNode2 = removeTransaction.doc.content.child(rowNumber - 1);
-      const firstIndex2 = findNodePosition(removeTransaction.doc, firstNode2);
-      const insertTransaction = view.state.tr.insert(firstIndex2 + firstNode2.nodeSize, firstNode.node);
-      view.dispatch(insertTransaction);
-      view.dispatch(setTextSelection(firstIndex2)(view.state.tr));
-      view.state.tr.scrollIntoView();
-    }
-  }
-
   getActiveMenu() {
     const { menu, view } = this.props;
     const { state } = view;
@@ -255,15 +156,6 @@ export default class PositionBtns extends React.Component<PositionProps, Positio
           {map(item, Button(view))}
         </span>
       ))}
-      <ButtonStyle onClick={this.moveSectionUp.bind(this)}>
-        <FontAwesomeIcon icon={faArrowUp} />
-      </ButtonStyle>
-      <ButtonStyle onClick={this.moveSectionDown.bind(this)}>
-        <FontAwesomeIcon icon={faArrowDown} />
-      </ButtonStyle>
-      <ButtonStyle onClick={this.deleteSelection.bind(this)}>
-        <FontAwesomeIcon icon={faTrash} />
-      </ButtonStyle>
       <div>
       {CustomMenu}
       </div>

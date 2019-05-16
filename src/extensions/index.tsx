@@ -12,6 +12,9 @@ import Strong from './strong';
 import Link from './link';
 
 import Lift from './lift';
+import Trash from './trash';
+import MoveUp from './move-up';
+import MoveDown from './move-down';
 
 export default [
   //blocks
@@ -29,5 +32,7 @@ export default [
   new Link(),
   //utility
   new Lift(),
-
+  new MoveUp(),
+  new MoveDown(),
+  new Trash()
 ];

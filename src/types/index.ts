@@ -1,5 +1,5 @@
 import { Node, Schema } from "prosemirror-model";
-import { Plugin, EditorState } from "prosemirror-state";
+import { Plugin, EditorState, Transaction } from "prosemirror-state";
 import { Transform } from "prosemirror-transform";
 import { EditorView } from "prosemirror-view";
 
@@ -14,6 +14,8 @@ interface ExtensionSchema {
   toDOM?(node: Node): (string | {[key: string]: any} | number)[]
 }
 
+export type Dispatch = (tr: Transaction<any>) => void;
+
 export interface Extension {
   name: string;
   schema: ExtensionSchema;
@@ -26,6 +28,6 @@ export interface Extension {
   render?(node: Node, view: EditorView, getPos: () => number): React.ReactNode,
   active?(state: EditorState): boolean
   enable?(state: EditorState): boolean
-  onClick?(state: EditorState, dispatch: Transform): void
+  onClick?(state: EditorState, dispatch: Dispatch, view?: EditorView): void
   keys?(schema: Schema): {[key: string]: any }
 }

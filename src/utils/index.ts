@@ -1,4 +1,7 @@
 import { findChildren } from 'prosemirror-utils';
+import { Selection, EditorState } from 'prosemirror-state';
+import { EditorView } from 'prosemirror-view';
+import { Node } from 'prosemirror-model';
 
 export const getScrollTop = () => {
   return window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
@@ -87,6 +90,34 @@ export const canInsert = type => state => {
       return true
     }
   }
-
   return false
+}
+
+export const findNodePosition = (doc: Node, target: Node) => {
+  let ret = -1;
+  doc.descendants((node, pos) => {
+    if (node.eq(target)) {
+      ret = pos;
+    }
+  });
+  return ret;
+}
+
+export const getParentNodePosFromState = (state: EditorState) => {
+  const { selection } = state;
+  const { $anchor } = selection;
+  const resolvedPos = state.doc.resolve($anchor.pos) as any;
+  const rowNumber = resolvedPos.path[1] as number;
+  let i = 0;
+  const [ firstNode ] = findChildren(state.doc, (_node) => {
+    if (rowNumber === i || rowNumber + 1 === i) {
+      i++;
+      return true;
+    }
+    i++;
+    return false;
+  }, false);
+  const { node } = firstNode;
+  const pos = findNodePosition(state.doc, node);
+  return pos + node.nodeSize;
 }

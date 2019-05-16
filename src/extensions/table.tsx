@@ -3,10 +3,10 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faTable } from '@fortawesome/fontawesome-free-solid'
 import {addColumnAfter, addColumnBefore, deleteColumn, addRowAfter, addRowBefore, deleteRow,
   mergeCells, splitCell, setCellAttr, toggleHeaderRow, toggleHeaderColumn, toggleHeaderCell,
-  goToNextCell, fixTable, tableEditing, columnResizing, tableNodes}  from "prosemirror-tables";
-import { createTable } from 'prosemirror-utils';
+  goToNextCell, fixTable, tableEditing, columnResizing, tableNodes  }  from "prosemirror-tables";
+import { createTable, selectTable, findTable } from 'prosemirror-utils';
 import { setBlockType } from 'prosemirror-commands';
-import { NodeSelection } from 'prosemirror-state';
+import { NodeSelection, EditorState } from 'prosemirror-state';
 
 import { Extension } from '../types';
 import { blockActive } from '../utils';
@@ -56,12 +56,8 @@ export default class Table implements Extension {
   }
   onClick (state, dispatch) {
     const table = createTable(state.schema);
-    const { tr } = state;
-    dispatch(state.tr.replaceSelectionWith(table));
-    const resolvedPos = tr.doc.resolve(
-      tr.selection.anchor - tr.selection.$anchor.nodeBefore.nodeSize - 1
-    );
-    tr.setSelection(new NodeSelection(resolvedPos));
+    const tr = state.tr.replaceSelectionWith(table);
+    dispatch(tr);
   }
   customMenu({ state, dispatch }) {
     return (<>
