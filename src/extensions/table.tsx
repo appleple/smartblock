@@ -6,6 +6,7 @@ import {addColumnAfter, addColumnBefore, deleteColumn, addRowAfter, addRowBefore
   goToNextCell, fixTable, tableEditing, columnResizing, tableNodes}  from "prosemirror-tables";
 import { createTable } from 'prosemirror-utils';
 import { setBlockType } from 'prosemirror-commands';
+import { NodeSelection } from 'prosemirror-state';
 
 import { Extension } from '../types';
 import { blockActive } from '../util';
@@ -55,7 +56,12 @@ export default class Table implements Extension {
   }
   onClick (state, dispatch) {
     const table = createTable(state.schema);
+    const { tr } = state;
     dispatch(state.tr.replaceSelectionWith(table));
+    const resolvedPos = tr.doc.resolve(
+      tr.selection.anchor - tr.selection.$anchor.nodeBefore.nodeSize - 1
+    );
+    tr.setSelection(new NodeSelection(resolvedPos));
   }
   customMenu({ state, dispatch }) {
     return (<>
