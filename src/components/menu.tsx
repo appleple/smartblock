@@ -150,15 +150,18 @@ export default class PositionBtns extends React.Component<PositionProps, Positio
     const { menu, view } = this.props;
     const CustomMenu = this.getActiveMenu();
 
+    console.log(CustomMenu);
+
     return (<PositionBtnGroup style={style} ref={this.menuRef}>
       {map(menu, (item, key) => (
         <span key={key}>
           {map(item, Button(view))}
         </span>
       ))}
-      <div>
-      {CustomMenu}
-      </div>
+      {(CustomMenu && CustomMenu.props && CustomMenu.props.children) && 
+      <div style={{ borderTop: '1px solid #CCC', paddingTop: '10px' }}>
+        {CustomMenu}
+      </div>}
     </PositionBtnGroup>)
   }
 }
