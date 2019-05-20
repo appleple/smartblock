@@ -188,7 +188,6 @@ export default class App extends React.Component<AppProps, AppState> {
     extensions.forEach((extension) => {
       if (extension.render) {
         views[extension.name] = (node: Node, view: EditorView, getPos) => {
-          console.log(node, view);
           const dom = document.createElement('div');
           requestAnimationFrame(() => {
             ReactDOM.render(<>
