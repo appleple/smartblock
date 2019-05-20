@@ -31,9 +31,9 @@ const ButtonStyle = styled.button`
       `;
     }
   }}
+  font-size: 20px;
   background: #fff;
   border: none;
-  font-size: inherit;
   cursor: pointer;
   color: #777;
   border-radius: 0;
@@ -41,7 +41,7 @@ const ButtonStyle = styled.button`
 `;
 
 const Bar = styled.div`
-  margin-bottom: 5px;
+  padding: 5px 0;
   display: flex;
   align-items: baseline;
 `;
