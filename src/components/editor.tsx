@@ -4,7 +4,7 @@ import { EditorView } from 'prosemirror-view';
 import 'prosemirror-view/style/prosemirror.css';
 
 type EditorProps = {
-  onChange(doc: any): any;
+  onChange(state: EditorState, dispatch: typeof EditorView.prototype.dispatch): any;
   attributes?: any;
   nodeViews?: any;
   autoFocus?: boolean;
@@ -31,7 +31,7 @@ export default class Editor extends React.Component<EditorProps> {
         this.view.updateState(state)
 
         if (transactions.some(tr => tr.docChanged)) {
-          this.props.onChange(state.doc)
+          this.props.onChange(state, this.view.dispatch)
         }
 
         this.forceUpdate()

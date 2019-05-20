@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import { EditorView } from 'prosemirror-view';
-import { Schema } from 'prosemirror-model';
+import { Schema, NodeType } from 'prosemirror-model';
 import { keymap } from 'prosemirror-keymap';
 import { Node, DOMParser, DOMSerializer } from 'prosemirror-model';
 import { chainCommands } from 'prosemirror-commands';
@@ -16,6 +16,7 @@ import keys from './config/keys';
 import { getScrollTop, getOffset, getViewport } from './utils';
 import extensions from './extensions';
 import { Extension } from './types';
+import { EditorState } from 'prosemirror-state';
 
 const Input = styled('div')`
   width: 100%;
@@ -187,6 +188,7 @@ export default class App extends React.Component<AppProps, AppState> {
     extensions.forEach((extension) => {
       if (extension.render) {
         views[extension.name] = (node: Node, view: EditorView, getPos) => {
+          console.log(node, view);
           const dom = document.createElement('div');
           requestAnimationFrame(() => {
             ReactDOM.render(<>
@@ -229,7 +231,8 @@ export default class App extends React.Component<AppProps, AppState> {
           <Editor
             options={editorOptions}
             nodeViews={nodeViews}
-            onChange={(doc: Node) => {
+            onChange={(state, dispatch) => {
+              const { doc } = state;
               const selected = this.container.querySelector('.selected') as HTMLDivElement;
               if (selected) {
                 const viewport = getViewport();
@@ -254,11 +257,18 @@ export default class App extends React.Component<AppProps, AppState> {
                   json, html
                 });
               }
+              const { childCount } = doc.content;
+              const lastNode = doc.content.child(childCount - 1);
+              if (lastNode.type.name !== 'paragraph') {
+                const { paragraph } = state.schema.nodes;
+                dispatch(state.tr.insert(state.doc.content.size, paragraph.createAndFill()));
+              }
             }}
             render={({ editor, view } : ProseRender) => (
               <React.Fragment>
                 <PositionBtns view={view} menu={{ blocks: this.getMenu(blocks) }} />
                 <InlineMenuBar menu={{ marks: this.getMenu(marks) }} view={view} />
+                
                 {editor}
               </React.Fragment>
             )}

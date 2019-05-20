@@ -55,4 +55,8 @@ export default class Link implements Extension {
     toggleMark(state.schema.marks.link, { href })(state, dispatch)
     toggleMark(state.schema.marks.strong)(state, dispatch);
   }
+  // render(node, view, getPos) {
+  //   console.log('hogehoge', view.state.doc.resolve(getPos()));
+  //   return (<a href={node.attrs.href}>hogehoge</a>)
+  // }
 }
