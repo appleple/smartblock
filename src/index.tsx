@@ -266,11 +266,11 @@ export default class App extends React.Component<AppProps, AppState> {
             nodeViews={nodeViews}
             onChange={this.onChange}
             render={({ editor, view } : ProseRender) => (
-              <React.Fragment>
+              <>
                 <PositionBtns view={view} menu={{ blocks: this.getMenu(blocks) }} />
                 <InlineMenuBar menu={{ marks: this.getMenu(marks) }} view={view} />
                 {editor}
-              </React.Fragment>
+              </>
             )}
           />
         </Input>
