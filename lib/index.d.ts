@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Schema } from 'prosemirror-model';
 import { Node } from 'prosemirror-model';
 import { Extension } from './types';
+import { EditorState } from 'prosemirror-state';
 declare type OutputJson = {
     [key: string]: any;
 };
@@ -32,6 +33,7 @@ export default class App extends React.Component<AppProps, AppState> {
     getPlugins(): any[];
     getNodeViews(): {};
     getMenu(extensions: Extension[]): Extension[];
+    onChange: (state: EditorState<any>, dispatch: (tr: import("prosemirror-state").Transaction<any>) => void) => void;
     render(): JSX.Element;
 }
 export {};

@@ -216,6 +216,40 @@ export default class App extends React.Component<AppProps, AppState> {
     return extensions.filter((extension) => extension.showMenu);
   }
 
+  onChange = (state: EditorState, dispatch: typeof EditorView.prototype.dispatch) => {
+    const { doc } = state;
+    const selected = this.container.querySelector('.selected') as HTMLDivElement;
+    if (selected) {
+      const viewport = getViewport();
+      const top = getScrollTop() + viewport.height;
+      const offsetTop = getOffset(selected).top;
+      const height = selected.offsetHeight;
+      if (offsetTop + height + 80 >= top) {
+        if (/iPod|iPhone|iPad/.test(navigator.platform) && document.activeElement) {
+          const activeElement = document.activeElement as HTMLElement;
+          if (activeElement.isContentEditable) {
+            scrollTo(0, offsetTop);
+          }
+        } else {
+          scrollTo(0, offsetTop + height + 80);
+        }
+      }
+    }
+    if (this.props.onChange) {
+      const json = doc.toJSON();
+      const html = this.getHtmlFromNode(doc, this.schema);
+      this.props.onChange({
+        json, html
+      });
+    }
+    const { childCount } = doc.content;
+    const lastNode = doc.content.child(childCount - 1);
+    if (lastNode.type.name !== 'paragraph') {
+      const { paragraph } = state.schema.nodes;
+      dispatch(state.tr.insert(state.doc.content.size, paragraph.createAndFill()));
+    }
+  }
+
   render() {
     const { extensions } = this.props;
     const { doc } = this.state;
@@ -231,44 +265,11 @@ export default class App extends React.Component<AppProps, AppState> {
           <Editor
             options={editorOptions}
             nodeViews={nodeViews}
-            onChange={(state, dispatch) => {
-              const { doc } = state;
-              const selected = this.container.querySelector('.selected') as HTMLDivElement;
-              if (selected) {
-                const viewport = getViewport();
-                const top = getScrollTop() + viewport.height;
-                const offsetTop = getOffset(selected).top;
-                const height = selected.offsetHeight;
-                if (offsetTop + height + 80 >= top) {
-                  if (/iPod|iPhone|iPad/.test(navigator.platform) && document.activeElement) {
-                    const activeElement = document.activeElement as HTMLElement;
-                    if (activeElement.isContentEditable) {
-                      scrollTo(0, offsetTop);
-                    }
-                  } else {
-                    scrollTo(0, offsetTop + height + 80);
-                  }
-                }
-              }
-              if (this.props.onChange) {
-                const json = doc.toJSON();
-                const html = this.getHtmlFromNode(doc, this.schema);
-                this.props.onChange({
-                  json, html
-                });
-              }
-              const { childCount } = doc.content;
-              const lastNode = doc.content.child(childCount - 1);
-              if (lastNode.type.name !== 'paragraph') {
-                const { paragraph } = state.schema.nodes;
-                dispatch(state.tr.insert(state.doc.content.size, paragraph.createAndFill()));
-              }
-            }}
+            onChange={this.onChange}
             render={({ editor, view } : ProseRender) => (
               <React.Fragment>
                 <PositionBtns view={view} menu={{ blocks: this.getMenu(blocks) }} />
                 <InlineMenuBar menu={{ marks: this.getMenu(marks) }} view={view} />
-                
                 {editor}
               </React.Fragment>
             )}
