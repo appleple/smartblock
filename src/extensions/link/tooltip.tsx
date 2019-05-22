@@ -33,6 +33,13 @@ const calculateStyle = (view: EditorView) => {
   const elementTop = getOffset(element).top;
   const coords = view.coordsAtPos(selection.$anchor.pos);
 
+  if (window.innerWidth <= 767) {
+    return {
+      left: 0,
+      top: elementTop + element.offsetHeight
+    }
+  } 
+
   return {
     left: coords.left,
     top: elementTop + element.offsetHeight

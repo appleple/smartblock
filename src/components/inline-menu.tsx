@@ -80,6 +80,13 @@ const calculateStyle = (view: EditorView) => {
   const app = document.querySelector('#container') as HTMLDivElement;
   const width = app.offsetWidth;
 
+  if (window.innerWidth <= 767) {
+    return {
+      left: 0,
+      top: elementTop + element.offsetHeight
+    }
+  } 
+
   return {
     left: coords.left - ((window.innerWidth - width) / 2),
     top: elementTop + element.offsetHeight

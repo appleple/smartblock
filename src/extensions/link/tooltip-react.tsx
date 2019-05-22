@@ -6,7 +6,6 @@ const Tooltip = styled.div`
   display: inline-block;
   z-index: 1000;
   background-color: #FFF;
-  width: 250px;
   padding: 5px;
   font-size: 16px;
   box-shadow: 0 3px 40px 8px rgba(116,116,116,0.2);
