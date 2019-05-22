@@ -21,6 +21,7 @@ const Button = styled.button`
   background-color: #FFF;
   color: #777;
   margin-left: 5px;
+  font-size: 14px;
 `;
 
 const Label = styled.label`
