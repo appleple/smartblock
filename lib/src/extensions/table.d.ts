@@ -1,17 +1,12 @@
-import * as React from 'react';
+/// <reference types="react" />
 import { Extension } from '../types';
-export default class BulletList implements Extension {
+export default class Table implements Extension {
     readonly name: string;
     readonly showMenu: boolean;
-    readonly schema: {
-        content: string;
-        group: string;
-        parseDOM: {
-            tag: string;
-        }[];
-        toDOM(): React.Key[];
-    };
+    readonly schema: any;
+    readonly schemaDependencies: any;
     readonly icon: JSX.Element;
+    readonly plugins: any[];
     active(state: any): boolean;
     enable(state: any): boolean;
     onClick(state: any, dispatch: any): void;
@@ -19,4 +14,8 @@ export default class BulletList implements Extension {
         state: any;
         dispatch: any;
     }): JSX.Element;
+    keys(): {
+        'Tab': any;
+        'Shift-Tab': any;
+    };
 }

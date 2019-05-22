@@ -1,4 +1,6 @@
 import * as React from 'react';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { faEdit } from '@fortawesome/fontawesome-free-solid'
 import styled from 'styled-components';
 
 const Tooltip = styled.div`
@@ -6,10 +8,19 @@ const Tooltip = styled.div`
   display: inline-block;
   z-index: 1000;
   background-color: #FFF;
+  color: #777;
   padding: 5px;
   font-size: 16px;
   box-shadow: 0 3px 40px 8px rgba(116,116,116,0.2);
   border-radius: 5px;
+  width: 250px;
+`;
+
+const Button = styled.button`
+  border: none;
+  background-color: #FFF;
+  color: #777;
+  margin-left: 5px;
 `;
 
 type TooltipReactProps = {
@@ -56,20 +67,22 @@ export default class TooltipReact extends React.Component<TooltipReactProps, Too
             })
           }} 
         />
-        <button onClick={() => {
+        <Button onClick={() => {
           this.setState({
             editing: false
           })
           this.props.onClick(this.state.newUrl);
-        }}>OK</button>
+        }}>OK</Button>
       </>}
       {!editing && <>
         {newUrl}
-        <button onClick={() => {
+        <Button onClick={() => {
           this.setState({
             editing: true
           })
-        }}>編集</button>
+        }}>
+          <FontAwesomeIcon icon={faEdit} />
+        </Button>
       </>}
     </Tooltip>);
   }
