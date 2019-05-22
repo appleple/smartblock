@@ -23,6 +23,11 @@ const Button = styled.button`
   margin-left: 5px;
 `;
 
+const Label = styled.label`
+  display: inline-block;
+  width: 200px;
+`;
+
 type TooltipReactProps = {
   style: React.CSSProperties
   url: string,
@@ -75,7 +80,7 @@ export default class TooltipReact extends React.Component<TooltipReactProps, Too
         }}>OK</Button>
       </>}
       {!editing && <>
-        {newUrl}
+        <Label>{newUrl}</Label>
         <Button onClick={() => {
           this.setState({
             editing: true
