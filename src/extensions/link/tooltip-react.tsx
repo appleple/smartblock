@@ -14,6 +14,9 @@ const Tooltip = styled.div`
   box-shadow: 0 3px 40px 8px rgba(116,116,116,0.2);
   border-radius: 5px;
   width: 250px;
+  input {
+    font-size: 16px;
+  }
 `;
 
 const Button = styled.button`
@@ -21,7 +24,7 @@ const Button = styled.button`
   background-color: #FFF;
   color: #777;
   margin-left: 5px;
-  font-size: 14px;
+  font-size: 16px;
 `;
 
 const Label = styled.label`
