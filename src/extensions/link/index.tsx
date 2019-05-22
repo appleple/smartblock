@@ -2,18 +2,9 @@ import * as React from 'react';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faLink } from '@fortawesome/fontawesome-free-solid'
 import { toggleMark } from 'prosemirror-commands';
-import { Extension } from '../types';
-import { markActive } from '../utils';
-
-const promptForURL = () => {
-  let url = window && window.prompt('Enter the URL', 'https://')
-
-  if (url && !/^https?:\/\//i.test(url)) {
-    url = 'http://' + url
-  }
-
-  return url
-}
+import { Extension } from '../../types';
+import { markActive } from '../../utils';
+import tooltip from './tooltip';
 
 export default class Link implements Extension {
   get name() {
@@ -39,6 +30,11 @@ export default class Link implements Extension {
   get icon() {
     return <FontAwesomeIcon icon={faLink} />
   }
+  get plugins() {
+    return [
+      tooltip()
+    ]
+  }
   active (state) {
     return markActive(state.schema.marks.link)(state);
   }
@@ -47,10 +43,7 @@ export default class Link implements Extension {
       toggleMark(state.schema.marks.link)(state, dispatch)
       return true
     }
-    const href = promptForURL()
-    if (!href) {
-      return false
-    }
-    toggleMark(state.schema.marks.link, { href })(state, dispatch)
+
+    toggleMark(state.schema.marks.link, { href: '' })(state, dispatch)
   }
 }
