@@ -8,9 +8,9 @@ module.exports = merge(prod, {
   },
   devtool: 'inline-source-map',
   devServer: {
-    port: 3000,
+    port: 3300,
     inline: true,
     open: true,
-    openPage: 'example'
+    openPage: './'
   },
 });
