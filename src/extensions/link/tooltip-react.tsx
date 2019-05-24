@@ -25,11 +25,18 @@ const Button = styled.button`
   color: #777;
   margin-left: 5px;
   font-size: 16px;
+  cursor: pointer;
 `;
 
 const Label = styled.label`
   display: inline-block;
   width: 200px;
+  min-height: 20px;
+  transition: background-color .3s;
+  vertical-align: middle;
+  &:hover {
+    background-color: #F0E7FF;
+  }
 `;
 
 type TooltipReactProps = {
@@ -60,6 +67,13 @@ export default class TooltipReact extends React.Component<TooltipReactProps, Too
     }
   }
 
+  enterUrl = () => {
+    this.setState({
+      editing: false
+    });
+    this.props.onClick(this.state.newUrl);
+  }
+
   render() {
     const { style } = this.props;
     const { newUrl, editing } = this.state;
@@ -70,21 +84,25 @@ export default class TooltipReact extends React.Component<TooltipReactProps, Too
           type="text" 
           value={newUrl} 
           placeholder="https://"
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              this.enterUrl();
+            }
+          }}
           onChange={(e) => {
             this.setState({
               newUrl: e.target.value
             })
           }} 
         />
-        <Button onClick={() => {
-          this.setState({
-            editing: false
-          })
-          this.props.onClick(this.state.newUrl);
-        }}>OK</Button>
+        <Button onClick={this.enterUrl}>OK</Button>
       </>}
       {!editing && <>
-        <Label>{newUrl}</Label>
+        <Label onClick={() => {
+          this.setState({
+            editing: true
+          })
+        }}>{newUrl}</Label>
         <Button onClick={() => {
           this.setState({
             editing: true
