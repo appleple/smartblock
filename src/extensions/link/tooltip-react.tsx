@@ -19,15 +19,6 @@ const Tooltip = styled.div`
   }
 `;
 
-const Button = styled.button`
-  border: none;
-  background-color: #FFF;
-  color: #777;
-  margin-left: 5px;
-  font-size: 16px;
-  cursor: pointer;
-`;
-
 const Label = styled.label`
   display: inline-block;
   width: 200px;
@@ -37,6 +28,19 @@ const Label = styled.label`
   &:hover {
     background-color: #F0E7FF;
   }
+`;
+
+const Input = styled.input`
+  border: none;
+`;
+
+const Button = styled.button`
+  border: none;
+  background-color: #FFF;
+  color: #777;
+  margin-left: 5px;
+  font-size: 16px;
+  cursor: pointer;
 `;
 
 type TooltipReactProps = {
@@ -80,10 +84,10 @@ export default class TooltipReact extends React.Component<TooltipReactProps, Too
 
     return (<Tooltip style={style}>
       {editing && <>
-        <input 
+        <Input 
           type="text" 
           value={newUrl} 
-          placeholder="https://"
+          placeholder="リンクURLを入力"
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
               this.enterUrl();

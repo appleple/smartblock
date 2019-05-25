@@ -19,7 +19,8 @@ const FloaterStyle = styled.div`
   animation: ${fadeIn} 0.3s;
   margin-top: 8px;
   border-radius: 5px;
-  background-color: #FFF;
+  background-color: #1A2633;
+  color: #FFF;
   box-shadow: 0 3px 40px 8px rgba(116,116,116,0.2);
 `;
 
@@ -32,10 +33,10 @@ const ButtonStyle = styled.button`
     }
   }}
   font-size: 20px;
-  background: #fff;
+  background: transparent;
   border: none;
   cursor: pointer;
-  color: #777;
+  color: #fff;
   border-radius: 0;
   padding: 5px 10px;
 `;
