@@ -81,10 +81,10 @@ export default class Table implements Extension {
       }}>下に行を追加</Button>
       <Button onClick={() => {
         mergeCells(state, dispatch);
-      }}>セルの結合</Button>
+      }}><i className="icon-merge01"></i></Button>
       <Button onClick={() => {
         splitCell(state, dispatch);
-      }}>セルの分割</Button>
+      }}><i className="icon-split01"></i></Button>
     </>)
   }
   keys() {
