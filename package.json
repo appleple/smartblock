@@ -10,6 +10,7 @@
     "build": "webpack --config webpack.prod.js",
     "build:lib": "tsc",
     "np": "np --no-cleanup",
+    "font": "iconfont ./src/assets/images/icons/*.svg -o ./src/fonts -t ./src/assets/templates/icons.css.ejs ./src/assets/templates/index.html.ejs --template-out-dir ./src/styles && rm ./src/styles/index.html",
     "deploy": "npm-run-all -s build build:lib test np"
   },
   "repository": {
@@ -55,6 +56,7 @@
     "@types/prosemirror-schema-basic": "^1.0.1",
     "@types/prosemirror-schema-list": "^1.0.1",
     "@types/prosemirror-transform": "^1.1.0",
+    "iconfont-cli": "^0.1.0",
     "immutable": "^4.0.0-rc.12",
     "ios-inner-height": "^1.1.0",
     "lodash": "^4.17.11",

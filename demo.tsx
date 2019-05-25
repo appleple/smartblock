@@ -2,6 +2,7 @@ import * as React from 'react';
 import { render } from 'react-dom';
 import App from './src/';
 import './src/styles/base.css';
+import './src/styles/icons.css';
 
 render(<App html={`
 <p>Hello World</p>

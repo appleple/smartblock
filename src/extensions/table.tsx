@@ -63,28 +63,28 @@ export default class Table implements Extension {
     return (<>
       <Button onClick={() => {
         deleteColumn(state, dispatch);
-      }}>列を削除</Button>
+      }}><i className="icon icon-right-remove"></i></Button>
       <Button onClick={() => {
         deleteRow(state, dispatch);
-      }}>行を削除</Button>
+      }}><i className="icon icon-top-remove"></i></Button>
       <Button onClick={() => {
         addColumnBefore(state, dispatch);
-      }}>左に列を追加</Button>
+      }}><i className="icon icon-left-insert"></i></Button>
       <Button onClick={() => {
         addColumnAfter(state, dispatch);
-      }}>右に列を追加</Button>
+      }}><i className="icon icon-right-insert"></i></Button>
       <Button onClick={() => {
         addRowBefore(state, dispatch);
-      }}>上に行を追加</Button>
+      }}><i className="icon icon-top-insert"></i></Button>
       <Button onClick={() => {
         addRowAfter(state, dispatch);
-      }}>下に行を追加</Button>
+      }}><i className="icon icon-bottom-insert"></i></Button>
       <Button onClick={() => {
         mergeCells(state, dispatch);
-      }}><i className="icon-merge01"></i></Button>
+      }}><i className="icon icon-merge01"></i></Button>
       <Button onClick={() => {
         splitCell(state, dispatch);
-      }}><i className="icon-split01"></i></Button>
+      }}><i className="icon icon-split01"></i></Button>
     </>)
   }
   keys() {
