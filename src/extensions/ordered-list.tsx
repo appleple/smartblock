@@ -7,7 +7,7 @@ import { Extension } from '../types';
 import { blockActive } from '../utils';
 import Button from '../components/button';
 
-export default class BulletList implements Extension {
+export default class OrderedList implements Extension {
   get name() {
     return 'ordered_list';
   }
