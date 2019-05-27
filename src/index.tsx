@@ -78,8 +78,8 @@ export default class App extends React.Component<AppProps, AppState> {
   getBlockSchemas(extensions: Extension[]) {
     const nodesSchema = this.getBlocks(extensions);
     const nodes = nodesSchema.reduce((node, curr, index) => {
-      const newNode = {[curr.name]: { ...curr.schema }};
-      return {...node, ...newNode};
+      const newNode = { [curr.name]: { ...curr.schema } };
+      return { ...node, ...newNode };
     }, {});
     return nodes;
   }
@@ -97,8 +97,8 @@ export default class App extends React.Component<AppProps, AppState> {
   getMarkSchemas(extensions: Extension[]) {
     const marksSchema = this.getMarks(extensions);
     const marks = marksSchema.reduce((mark, curr, index) => {
-      const newMark = {[curr.name]: { ...curr.schema }};
-      return {...mark, ...newMark };
+      const newMark = { [curr.name]: { ...curr.schema } };
+      return { ...mark, ...newMark };
     }, {});
     return marks;
   }
@@ -116,7 +116,7 @@ export default class App extends React.Component<AppProps, AppState> {
   getSchemaBlockDependencies(extensions: Extension[]) {
     const schemas = extensions.reduce((schema, curr) => {
       if (curr.schemaDependencies) {
-        return Object.assign({}, schema, curr.schemaDependencies );
+        return Object.assign({}, schema, curr.schemaDependencies);
       }
       return schema;
     }, {});
@@ -126,7 +126,7 @@ export default class App extends React.Component<AppProps, AppState> {
   getSchemaFromExtensions(extensions: Extension[]) {
     let nodes = this.getBlockSchemas(extensions);
     const nodeDependencies = this.getSchemaBlockDependencies(extensions);
-    const base = { 
+    const base = {
       doc: {
         content: 'block+'
       },
@@ -137,11 +137,11 @@ export default class App extends React.Component<AppProps, AppState> {
         inline: true,
         group: "inline",
         selectable: false,
-        parseDOM: [{tag: "br"}],
+        parseDOM: [{ tag: "br" }],
         toDOM() { return ['br'] }
       }
     };
-    nodes = { ...nodes , ...base, ...nodeDependencies }
+    nodes = { ...nodes, ...base, ...nodeDependencies }
     const marks = this.getMarkSchemas(extensions);
     return new Schema({ nodes, marks } as { nodes: any, marks: any });
   }
@@ -176,7 +176,7 @@ export default class App extends React.Component<AppProps, AppState> {
     extensions.forEach((extension) => {
       if (extension.plugins) {
         customPlugins = [...customPlugins, ...extension.plugins];
-      } 
+      }
     });
     const keyPlugin = this.getKeys(extensions);
     return [...plugins, ...customPlugins, keyPlugin];
@@ -259,21 +259,23 @@ export default class App extends React.Component<AppProps, AppState> {
     const nodeViews = this.getNodeViews();
 
     return (
-      <Container id="container" ref={(ref) => this.container = ref}>
-        <Input>
-          <Editor
-            options={editorOptions}
-            nodeViews={nodeViews}
-            onChange={this.onChange}
-            render={({ editor, view } : ProseRender) => (
-              <>
-                <PositionBtns view={view} menu={{ blocks: this.getMenu(blocks) }} />
-                <InlineMenuBar menu={{ marks: this.getMenu(marks) }} view={view} />
-                {editor}
-              </>
-            )}
-          />
-        </Input>
-    </Container>);
+      <div id="container" ref={(ref) => this.container = ref}>
+        <Container>
+          <Input>
+            <Editor
+              options={editorOptions}
+              nodeViews={nodeViews}
+              onChange={this.onChange}
+              render={({ editor, view }: ProseRender) => (
+                <>
+                  <PositionBtns view={view} menu={{ blocks: this.getMenu(blocks) }} />
+                  <InlineMenuBar menu={{ marks: this.getMenu(marks) }} view={view} />
+                  {editor}
+                </>
+              )}
+            />
+          </Input>
+        </Container>
+      </div>);
   }
 }
