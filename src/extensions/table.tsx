@@ -1,4 +1,5 @@
 import * as React from 'react';
+import styled from 'styled-components';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faTable } from '@fortawesome/fontawesome-free-solid'
 import {addColumnAfter, addColumnBefore, deleteColumn, addRowAfter, addRowBefore, deleteRow,
@@ -6,7 +7,6 @@ import {addColumnAfter, addColumnBefore, deleteColumn, addRowAfter, addRowBefore
   goToNextCell, fixTable, tableEditing, columnResizing, tableNodes  }  from "prosemirror-tables";
 import { createTable, selectTable, findTable } from 'prosemirror-utils';
 import { setBlockType } from 'prosemirror-commands';
-import { NodeSelection, EditorState } from 'prosemirror-state';
 
 import { Extension } from '../types';
 import { blockActive } from '../utils';
@@ -24,6 +24,12 @@ const schemas = tableNodes({
     }
   }
 });
+
+const CellButton = styled(Button)`
+  .icon {
+    font-size: 30px;
+  }
+`
 
 export default class Table implements Extension {
   get name() {
@@ -61,30 +67,30 @@ export default class Table implements Extension {
   }
   customMenu({ state, dispatch }) {
     return (<>
-      <Button onClick={() => {
-        deleteColumn(state, dispatch);
-      }}><i className="icon icon-right-remove"></i></Button>
-      <Button onClick={() => {
-        deleteRow(state, dispatch);
-      }}><i className="icon icon-top-remove"></i></Button>
-      <Button onClick={() => {
+      <CellButton onClick={() => {
         addColumnBefore(state, dispatch);
-      }}><i className="icon icon-left-insert"></i></Button>
-      <Button onClick={() => {
+      }}><i className="icon icon-left-insert"></i></CellButton>
+      <CellButton onClick={() => {
         addColumnAfter(state, dispatch);
-      }}><i className="icon icon-right-insert"></i></Button>
-      <Button onClick={() => {
+      }}><i className="icon icon-right-insert"></i></CellButton>
+      <CellButton onClick={() => {
         addRowBefore(state, dispatch);
-      }}><i className="icon icon-top-insert"></i></Button>
-      <Button onClick={() => {
+      }}><i className="icon icon-top-insert"></i></CellButton>
+      <CellButton onClick={() => {
         addRowAfter(state, dispatch);
-      }}><i className="icon icon-bottom-insert"></i></Button>
-      <Button onClick={() => {
+      }}><i className="icon icon-bottom-insert"></i></CellButton>
+      <CellButton onClick={() => {
+        deleteColumn(state, dispatch);
+      }}><i className="icon icon-right-remove"></i></CellButton>
+      <CellButton onClick={() => {
+        deleteRow(state, dispatch);
+      }}><i className="icon icon-top-remove"></i></CellButton>
+      <CellButton onClick={() => {
         mergeCells(state, dispatch);
-      }}><i className="icon icon-merge01"></i></Button>
-      <Button onClick={() => {
+      }}><i className="icon icon-merge01"></i></CellButton>
+      <CellButton onClick={() => {
         splitCell(state, dispatch);
-      }}><i className="icon icon-split01"></i></Button>
+      }}><i className="icon icon-split01"></i></CellButton>
     </>)
   }
   keys() {

@@ -259,8 +259,9 @@ export default class App extends React.Component<AppProps, AppState> {
     const nodeViews = this.getNodeViews();
 
     return (
-      <div id="container" ref={(ref) => this.container = ref}>
-        <Container>
+
+      <Container>
+        <div id="container" ref={(ref) => this.container = ref}>
           <Input>
             <Editor
               options={editorOptions}
@@ -275,7 +276,8 @@ export default class App extends React.Component<AppProps, AppState> {
               )}
             />
           </Input>
-        </Container>
-      </div>);
+        </div>
+      </Container>
+    );
   }
 }
