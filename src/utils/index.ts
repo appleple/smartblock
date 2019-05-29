@@ -1,7 +1,8 @@
 import { findChildren } from 'prosemirror-utils';
-import { Selection, EditorState } from 'prosemirror-state';
-import { EditorView } from 'prosemirror-view';
+import { EditorState } from 'prosemirror-state';
 import { Node } from 'prosemirror-model';
+import { wrapInList, liftListItem } from 'prosemirror-schema-list'
+import { findParentNode } from 'prosemirror-utils'
 
 export const getScrollTop = () => {
   return window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
@@ -120,4 +121,42 @@ export const getParentNodePosFromState = (state: EditorState) => {
   const { node } = firstNode;
   const pos = findNodePosition(state.doc, node);
   return pos + node.nodeSize;
+}
+
+function isList(node, schema) {
+  return (node.type === schema.nodes.bullet_list
+    || node.type === schema.nodes.ordered_list);
+}
+
+export const toggleList = (listType, itemType) => {
+  return (state, dispatch) => {
+    const { schema, selection } = state
+    const { $from, $to } = selection
+    const range = $from.blockRange($to)
+
+    if (!range) {
+      return false
+		}
+
+    const parentList = findParentNode(node => isList(node, schema))(selection)
+
+    if (range.depth >= 1 && parentList && range.depth - parentList.depth <= 1) {
+      if (parentList.node.type === listType) {
+        return liftListItem(itemType)(state, dispatch)
+      }
+
+      if (isList(parentList.node, schema) && listType.validContent(parentList.node.content)) {
+        const { tr } = state
+        tr.setNodeMarkup(parentList.pos, listType)
+
+        if (dispatch) {
+          dispatch(tr)
+        }
+
+        return false
+      }
+    }
+
+    return wrapInList(listType)(state, dispatch)
+  }
 }

@@ -20,8 +20,8 @@ export default class ListItem implements Extension {
   }
   keys(schema: Schema) {
     return {
-      Enter: splitListItem(schema.nodes.list_item),
-      Tab: sinkListItem(schema.nodes.list_item),
+      'Enter': splitListItem(schema.nodes.list_item),
+      'Tab': sinkListItem(schema.nodes.list_item),
       'Shift-Tab': liftListItem(schema.nodes.list_item)
     }
   }

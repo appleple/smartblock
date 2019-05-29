@@ -22,7 +22,7 @@ export default class Editor extends React.Component<EditorProps> {
 
   constructor (props) {
     super(props)
-    this.editorRef = React.createRef()
+    this.editorRef = React.createRef();
     this.view = new EditorView(null, {
       state: EditorState.create(props.options),
       dispatchTransaction: transaction => {
