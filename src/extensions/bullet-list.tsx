@@ -1,7 +1,8 @@
 import * as React from 'react';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faList, faOutdent, faIndent } from '@fortawesome/fontawesome-free-solid'
-import { wrapInList, liftListItem, sinkListItem, splitListItem } from 'prosemirror-schema-list'
+import { wrapInList, sinkListItem } from 'prosemirror-schema-list'
+import { liftListItem } from '../utils';
 import { Extension } from '../types';
 import { blockActive } from '../utils';
 import Button from '../components/button';

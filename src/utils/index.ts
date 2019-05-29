@@ -1,8 +1,8 @@
 import { findChildren } from 'prosemirror-utils';
 import { EditorState } from 'prosemirror-state';
 import { Node } from 'prosemirror-model';
-import { wrapInList, liftListItem } from 'prosemirror-schema-list'
-import { findParentNode } from 'prosemirror-utils'
+import { liftTarget, ReplaceAroundStep} from "prosemirror-transform";
+import {Slice, Fragment, NodeRange} from "prosemirror-model"
 
 export const getScrollTop = () => {
   return window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
@@ -121,4 +121,31 @@ export const getParentNodePosFromState = (state: EditorState) => {
   const { node } = firstNode;
   const pos = findNodePosition(state.doc, node);
   return pos + node.nodeSize;
+}
+
+function liftToOuterList(state, dispatch, itemType, range) {
+  let tr = state.tr;
+  let end = range.end;
+  let endOfList = range.$to.end(range.depth);
+  if (end < endOfList) {
+    // There are siblings after the lifted items, which must become
+    // children of the last item
+    tr.step(new ReplaceAroundStep(end - 1, endOfList, end, endOfList,
+    new Slice(Fragment.from(itemType.create(null, range.parent.copy())), 1, 0), 1, true))
+    range = new NodeRange(tr.doc.resolve(range.$from.pos), tr.doc.resolve(endOfList), range.depth)
+  }
+  dispatch(tr.lift(range, liftTarget(range) - 1).scrollIntoView())
+  return true
+}
+
+export const liftListItem = (itemType) => {
+  return function(state: EditorState, dispatch) {
+    let {$from, $to} = state.selection
+    let range = $from.blockRange($to, node => node.childCount && node.firstChild.type == itemType);
+    if (!range) return false
+    if (!dispatch) return true
+    if ($from.node(range.depth - 1).type == itemType) {// Inside a parent list
+      return liftToOuterList(state, dispatch, itemType, range)
+    }
+  }
 }

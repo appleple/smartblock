@@ -1,6 +1,8 @@
 import { Extension } from '../types';
-import { splitListItem, liftListItem, sinkListItem } from 'prosemirror-schema-list'
-import {Schema} from "prosemirror-model"
+import { splitListItem, sinkListItem } from 'prosemirror-schema-list'
+import { Schema } from "prosemirror-model"
+import { chainCommands } from 'prosemirror-commands';
+import { liftListItem } from '../utils';
 
 export default class ListItem implements Extension {
   get name() {
@@ -22,7 +24,7 @@ export default class ListItem implements Extension {
     return {
       'Enter': splitListItem(schema.nodes.list_item),
       'Tab': sinkListItem(schema.nodes.list_item),
-      'Shift-Tab': liftListItem(schema.nodes.list_item)
+      'Shift-Tab': chainCommands(liftListItem(schema.nodes.list_item))
     }
   }
 }
