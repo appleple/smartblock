@@ -122,8 +122,3 @@ export const getParentNodePosFromState = (state: EditorState) => {
   const pos = findNodePosition(state.doc, node);
   return pos + node.nodeSize;
 }
-
-function isList(node, schema) {
-  return (node.type === schema.nodes.bullet_list
-    || node.type === schema.nodes.ordered_list);
-}
