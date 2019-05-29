@@ -155,19 +155,33 @@ export default class App extends React.Component<AppProps, AppState> {
 
   getKeys(extensions: Extension[]) {
     let extensionKeys = {};
+
     extensions.forEach((extension) => {
       if (extension.keys) {
-        extensionKeys = { ...extensionKeys, ...extension.keys(this.schema) }
+        const registeredKeys = extension.keys(this.schema);
+        Object.keys(registeredKeys).forEach((key) => {
+          if (!extensionKeys[key]) {
+            extensionKeys[key] = [];
+          }
+          extensionKeys[key].push(registeredKeys[key]);
+        });
       }
     });
+
     Object.keys(keys).forEach((key) => {
-      if (extensionKeys[key]) {
-        extensionKeys[key] = chainCommands(extensionKeys[key], keys[key])
-      } else {
-        extensionKeys[key] = keys[key]
+      if (!extensionKeys[key]) {
+        extensionKeys[key] = [];
       }
+      extensionKeys[key].push(keys[key]);
     });
-    return keymap(extensionKeys);
+
+    const keyMaps = {};
+
+    Object.keys(extensionKeys).forEach((extensionKey) => {
+      keyMaps[extensionKey] = chainCommands(...extensionKeys[extensionKey]);
+    });
+
+    return keymap(keyMaps);
   }
 
   getPlugins() {
