@@ -2,6 +2,7 @@ import { Extension } from '../types';
 import { splitListItem, sinkListItem } from 'prosemirror-schema-list'
 import { Schema } from "prosemirror-model"
 import { chainCommands } from 'prosemirror-commands';
+import uuid from 'uuid';
 import { liftListItem } from '../utils';
 
 export default class ListItem implements Extension {
@@ -15,8 +16,17 @@ export default class ListItem implements Extension {
     return {
       content: 'paragraph block*',
       group: 'block',
-      parseDOM: [{tag: "li"}],
-      toDOM() { return ["li", 0] },
+      parseDOM: [{tag: "li", getAttrs(dom) {
+        return {
+          id: dom.getAttribute('id')
+        }
+      }}],
+      attrs: {
+        id: { default: '' }
+      },
+      toDOM(node) { return ["li", {
+        id: node.attrs.id || uuid()
+      },  0] },
       defining: true
     }
   }
