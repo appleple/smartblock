@@ -56,6 +56,7 @@
     "@types/prosemirror-schema-basic": "^1.0.1",
     "@types/prosemirror-schema-list": "^1.0.1",
     "@types/prosemirror-transform": "^1.1.0",
+    "@types/styled-components": "^4.1.15",
     "iconfont-cli": "^0.1.0",
     "immutable": "^4.0.0-rc.12",
     "ios-inner-height": "^1.1.0",
@@ -75,6 +76,7 @@
     "react-dom": "^16.8.6",
     "scroll-to": "0.0.2",
     "scroll-to-element": "^2.0.3",
-    "styled-components": "^4.2.0"
+    "styled-components": "^4.2.0",
+    "uuid": "^3.3.2"
   }
 }

@@ -2,6 +2,7 @@ import * as React from 'react';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faList, faOutdent, faIndent } from '@fortawesome/fontawesome-free-solid'
 import { wrapInList, sinkListItem } from 'prosemirror-schema-list'
+import uuid from 'uuid';
 import { liftListItem } from '../utils';
 import { Extension } from '../types';
 import { blockActive } from '../utils';
@@ -18,8 +19,17 @@ export default class BulletList implements Extension {
     return {
       content: 'list_item+',
       group: 'block',
-      parseDOM: [{tag: "ul"}],
-      toDOM() { return ["ul", 0] }
+      parseDOM: [{tag: "ul", getAttrs(dom) {
+        return {
+          id: dom.getAttribute('id')
+        }
+      }}],
+      attrs: {
+        id: { default: '' }
+      },
+      toDOM(node) { return ["ul", {
+        id: node.attrs.id || uuid()
+      }, 0] }
     }
   }
   get icon() {

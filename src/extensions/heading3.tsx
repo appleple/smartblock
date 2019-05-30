@@ -5,6 +5,7 @@ import { setBlockType } from 'prosemirror-commands';
 import { Extension } from '../types';
 import { blockActive } from '../utils';
 import Button from '../components/button';
+import uuid from 'uuid';
 
 export default class Heading3 implements Extension {
   get name() {
@@ -19,13 +20,19 @@ export default class Heading3 implements Extension {
       group: "block",
       defining: true,
       attrs: {
-        align: { default: 'left' } 
+        align: { default: 'left' },
+        id: { default: '' }
       },
       parseDOM: [
-        {tag: "h3"},
+        {tag: "h3", getAttrs(dom) {
+          return {
+            id: dom.getAttribute('id') || uuid()
+          }
+        }},
       ],
       toDOM(node) { return ["h3", {
-        style: `text-align: ${node.attrs.align}`
+        style: `text-align: ${node.attrs.align}`,
+        id: node.attrs.id || uuid()
       }, 0] }
     }
   }

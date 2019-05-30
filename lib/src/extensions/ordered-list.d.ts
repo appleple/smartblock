@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Extension } from '../types';
-export default class BulletList implements Extension {
+export default class OrderedList implements Extension {
     readonly name: string;
     readonly showMenu: boolean;
     readonly schema: {

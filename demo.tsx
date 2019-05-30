@@ -6,7 +6,7 @@ import './src/styles/icons.css';
 
 render(<App html={`
 <p>Hello World</p>
-<h1>Test</h1>
+<h2>Test</h2>
 <ul>
   <li>リスト1</li>
   <li>リスト2</li>

@@ -11,6 +11,7 @@ declare type TooltipReactState = {
 export default class TooltipReact extends React.Component<TooltipReactProps, TooltipReactState> {
     constructor(props: any);
     componentWillReceiveProps(nextProps: any, prevProps: any): void;
+    enterUrl: () => void;
     render(): JSX.Element;
 }
 export {};
