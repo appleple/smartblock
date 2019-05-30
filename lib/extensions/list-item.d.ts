@@ -8,8 +8,18 @@ export default class ListItem implements Extension {
         group: string;
         parseDOM: {
             tag: string;
+            getAttrs(dom: any): {
+                id: any;
+            };
         }[];
-        toDOM(): (string | number)[];
+        attrs: {
+            id: {
+                default: string;
+            };
+        };
+        toDOM(node: any): (string | number | {
+            id: any;
+        })[];
         defining: boolean;
     };
     keys(schema: Schema): {

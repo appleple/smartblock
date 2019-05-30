@@ -11,12 +11,19 @@ export default class Heading3 implements Extension {
             align: {
                 default: string;
             };
+            id: {
+                default: string;
+            };
         };
         parseDOM: {
             tag: string;
+            getAttrs(dom: any): {
+                id: any;
+            };
         }[];
         toDOM(node: any): (string | number | {
             style: string;
+            id: any;
         })[];
     };
     readonly icon: string;
