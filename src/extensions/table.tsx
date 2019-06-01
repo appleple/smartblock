@@ -7,6 +7,7 @@ import {addColumnAfter, addColumnBefore, deleteColumn, addRowAfter, addRowBefore
   goToNextCell, fixTable, tableEditing, columnResizing, tableNodes  }  from "prosemirror-tables";
 import { createTable, selectTable, findTable } from 'prosemirror-utils';
 import { setBlockType } from 'prosemirror-commands';
+import uuid from 'uuid';
 
 import { Extension } from '../types';
 import { blockActive } from '../utils';
@@ -39,6 +40,22 @@ export default class Table implements Extension {
     return true;
   }
   get schema() {
+    schemas.table.parseDOM = [{
+      tag: 'table',
+      getAttrs(dom) {
+        return {
+          id: dom.getAttribute('id') || uuid()
+        }
+      }
+    }];
+    schemas.table.toDOM = (node) => {
+      return ["table", {
+        id: node.attrs.id || uuid()
+      }, ["tbody", 0]];
+    }
+    schemas.table.attrs = {
+      id: { default: '' }
+    };
     return schemas.table
   }
   get schemaDependencies() {
@@ -50,7 +67,7 @@ export default class Table implements Extension {
   }
   get plugins() {
     return [
-      columnResizing(),
+      // columnResizing(),
       tableEditing()
     ]
   }
