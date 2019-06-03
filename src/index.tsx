@@ -258,10 +258,11 @@ export default class App extends React.Component<AppProps, AppState> {
     }
     if (this.props.onChange) {
       const { schema } = this;
-      const json = doc.toJSON();
       const html = this.getHtmlFromNode(doc, this.schema);
       this.props.onChange({
-        json, html, schema
+        json: doc.content,
+        html,
+        schema
       });
     }
     const { childCount } = doc.content;
