@@ -47,7 +47,7 @@ type AppProps = {
   json?: OutputJson;
   html?: string;
   extensions: Extension[],
-  offsetHeight?: number
+  offsetTop?: number
 }
 
 type AppState = {
@@ -60,7 +60,7 @@ export default class App extends React.Component<AppProps, AppState> {
 
   static defaultProps = {
     extensions,
-    offsetHeight: 0
+    offsetTop: 0
   };
 
   constructor(props) {
@@ -276,7 +276,7 @@ export default class App extends React.Component<AppProps, AppState> {
   }
 
   render() {
-    const { extensions, offsetHeight } = this.props;
+    const { extensions, offsetTop } = this.props;
     const { doc } = this.state;
     const { schema } = this;
     const editorOptions = { schema, plugins: this.getPlugins(), doc };
@@ -298,8 +298,8 @@ export default class App extends React.Component<AppProps, AppState> {
               onChange={this.onChange}
               render={({ editor, view }: ProseRender) => (
                 <>
-                  <Menu view={view} menu={{ blocks: this.getMenu(blocks) }} offsetHeight={offsetHeight} />
-                  <InlineMenu menu={{ marks: this.getMenu(marks) }} view={view} offsetHeight={offsetHeight} />
+                  <Menu view={view} menu={{ blocks: this.getMenu(blocks) }} offsetTop={offsetTop} />
+                  <InlineMenu menu={{ marks: this.getMenu(marks) }} view={view} offsetTop={offsetTop} />
                   {editor}
                 </>
               )}

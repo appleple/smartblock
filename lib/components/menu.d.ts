@@ -2,7 +2,7 @@ import * as React from 'react';
 import { EditorView } from 'prosemirror-view';
 interface PositionProps {
     view: EditorView;
-    offsetHeight: number;
+    offsetTop: number;
     menu: any;
 }
 interface PositionState {
