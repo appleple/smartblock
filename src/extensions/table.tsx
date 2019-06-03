@@ -87,30 +87,54 @@ export default class Table implements Extension {
   }
   customMenu({ state, dispatch }) {
     return (<>
-      <CellButton onClick={() => {
-        addColumnBefore(state, dispatch);
-      }}><i className="icon icon-left-insert"></i></CellButton>
-      <CellButton onClick={() => {
-        addColumnAfter(state, dispatch);
-      }}><i className="icon icon-right-insert"></i></CellButton>
-      <CellButton onClick={() => {
-        addRowBefore(state, dispatch);
-      }}><i className="icon icon-top-insert"></i></CellButton>
-      <CellButton onClick={() => {
-        addRowAfter(state, dispatch);
-      }}><i className="icon icon-bottom-insert"></i></CellButton>
-      <CellButton onClick={() => {
-        deleteColumn(state, dispatch);
-      }}><i className="icon icon-right-remove"></i></CellButton>
-      <CellButton onClick={() => {
-        deleteRow(state, dispatch);
-      }}><i className="icon icon-top-remove"></i></CellButton>
-      <CellButton onClick={() => {
-        mergeCells(state, dispatch);
-      }}><i className="icon icon-merge01"></i></CellButton>
-      <CellButton onClick={() => {
-        splitCell(state, dispatch);
-      }}><i className="icon icon-split01"></i></CellButton>
+      <CellButton 
+        type="button"
+        onClick={() => {
+          addColumnBefore(state, dispatch);
+        }}><i className="icon icon-left-insert"></i>
+      </CellButton>
+      <CellButton 
+        type="button"
+        onClick={() => {
+          addColumnAfter(state, dispatch);
+        }}><i className="icon icon-right-insert"></i>
+      </CellButton>
+      <CellButton 
+        type="button"
+        onClick={() => {
+          addRowBefore(state, dispatch);
+        }}><i className="icon icon-top-insert"></i>
+      </CellButton>
+      <CellButton 
+        type="button"
+        onClick={() => {
+          addRowAfter(state, dispatch);
+        }}><i className="icon icon-bottom-insert"></i>
+      </CellButton>
+      <CellButton 
+        type="button"
+        onClick={() => {
+          deleteColumn(state, dispatch);
+        }}><i className="icon icon-right-remove"></i>
+      </CellButton>
+      <CellButton 
+        type="button"
+        onClick={() => {
+          deleteRow(state, dispatch);
+        }}><i className="icon icon-top-remove"></i>
+      </CellButton>
+      <CellButton 
+        type="button"
+        onClick={() => {
+          mergeCells(state, dispatch);
+        }}><i className="icon icon-merge01"></i>
+      </CellButton>
+      <CellButton 
+        type="button"
+        onClick={() => {
+          splitCell(state, dispatch);
+        }}><i className="icon icon-split01"></i>
+      </CellButton>
     </>)
   }
   keys() {

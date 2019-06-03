@@ -48,21 +48,30 @@ export default class Paragraph implements Extension {
   }
   customMenu({ state, dispatch }) {
     return (<>
-      <Button onClick={() => {
-        setBlockType(state.schema.nodes.paragraph, {
-          align: 'left'
-        })(state, dispatch);
-      }}><FontAwesomeIcon icon={faAlignLeft} /></Button>
-      <Button onClick={() => {
-        setBlockType(state.schema.nodes.paragraph, {
-          align: 'center'
-        })(state, dispatch);
-      }}><FontAwesomeIcon icon={faAlignCenter} /></Button>
-      <Button onClick={() => {
-        setBlockType(state.schema.nodes.paragraph, {
-          align: 'right'
-        })(state, dispatch);
-      }}><FontAwesomeIcon icon={faAlignRight} /></Button>
+      <Button 
+        type="button"
+        onClick={() => {
+          setBlockType(state.schema.nodes.paragraph, {
+            align: 'left'
+          })(state, dispatch);
+        }}
+      ><FontAwesomeIcon icon={faAlignLeft} /></Button>
+      <Button 
+        type="button"
+        onClick={() => {
+          setBlockType(state.schema.nodes.paragraph, {
+            align: 'center'
+          })(state, dispatch);
+        }}
+      ><FontAwesomeIcon icon={faAlignCenter} /></Button>
+      <Button 
+        type="button"
+        onClick={() => {
+          setBlockType(state.schema.nodes.paragraph, {
+            align: 'right'
+          })(state, dispatch);
+        }}
+      ><FontAwesomeIcon icon={faAlignRight} /></Button>
     </>)
   }
   onClick (state, dispatch) {

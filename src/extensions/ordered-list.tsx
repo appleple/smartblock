@@ -45,12 +45,19 @@ export default class OrderedList implements Extension {
     wrapInList(state.schema.nodes.ordered_list)(state, dispatch);
   }
   customMenu({ state, dispatch }) {
-    return (<><Button onClick={() => {
-      liftListItem(state.schema.nodes.list_item)(state, dispatch);
-    }}><FontAwesomeIcon icon={faOutdent} /></Button>
-    <Button onClick={() => {
-      sinkListItem(state.schema.nodes.list_item)(state, dispatch);
-    }}><FontAwesomeIcon icon={faIndent} /></Button>
+    return (<>
+      <Button 
+        type="button"
+        onClick={() => {
+          liftListItem(state.schema.nodes.list_item)(state, dispatch);
+        }}><FontAwesomeIcon icon={faOutdent} />
+      </Button>
+      <Button 
+        type="button"
+        onClick={() => {
+          sinkListItem(state.schema.nodes.list_item)(state, dispatch);
+        }}><FontAwesomeIcon icon={faIndent} />
+      </Button>
     </>)
   }
 }

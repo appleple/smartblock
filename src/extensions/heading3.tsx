@@ -47,21 +47,30 @@ export default class Heading3 implements Extension {
   }
   customMenu({ state, dispatch }) {
     return (<>
-      <Button onClick={() => {
-        setBlockType(state.schema.nodes.heading3, {
-          align: 'left'
-        })(state, dispatch);
-      }}><FontAwesomeIcon icon={faAlignLeft} /></Button>
-      <Button onClick={() => {
-        setBlockType(state.schema.nodes.heading3, {
-          align: 'center'
-        })(state, dispatch);
-      }}><FontAwesomeIcon icon={faAlignCenter} /></Button>
-      <Button onClick={() => {
-        setBlockType(state.schema.nodes.heading3, {
-          align: 'right'
-        })(state, dispatch);
-      }}><FontAwesomeIcon icon={faAlignRight} /></Button>
+      <Button 
+        type="button"
+        onClick={() => {
+          setBlockType(state.schema.nodes.heading3, {
+            align: 'left'
+          })(state, dispatch);
+        }}
+      ><FontAwesomeIcon icon={faAlignLeft} /></Button>
+      <Button 
+        type="button"
+        onClick={() => {
+          setBlockType(state.schema.nodes.heading3, {
+            align: 'center'
+          })(state, dispatch);
+        }}
+      ><FontAwesomeIcon icon={faAlignCenter} /></Button>
+      <Button 
+        type="button"
+        onClick={() => {
+          setBlockType(state.schema.nodes.heading3, {
+            align: 'right'
+          })(state, dispatch);
+        }}
+      ><FontAwesomeIcon icon={faAlignRight} /></Button>
     </>)
   }
   onClick (state, dispatch) {
