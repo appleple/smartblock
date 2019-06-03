@@ -14,6 +14,7 @@ declare type AppProps = {
     json?: OutputJson;
     html?: string;
     extensions: Extension[];
+    offsetHeight?: number;
 };
 declare type AppState = {
     doc: Node;
@@ -23,6 +24,7 @@ export default class App extends React.Component<AppProps, AppState> {
     schema: Schema;
     static defaultProps: {
         extensions: (import("./extensions/paragraph").default | import("./extensions/heading2").default | import("./extensions/heading3").default | import("./extensions/list-item").default | import("./extensions/bullet-list").default | import("./extensions/ordered-list").default | import("./extensions/table").default | import("./extensions/underline").default | import("./extensions/strike").default | import("./extensions/strong").default | import("./extensions/link").default | import("./extensions/trash").default | import("./extensions/move-up").default | import("./extensions/move-down").default)[];
+        offsetHeight: number;
     };
     constructor(props: any);
     getBlockSchemas(extensions: Extension[]): {};

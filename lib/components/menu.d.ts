@@ -2,12 +2,13 @@ import * as React from 'react';
 import { EditorView } from 'prosemirror-view';
 interface PositionProps {
     view: EditorView;
+    offsetHeight: number;
     menu: any;
 }
 interface PositionState {
     style: React.CSSProperties;
 }
-export default class PositionBtns extends React.Component<PositionProps, PositionState> {
+export default class Menu extends React.Component<PositionProps, PositionState> {
     menuRef: React.RefObject<HTMLDivElement>;
     constructor(props: any);
     calculateStyle(props: PositionProps): {
@@ -20,7 +21,7 @@ export default class PositionBtns extends React.Component<PositionProps, Positio
         right?: undefined;
     } | {
         right: number;
-        top: any;
+        top: number;
         left?: undefined;
     };
     componentDidMount(): void;
