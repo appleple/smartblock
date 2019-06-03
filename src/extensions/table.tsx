@@ -79,6 +79,7 @@ export default class Table implements Extension {
   }
   onClick (state, dispatch) {
     const table = createTable(state.schema);
+    table.attrs.id = uuid();
     const tr = state.tr.replaceSelectionWith(table);
     dispatch(tr);
   }
