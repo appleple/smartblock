@@ -41,6 +41,9 @@ type OutputJson = {
 
 type AppProps = {
   onChange(json: OutputJson): void;
+  onInit?(json: { 
+    schema: Schema
+  }): void
   json?: OutputJson;
   html?: string;
   extensions: Extension[]
@@ -72,6 +75,11 @@ export default class App extends React.Component<AppProps, AppState> {
     const div = document.createElement('div');
     div.innerHTML = realHtml;
     const doc = DOMParser.fromSchema(this.schema).parse(div);
+    if (this.props.onInit) {
+      this.props.onInit({
+        schema
+      });
+    }
     this.state = { doc };
   }
 
@@ -249,10 +257,11 @@ export default class App extends React.Component<AppProps, AppState> {
       }
     }
     if (this.props.onChange) {
+      const { schema } = this;
       const json = doc.toJSON();
       const html = this.getHtmlFromNode(doc, this.schema);
       this.props.onChange({
-        json, html
+        json, html, schema
       });
     }
     const { childCount } = doc.content;

@@ -8,6 +8,9 @@ declare type OutputJson = {
 };
 declare type AppProps = {
     onChange(json: OutputJson): void;
+    onInit?(json: {
+        schema: Schema;
+    }): void;
     json?: OutputJson;
     html?: string;
     extensions: Extension[];
