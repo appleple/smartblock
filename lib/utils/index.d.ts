@@ -26,3 +26,4 @@ export declare const canInsert: (type: any) => (state: any) => boolean;
 export declare const findNodePosition: (doc: Node<any>, target: Node<any>) => number;
 export declare const getParentNodePosFromState: (state: EditorState<any>) => number;
 export declare const liftListItem: (itemType: any) => (state: EditorState<any>, dispatch: any) => boolean;
+export declare const createTable: (schema: any, attrs: any, rowsCount?: number, colsCount?: number, withHeaderRow?: boolean, cellContent?: any) => any;
