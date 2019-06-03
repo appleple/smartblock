@@ -62,7 +62,7 @@ const Button = ({ state, dispatch }) => (item, key) => (
   >{item.icon}</ButtonStyle>
 )
 
-const calculateStyle = (view: EditorView) => {
+const calculateStyle = (view: EditorView, offsetHeight) => {
   const { selection } = view.state
 
   if (!selection || selection.empty) {
@@ -84,18 +84,18 @@ const calculateStyle = (view: EditorView) => {
   if (window.innerWidth <= 767) {
     return {
       left: 5,
-      top: elementTop + element.offsetHeight
+      top: elementTop + element.offsetHeight - offsetHeight
     }
   } 
 
   return {
     left: coords.left - ((window.innerWidth - width) / 2),
-    top: elementTop + element.offsetHeight
+    top: elementTop + element.offsetHeight - offsetHeight
   }
 }
 
-const MenuBar = ({ menu, children, view }: { menu: any, children?: React.ReactChildren, view: EditorView}) => {
-  const style = calculateStyle(view);
+const MenuBar = ({ menu, children, view, offsetHeight }: { menu: any, children?: React.ReactChildren, view: EditorView, offsetHeight: number }) => {
+  const style = calculateStyle(view , offsetHeight);
 
   return (<FloaterStyle style={style}>
     <Bar>

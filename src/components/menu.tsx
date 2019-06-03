@@ -44,6 +44,7 @@ const Button = (view) => (item, key: string) => {
 
 interface PositionProps {
   view: EditorView,
+  offsetHeight: number,
   menu: any
 }
 
@@ -51,7 +52,7 @@ interface PositionState {
   style: React.CSSProperties;
 }
 
-export default class PositionBtns extends React.Component<PositionProps, PositionState> {
+export default class Menu extends React.Component<PositionProps, PositionState> {
   menuRef: React.RefObject<HTMLDivElement>;
 
   constructor(props) {
@@ -66,7 +67,7 @@ export default class PositionBtns extends React.Component<PositionProps, Positio
   }
 
   calculateStyle (props: PositionProps) {
-    const { view } = this.props;
+    const { view, offsetHeight } = this.props;
     const { state } = view;
     const { selection } = state;
 
@@ -107,12 +108,12 @@ export default class PositionBtns extends React.Component<PositionProps, Positio
     } else if (dom && dom.offsetHeight) {
       return {
         right: 0,
-        top: elementTop + dom.offsetHeight
+        top: elementTop + dom.offsetHeight - offsetHeight
       }
     } else {
       return {
         right: 0,
-        top: elementTop
+        top: elementTop- offsetHeight
       }
     }
   }

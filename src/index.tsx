@@ -9,8 +9,8 @@ import { chainCommands } from 'prosemirror-commands';
 import scrollTo from 'scroll-to';
 
 import Editor from './components/editor';
-import InlineMenuBar from './components/inline-menu';
-import PositionBtns from './components/menu';
+import InlineMenu from './components/inline-menu';
+import Menu from './components/menu';
 import plugins from './config/plugins';
 import keys from './config/keys';
 import { getScrollTop, getOffset, getViewport } from './utils';
@@ -46,7 +46,8 @@ type AppProps = {
   }): void
   json?: OutputJson;
   html?: string;
-  extensions: Extension[]
+  extensions: Extension[],
+  offsetHeight?: number
 }
 
 type AppState = {
@@ -58,7 +59,8 @@ export default class App extends React.Component<AppProps, AppState> {
   schema!: Schema;
 
   static defaultProps = {
-    extensions
+    extensions,
+    offsetHeight: 0
   };
 
   constructor(props) {
@@ -274,7 +276,7 @@ export default class App extends React.Component<AppProps, AppState> {
   }
 
   render() {
-    const { extensions } = this.props;
+    const { extensions, offsetHeight } = this.props;
     const { doc } = this.state;
     const { schema } = this;
     const editorOptions = { schema, plugins: this.getPlugins(), doc };
@@ -285,7 +287,10 @@ export default class App extends React.Component<AppProps, AppState> {
     return (
 
       <Container>
-        <div id="container" ref={(ref) => this.container = ref}>
+        <div id="container" ref={(ref) => {
+          this.container = ref;
+          
+        }}>
           <Input>
             <Editor
               options={editorOptions}
@@ -293,8 +298,8 @@ export default class App extends React.Component<AppProps, AppState> {
               onChange={this.onChange}
               render={({ editor, view }: ProseRender) => (
                 <>
-                  <PositionBtns view={view} menu={{ blocks: this.getMenu(blocks) }} />
-                  <InlineMenuBar menu={{ marks: this.getMenu(marks) }} view={view} />
+                  <Menu view={view} menu={{ blocks: this.getMenu(blocks) }} offsetHeight={offsetHeight} />
+                  <InlineMenu menu={{ marks: this.getMenu(marks) }} view={view} offsetHeight={offsetHeight} />
                   {editor}
                 </>
               )}
