@@ -15,8 +15,8 @@ export const getScrollLeft = () => {
 export const getOffset = el => {
   const rect = el.getBoundingClientRect();
   return {
-    top: rect.top + getScrollTop(),
-    left: rect.left + getScrollLeft()
+    top: rect.top,
+    left: rect.left
   }
 }
 
