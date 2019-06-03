@@ -149,3 +149,64 @@ export const liftListItem = (itemType) => {
     }
   }
 }
+
+const tableNodeTypes = schema => {
+  if (schema.cached.tableNodeTypes) {
+    return schema.cached.tableNodeTypes;
+  }
+  const roles = {};
+  Object.keys(schema.nodes).forEach(type => {
+    const nodeType = schema.nodes[type];
+    if (nodeType.spec.tableRole) {
+      roles[nodeType.spec.tableRole] = nodeType;
+    }
+  });
+  schema.cached.tableNodeTypes = roles;
+  return roles;
+};
+
+const createCell = (cellType, cellContent = null) => {
+  if (cellContent) {
+    return cellType.createChecked(null, cellContent);
+  }
+
+  return cellType.createAndFill();
+};
+
+export const createTable = (
+  schema,
+  attrs,
+  rowsCount = 3,
+  colsCount = 3,
+  withHeaderRow = true,
+  cellContent = null
+) => {
+  const {
+    cell: tableCell,
+    header_cell: tableHeader,
+    row: tableRow,
+    table
+  } = tableNodeTypes(schema);
+
+  const cells = [];
+  const headerCells = [];
+  for (let i = 0; i < colsCount; i++) {
+    cells.push(createCell(tableCell, cellContent));
+
+    if (withHeaderRow) {
+      headerCells.push(createCell(tableHeader, cellContent));
+    }
+  }
+
+  const rows = [];
+  for (let i = 0; i < rowsCount; i++) {
+    rows.push(
+      tableRow.createChecked(
+        null,
+        withHeaderRow && i === 0 ? headerCells : cells
+      )
+    );
+  }
+
+  return table.createChecked(attrs, rows);
+};

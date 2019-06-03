@@ -5,7 +5,8 @@ import { faTable } from '@fortawesome/fontawesome-free-solid'
 import {addColumnAfter, addColumnBefore, deleteColumn, addRowAfter, addRowBefore, deleteRow,
   mergeCells, splitCell, setCellAttr, toggleHeaderRow, toggleHeaderColumn, toggleHeaderCell,
   goToNextCell, fixTable, tableEditing, columnResizing, tableNodes  }  from "prosemirror-tables";
-import { createTable, selectTable, findTable } from 'prosemirror-utils';
+import { selectTable, findTable } from 'prosemirror-utils';
+import { createTable } from '../utils';
 import { setBlockType } from 'prosemirror-commands';
 import uuid from 'uuid';
 
@@ -78,8 +79,9 @@ export default class Table implements Extension {
     return setBlockType(state.schema.nodes.table)(state);
   }
   onClick (state, dispatch) {
-    const table = createTable(state.schema);
-    table.attrs.id = uuid();
+    const table = createTable(state.schema, {
+      id: uuid()
+    });
     const tr = state.tr.replaceSelectionWith(table);
     dispatch(tr);
   }
