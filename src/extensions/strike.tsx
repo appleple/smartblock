@@ -1,6 +1,6 @@
 import * as React from 'react';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faStrikethrough } from '@fortawesome/fontawesome-free-solid'
+import Icon from '../components/icon';
+import strike from '../assets/images/icons/strike.svg';
 import { toggleMark } from 'prosemirror-commands';
 import { Extension } from '../types';
 import { markActive } from '../utils';
@@ -29,7 +29,7 @@ export default class StrikeThrough implements Extension {
     }
   }
   get icon() {
-    return <FontAwesomeIcon icon={faStrikethrough} />
+    return <Icon src={strike} width={24} height={24} />
   }
   active (state) {
     return markActive(state.schema.marks.strike)(state);

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faBold } from '@fortawesome/fontawesome-free-solid'
+import Icon from '../components/icon';
+import bold from '../assets/images/icons/bold.svg';
 import { toggleMark } from 'prosemirror-commands';
 import { Extension } from '../types';
 import { markActive } from '../utils';
@@ -28,7 +28,7 @@ export default class Strong implements Extension {
     }
   }
   get icon() {
-    return <FontAwesomeIcon icon={faBold} />
+    return <Icon src={bold} width={24} height={24} />
   }
   active (state) {
     return markActive(state.schema.marks.strong)(state);

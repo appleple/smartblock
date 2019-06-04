@@ -3,6 +3,7 @@ import map from 'lodash/map';
 import styled, { keyframes } from 'styled-components';
 import { EditorView } from 'prosemirror-view';
 import { getOffset } from '../utils';
+import ButtonStyle from './button';
 
 const fadeIn = keyframes`
   from {
@@ -19,30 +20,13 @@ const FloaterStyle = styled.div`
   animation: ${fadeIn} 0.3s;
   margin-top: 8px;
   border-radius: 5px;
-  background-color: #1A2633;
+  background-color: #FFF;
   color: #FFF;
   box-shadow: 0 3px 40px 8px rgba(116,116,116,0.2);
 `;
 
-const ButtonStyle = styled.button`
-  ${props => {
-    if (props.active) {
-      return `
-        color: #000;
-      `;
-    }
-  }}
-  font-size: 20px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: #fff;
-  border-radius: 0;
-  padding: 5px 10px;
-`;
-
 const Bar = styled.div`
-  padding: 5px 0;
+  padding: 5px;
   display: flex;
   align-items: baseline;
 `;

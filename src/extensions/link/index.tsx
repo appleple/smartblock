@@ -1,6 +1,6 @@
 import * as React from 'react';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faLink } from '@fortawesome/fontawesome-free-solid'
+import Icon from '../../components/icon';
+import link from '../../assets/images/icons/link.svg';
 import { toggleMark } from 'prosemirror-commands';
 import { Extension } from '../../types';
 import { markActive } from '../../utils';
@@ -31,7 +31,7 @@ export default class Link implements Extension {
     }
   }
   get icon() {
-    return <FontAwesomeIcon icon={faLink} />
+    return <Icon src={link} width={24} height={24} />
   }
   get plugins() {
     return [

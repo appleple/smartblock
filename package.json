@@ -11,7 +11,8 @@
     "build:lib": "tsc",
     "np": "np --no-cleanup",
     "font": "iconfont ./src/assets/images/icons/*.svg -o ./src/fonts -t ./src/assets/templates/icons.css.ejs ./src/assets/templates/index.html.ejs --template-out-dir ./src/styles && rm ./src/styles/index.html",
-    "deploy": "npm-run-all -s build build:lib test np"
+    "deploy": "npm-run-all -s build build:lib test np",
+    "build:svg": "svg-to-jsx -o ./lib/assets/images/icons ./src/assets/images/icons"
   },
   "repository": {
     "type": "git",
@@ -40,6 +41,7 @@
     "npm-run-all": "^4.1.5",
     "puppeteer": "^1.11.0",
     "style-loader": "^0.23.1",
+    "svg-to-jsx": "^1.0.0",
     "typescript": "^3.2.2",
     "url-loader": "^1.1.2",
     "webpack": "^4.27.1",
@@ -51,6 +53,7 @@
     "@aeaton/prosemirror-placeholder": "^0.1.0",
     "@aeaton/react-prosemirror": "^0.21.1",
     "@aeaton/react-prosemirror-config-default": "^0.11.0",
+    "@nrk/svg-to-js": "^2.1.1",
     "@types/prosemirror-commands": "^1.0.1",
     "@types/prosemirror-keymap": "^1.0.1",
     "@types/prosemirror-schema-basic": "^1.0.1",

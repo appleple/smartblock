@@ -1,5 +1,5 @@
 .ProseMirror {
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴシック", "メイリオ", Meiryo, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   padding: 10px;
   background: #fff;
 }
@@ -78,4 +78,11 @@
 
 .ProseMirror table p.empty-node:first-child::before {
   display: none;
+}
+
+.ProseMirror ::selection {
+  background-color: #D1DDF0;
+  color: #014CC5;
+  border-right: 1px solid #014CC5;
+  border-left: 1px solid #014CC5;
 }

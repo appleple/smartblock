@@ -22,7 +22,8 @@ const PositionBtnGroup = styled.div`
   animation: ${fadeIn} 0.3s;
   border-radius: 5px;
   box-shadow: 0 3px 40px 8px rgba(116,116,116,0.2);
-  padding: 10px 0;
+  padding: 5px 0;
+  color: #767676;
   background-color: #FFF;
   &:before {
     position: absolute;
@@ -34,6 +35,14 @@ const PositionBtnGroup = styled.div`
     border-width: 0 11.5px 12px 11.5px;
     border-color: transparent transparent #ffffff transparent;
   }
+`;
+
+const PositionBtnGroupTop = styled.div`
+  padding: 0 5px 5px 5px;
+`
+const PositionBtnGroupBottom = styled.div`
+  border-top: 1px solid #ccc;
+  padding: 5px 5px 0 5px;
 `;
 
 const Button = (view) => (item, key: string) => {
@@ -80,7 +89,7 @@ export default class Menu extends React.Component<PositionProps, PositionState> 
     const { state } = view;
     const { selection } = state;
 
-    if (!selection) {
+    if (!selection || !selection.empty) {
       return {
         left: -1000,
         top: 0
@@ -161,15 +170,17 @@ export default class Menu extends React.Component<PositionProps, PositionState> 
     const CustomMenu = this.getActiveMenu();
 
     return (<PositionBtnGroup style={style} ref={this.menuRef}>
-      {map(menu, (item, key) => (
-        <span key={key}>
-          {map(item, Button(view))}
-        </span>
-      ))}
+      <PositionBtnGroupTop>
+        {map(menu, (item, key) => (
+          <span key={key}>
+            {map(item, Button(view))}
+          </span>
+        ))}
+      </PositionBtnGroupTop>
       {(CustomMenu && CustomMenu.props && CustomMenu.props.children) && 
-      <div style={{ borderTop: '1px solid #CCC', paddingTop: '10px' }}>
+      <PositionBtnGroupBottom>
         {CustomMenu}
-      </div>}
+      </PositionBtnGroupBottom>}
     </PositionBtnGroup>)
   }
 }

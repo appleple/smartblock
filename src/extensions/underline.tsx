@@ -1,6 +1,6 @@
 import * as React from 'react';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faUnderline } from '@fortawesome/fontawesome-free-solid'
+import Icon from '../components/icon';
+import underline from '../assets/images/icons/underline.svg';
 import { toggleMark } from 'prosemirror-commands';
 import { Extension } from '../types';
 import { markActive } from '../utils';
@@ -28,7 +28,7 @@ export default class Underline implements Extension {
     }
   }
   get icon() {
-    return <FontAwesomeIcon icon={faUnderline} />
+    return <Icon src={underline} width={24} height={24} />
   }
   active (state) {
     return markActive(state.schema.marks.underline)(state);

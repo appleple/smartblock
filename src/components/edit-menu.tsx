@@ -22,7 +22,7 @@ const PositionBtnGroup = styled.div`
   max-width: 280px;
   animation: ${fadeIn} 0.3s;
   border-radius: 5px;
-  padding: 10px 0;
+  padding: 5px 0;
   background-color: #F2F2F4;
 `;
 
@@ -108,7 +108,7 @@ export default class Menu extends React.Component<PositionProps, PositionState> 
     } else {
       return {
         right: 20,
-        top: elementTop - offsetTop - 50
+        top: elementTop - offsetTop - 45
       }
     }
   }
