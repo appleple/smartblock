@@ -12,7 +12,7 @@
     "np": "np --no-cleanup",
     "font": "iconfont ./src/assets/images/icons/*.svg -o ./src/fonts -t ./src/assets/templates/icons.css.ejs ./src/assets/templates/index.html.ejs --template-out-dir ./src/styles && rm ./src/styles/index.html",
     "deploy": "npm-run-all -s build build:lib test np",
-    "build:svg": "svg-to-jsx -o ./lib/assets/images/icons ./src/assets/images/icons"
+    "build:svg": "npx @svgr/cli -d ./src/components/icons ./src/assets/images/icons"
   },
   "repository": {
     "type": "git",
@@ -54,6 +54,7 @@
     "@aeaton/react-prosemirror": "^0.21.1",
     "@aeaton/react-prosemirror-config-default": "^0.11.0",
     "@nrk/svg-to-js": "^2.1.1",
+    "@svgr/cli": "^4.3.0",
     "@types/prosemirror-commands": "^1.0.1",
     "@types/prosemirror-keymap": "^1.0.1",
     "@types/prosemirror-schema-basic": "^1.0.1",
