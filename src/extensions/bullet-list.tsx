@@ -1,8 +1,10 @@
 import * as React from 'react';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faList, faOutdent, faIndent } from '@fortawesome/fontawesome-free-solid'
+import Icon from '../components/icon';
 import { wrapInList, sinkListItem } from 'prosemirror-schema-list'
 import uuid from 'uuid';
+import undentSvg from '../assets/images/icons/undent.svg';
+import indentSvg from '../assets/images/icons/indent.svg';
+import listSvg from '../assets/images/icons/list.svg';
 import { liftListItem } from '../utils';
 import { Extension } from '../types';
 import { blockActive } from '../utils';
@@ -11,6 +13,9 @@ import Button from '../components/button';
 export default class BulletList implements Extension {
   get name() {
     return 'bullet_list';
+  }
+  get group() {
+    return 'block'
   }
   get showMenu() {
     return true;
@@ -33,7 +38,7 @@ export default class BulletList implements Extension {
     }
   }
   get icon() {
-    return <FontAwesomeIcon icon={faList} />
+    return <Icon src={listSvg} width={24} height={24} />
   }
   active(state) {
     return blockActive(state.schema.nodes.bullet_list)(state)
@@ -48,10 +53,10 @@ export default class BulletList implements Extension {
 
     return (<><Button onClick={() => {
       liftListItem(state.schema.nodes.list_item)(state, dispatch);
-    }}><FontAwesomeIcon icon={faOutdent} /></Button>
+    }}><Icon src={undentSvg} width={24} height={24} /></Button>
     <Button onClick={() => {
       sinkListItem(state.schema.nodes.list_item)(state, dispatch);
-    }}><FontAwesomeIcon icon={faIndent} /></Button>
+    }}><Icon src={indentSvg} width={24} height={24} /></Button>
     </>)
   }
 }

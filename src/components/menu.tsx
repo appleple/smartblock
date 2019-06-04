@@ -23,8 +23,17 @@ const PositionBtnGroup = styled.div`
   border-radius: 5px;
   box-shadow: 0 3px 40px 8px rgba(116,116,116,0.2);
   padding: 10px 0;
-  overflow: hidden;
   background-color: #FFF;
+  &:before {
+    position: absolute;
+    left: 20px;
+    top: -12px;
+    content: "";
+    display: block;
+    border-style: solid;
+    border-width: 0 11.5px 12px 11.5px;
+    border-color: transparent transparent #ffffff transparent;
+  }
 `;
 
 const Button = (view) => (item, key: string) => {
@@ -107,13 +116,13 @@ export default class Menu extends React.Component<PositionProps, PositionState> 
       }
     } else if (dom && dom.offsetHeight) {
       return {
-        right: 0,
-        top: elementTop + dom.offsetHeight - offsetTop
+        left: 5,
+        top: elementTop + dom.offsetHeight - offsetTop + 10
       }
     } else {
       return {
-        right: 0,
-        top: elementTop- offsetTop
+        left: 5,
+        top: elementTop- offsetTop + 10
       }
     }
   }

@@ -2,6 +2,7 @@
 import { Extension } from '../types';
 export default class Table implements Extension {
     readonly name: string;
+    readonly group: string;
     readonly showMenu: boolean;
     readonly schema: any;
     readonly schemaDependencies: any;

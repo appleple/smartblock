@@ -59,7 +59,8 @@
 }
 
 .ProseMirror .selected {
-  background-color: #e0f7fa;
+  background-color: #F2F2F4;
+  border-radius: 3px;
 }
 
 .ProseMirror p.empty-node:first-child::before {

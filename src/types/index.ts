@@ -18,13 +18,14 @@ export type Dispatch = (tr: Transaction<any>) => void;
 
 export interface Extension {
   name: string;
-  schema: ExtensionSchema;
+  schema?: ExtensionSchema;
   schemaDependencies?: {
     [key: string]: ExtensionSchema
   };
   icon?: JSX.Element | string;
   plugins?: Plugin<any, any>[];
   showMenu: boolean,
+  group?: string, //"edit" | "mark" | "block"
   render?(node: Node, view: EditorView, getPos: () => number): React.ReactNode,
   active?(state: EditorState): boolean
   enable?(state: EditorState): boolean

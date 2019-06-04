@@ -9,6 +9,9 @@ export default class Strong implements Extension {
   get name() {
     return 'strong';
   }
+  get group() {
+    return "mark"
+  }
   get showMenu() {
     return true;
   }

@@ -1,6 +1,8 @@
 import * as React from 'react';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faListOl, faOutdent, faIndent } from '@fortawesome/fontawesome-free-solid'
+import Icon from '../components/icon';
+import undentSvg from '../assets/images/icons/undent.svg';
+import indentSvg from '../assets/images/icons/indent.svg';
+import orderedList from '../assets/images/icons/ordered-list.svg';
 import { wrapInList, sinkListItem } from 'prosemirror-schema-list'
 import uuid from 'uuid';
 import { liftListItem } from '../utils';
@@ -11,6 +13,9 @@ import Button from '../components/button';
 export default class OrderedList implements Extension {
   get name() {
     return 'ordered_list';
+  }
+  get group() {
+    return 'block'
   }
   get showMenu() {
     return true;
@@ -33,7 +38,7 @@ export default class OrderedList implements Extension {
     }
   }
   get icon() {
-    return <FontAwesomeIcon icon={faListOl} />
+    return <Icon src={orderedList} width={24} height={24} />
   }
   active(state) {
     return blockActive(state.schema.nodes.ordered_list)(state)
@@ -50,13 +55,13 @@ export default class OrderedList implements Extension {
         type="button"
         onClick={() => {
           liftListItem(state.schema.nodes.list_item)(state, dispatch);
-        }}><FontAwesomeIcon icon={faOutdent} />
+        }}><Icon src={undentSvg} width={24} height={24} />
       </Button>
       <Button 
         type="button"
         onClick={() => {
           sinkListItem(state.schema.nodes.list_item)(state, dispatch);
-        }}><FontAwesomeIcon icon={faIndent} />
+        }}><Icon src={indentSvg} width={24} height={24} />
       </Button>
     </>)
   }

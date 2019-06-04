@@ -10,6 +10,7 @@ import scrollTo from 'scroll-to';
 
 import Editor from './components/editor';
 import InlineMenu from './components/inline-menu';
+import EditMenu from './components/edit-menu';
 import Menu from './components/menu';
 import plugins from './config/plugins';
 import keys from './config/keys';
@@ -86,7 +87,12 @@ export default class App extends React.Component<AppProps, AppState> {
   }
 
   getBlockSchemas(extensions: Extension[]) {
-    const nodesSchema = this.getBlocks(extensions);
+    const nodesSchema = extensions.filter(extension => {
+      if (extension.schema && extension.schema.group === 'block') {
+        return true;
+      }
+      return false;
+    });
     const nodes = nodesSchema.reduce((node, curr, index) => {
       const newNode = { [curr.name]: { ...curr.schema } };
       return { ...node, ...newNode };
@@ -96,7 +102,7 @@ export default class App extends React.Component<AppProps, AppState> {
 
   getBlocks(extensions: Extension[]) {
     const nodesSchema = extensions.filter(extension => {
-      if (extension.schema.group === 'block') {
+      if (extension.group === 'block') {
         return true;
       }
       return false;
@@ -115,12 +121,22 @@ export default class App extends React.Component<AppProps, AppState> {
 
   getMarks(extensions: Extension[]) {
     const marksSchema = extensions.filter(extension => {
-      if (extension.schema.group === 'mark') {
+      if (extension.group === 'mark') {
         return true;
       }
       return false;
     });
     return marksSchema;
+  }
+
+  getEdits(extensions: Extension[]) {
+    const editMarks = extensions.filter(extension => {
+      if (extension.group === 'edit') {
+        return true;
+      }
+      return false;
+    });
+    return editMarks;
   }
 
   getSchemaBlockDependencies(extensions: Extension[]) {
@@ -284,6 +300,7 @@ export default class App extends React.Component<AppProps, AppState> {
     const editorOptions = { schema, plugins: this.getPlugins(), doc };
     const blocks = this.getBlocks(extensions);
     const marks = this.getMarks(extensions);
+    const edits = this.getEdits(extensions);
     const nodeViews = this.getNodeViews();
 
     return (
@@ -299,6 +316,7 @@ export default class App extends React.Component<AppProps, AppState> {
               render={({ editor, view }: ProseRender) => (
                 <>
                   <Menu view={view} menu={{ blocks: this.getMenu(blocks) }} offsetTop={offsetTop} />
+                  <EditMenu view={view} menu={{ blocks: this.getMenu(edits) }} offsetTop={offsetTop} />
                   <InlineMenu menu={{ marks: this.getMenu(marks) }} view={view} offsetTop={offsetTop} />
                   {editor}
                 </>

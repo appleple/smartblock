@@ -1,6 +1,6 @@
 import * as React from 'react';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faArrowDown } from '@fortawesome/fontawesome-free-solid'
+import Icon from '../components/icon';
+import moveDown from '../assets/images/icons/go-down.svg';
 import { setTextSelection, findChildren } from 'prosemirror-utils';
 import { Extension } from '../types';
 import { findNodePosition } from '../utils';
@@ -9,16 +9,14 @@ export default class MoveDown implements Extension {
   get name() {
     return 'move-down';
   }
+  get group() {
+    return "edit"
+  }
   get showMenu() {
     return true;
   }
-  get schema() {
-    return {
-      group: 'block'
-    }
-  }
   get icon() {
-    return <FontAwesomeIcon icon={faArrowDown} />
+    return <Icon src={moveDown} width={24} height={24} />
   }
   onClick (_state, _dispatch, view) {
     const { state } = view;

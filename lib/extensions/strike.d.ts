@@ -2,6 +2,7 @@
 import { Extension } from '../types';
 export default class StrikeThrough implements Extension {
     readonly name: string;
+    readonly group: string;
     readonly showMenu: boolean;
     readonly schema: {
         group: string;

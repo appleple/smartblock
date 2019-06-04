@@ -1,6 +1,9 @@
 import * as React from 'react';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faParagraph, faAlignLeft, faAlignCenter, faAlignRight } from '@fortawesome/fontawesome-free-solid'
+import Icon from '../components/icon';
+import paragraph from '../assets/images/icons/paragraph.svg';
+import alignLeft from '../assets/images/icons/align-left.svg';
+import alignCenter from '../assets/images/icons/align-center.svg';
+import alignRight from '../assets/images/icons/align-right.svg';
 import { setBlockType } from 'prosemirror-commands';
 import uuid from 'uuid';
 import { Extension } from '../types';
@@ -10,6 +13,9 @@ import Button from '../components/button';
 export default class Paragraph implements Extension {
   get name() {
     return 'paragraph';
+  }
+  get group() {
+    return 'block';
   }
   get showMenu() {
     return true;
@@ -38,7 +44,7 @@ export default class Paragraph implements Extension {
     }
   }
   get icon() {
-    return <FontAwesomeIcon icon={faParagraph} />
+    return <Icon src={paragraph} width={24} height={24} />
   }
   active(state) {
     return blockActive(state.schema.nodes.paragraph)(state)
@@ -55,7 +61,7 @@ export default class Paragraph implements Extension {
             align: 'left'
           })(state, dispatch);
         }}
-      ><FontAwesomeIcon icon={faAlignLeft} /></Button>
+      ><Icon src={alignLeft} width={24} height={24} /></Button>
       <Button 
         type="button"
         onClick={() => {
@@ -63,7 +69,7 @@ export default class Paragraph implements Extension {
             align: 'center'
           })(state, dispatch);
         }}
-      ><FontAwesomeIcon icon={faAlignCenter} /></Button>
+      ><Icon src={alignCenter} width={24} height={24} /></Button>
       <Button 
         type="button"
         onClick={() => {
@@ -71,7 +77,7 @@ export default class Paragraph implements Extension {
             align: 'right'
           })(state, dispatch);
         }}
-      ><FontAwesomeIcon icon={faAlignRight} /></Button>
+      ><Icon src={alignRight} width={24} height={24} /></Button>
     </>)
   }
   onClick (state, dispatch) {

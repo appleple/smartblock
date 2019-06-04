@@ -9,6 +9,9 @@ export default class Underline implements Extension {
   get name() {
     return 'underline';
   }
+  get group() {
+    return "mark"
+  }
   get showMenu() {
     return true;
   }

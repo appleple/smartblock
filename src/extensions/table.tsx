@@ -37,6 +37,9 @@ export default class Table implements Extension {
   get name() {
     return 'table';
   }
+  get group() {
+    return "block"
+  }
   get showMenu() {
     return true;
   }

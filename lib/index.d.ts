@@ -31,6 +31,7 @@ export default class App extends React.Component<AppProps, AppState> {
     getBlocks(extensions: Extension[]): Extension[];
     getMarkSchemas(extensions: Extension[]): {};
     getMarks(extensions: Extension[]): Extension[];
+    getEdits(extensions: Extension[]): Extension[];
     getSchemaBlockDependencies(extensions: Extension[]): {};
     getSchemaFromExtensions(extensions: Extension[]): Schema<any, any>;
     getHtmlFromNode(doc: Node, schema: Schema): string;

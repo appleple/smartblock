@@ -2,6 +2,7 @@
 import { Extension } from '../types';
 export default class Heading3 implements Extension {
     readonly name: string;
+    readonly group: string;
     readonly showMenu: boolean;
     readonly schema: {
         content: string;
@@ -26,7 +27,7 @@ export default class Heading3 implements Extension {
             id: any;
         })[];
     };
-    readonly icon: string;
+    readonly icon: JSX.Element;
     active(state: any): boolean;
     enable(state: any): boolean;
     customMenu({ state, dispatch }: {

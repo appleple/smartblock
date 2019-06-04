@@ -1,6 +1,6 @@
 import * as React from 'react';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/fontawesome-free-solid'
+import Icon from '../components/icon';
+import trash from '../assets/images/icons/trash.svg';
 import { findChildren } from 'prosemirror-utils';
 import { Extension } from '../types';
 
@@ -8,16 +8,14 @@ export default class Trash implements Extension {
   get name() {
     return 'trash';
   }
+  get group() {
+    return "edit"
+  }
   get showMenu() {
     return true;
   }
-  get schema() {
-    return {
-      group: 'block'
-    }
-  }
   get icon() {
-    return <FontAwesomeIcon icon={faTrash} />
+    return <Icon src={trash} width={24} height={24} />
   }
   onClick (state, dispatch) {
     const { selection } = state;

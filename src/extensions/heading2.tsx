@@ -1,6 +1,9 @@
 import * as React from 'react';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faHeading, faAlignLeft, faAlignCenter, faAlignRight } from '@fortawesome/fontawesome-free-solid'
+import Icon from '../components/icon';
+import heading1 from '../assets/images/icons/heading1.svg';
+import alignLeft from '../assets/images/icons/align-left.svg';
+import alignCenter from '../assets/images/icons/align-center.svg';
+import alignRight from '../assets/images/icons/align-right.svg';
 import { setBlockType } from 'prosemirror-commands';
 import { Extension } from '../types';
 import { blockActive } from '../utils';
@@ -10,6 +13,9 @@ import uuid from 'uuid';
 export default class Heading2 implements Extension {
   get name() {
     return 'heading2';
+  }
+  get group() {
+    return 'block'
   }
   get showMenu() {
     return true;
@@ -37,7 +43,7 @@ export default class Heading2 implements Extension {
     }
   }
   get icon() {
-    return <FontAwesomeIcon icon={faHeading} />
+    return <Icon src={heading1} width={24} height={24} />
   }
   active(state) {
     return blockActive(state.schema.nodes.heading2)(state)
@@ -54,7 +60,9 @@ export default class Heading2 implements Extension {
             align: 'left'
           })(state, dispatch);
         }}
-      ><FontAwesomeIcon icon={faAlignLeft} /></Button>
+      >
+        <Icon src={alignLeft} width={24} height={24} />
+      </Button>
       <Button 
         type="button"
         onClick={() => {
@@ -62,12 +70,16 @@ export default class Heading2 implements Extension {
             align: 'center'
           })(state, dispatch);
         }}
-      ><FontAwesomeIcon icon={faAlignCenter} /></Button>
+      >
+        <Icon src={alignCenter} width={24} height={24} />
+      </Button>
       <Button onClick={() => {
         setBlockType(state.schema.nodes.heading2, {
           align: 'right'
         })(state, dispatch);
-      }}><FontAwesomeIcon icon={faAlignRight} /></Button>
+      }}>
+        <Icon src={alignRight} width={24} height={24} />
+      </Button>
     </>)
   }
   onClick (state, dispatch) {

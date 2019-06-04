@@ -1,6 +1,6 @@
 import * as React from 'react';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faArrowUp } from '@fortawesome/fontawesome-free-solid'
+import Icon from '../components/icon';
+import moveUp from '../assets/images/icons/go-up.svg';
 import { setTextSelection, findChildren } from 'prosemirror-utils';
 import { Extension } from '../types';
 import { findNodePosition } from '../utils';
@@ -9,16 +9,14 @@ export default class MoveUp implements Extension {
   get name() {
     return 'move-up';
   }
+  get group() {
+    return 'edit'
+  }
   get showMenu() {
     return true;
   }
-  get schema() {
-    return {
-      group: 'block'
-    }
-  }
   get icon() {
-    return <FontAwesomeIcon icon={faArrowUp} />
+    return <Icon src={moveUp} width={24} height={24} />
   }
   onClick (_state, _dispatch, view) {
     const { state } = view;

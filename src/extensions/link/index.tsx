@@ -10,6 +10,9 @@ export default class Link implements Extension {
   get name() {
     return 'link';
   }
+  get group() {
+    return "mark"
+  }
   get showMenu() {
     return true;
   }

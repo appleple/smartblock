@@ -9,6 +9,9 @@ export default class StrikeThrough implements Extension {
   get name() {
     return 'strike';
   }
+  get group() {
+    return "mark"
+  }
   get showMenu() {
     return true;
   }
