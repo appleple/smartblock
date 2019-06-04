@@ -241,20 +241,22 @@ export default class App extends React.Component<AppProps, AppState> {
 
   onChange = (state: EditorState, dispatch: typeof EditorView.prototype.dispatch) => {
     const { doc } = state;
-    const selected = this.container.querySelector('.selected') as HTMLDivElement;
-    if (selected) {
-      const viewport = getViewport();
-      const top = getScrollTop() + viewport.height;
-      const offsetTop = getOffset(selected).top;
-      const height = selected.offsetHeight;
-      if (offsetTop + height + 80 >= top) {
-        if (/iPod|iPhone|iPad/.test(navigator.platform) && document.activeElement) {
-          const activeElement = document.activeElement as HTMLElement;
-          if (activeElement.isContentEditable) {
-            scrollTo(0, offsetTop);
+    if (this.container) {
+      const selected = this.container.querySelector('.selected') as HTMLDivElement;
+      if (selected) {
+        const viewport = getViewport();
+        const top = getScrollTop() + viewport.height;
+        const offsetTop = getOffset(selected).top;
+        const height = selected.offsetHeight;
+        if (offsetTop + height + 80 >= top) {
+          if (/iPod|iPhone|iPad/.test(navigator.platform) && document.activeElement) {
+            const activeElement = document.activeElement as HTMLElement;
+            if (activeElement.isContentEditable) {
+              scrollTo(0, offsetTop);
+            }
+          } else {
+            scrollTo(0, offsetTop + height + 80);
           }
-        } else {
-          scrollTo(0, offsetTop + height + 80);
         }
       }
     }
