@@ -285,11 +285,9 @@ export default class App extends React.Component<AppProps, AppState> {
     const nodeViews = this.getNodeViews();
 
     return (
-
       <Container>
         <div id="container" ref={(ref) => {
           this.container = ref;
-          
         }}>
           <Input>
             <Editor

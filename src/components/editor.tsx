@@ -27,25 +27,22 @@ export default class Editor extends React.Component<EditorProps> {
       state: EditorState.create(props.options),
       dispatchTransaction: transaction => {
         const { state, transactions } = this.view.state.applyTransaction(transaction)
-
         this.view.updateState(state)
-
         if (transactions.some(tr => tr.docChanged)) {
           this.props.onChange(state, this.view.dispatch)
         }
-
         this.forceUpdate()
       },
       attributes: this.props.attributes,
       nodeViews: this.props.nodeViews
-    })
+    });
+    this.props.onChange(this.view.state, this.view.dispatch);
   }
 
   componentDidMount () {
     this.editorRef.current.appendChild(this.view.dom)
-
     if (this.props.autoFocus) {
-      this.view.focus()
+      this.view.focus();
     }
   }
 
