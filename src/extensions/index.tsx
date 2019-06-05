@@ -10,6 +10,7 @@ import Underline from './underline';
 import Strike from './strike';
 import Strong from './strong';
 import Link from './link';
+import Em from './em';
 
 import Trash from './trash';
 import MoveUp from './move-up';
@@ -25,9 +26,10 @@ export default [
   new OrderedList(),
   new Table(),
   //marks
+  new Strong(),
+  new Em(),
   new Underline(),
   new Strike(),
-  new Strong(),
   new Link(),
   //utility
   new MoveUp(),
