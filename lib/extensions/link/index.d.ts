@@ -8,6 +8,9 @@ export default class Link implements Extension {
         group: string;
         attrs: {
             href: {};
+            editing: {
+                default: boolean;
+            };
             title: {
                 default: any;
             };

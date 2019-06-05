@@ -90,6 +90,10 @@ class Tooltip {
       onClick={(href) => {
         const { tr } = view.state;
         tr.removeMark(beforePos, afterPos, view.state.schema.marks.link);
+        if (!href) {
+          view.dispatch(tr);
+          return;
+        }
         tr.addMark(
           beforePos, 
           afterPos, 

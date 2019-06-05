@@ -21,6 +21,7 @@ export declare const getViewport: () => {
 };
 export declare const isInput: (el: HTMLElement) => boolean;
 export declare const markActive: (type: any) => (state: any) => any;
+export declare const getMarkInSelection: (markName: string, state: EditorState<any>) => import("prosemirror-model").Mark<any>;
 export declare const blockActive: (type: any) => (state: any) => boolean;
 export declare const canInsert: (type: any) => (state: any) => boolean;
 export declare const findNodePosition: (doc: Node<any>, target: Node<any>) => number;
