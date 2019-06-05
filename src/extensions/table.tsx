@@ -1,7 +1,12 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faTable } from '@fortawesome/fontawesome-free-solid'
+import TableIcon from '../components/icons/Table';
+import LeftInsertIcon from '../components/icons/LeftInsert';
+import RightInsertIcon from '../components/icons/RightInsert';
+import TopInsertIcon from '../components/icons/TopInsert';
+import BottomInsertIcon from '../components/icons/BottomInsert';
+import SplitIcon from '../components/icons/Split';
+import MergeIcon from '../components/icons/Merge';
 import {addColumnAfter, addColumnBefore, deleteColumn, addRowAfter, addRowBefore, deleteRow,
   mergeCells, splitCell, setCellAttr, toggleHeaderRow, toggleHeaderColumn, toggleHeaderCell,
   goToNextCell, fixTable, tableEditing, columnResizing, tableNodes  }  from "prosemirror-tables";
@@ -67,7 +72,7 @@ export default class Table implements Extension {
     return noTable;
   }
   get icon() {
-    return (<FontAwesomeIcon icon={faTable} />)
+    return (<TableIcon style={{ width: '24px', height: '24px' }} />)
   }
   get plugins() {
     return [
@@ -94,49 +99,56 @@ export default class Table implements Extension {
         type="button"
         onClick={() => {
           addColumnBefore(state, dispatch);
-        }}><i className="icon icon-left-insert"></i>
+        }}>
+          <LeftInsertIcon style={{ width: '24px', height: '24px' }} />
       </CellButton>
       <CellButton 
         type="button"
         onClick={() => {
           addColumnAfter(state, dispatch);
-        }}><i className="icon icon-right-insert"></i>
+        }}>
+          <RightInsertIcon style={{ width: '24px', height: '24px' }} />
       </CellButton>
       <CellButton 
         type="button"
         onClick={() => {
           addRowBefore(state, dispatch);
-        }}><i className="icon icon-top-insert"></i>
+        }}>
+          <TopInsertIcon style={{ width: '24px', height: '24px' }} />
       </CellButton>
       <CellButton 
         type="button"
         onClick={() => {
           addRowAfter(state, dispatch);
-        }}><i className="icon icon-bottom-insert"></i>
+        }}>
+          <BottomInsertIcon style={{ width: '24px', height: '24px' }} />
       </CellButton>
       <CellButton 
         type="button"
         onClick={() => {
           deleteColumn(state, dispatch);
-        }}><i className="icon icon-right-remove"></i>
+        }}>
+          列削除
       </CellButton>
       <CellButton 
         type="button"
         onClick={() => {
           deleteRow(state, dispatch);
-        }}><i className="icon icon-top-remove"></i>
+        }}>行削除
       </CellButton>
       <CellButton 
         type="button"
         onClick={() => {
           mergeCells(state, dispatch);
-        }}><i className="icon icon-merge01"></i>
+        }}>
+          <SplitIcon style={{ width: '24px', height: '24px' }} />
       </CellButton>
       <CellButton 
         type="button"
         onClick={() => {
           splitCell(state, dispatch);
-        }}><i className="icon icon-split01"></i>
+        }}>
+          <MergeIcon style={{ width: '24px', height: '24px' }} />
       </CellButton>
     </>)
   }

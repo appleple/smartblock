@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { render } from 'react-dom';
-import App from './src/';
+import { PaperEditor } from './src/';
 import './src/styles/base.css';
-import './src/styles/icons.css';
 
-render(<App html={`
+render(<PaperEditor html={`
 <p>Hello World</p>
 <h2>Test</h2>
 <ul>
