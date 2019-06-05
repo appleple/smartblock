@@ -11,7 +11,8 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "types": ["react"]
   },
   "include": ["src"],
   "exclude": ["node_modules", "**/__tests__/*", "lib"]

@@ -4,7 +4,6 @@ import { EditorState, Plugin } from "prosemirror-state";
 import { render, unmountComponentAtNode } from "react-dom";
 import TooltipReact from './tooltip-react';
 import { getOffset } from '../../utils';
-import console = require('console');
 
 const calculateStyle = (view: EditorView) => {
   const { selection } = view.state
@@ -84,7 +83,6 @@ class Tooltip {
       beforePos = pos - nodeBefore.nodeSize;
       afterPos = pos + nodeAfter.nodeSize;
     }
-    console.log('render', link);
     render(<TooltipReact 
       style={style} 
       url={url} 
