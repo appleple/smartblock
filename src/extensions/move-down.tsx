@@ -1,6 +1,5 @@
 import * as React from 'react';
-import Icon from '../components/icon';
-import moveDown from '../assets/images/icons/go-down.svg';
+import MoveDownIcon from '../components/icons/GoDown';
 import { setTextSelection, findChildren } from 'prosemirror-utils';
 import { Extension } from '../types';
 import { findNodePosition } from '../utils';
@@ -16,7 +15,7 @@ export default class MoveDown implements Extension {
     return true;
   }
   get icon() {
-    return <Icon src={moveDown} width={24} height={24} />
+    return <MoveDownIcon style={{ width: '24px', height: '24px' }} />
   }
   onClick (_state, _dispatch, view) {
     const { state } = view;

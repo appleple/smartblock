@@ -1,6 +1,5 @@
 import * as React from 'react';
-import Icon from '../components/icon';
-import underline from '../assets/images/icons/underline.svg';
+import UnderlineIcon from '../components/icons/Underline';
 import { toggleMark } from 'prosemirror-commands';
 import { Extension } from '../types';
 import { markActive } from '../utils';
@@ -28,7 +27,7 @@ export default class Underline implements Extension {
     }
   }
   get icon() {
-    return <Icon src={underline} width={24} height={24} />
+    return <UnderlineIcon style={{ width: '24px', height: '24px' }} />
   }
   active (state) {
     return markActive(state.schema.marks.underline)(state);

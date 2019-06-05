@@ -1,6 +1,5 @@
 import * as React from 'react';
-import Icon from '../../components/icon';
-import link from '../../assets/images/icons/link.svg';
+import LinkIcon from '../../components/icons/Link';
 import { toggleMark } from 'prosemirror-commands';
 import { Extension } from '../../types';
 import { markActive } from '../../utils';
@@ -31,7 +30,7 @@ export default class Link implements Extension {
     }
   }
   get icon() {
-    return <Icon src={link} width={24} height={24} />
+    return <LinkIcon style={{ width: '24px', height: '24px' }} />
   }
   get plugins() {
     return [

@@ -1,8 +1,7 @@
 import * as React from 'react';
-import Icon from '../components/icon';
-import undentSvg from '../assets/images/icons/undent.svg';
-import indentSvg from '../assets/images/icons/indent.svg';
-import orderedList from '../assets/images/icons/ordered-list.svg';
+import OrderedListIcon from '../components/icons/OrderedList';
+import IndentIcon from '../components/icons/Indent';
+import UndentIcon from '../components/icons/Undent';
 import { wrapInList, sinkListItem } from 'prosemirror-schema-list'
 import uuid from 'uuid';
 import { liftListItem } from '../utils';
@@ -38,7 +37,7 @@ export default class OrderedList implements Extension {
     }
   }
   get icon() {
-    return <Icon src={orderedList} width={24} height={24} />
+    return <OrderedListIcon style={{ width: '24px', height: '24px' }} />
   }
   active(state) {
     return blockActive(state.schema.nodes.ordered_list)(state)
@@ -55,13 +54,15 @@ export default class OrderedList implements Extension {
         type="button"
         onClick={() => {
           liftListItem(state.schema.nodes.list_item)(state, dispatch);
-        }}><Icon src={undentSvg} width={24} height={24} />
+        }}>
+          <UndentIcon style={{ width: '24px', height: '24px' }} />
       </Button>
       <Button 
         type="button"
         onClick={() => {
           sinkListItem(state.schema.nodes.list_item)(state, dispatch);
-        }}><Icon src={indentSvg} width={24} height={24} />
+        }}>
+          <IndentIcon style={{ width: '24px', height: '24px' }} />
       </Button>
     </>)
   }

@@ -1,6 +1,5 @@
 import * as React from 'react';
-import Icon from '../components/icon';
-import strike from '../assets/images/icons/strike.svg';
+import StrikeIcon from '../components/icons/Strike';
 import { toggleMark } from 'prosemirror-commands';
 import { Extension } from '../types';
 import { markActive } from '../utils';
@@ -29,7 +28,7 @@ export default class StrikeThrough implements Extension {
     }
   }
   get icon() {
-    return <Icon src={strike} width={24} height={24} />
+    return <StrikeIcon style={{ width: '24px', height: '24px' }} />
   }
   active (state) {
     return markActive(state.schema.marks.strike)(state);

@@ -1,8 +1,7 @@
 import * as React from 'react';
-import Icon from '../components/icon';
-import trash from '../assets/images/icons/trash.svg';
 import { findChildren } from 'prosemirror-utils';
 import { Extension } from '../types';
+import TrashIcon from '../components/icons/Trash';
 
 export default class Trash implements Extension {
   get name() {
@@ -15,7 +14,7 @@ export default class Trash implements Extension {
     return true;
   }
   get icon() {
-    return <Icon src={trash} width={24} height={24} />
+    return <TrashIcon style={{ width: '24px', height: '24px'}} />
   }
   onClick (state, dispatch) {
     const { selection } = state;

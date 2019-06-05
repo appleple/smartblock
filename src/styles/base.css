@@ -86,3 +86,8 @@
   border-right: 1px solid #014CC5;
   border-left: 1px solid #014CC5;
 }
+
+svg {
+  width: 32px;
+  height: 32px;
+}

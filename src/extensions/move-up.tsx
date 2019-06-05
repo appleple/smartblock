@@ -1,6 +1,5 @@
 import * as React from 'react';
-import Icon from '../components/icon';
-import moveUp from '../assets/images/icons/go-up.svg';
+import MoveUpIcon from '../components/icons/GoUp';
 import { setTextSelection, findChildren } from 'prosemirror-utils';
 import { Extension } from '../types';
 import { findNodePosition } from '../utils';
@@ -16,7 +15,7 @@ export default class MoveUp implements Extension {
     return true;
   }
   get icon() {
-    return <Icon src={moveUp} width={24} height={24} />
+    return <MoveUpIcon style={{ width: '24px', height: '24px' }} />
   }
   onClick (_state, _dispatch, view) {
     const { state } = view;

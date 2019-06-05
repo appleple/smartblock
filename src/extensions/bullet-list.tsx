@@ -1,10 +1,9 @@
 import * as React from 'react';
-import Icon from '../components/icon';
+import Undent from '../components/icons/Undent';
+import Indent from '../components/icons/Indent';
+import List from '../components/icons/List';
 import { wrapInList, sinkListItem } from 'prosemirror-schema-list'
 import uuid from 'uuid';
-import undentSvg from '../assets/images/icons/undent.svg';
-import indentSvg from '../assets/images/icons/indent.svg';
-import listSvg from '../assets/images/icons/list.svg';
 import { liftListItem } from '../utils';
 import { Extension } from '../types';
 import { blockActive } from '../utils';
@@ -38,7 +37,7 @@ export default class BulletList implements Extension {
     }
   }
   get icon() {
-    return <Icon src={listSvg} width={24} height={24} />
+    return <List style={{ width: '24px', height: '24px' }} />
   }
   active(state) {
     return blockActive(state.schema.nodes.bullet_list)(state)
@@ -53,10 +52,10 @@ export default class BulletList implements Extension {
 
     return (<><Button onClick={() => {
       liftListItem(state.schema.nodes.list_item)(state, dispatch);
-    }}><Icon src={undentSvg} width={24} height={24} /></Button>
+    }}><Undent style={{ width: '24px', height: '24px' }} /></Button>
     <Button onClick={() => {
       sinkListItem(state.schema.nodes.list_item)(state, dispatch);
-    }}><Icon src={indentSvg} width={24} height={24} /></Button>
+    }}><Indent style={{ width: '24px', height: '24px' }} /></Button>
     </>)
   }
 }

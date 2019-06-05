@@ -1,9 +1,8 @@
 import * as React from 'react';
-import Icon from '../components/icon';
-import heading2 from '../assets/images/icons/heading2.svg';
-import alignLeft from '../assets/images/icons/align-left.svg';
-import alignCenter from '../assets/images/icons/align-center.svg';
-import alignRight from '../assets/images/icons/align-right.svg';
+import HeadingIcon from '../components/icons/Heading2';
+import AlignLeftIcon from '../components/icons/AlignLeft';
+import AlignCenterIcon from '../components/icons/AlignCenter';
+import AlignRightIcon from '../components/icons/AlignRight';
 import { setBlockType } from 'prosemirror-commands';
 import { Extension } from '../types';
 import { blockActive } from '../utils';
@@ -43,7 +42,7 @@ export default class Heading3 implements Extension {
     }
   }
   get icon() {
-    return <Icon src={heading2} width={24} height={24} />
+    return <HeadingIcon style={{ width: '24px', height: '24px' }} />
   }
   active(state) {
     return blockActive(state.schema.nodes.heading3)(state)
@@ -60,7 +59,9 @@ export default class Heading3 implements Extension {
             align: 'left'
           })(state, dispatch);
         }}
-      ><Icon src={alignLeft} width={24} height={24} /></Button>
+      >
+        <AlignLeftIcon style={{ width: '24px', height: '24px' }} />
+      </Button>
       <Button 
         type="button"
         onClick={() => {
@@ -68,7 +69,9 @@ export default class Heading3 implements Extension {
             align: 'center'
           })(state, dispatch);
         }}
-      ><Icon src={alignCenter} width={24} height={24} /></Button>
+      >
+        <AlignCenterIcon style={{ width: '24px', height: '24px' }} />
+      </Button>
       <Button 
         type="button"
         onClick={() => {
@@ -76,7 +79,9 @@ export default class Heading3 implements Extension {
             align: 'right'
           })(state, dispatch);
         }}
-      ><Icon src={alignRight} width={24} height={24} /></Button>
+      >
+        <AlignRightIcon style={{ width: '24px', height: '24px' }} />
+      </Button>
     </>)
   }
   onClick (state, dispatch) {
