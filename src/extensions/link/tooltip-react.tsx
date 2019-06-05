@@ -1,6 +1,5 @@
 import * as React from 'react';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faEdit } from '@fortawesome/fontawesome-free-solid'
+import CheckIcon from '../../components/icons/Check';
 import styled from 'styled-components';
 
 const Tooltip = styled.div`
@@ -9,36 +8,52 @@ const Tooltip = styled.div`
   z-index: 1000;
   background-color: #FFF;
   color: #777;
-  padding: 5px;
   font-size: 16px;
   box-shadow: 0 3px 40px 8px rgba(116,116,116,0.2);
-  border-radius: 5px;
-  width: 250px;
-  input {
-    font-size: 16px;
+  border-radius: 3px;
+  overflow: hidden;
+  width: 320px;
+  line-height: 35px;
+  display: block;
+  height: 35px;
+  &:before {
+    position: absolute;
+    left: 20px;
+    top: -12px;
+    content: "";
+    display: block;
+    border-style: solid;
+    border-width: 0 11.5px 12px 11.5px;
+    border-color: transparent transparent #ffffff transparent;
   }
+
+`;
+
+const TooltipInner = styled.div`
+  display: flex;
+  height: 35px;
 `;
 
 const Label = styled.label`
-  display: inline-block;
-  width: 200px;
-  min-height: 20px;
+  display: block;
   transition: background-color .3s;
   vertical-align: middle;
-  &:hover {
-    background-color: #F0E7FF;
-  }
+  flex: 1;
 `;
 
 const Input = styled.input`
   border: none;
+  display: block;
+  padding: 0 10px;
+  font-size: 16px;
+  flex: 1;
 `;
 
 const Button = styled.button`
   border: none;
-  background-color: #FFF;
-  color: #777;
-  margin-left: 5px;
+  background-color: #014CC5;
+  width: 38px;
+  color: #FFF;
   font-size: 16px;
   cursor: pointer;
 `;
@@ -46,20 +61,24 @@ const Button = styled.button`
 type TooltipReactProps = {
   style: React.CSSProperties
   url: string,
-  onClick(url: string): void
-}
-
-type TooltipReactState = {
-  newUrl: string,
+  onClick(url: string): void,
   editing: boolean
 }
 
+type TooltipReactState = {
+  newUrl: string
+}
+
 export default class TooltipReact extends React.Component<TooltipReactProps, TooltipReactState> {
+
+  static defaultProps = {
+    editing: false
+  }
+
   constructor(props) {
     super(props);
     this.state = {
-      newUrl: props.url,
-      editing: false
+      newUrl: props.url
     }
   }
 
@@ -72,49 +91,38 @@ export default class TooltipReact extends React.Component<TooltipReactProps, Too
   }
 
   enterUrl = () => {
-    this.setState({
-      editing: false
-    });
     this.props.onClick(this.state.newUrl);
   }
 
   render() {
-    const { style } = this.props;
-    const { newUrl, editing } = this.state;
+    const { style, editing } = this.props;
+    const { newUrl } = this.state;
+
+    if (!editing) {
+      return null;
+    }
 
     return (<Tooltip style={style}>
-      {editing && <>
-        <Input 
-          type="text" 
-          value={newUrl} 
-          placeholder="リンクURLを入力"
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              this.enterUrl();
-            }
-          }}
-          onChange={(e) => {
-            this.setState({
-              newUrl: e.target.value
-            })
-          }} 
-        />
-        <Button onClick={this.enterUrl}>OK</Button>
-      </>}
-      {!editing && <>
-        <Label onClick={() => {
-          this.setState({
-            editing: true
-          })
-        }}>{newUrl}</Label>
-        <Button onClick={() => {
-          this.setState({
-            editing: true
-          })
-        }}>
-          <FontAwesomeIcon icon={faEdit} />
-        </Button>
-      </>}
+      <TooltipInner>
+          <Input 
+            type="text" 
+            value={newUrl} 
+            placeholder="例）https://〜"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                this.enterUrl();
+              }
+            }}
+            onChange={(e) => {
+              this.setState({
+                newUrl: e.target.value
+              })
+            }} 
+          />
+          <Button onClick={this.enterUrl}>
+            <CheckIcon style={{ width: '24px', height: '24px' }} />
+          </Button>
+      </TooltipInner>
     </Tooltip>);
   }
 }

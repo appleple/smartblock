@@ -2,7 +2,7 @@ import * as React from 'react';
 import LinkIcon from '../../components/icons/Link';
 import { toggleMark } from 'prosemirror-commands';
 import { Extension } from '../../types';
-import { markActive } from '../../utils';
+import { markActive, getMarkInSelection } from '../../utils';
 import tooltip from './tooltip';
 
 export default class Link implements Extension {
@@ -20,6 +20,7 @@ export default class Link implements Extension {
       group: 'mark',
       attrs: {
         href: {},
+        editing: {default: true},
         title: {default: null}
       },
       inclusive: false,
@@ -42,10 +43,28 @@ export default class Link implements Extension {
   }
   onClick (state, dispatch) {
     if (markActive(state.schema.marks.link)(state)) {
-      toggleMark(state.schema.marks.link)(state, dispatch)
+      const link = getMarkInSelection('link', state);
+      const { selection} = state;
+      const { $anchor } = selection;
+      const { nodeBefore, nodeAfter, pos } = $anchor;
+      let beforePos = selection.from;
+      let afterPos = selection.to;
+      if (beforePos === afterPos && nodeBefore && nodeAfter) {
+        beforePos = pos - nodeBefore.nodeSize;
+        afterPos = pos + nodeAfter.nodeSize;
+      }
+      const { tr } = state;
+      tr.removeMark(beforePos, afterPos, state.schema.marks.link);
+      tr.addMark(
+        beforePos, 
+        afterPos, 
+        state.schema.marks.link.create({ href: link.attrs.href, editing: true }
+      ));
+      // dispatch
+      dispatch(tr.scrollIntoView());
       return true
     }
 
-    toggleMark(state.schema.marks.link, { href: '' })(state, dispatch)
+    toggleMark(state.schema.marks.link, { href: '', editing: true })(state, dispatch)
   }
 }

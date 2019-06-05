@@ -4,6 +4,7 @@ import { EditorState, Plugin } from "prosemirror-state";
 import { render, unmountComponentAtNode } from "react-dom";
 import TooltipReact from './tooltip-react';
 import { getOffset } from '../../utils';
+import console = require('console');
 
 const calculateStyle = (view: EditorView) => {
   const { selection } = view.state
@@ -21,7 +22,7 @@ const calculateStyle = (view: EditorView) => {
     });
   }
 
-  if (!selection || !app || !link)  {
+  if (!selection || selection.empty　|| !app || !link)  {
     return {
       left: -1000,
       top: 0
@@ -36,13 +37,13 @@ const calculateStyle = (view: EditorView) => {
   if (window.innerWidth <= 767) {
     return {
       left: 5,
-      top: elementTop + element.offsetHeight
+      top: elementTop + element.offsetHeight + 10
     }
   } 
 
   return {
     left: coords.left,
-    top: elementTop + element.offsetHeight
+    top: elementTop + element.offsetHeight + 10
   }
 }
 
@@ -62,6 +63,7 @@ class Tooltip {
     const { $anchor } = selection;
     const { nodeBefore, nodeAfter, pos } = $anchor;
     let link = null;
+    let editing = false;
     if (nodeAfter) {
       link = nodeAfter.marks.find((mark) => {
         if (mark.type.name === 'link') {
@@ -73,22 +75,31 @@ class Tooltip {
     if (link) {
       url = link.attrs.href;
     }
+    if (link) {
+      editing = link.attrs.editing;
+    }
     let beforePos = selection.from;
     let afterPos = selection.to;
     if (beforePos === afterPos && nodeBefore && nodeAfter) {
       beforePos = pos - nodeBefore.nodeSize;
       afterPos = pos + nodeAfter.nodeSize;
     }
-    render(<TooltipReact style={style} url={url} onClick={(href) => {
-      const { tr } = view.state;
-      tr.removeMark(beforePos, afterPos, view.state.schema.marks.link);
-      tr.addMark(
-        beforePos, 
-        afterPos, 
-        view.state.schema.marks.link.create({ href }
-      ));
-      view.dispatch(tr);
-    }} />, this.tooltip);
+    console.log('render', link);
+    render(<TooltipReact 
+      style={style} 
+      url={url} 
+      editing={editing}
+      onClick={(href) => {
+        const { tr } = view.state;
+        tr.removeMark(beforePos, afterPos, view.state.schema.marks.link);
+        tr.addMark(
+          beforePos, 
+          afterPos, 
+          view.state.schema.marks.link.create({ href, editing: false }
+        ));
+        view.dispatch(tr);
+      }} 
+    />, this.tooltip);
   }
 
   update(view: EditorView, oldState: EditorState) {

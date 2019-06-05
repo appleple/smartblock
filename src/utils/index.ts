@@ -60,6 +60,20 @@ export const markActive = type => state => {
     : state.doc.rangeHasMark(from, to, type)
 }
 
+export const getMarkInSelection = (markName: string, state: EditorState) => {
+  const { selection} = state;
+  const { $anchor } = selection;
+  const { nodeAfter } = $anchor;
+  if (nodeAfter) {
+    return nodeAfter.marks.find((mark) => {
+      if (mark.type.name === markName) {
+        return true;
+      }
+    });
+  }
+  return null;
+}
+
 export const blockActive = (type) => state => {
   const { selection } = state;
   const { $from, to } = state.selection
