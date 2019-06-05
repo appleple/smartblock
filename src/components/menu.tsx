@@ -5,6 +5,7 @@ import { EditorView } from 'prosemirror-view';
 import map from 'lodash/map';
 import { getOffset } from '../utils';
 import ButtonStyle from './button';
+import console = require('console');
 
 const fadeIn = keyframes`
   from {
@@ -118,6 +119,7 @@ export default class Menu extends React.Component<PositionProps, PositionState> 
     const coords = view.coordsAtPos(firstNode.pos);
     const dom = view.nodeDOM(firstNode.pos) as HTMLElement;
     const elementTop = getOffset(dom).top;
+    console.log(dom);
     
     if (coords.top === 0) {
       return {
@@ -131,7 +133,7 @@ export default class Menu extends React.Component<PositionProps, PositionState> 
     } else {
       return {
         left: 5,
-        top: elementTop- offsetTop + 10
+        top: elementTop - offsetTop + 10
       }
     }
   }
