@@ -4,6 +4,17 @@ import EditMenu from './components/edit-menu';
 import Editor from './components/editor';
 import InlineMenu from './components/inline-menu';
 import Menu from './components/menu';
+import {
+  getViewport,
+  isInput,
+  markActive,
+  blockActive,
+  canInsert,
+  findNodePosition,
+  getParentNodePosFromState,
+  createTable,
+  liftListItem
+} from './utils';
 
 // extensions
 import Link from './extensions/link';
@@ -20,6 +31,7 @@ import Strong from './extensions/strong';
 import Table from './extensions/table';
 import Trash from './extensions/trash';
 import Underline from './extensions/underline';
+import Extensions from './extensions';
 
 export {
   /* components */
@@ -30,6 +42,7 @@ export {
   InlineMenu,
   Menu,
   /* extensions */
+  Extensions,
   Link,
   BulletList,
   Heading2,
@@ -43,5 +56,15 @@ export {
   Strong,
   Table,
   Trash,
-  Underline
+  Underline,
+  /* utils */
+  getViewport,
+  isInput,
+  markActive,
+  blockActive,
+  canInsert,
+  findNodePosition,
+  getParentNodePosFromState,
+  createTable,
+  liftListItem
 }

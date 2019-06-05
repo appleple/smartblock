@@ -1,45 +1,23 @@
-import * as React from 'react';
-import { Schema } from 'prosemirror-model';
-import { Node } from 'prosemirror-model';
-import { Extension } from './types';
-import { EditorState } from 'prosemirror-state';
-declare type OutputJson = {
-    [key: string]: any;
-};
-declare type AppProps = {
-    onChange(json: OutputJson): void;
-    onInit?(json: {
-        schema: Schema;
-    }): void;
-    json?: OutputJson;
-    html?: string;
-    extensions: Extension[];
-    offsetTop?: number;
-};
-declare type AppState = {
-    doc: Node;
-};
-export default class App extends React.Component<AppProps, AppState> {
-    container: HTMLElement;
-    schema: Schema;
-    static defaultProps: {
-        extensions: (import("./extensions/paragraph").default | import("./extensions/heading2").default | import("./extensions/heading3").default | import("./extensions/list-item").default | import("./extensions/bullet-list").default | import("./extensions/ordered-list").default | import("./extensions/table").default | import("./extensions/underline").default | import("./extensions/strike").default | import("./extensions/strong").default | import("./extensions/link").default | import("./extensions/trash").default | import("./extensions/move-up").default | import("./extensions/move-down").default)[];
-        offsetTop: number;
-    };
-    constructor(props: any);
-    getBlockSchemas(extensions: Extension[]): {};
-    getBlocks(extensions: Extension[]): Extension[];
-    getMarkSchemas(extensions: Extension[]): {};
-    getMarks(extensions: Extension[]): Extension[];
-    getEdits(extensions: Extension[]): Extension[];
-    getSchemaBlockDependencies(extensions: Extension[]): {};
-    getSchemaFromExtensions(extensions: Extension[]): Schema<any, any>;
-    getHtmlFromNode(doc: Node, schema: Schema): string;
-    getKeys(extensions: Extension[]): import("prosemirror-state").Plugin<any, any>;
-    getPlugins(): any[];
-    getNodeViews(): {};
-    getMenu(extensions: Extension[]): Extension[];
-    onChange: (state: EditorState<any>, dispatch: (tr: import("prosemirror-state").Transaction<any>) => void) => void;
-    render(): JSX.Element;
-}
-export {};
+import PaperEditor from './components/paper-editor';
+import Button from './components/button';
+import EditMenu from './components/edit-menu';
+import Editor from './components/editor';
+import InlineMenu from './components/inline-menu';
+import Menu from './components/menu';
+import { getViewport, isInput, markActive, blockActive, canInsert, findNodePosition, getParentNodePosFromState, createTable, liftListItem } from './utils';
+import Link from './extensions/link';
+import BulletList from './extensions/bullet-list';
+import Heading2 from './extensions/heading2';
+import Heading3 from './extensions/heading3';
+import ListItem from './extensions/list-item';
+import MoveDown from './extensions/move-down';
+import MoveUp from './extensions/move-up';
+import OrderedList from './extensions/ordered-list';
+import Paragraph from './extensions/paragraph';
+import Strike from './extensions/strike';
+import Strong from './extensions/strong';
+import Table from './extensions/table';
+import Trash from './extensions/trash';
+import Underline from './extensions/underline';
+import Extensions from './extensions';
+export { PaperEditor, Button, EditMenu, Editor, InlineMenu, Menu, Extensions, Link, BulletList, Heading2, Heading3, ListItem, MoveDown, MoveUp, OrderedList, Paragraph, Strike, Strong, Table, Trash, Underline, getViewport, isInput, markActive, blockActive, canInsert, findNodePosition, getParentNodePosFromState, createTable, liftListItem };
