@@ -23,6 +23,16 @@ const FloaterStyle = styled.div`
   background-color: #FFF;
   color: #FFF;
   box-shadow: 0 3px 40px 8px rgba(116,116,116,0.2);
+  &:before {
+    position: absolute;
+    left: 20px;
+    top: -12px;
+    content: "";
+    display: block;
+    border-style: solid;
+    border-width: 0 11.5px 12px 11.5px;
+    border-color: transparent transparent #ffffff transparent;
+  }
 `;
 
 const Bar = styled.div`

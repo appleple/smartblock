@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { render } from 'react-dom';
-import { PaperEditor } from './src/';
-import './src/styles/base.css';
+import { PaperEditor, GlobalStyle } from './src/';
 
-render(<PaperEditor html={`
+render(<>
+<GlobalStyle />
+<PaperEditor html={`
 <p>Hello World</p>
 <h2>Test</h2>
 <ul>
@@ -29,5 +30,5 @@ render(<PaperEditor html={`
 //   }
 // ]}}
 onChange={({json, html}) => {
-}}/>, 
+}}/></>, 
 document.querySelector('#app'));

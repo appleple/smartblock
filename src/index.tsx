@@ -15,6 +15,7 @@ import {
   createTable,
   liftListItem
 } from './utils';
+import GlobalStyle from './utils/style';
 import { Dispatch, Extension } from './types';
 
 // extensions
@@ -42,6 +43,7 @@ export {
   Editor,
   InlineMenu,
   Menu,
+  GlobalStyle,
   /* extensions */
   Extensions,
   Link,
