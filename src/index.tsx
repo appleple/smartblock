@@ -15,6 +15,7 @@ import {
   createTable,
   liftListItem
 } from './utils';
+import { Dispatch, Extension } from './types';
 
 // extensions
 import Link from './extensions/link';
@@ -66,5 +67,8 @@ export {
   findNodePosition,
   getParentNodePosFromState,
   createTable,
-  liftListItem
+  liftListItem,
+  /* types */
+  Dispatch,
+  Extension
 }
