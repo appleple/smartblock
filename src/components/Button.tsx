@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default styled.button<{
+const Button = styled.button<{
   active?: boolean
 }>`
   ${props => {
@@ -39,3 +39,5 @@ export default styled.button<{
     fill: currentColor;
   }
 `;
+
+export default Button;
