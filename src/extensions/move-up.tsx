@@ -41,8 +41,7 @@ export default class MoveUp implements Extension {
       const firstIndex2 = findNodePosition(removeTransaction.doc, firstNode2);
       const insertTransaction = view.state.tr.insert(firstIndex2 + firstNode2.nodeSize, firstNode.node);
       view.dispatch(insertTransaction);
-      view.dispatch(setTextSelection(firstIndex2)(view.state.tr));
-      view.state.tr.scrollIntoView();
+      view.dispatch(setTextSelection(firstIndex2)(view.state.tr).scrollIntoView());
     }
   }
 }

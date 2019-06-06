@@ -118,7 +118,7 @@ export const findNodePosition = (doc: Node, target: Node) => {
   return ret;
 }
 
-export const getParentNodePosFromState = (state: EditorState) => {
+export const getParentNodeFromState = (state: EditorState) => {
   const { selection } = state;
   const { $anchor } = selection;
   const resolvedPos = state.doc.resolve($anchor.pos) as any;
@@ -133,6 +133,11 @@ export const getParentNodePosFromState = (state: EditorState) => {
     return false;
   }, false);
   const { node } = firstNode;
+  return node;
+}
+
+export const getParentNodePosFromState = (state: EditorState) => {
+  const node = getParentNodeFromState(state);
   const pos = findNodePosition(state.doc, node);
   return pos + node.nodeSize;
 }
