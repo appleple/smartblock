@@ -50,10 +50,10 @@ export default class BulletList implements Extension {
   }
   customMenu({ state, dispatch }) {
 
-    return (<><Button onClick={() => {
+    return (<><Button type="button" onClick={() => {
       liftListItem(state.schema.nodes.list_item)(state, dispatch);
     }}><Undent style={{ width: '24px', height: '24px' }} /></Button>
-    <Button onClick={() => {
+    <Button type="button" onClick={() => {
       sinkListItem(state.schema.nodes.list_item)(state, dispatch);
     }}><Indent style={{ width: '24px', height: '24px' }} /></Button>
     </>)
