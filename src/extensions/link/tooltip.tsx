@@ -7,7 +7,7 @@ import { getOffset } from '../../utils';
 
 const calculateStyle = (view: EditorView) => {
   const { selection } = view.state
-  const app = document.querySelector('#container') as HTMLDivElement;
+  const app = view.dom;
   const dom = view.domAtPos(selection.$anchor.pos);
   const { $anchor } = view.state.selection;
   const { nodeAfter } = $anchor;

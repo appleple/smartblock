@@ -1,5 +1,6 @@
 import { findChildren } from 'prosemirror-utils';
 import { EditorState } from 'prosemirror-state';
+import { EditorView } from 'prosemirror-view';
 import { Node } from 'prosemirror-model';
 import { liftTarget, ReplaceAroundStep} from "prosemirror-transform";
 import {Slice, Fragment, NodeRange} from "prosemirror-model"
@@ -229,3 +230,27 @@ export const createTable = (
 
   return table.createChecked(attrs, rows);
 };
+
+export const calculateStyle = (
+    view: EditorView, 
+    offset = {top: 0,　left: 0}
+  ) => {
+  const { selection } = view.state
+  const dom = view.domAtPos(selection.$anchor.pos);
+  const flag = dom.node instanceof Element;
+  const element = flag ? dom.node as HTMLElement : dom.node.parentElement;
+  const elementTop = getOffset(element).top;
+  const coords = view.coordsAtPos(selection.$anchor.pos);
+
+  if (window.innerWidth <= 767) {
+    return {
+      left: offset.left,
+      top: elementTop + element.offsetHeight + offset.top
+    }
+  } 
+
+  return {
+    left: coords.left + offset.left,
+    top: elementTop + element.offsetHeight + offset.top
+  }
+}

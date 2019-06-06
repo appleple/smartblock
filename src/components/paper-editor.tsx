@@ -7,6 +7,8 @@ import { keymap } from 'prosemirror-keymap';
 import { Node, DOMParser, DOMSerializer } from 'prosemirror-model';
 import { chainCommands } from 'prosemirror-commands';
 import scrollTo from 'scroll-to';
+import { EditorState } from 'prosemirror-state';
+import uuid from 'uuid';
 
 import Editor from './editor';
 import InlineMenu from './inline-menu';
@@ -17,7 +19,7 @@ import keys from '../config/keys';
 import { getScrollTop, getOffset, getViewport } from '../utils';
 import extensions from '../extensions';
 import { Extension } from '../types';
-import { EditorState } from 'prosemirror-state';
+
 
 const Input = styled('div')`
   width: 100%;
@@ -53,6 +55,7 @@ type AppProps = {
 
 type AppState = {
   doc: Node
+  containerId: string
 }
 
 export default class App extends React.Component<AppProps, AppState> {
@@ -83,7 +86,7 @@ export default class App extends React.Component<AppProps, AppState> {
         schema
       });
     }
-    this.state = { doc };
+    this.state = { doc, containerId: uuid() };
   }
 
   getBlockSchemas(extensions: Extension[]) {
@@ -295,7 +298,7 @@ export default class App extends React.Component<AppProps, AppState> {
 
   render() {
     const { extensions, offsetTop } = this.props;
-    const { doc } = this.state;
+    const { doc, containerId } = this.state;
     const { schema } = this;
     const editorOptions = { schema, plugins: this.getPlugins(), doc };
     const blocks = this.getBlocks(extensions);
@@ -305,8 +308,11 @@ export default class App extends React.Component<AppProps, AppState> {
 
     return (
       <Container>
-        <div id="container" ref={(ref) => {
-          this.container = ref;
+        <div id={containerId} ref={(ref) => {
+          if (ref && !this.container) {
+            this.container = ref;
+            this.forceUpdate();
+          }
         }}>
           <Input>
             <Editor
@@ -315,9 +321,9 @@ export default class App extends React.Component<AppProps, AppState> {
               onChange={this.onChange}
               render={({ editor, view }: ProseRender) => (
                 <>
-                  <Menu view={view} menu={{ blocks: this.getMenu(blocks) }} offsetTop={offsetTop} />
-                  <EditMenu view={view} menu={{ blocks: this.getMenu(edits) }} offsetTop={offsetTop} />
-                  <InlineMenu menu={{ marks: this.getMenu(marks) }} view={view} offsetTop={offsetTop} />
+                  <Menu view={view} menu={{ blocks: this.getMenu(blocks) }} />
+                  <EditMenu view={view} menu={{ blocks: this.getMenu(edits) }} />
+                  <InlineMenu menu={{ marks: this.getMenu(marks) }} view={view} />
                   {editor}
                 </>
               )}

@@ -56,7 +56,7 @@ const Button = ({ state, dispatch }) => (item, key) => (
   >{item.icon}</ButtonStyle>
 )
 
-const calculateStyle = (view: EditorView, offsetTop) => {
+const calculateStyle = (view: EditorView, offsetTop, width) => {
   const { selection } = view.state
 
   if (!selection || selection.empty) {
@@ -72,24 +72,33 @@ const calculateStyle = (view: EditorView, offsetTop) => {
   const elementTop = getOffset(element).top;
 
   const coords = view.coordsAtPos(selection.$anchor.pos);
-  const app = document.querySelector('#container') as HTMLDivElement;
-  const width = app.offsetWidth;
+  
 
   if (window.innerWidth <= 767) {
     return {
       left: 5,
-      top: elementTop + element.offsetHeight - offsetTop
+      top: elementTop + element.offsetHeight - offsetTop + 10
     }
   } 
 
   return {
     left: coords.left - ((window.innerWidth - width) / 2),
-    top: elementTop + element.offsetHeight - offsetTop
+    top: elementTop + element.offsetHeight - offsetTop + 10
   }
 }
 
-const MenuBar = ({ menu, children, view, offsetTop }: { menu: any, children?: React.ReactChildren, view: EditorView, offsetTop: number }) => {
-  const style = calculateStyle(view , offsetTop);
+const getContainerOffset = (container) => {
+  return getOffset(container).top;
+}
+
+const getContainerWidth = (container) => {
+  return container.offsetWidth;
+}
+
+const MenuBar = ({ menu, children, view }: { menu: any, children?: React.ReactChildren, view: EditorView }) => {
+  const offsetTop = getContainerOffset(view.dom);
+  const width = getContainerWidth(view.dom);
+  const style = calculateStyle(view , offsetTop, width);
 
   return (<FloaterStyle style={style}>
     <Bar>

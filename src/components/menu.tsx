@@ -62,7 +62,6 @@ const Button = (view) => (item, key: string) => {
 
 interface PositionProps {
   view: EditorView,
-  offsetTop: number,
   menu: any
 }
 
@@ -85,7 +84,7 @@ export default class Menu extends React.Component<PositionProps, PositionState> 
   }
 
   calculateStyle (props: PositionProps) {
-    const { view, offsetTop } = this.props;
+    const { view } = this.props;
     const { state } = view;
     const { selection } = state;
 
@@ -95,6 +94,8 @@ export default class Menu extends React.Component<PositionProps, PositionState> 
         top: 0
       }
     }
+
+    
 
     const { $anchor } = selection;
     const resolvedPos = state.doc.resolve($anchor.pos) as any;
@@ -118,6 +119,7 @@ export default class Menu extends React.Component<PositionProps, PositionState> 
     const coords = view.coordsAtPos(firstNode.pos);
     const dom = view.nodeDOM(firstNode.pos) as HTMLElement;
     const elementTop = getOffset(dom).top;
+    const offsetTop = getOffset(view.dom).top;
     
     if (coords.top === 0) {
       return {
@@ -126,12 +128,12 @@ export default class Menu extends React.Component<PositionProps, PositionState> 
     } else if (dom && dom.offsetHeight) {
       return {
         left: 5,
-        top: elementTop + dom.offsetHeight - offsetTop + 10
+        top: elementTop + dom.offsetHeight - offsetTop + 20
       }
     } else {
       return {
         left: 5,
-        top: elementTop - offsetTop + 10
+        top: elementTop - offsetTop + 20
       }
     }
   }

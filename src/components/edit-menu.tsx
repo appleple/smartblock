@@ -44,13 +44,17 @@ const Button = (view) => (item, key: string) => {
 
 interface PositionProps {
   view: EditorView,
-  offsetTop: number,
   menu: any
 }
 
 interface PositionState {
   style: React.CSSProperties;
 }
+
+const getContainerOffset = (container) => {
+  return getOffset(container).top;
+}
+
 
 export default class Menu extends React.Component<PositionProps, PositionState> {
   menuRef: React.RefObject<HTMLDivElement>;
@@ -67,7 +71,7 @@ export default class Menu extends React.Component<PositionProps, PositionState> 
   }
 
   calculateStyle (props: PositionProps) {
-    const { view, offsetTop } = this.props;
+    const { view } = this.props;
     const { state } = view;
     const { selection } = state;
 
@@ -100,6 +104,7 @@ export default class Menu extends React.Component<PositionProps, PositionState> 
     const coords = view.coordsAtPos(firstNode.pos);
     const dom = view.nodeDOM(firstNode.pos) as HTMLElement;
     const elementTop = getOffset(dom).top;
+    const offsetTop = getContainerOffset(view.dom);
     
     if (coords.top === 0) {
       return {
@@ -108,7 +113,7 @@ export default class Menu extends React.Component<PositionProps, PositionState> 
     } else {
       return {
         right: 20,
-        top: elementTop - offsetTop - 45
+        top: elementTop - offsetTop - 35
       }
     }
   }

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Schema } from 'prosemirror-model';
 import { Node } from 'prosemirror-model';
-import { Extension } from '../types';
 import { EditorState } from 'prosemirror-state';
+import { Extension } from '../types';
 declare type OutputJson = {
     [key: string]: any;
 };
@@ -18,6 +18,7 @@ declare type AppProps = {
 };
 declare type AppState = {
     doc: Node;
+    containerId: string;
 };
 export default class App extends React.Component<AppProps, AppState> {
     container: HTMLElement;
