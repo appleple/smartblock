@@ -72,11 +72,13 @@ export default class Heading2 implements Extension {
       >
         <AlignCenterIcon style={{ width: '24px', height: '24px' }} />
       </Button>
-      <Button onClick={() => {
-        setBlockType(state.schema.nodes.heading2, {
-          align: 'right'
-        })(state, dispatch);
-      }}>
+      <Button 
+        type="button"
+        onClick={() => {
+          setBlockType(state.schema.nodes.heading2, {
+            align: 'right'
+          })(state, dispatch);
+        }}>
         <AlignRightIcon style={{ width: '24px', height: '24px' }} />
       </Button>
     </>)

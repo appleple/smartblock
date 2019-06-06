@@ -95,8 +95,6 @@ export default class Menu extends React.Component<PositionProps, PositionState> 
       }
     }
 
-    
-
     const { $anchor } = selection;
     const resolvedPos = state.doc.resolve($anchor.pos) as any;
     const rowNumber = resolvedPos.path[1];
