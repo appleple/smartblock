@@ -96,6 +96,7 @@ export default createGlobalStyle`
 
   .ProseMirror figure {
     pointer-events: none;
+    color: transparent;
   }
 
   svg {
