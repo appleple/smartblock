@@ -38,6 +38,8 @@ export default createGlobalStyle`
   }
 
   .ProseMirror img {
+    max-width: 100%;
+    height: auto;
     cursor: default;
   }
 

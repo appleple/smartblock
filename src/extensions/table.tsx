@@ -10,13 +10,11 @@ import MergeIcon from '../components/icons/Merge';
 import {addColumnAfter, addColumnBefore, deleteColumn, addRowAfter, addRowBefore, deleteRow,
   mergeCells, splitCell, setCellAttr, toggleHeaderRow, toggleHeaderColumn, toggleHeaderCell,
   goToNextCell, fixTable, tableEditing, columnResizing, tableNodes  }  from "prosemirror-tables";
-import { selectTable, findTable } from 'prosemirror-utils';
-import { createTable } from '../utils';
 import { setBlockType } from 'prosemirror-commands';
 import uuid from 'uuid';
 
+import { createTable, blockActive } from '../utils';
 import { Extension } from '../types';
-import { blockActive } from '../utils';
 import Button from '../components/button';
 
 const schemas = tableNodes({
