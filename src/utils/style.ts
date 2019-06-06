@@ -94,6 +94,10 @@ export default createGlobalStyle`
     border-left: 1px solid #014CC5;
   }
 
+  .ProseMirror figure {
+    pointer-events: none;
+  }
+
   svg {
     width: 32px;
     height: 32px;
