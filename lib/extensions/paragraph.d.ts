@@ -23,7 +23,6 @@ export default class Paragraph implements Extension {
         };
         toDOM: (node: any) => (string | number | {
             style: string;
-            tabindex: string;
             id: any;
         })[];
     };
