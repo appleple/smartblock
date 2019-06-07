@@ -41,21 +41,6 @@ const Bar = styled.div`
   align-items: baseline;
 `;
 
-
-const Button = ({ state, dispatch }) => (item, key) => (
-  <ButtonStyle
-    key={key}
-    type={'button'}
-    active={item.active && item.active(state)}
-    title={item.title}
-    disabled={item.enable && !item.enable(state)}
-    onMouseDown={e => {
-      e.preventDefault()
-      item.onClick(state, dispatch)
-    }}
-  >{item.icon}</ButtonStyle>
-)
-
 const calculateStyle = (view: EditorView, offsetTop, width) => {
   const { selection } = view.state
 
@@ -99,15 +84,24 @@ const MenuBar = ({ menu, children, view }: { menu: any, children?: React.ReactCh
   const offsetTop = getContainerOffset(view.dom);
   const width = getContainerWidth(view.dom);
   const style = calculateStyle(view , offsetTop, width);
+  const { state, dispatch } = view;
 
   return (<FloaterStyle style={style}>
     <Bar>
       {children}
-      {map(menu, (item, key) => (
-        <span key={key}>
-          {map(item, Button(view))}
-        </span>
-      ))}
+      {menu.map((item, key) => {
+        return(<ButtonStyle
+          key={`inline-${key}`}
+          type={'button'}
+          active={item.active && item.active(state)}
+          title={item.title}
+          disabled={item.enable && !item.enable(state)}
+          onMouseDown={e => {
+            e.preventDefault()
+            item.onClick(state, dispatch)
+          }}
+        >{item.icon}</ButtonStyle>);
+      })}
     </Bar>
     </FloaterStyle>)
 }

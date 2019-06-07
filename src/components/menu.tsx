@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import { findChildren } from 'prosemirror-utils';
 import { EditorView } from 'prosemirror-view';
 import map from 'lodash/map';
-import { getOffset } from '../utils';
+import { getOffset, getParentNodeFromState } from '../utils';
 import ButtonStyle from './button';
 
 const fadeIn = keyframes`
@@ -44,21 +44,6 @@ const PositionBtnGroupBottom = styled.div`
   border-top: 1px solid #ccc;
   padding: 5px 5px 0 5px;
 `;
-
-const Button = (view) => (item, key: string) => {
-  const { state, dispatch } = view;
-  return (<ButtonStyle
-    key={key}
-    type={'button'}
-    active={item.active && item.active(state)}
-    title={item.title}
-    disabled={item.enable && !item.enable(state)}
-    onMouseDown={e => {
-      e.preventDefault()
-      item.onClick(state, dispatch, view)
-    }}
-  >{item.icon}</ButtonStyle>
-)};
 
 interface PositionProps {
   view: EditorView,
@@ -152,7 +137,7 @@ export default class Menu extends React.Component<PositionProps, PositionState> 
     const { menu, view } = this.props;
     const { state } = view;
 
-    const activeItem = menu.blocks.find((item) => {
+    const activeItem = menu.find((item) => {
       if (item.active && item.active(state)) {
         return true;
       }
@@ -163,19 +148,55 @@ export default class Menu extends React.Component<PositionProps, PositionState> 
     }
     return (<></>);
   }
+
+  shouldRenderMenu() {
+    const { menu, view } = this.props;
+    const node = getParentNodeFromState(view.state);
+    if (!node || !menu || !menu.length) {
+      return;
+    }
+    const { name } = node.type;
+    const selectedItem = menu.find((item) => {
+      if (item.name === name) {
+        return true;
+      }
+      return false;
+    });
+    if (!selectedItem) {
+      return true;
+    }
+    if (selectedItem.hideMenuOnFocus) {
+      return false;
+    }
+    return true;
+  }
  
   render() {
     const { style } = this.state;
     const { menu, view } = this.props;
+    const { state, dispatch } = view;
     const CustomMenu = this.getActiveMenu();
+    const shouldRender = this.shouldRenderMenu();
+
+    if (!shouldRender) {
+      return null;
+    }
 
     return (<PositionBtnGroup style={style} ref={this.menuRef}>
       <PositionBtnGroupTop>
-        {map(menu, (item, key) => (
-          <span key={key}>
-            {map(item, Button(view))}
-          </span>
-        ))}
+        {menu.map((item, key) => {
+          return (<ButtonStyle
+            key={key}
+            type={'button'}
+            active={item.active && item.active(state)}
+            title={item.title}
+            disabled={item.enable && !item.enable(state)}
+            onMouseDown={e => {
+              e.preventDefault()
+              item.onClick(state, dispatch, view)
+            }}
+          >{item.icon}</ButtonStyle>)
+        })}
       </PositionBtnGroupTop>
       {(CustomMenu && CustomMenu.props && CustomMenu.props.children) && 
       <PositionBtnGroupBottom>

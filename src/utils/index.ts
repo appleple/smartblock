@@ -143,6 +143,19 @@ export const getParentNodePosFromState = (state: EditorState) => {
   return pos + node.nodeSize;
 }
 
+export const findSelectedNodeWithType = (nodeType, state) => {
+  let {from, to} = state.selection
+  let applicable = false
+  let applicableNode = null;
+  state.doc.nodesBetween(from, to, (node) => {
+    if (applicable) return false
+    if (node.type == nodeType) {
+      applicableNode = node; 
+    }
+  })
+  return applicableNode;
+}
+
 function liftToOuterList(state, dispatch, itemType, range) {
   let tr = state.tr;
   let end = range.end;
@@ -241,16 +254,17 @@ export const calculateStyle = (
   const element = flag ? dom.node as HTMLElement : dom.node.parentElement;
   const elementTop = getOffset(element).top;
   const coords = view.coordsAtPos(selection.$anchor.pos);
+  const offsetTop = getOffset(view.dom).top;
 
   if (window.innerWidth <= 767) {
     return {
       left: offset.left,
-      top: elementTop + element.offsetHeight + offset.top
+      top: elementTop - offsetTop + offset.top
     }
   } 
 
   return {
     left: coords.left + offset.left,
-    top: elementTop + element.offsetHeight + offset.top
+    top: elementTop - offsetTop + offset.top
   }
 }

@@ -1,10 +1,16 @@
 import * as React from 'react';
 import { render } from 'react-dom';
 import { PaperEditor, GlobalStyle } from './src/';
+import Test from './src/extensions/test';
+import extensions from './src/extensions/';
+
+extensions.push(new Test());
 
 render(<>
 <GlobalStyle />
-<PaperEditor html={`
+<PaperEditor 
+extensions={extensions}
+html={`
 <p>Hello World</p>
 <h2>Test</h2>
 <ul>
@@ -17,6 +23,7 @@ render(<>
     <td>ee</td>
   </tr>
 </table>
+<img src="https://appleple.github.io/SmartPhoto/assets/images/large-kuma.jpg" />
 `}
 // json={{
 //   type: 'doc',

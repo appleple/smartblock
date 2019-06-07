@@ -14,6 +14,7 @@ import Editor from './editor';
 import InlineMenu from './inline-menu';
 import EditMenu from './edit-menu';
 import Menu from './menu';
+import CustomLayout from './custom-layout';
 import plugins from '../config/plugins';
 import keys from '../config/keys';
 import { getScrollTop, getOffset, getViewport } from '../utils';
@@ -297,7 +298,7 @@ export default class App extends React.Component<AppProps, AppState> {
   }
 
   render() {
-    const { extensions, offsetTop } = this.props;
+    const { extensions } = this.props;
     const { doc, containerId } = this.state;
     const { schema } = this;
     const editorOptions = { schema, plugins: this.getPlugins(), doc };
@@ -321,9 +322,10 @@ export default class App extends React.Component<AppProps, AppState> {
               onChange={this.onChange}
               render={({ editor, view }: ProseRender) => (
                 <>
-                  <Menu view={view} menu={{ blocks: this.getMenu(blocks) }} />
-                  <EditMenu view={view} menu={{ blocks: this.getMenu(edits) }} />
-                  <InlineMenu menu={{ marks: this.getMenu(marks) }} view={view} />
+                  <Menu view={view} menu={this.getMenu(blocks)} />
+                  <EditMenu view={view} menu={this.getMenu(edits)} />
+                  <InlineMenu menu={this.getMenu(marks)} view={view} />
+                  <CustomLayout view={view} menu={this.getMenu(blocks)} />
                   {editor}
                 </>
               )}

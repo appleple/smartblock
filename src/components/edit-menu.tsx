@@ -26,22 +26,6 @@ const PositionBtnGroup = styled.div`
   background-color: #F2F2F4;
 `;
 
-const Button = (view) => (item, key: string) => {
-  const { state, dispatch } = view;
-  return (<ButtonStyle
-    style={{ backgroundColor: 'transparent' }}
-    key={key}
-    type={'button'}
-    active={item.active && item.active(state)}
-    title={item.title}
-    disabled={item.enable && !item.enable(state)}
-    onMouseDown={e => {
-      e.preventDefault()
-      item.onClick(state, dispatch, view)
-    }}
-  >{item.icon}</ButtonStyle>
-)};
-
 interface PositionProps {
   view: EditorView,
   menu: any
@@ -133,14 +117,23 @@ export default class Menu extends React.Component<PositionProps, PositionState> 
   render() {
     const { style } = this.state;
     const { menu, view } = this.props;
-
+    const { state, dispatch } = view;
 
     return (<PositionBtnGroup style={style} ref={this.menuRef}>
-      {map(menu, (item, key) => (
-        <span key={key}>
-          {map(item, Button(view))}
-        </span>
-      ))}
+      {menu.map((item, key) => {
+        return (<ButtonStyle
+          style={{ backgroundColor: 'transparent' }}
+          key={`edit-${key}`}
+          type={'button'}
+          active={item.active && item.active(state)}
+          title={item.title}
+          disabled={item.enable && !item.enable(state)}
+          onMouseDown={e => {
+            e.preventDefault()
+            item.onClick(state, dispatch, view)
+          }}
+        >{item.icon}</ButtonStyle>);
+      })}
     </PositionBtnGroup>)
   }
 }

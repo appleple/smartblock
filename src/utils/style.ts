@@ -37,7 +37,32 @@ export default createGlobalStyle`
     margin-right: 0;
   }
 
-  .ProseMirror img {
+  .ProseMirror figure.media {
+    padding: 10px;
+    margin: 0;
+  }
+  .ProseMirror figure.media.selected {
+    position: relative;
+    background-color: #F2F2F4;
+  }
+  .ProseMirror figure.media.selected:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+    background-color: rgba(255, 255, 255, .5)
+  }
+  .ProseMirror figure.media img[size="small"] {
+    width: 320px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .ProseMirror figure.media img {
     max-width: 100%;
     height: auto;
     cursor: default;

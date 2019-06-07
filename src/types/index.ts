@@ -16,15 +16,22 @@ interface ExtensionSchema {
 
 export type Dispatch = (tr: Transaction<any>) => void;
 
+type CustomLayoutProps = {
+  dispatch: Dispatch,
+  state: EditorState
+};
+
 export interface Extension {
   name: string;
   schema?: ExtensionSchema;
   schemaDependencies?: {
     [key: string]: ExtensionSchema
   };
+  customLayout?(props: CustomLayoutProps, dom: HTMLElement): JSX.Element;
   icon?: JSX.Element | string;
   plugins?: Plugin<any, any>[];
   showMenu: boolean,
+  hideMenuOnFocus?: boolean,
   group?: string, //"edit" | "mark" | "block"
   render?(node: Node, view: EditorView, getPos: () => number): React.ReactNode,
   active?(state: EditorState): boolean
