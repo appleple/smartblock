@@ -13,7 +13,8 @@ import {
   findNodePosition,
   getParentNodePosFromState,
   createTable,
-  liftListItem
+  liftListItem,
+  findSelectedNodeWithType
 } from './utils';
 import GlobalStyle from './utils/style';
 import { Dispatch, Extension } from './types';
@@ -67,6 +68,7 @@ export {
   blockActive,
   canInsert,
   findNodePosition,
+  findSelectedNodeWithType,
   getParentNodePosFromState,
   createTable,
   liftListItem,
