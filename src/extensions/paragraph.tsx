@@ -37,6 +37,7 @@ export default class Paragraph implements Extension {
       toDOM: (node) => {
         return ["p", {
           style: `text-align: ${node.attrs.align}`,
+          tabindex: '1',
           id: node.attrs.id || uuid()
         }, 0]
       }
