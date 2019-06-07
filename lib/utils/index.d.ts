@@ -28,6 +28,7 @@ export declare const canInsert: (type: any) => (state: any) => boolean;
 export declare const findNodePosition: (doc: Node<any>, target: Node<any>) => number;
 export declare const getParentNodeFromState: (state: EditorState<any>) => Node<any>;
 export declare const getParentNodePosFromState: (state: EditorState<any>) => number;
+export declare const findSelectedNodeWithType: (nodeType: any, state: any) => any;
 export declare const liftListItem: (itemType: any) => (state: EditorState<any>, dispatch: any) => boolean;
 export declare const createTable: (schema: any, attrs: any, rowsCount?: number, colsCount?: number, withHeaderRow?: boolean, cellContent?: any) => any;
 export declare const calculateStyle: (view: EditorView<any>, offset?: {
@@ -35,5 +36,5 @@ export declare const calculateStyle: (view: EditorView<any>, offset?: {
     left: number;
 }) => {
     left: number;
-    top: any;
+    top: number;
 };

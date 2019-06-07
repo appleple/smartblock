@@ -20,6 +20,7 @@ export default class Menu extends React.Component<PositionProps, PositionState> 
     componentDidMount(): void;
     componentWillReceiveProps(nextProps: any): void;
     getActiveMenu(): JSX.Element;
+    shouldRenderMenu(): boolean;
     render(): JSX.Element;
 }
 export {};
