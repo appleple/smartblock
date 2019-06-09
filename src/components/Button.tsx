@@ -25,7 +25,6 @@ const Button = styled.button<{
     }
   }}
 
-  
   border: none;
   border-radius: 3px;
   appearance: none;
@@ -37,6 +36,9 @@ const Button = styled.button<{
   text-align: center;
   svg {
     fill: currentColor;
+  }
+  &:last-child {
+    margin-right: 0;
   }
 `;
 

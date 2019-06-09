@@ -4,7 +4,7 @@ import { PaperEditor, GlobalStyle } from './src/';
 import Test from './src/extensions/test';
 import extensions from './src/extensions/';
 
-extensions.push(new Test());
+// extensions.push(new Test());
 
 render(<>
 <GlobalStyle />
