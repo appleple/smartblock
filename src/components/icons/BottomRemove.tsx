@@ -1,9 +1,9 @@
-import * as React from "react";
+import * as React from 'react'
 
 const SvgBottomRemove = (props: React.SVGProps<SVGSVGElement>) => (
   <svg width="26px" height="25px" viewBox="0 0 26 25" {...props}>
-    <title>{"Group"}</title>
-    <desc>{"Created with Sketch."}</desc>
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
     <g id="Page-1" stroke="none" strokeWidth={1} fill="none" fillRule="evenodd">
       <g
         id="Group"
@@ -40,6 +40,6 @@ const SvgBottomRemove = (props: React.SVGProps<SVGSVGElement>) => (
       </g>
     </g>
   </svg>
-);
+)
 
-export default SvgBottomRemove;
+export default SvgBottomRemove

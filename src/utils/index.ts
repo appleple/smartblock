@@ -1,20 +1,29 @@
-import { findChildren } from 'prosemirror-utils';
-import { EditorState } from 'prosemirror-state';
-import { EditorView } from 'prosemirror-view';
-import { Node } from 'prosemirror-model';
-import { liftTarget, ReplaceAroundStep} from "prosemirror-transform";
-import {Slice, Fragment, NodeRange} from "prosemirror-model"
+import { findChildren } from 'prosemirror-utils'
+import { EditorState } from 'prosemirror-state'
+import { EditorView } from 'prosemirror-view'
+import { Node, Slice, Fragment, NodeRange } from 'prosemirror-model'
+import { liftTarget, ReplaceAroundStep } from 'prosemirror-transform'
 
 export const getScrollTop = () => {
-  return window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+  return (
+    window.pageYOffset ||
+    document.documentElement.scrollTop ||
+    document.body.scrollTop ||
+    0
+  )
 }
 
 export const getScrollLeft = () => {
-  return window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0;
+  return (
+    window.pageXOffset ||
+    document.documentElement.scrollLeft ||
+    document.body.scrollLeft ||
+    0
+  )
 }
 
 export const getOffset = el => {
-  const rect = el.getBoundingClientRect();
+  const rect = el.getBoundingClientRect()
   return {
     top: rect.top + getScrollTop(),
     left: rect.left + getScrollLeft()
@@ -29,29 +38,35 @@ export const getViewport = () => {
       top: window.visualViewport.pageTop,
       width: window.visualViewport.width,
       height: window.visualViewport.height
-    };
+    }
   }
   const viewport = {
-    left: window.pageXOffset,   // http://www.quirksmode.org/mobile/tableViewport.html
+    left: window.pageXOffset, // http://www.quirksmode.org/mobile/tableViewport.html
     top: window.pageYOffset,
     width: window.innerWidth || window.documentElement.clientWidth,
     height: window.innerHeight || window.documentElement.clientHeight
-  };
-  if (/iPod|iPhone|iPad/.test(navigator.platform) && isInput(document.activeElement as HTMLElement)) {       // iOS *lies* about viewport size when keyboard is visible. See http://stackoverflow.com/questions/2593139/ipad-web-app-detect-virtual-keyboard-using-javascript-in-safari Input focus/blur can indicate, also scrollTop: 
+  }
+  if (
+    /iPod|iPhone|iPad/.test(navigator.platform) &&
+    isInput(document.activeElement as HTMLElement)
+  ) {
+    // iOS *lies* about viewport size when keyboard is visible. See http://stackoverflow.com/questions/2593139/ipad-web-app-detect-virtual-keyboard-using-javascript-in-safari Input focus/blur can indicate, also scrollTop:
     return {
       left: viewport.left,
       top: viewport.top,
       width: viewport.width,
-      height: viewport.height * (viewport.height > viewport.width ? 0.66 : 0.45),  // Fudge factor to allow for keyboard on iPad
-      keyboardHeight: viewport.height * (viewport.height > viewport.width ? 0.34 : 0.55) 
-    };
+      height:
+        viewport.height * (viewport.height > viewport.width ? 0.66 : 0.45), // Fudge factor to allow for keyboard on iPad
+      keyboardHeight:
+        viewport.height * (viewport.height > viewport.width ? 0.34 : 0.55)
+    }
   }
-  return viewport;
+  return viewport
 }
 
 export const isInput = (el: HTMLElement) => {
-  return el.isContentEditable;
-};
+  return el.isContentEditable
+}
 
 export const markActive = type => state => {
   const { from, $from, to, empty } = state.selection
@@ -62,36 +77,40 @@ export const markActive = type => state => {
 }
 
 export const getMarkInSelection = (markName: string, state: EditorState) => {
-  const { selection} = state;
-  const { $anchor } = selection;
-  const { nodeAfter } = $anchor;
+  const { selection } = state
+  const { $anchor } = selection
+  const { nodeAfter } = $anchor
   if (nodeAfter) {
-    return nodeAfter.marks.find((mark) => {
+    return nodeAfter.marks.find(mark => {
       if (mark.type.name === markName) {
-        return true;
+        return true
       }
-    });
+    })
   }
-  return null;
+  return null
 }
 
-export const blockActive = (type) => state => {
-  const { selection } = state;
+export const blockActive = type => state => {
+  const { selection } = state
   const { $from, to } = state.selection
-  const { $anchor } = selection;
-  const resolvedPos = state.doc.resolve($anchor.pos) as any;
-  const rowNumber = resolvedPos.path[1];
-  let i = 0;
-  const [ firstNode ] = findChildren(state.doc, (_node) => {
-    if (rowNumber === i) {
-      return true;
-    }
-    i++;
-    return false;
-  }, false);
+  const { $anchor } = selection
+  const resolvedPos = state.doc.resolve($anchor.pos) as any
+  const rowNumber = resolvedPos.path[1]
+  let i = 0
+  const [firstNode] = findChildren(
+    state.doc,
+    _node => {
+      if (rowNumber === i) {
+        return true
+      }
+      i++
+      return false
+    },
+    false
+  )
 
   if (!firstNode) {
-    return false;
+    return false
   }
 
   return to <= $from.end() && firstNode.node.type.name === type.name
@@ -110,124 +129,175 @@ export const canInsert = type => state => {
 }
 
 export const findNodePosition = (doc: Node, target: Node) => {
-  let ret = -1;
+  let ret = -1
   doc.descendants((node, pos) => {
     if (node.eq(target)) {
-      ret = pos;
+      ret = pos
     }
-  });
-  return ret;
+  })
+  return ret
 }
 
 export const getParentNodeFromState = (state: EditorState) => {
-  const { selection } = state;
-  const { $anchor } = selection;
-  const resolvedPos = state.doc.resolve($anchor.pos) as any;
-  const rowNumber = resolvedPos.path[1] as number;
-  let i = 0;
-  const [ firstNode ] = findChildren(state.doc, (_node) => {
-    if (rowNumber === i || rowNumber + 1 === i) {
-      i++;
-      return true;
-    }
-    i++;
-    return false;
-  }, false);
-  const { node } = firstNode;
-  return node;
+  const { selection } = state
+  const { $anchor } = selection
+  const resolvedPos = state.doc.resolve($anchor.pos) as any
+  const rowNumber = resolvedPos.path[1] as number
+  let i = 0
+  const [firstNode] = findChildren(
+    state.doc,
+    _node => {
+      if (rowNumber === i || rowNumber + 1 === i) {
+        i++
+        return true
+      }
+      i++
+      return false
+    },
+    false
+  )
+  const { node } = firstNode
+  return node
 }
 
 export const getParentNodePosFromState = (state: EditorState) => {
-  const node = getParentNodeFromState(state);
-  const pos = findNodePosition(state.doc, node);
-  return pos + node.nodeSize;
+  const node = getParentNodeFromState(state)
+  const pos = findNodePosition(state.doc, node)
+  return pos + node.nodeSize
 }
 
 export const findSelectedNodeWithType = (nodeType, state) => {
-  let {from, to} = state.selection
-  let applicable = false
-  let applicableNode = null;
-  state.doc.nodesBetween(from, to, (node) => {
+  const { from, to } = state.selection
+  const applicable = false
+  let applicableNode = null
+  state.doc.nodesBetween(from, to, node => {
     if (applicable) return false
     if (node.type == nodeType) {
-      applicableNode = node; 
+      applicableNode = node
     }
   })
-  return applicableNode;
+  return applicableNode
 }
 
 function liftToOuterList(state, dispatch, itemType, range) {
-  let tr = state.tr;
-  let end = range.end;
-  let endOfList = range.$to.end(range.depth);
+  const { tr } = state
+  const { end } = range
+  const endOfList = range.$to.end(range.depth)
   if (end < endOfList) {
-    tr.step(new ReplaceAroundStep(end - 1, endOfList, end, endOfList,
-    new Slice(Fragment.from(itemType.create(null, range.parent.copy())), 1, 0), 1, true))
-    range = new NodeRange(tr.doc.resolve(range.$from.pos), tr.doc.resolve(endOfList), range.depth)
+    tr.step(
+      new ReplaceAroundStep(
+        end - 1,
+        endOfList,
+        end,
+        endOfList,
+        new Slice(
+          Fragment.from(itemType.create(null, range.parent.copy())),
+          1,
+          0
+        ),
+        1,
+        true
+      )
+    )
+    range = new NodeRange(
+      tr.doc.resolve(range.$from.pos),
+      tr.doc.resolve(endOfList),
+      range.depth
+    )
   }
   dispatch(tr.lift(range, liftTarget(range) - 1).scrollIntoView())
   return true
 }
 
 function liftOutOfList(state, dispatch, range) {
-  let tr = state.tr, list = range.parent
+  const { tr } = state
+  const list = range.parent
   // Merge the list items into a single big item
-  for (let pos = range.end, i = range.endIndex - 1, e = range.startIndex; i > e; i--) {
+  for (
+    let pos = range.end, i = range.endIndex - 1, e = range.startIndex;
+    i > e;
+    i--
+  ) {
     pos -= list.child(i).nodeSize
     tr.delete(pos - 1, pos + 1)
   }
-  let $start = tr.doc.resolve(range.start), item = $start.nodeAfter
-  let atStart = range.startIndex == 0, atEnd = range.endIndex == list.childCount
-  let parent = $start.node(-1), indexBefore = $start.index(-1)
-  if (!parent.canReplace(indexBefore + (atStart ? 0 : 1), indexBefore + 1,
-    item.content.append(atEnd ? Fragment.empty : Fragment.from(list))))
+  const $start = tr.doc.resolve(range.start)
+  const item = $start.nodeAfter
+  const atStart = range.startIndex == 0
+  const atEnd = range.endIndex == list.childCount
+  const parent = $start.node(-1)
+  const indexBefore = $start.index(-1)
+  if (
+    !parent.canReplace(
+      indexBefore + (atStart ? 0 : 1),
+      indexBefore + 1,
+      item.content.append(atEnd ? Fragment.empty : Fragment.from(list))
+    )
+  )
     return false
-  let start = $start.pos, end = start + item.nodeSize
-  tr.step(new ReplaceAroundStep(start - (atStart ? 1 : 0), end + (atEnd ? 1 : 0), 
-    start + 1, end - 1,
-    new Slice((atStart ? Fragment.empty : Fragment.from(list.copy(Fragment.empty)))
-      .append(atEnd ? Fragment.empty : Fragment.from(list.copy(Fragment.empty))),
-    atStart ? 0 : 1, atEnd ? 0 : 1), atStart ? 0 : 1))
+  const start = $start.pos
+  const end = start + item.nodeSize
+  tr.step(
+    new ReplaceAroundStep(
+      start - (atStart ? 1 : 0),
+      end + (atEnd ? 1 : 0),
+      start + 1,
+      end - 1,
+      new Slice(
+        (atStart
+          ? Fragment.empty
+          : Fragment.from(list.copy(Fragment.empty))
+        ).append(
+          atEnd ? Fragment.empty : Fragment.from(list.copy(Fragment.empty))
+        ),
+        atStart ? 0 : 1,
+        atEnd ? 0 : 1
+      ),
+      atStart ? 0 : 1
+    )
+  )
   dispatch(tr.scrollIntoView())
   return true
 }
 
-export const liftListItem = (itemType) => {
+export const liftListItem = itemType => {
   return function(state: EditorState, dispatch) {
-    let {$from, $to} = state.selection
-    let range = $from.blockRange($to, node => node.childCount && node.firstChild.type == itemType);
+    const { $from, $to } = state.selection
+    const range = $from.blockRange(
+      $to,
+      node => node.childCount && node.firstChild.type == itemType
+    )
     if (!range) return false
     if (!dispatch) return true
     if ($from.node(range.depth - 1).type == itemType) {
       return liftToOuterList(state, dispatch, itemType, range)
-    } else {
-      return liftOutOfList(state, dispatch, range);
     }
+    return liftOutOfList(state, dispatch, range)
   }
 }
 
 const tableNodeTypes = schema => {
   if (schema.cached.tableNodeTypes) {
-    return schema.cached.tableNodeTypes;
+    return schema.cached.tableNodeTypes
   }
-  const roles = {};
+  const roles = {}
   Object.keys(schema.nodes).forEach(type => {
-    const nodeType = schema.nodes[type];
+    const nodeType = schema.nodes[type]
     if (nodeType.spec.tableRole) {
-      roles[nodeType.spec.tableRole] = nodeType;
+      roles[nodeType.spec.tableRole] = nodeType
     }
-  });
-  schema.cached.tableNodeTypes = roles;
-  return roles;
-};
+  })
+  schema.cached.tableNodeTypes = roles
+  return roles
+}
 
 const createCell = (cellType, cellContent = null) => {
   if (cellContent) {
-    return cellType.createChecked(null, cellContent);
+    return cellType.createChecked(null, cellContent)
   }
 
-  return cellType.createAndFill();
-};
+  return cellType.createAndFill()
+}
 
 export const createTable = (
   schema,
@@ -242,49 +312,49 @@ export const createTable = (
     header_cell: tableHeader,
     row: tableRow,
     table
-  } = tableNodeTypes(schema);
+  } = tableNodeTypes(schema)
 
-  const cells = [];
-  const headerCells = [];
+  const cells = []
+  const headerCells = []
   for (let i = 0; i < colsCount; i++) {
-    cells.push(createCell(tableCell, cellContent));
+    cells.push(createCell(tableCell, cellContent))
 
     if (withHeaderRow) {
-      headerCells.push(createCell(tableHeader, cellContent));
+      headerCells.push(createCell(tableHeader, cellContent))
     }
   }
 
-  const rows = [];
+  const rows = []
   for (let i = 0; i < rowsCount; i++) {
     rows.push(
       tableRow.createChecked(
         null,
         withHeaderRow && i === 0 ? headerCells : cells
       )
-    );
+    )
   }
 
-  return table.createChecked(attrs, rows);
-};
+  return table.createChecked(attrs, rows)
+}
 
 export const calculateStyle = (
-    view: EditorView, 
-    offset = {top: 0,　left: 0}
-  ) => {
+  view: EditorView,
+  offset = { top: 0, left: 0 }
+) => {
   const { selection } = view.state
-  const dom = view.domAtPos(selection.$anchor.pos);
-  const flag = dom.node instanceof Element;
-  const element = flag ? dom.node as HTMLElement : dom.node.parentElement;
-  const elementTop = getOffset(element).top;
-  const coords = view.coordsAtPos(selection.$anchor.pos);
-  const offsetTop = getOffset(view.dom).top;
+  const dom = view.domAtPos(selection.$anchor.pos)
+  const flag = dom.node instanceof Element
+  const element = flag ? (dom.node as HTMLElement) : dom.node.parentElement
+  const elementTop = getOffset(element).top
+  const coords = view.coordsAtPos(selection.$anchor.pos)
+  const offsetTop = getOffset(view.dom).top
 
   if (window.innerWidth <= 767) {
     return {
       left: offset.left,
       top: elementTop - offsetTop + offset.top
     }
-  } 
+  }
 
   return {
     left: coords.left + offset.left,

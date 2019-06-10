@@ -1,62 +1,71 @@
-import * as React from "react";
-import HeadingIcon from "../components/icons/Heading2";
-import AlignLeftIcon from "../components/icons/AlignLeft";
-import AlignCenterIcon from "../components/icons/AlignCenter";
-import AlignRightIcon from "../components/icons/AlignRight";
-import { setBlockType } from "prosemirror-commands";
-import { Extension } from "../types";
-import { blockActive } from "../utils";
-import Button from "../components/button";
-import uuid from "uuid";
+import * as React from 'react'
+import { setBlockType } from 'prosemirror-commands'
+import uuid from 'uuid'
+import HeadingIcon from '../components/icons/Heading2'
+import AlignLeftIcon from '../components/icons/AlignLeft'
+import AlignCenterIcon from '../components/icons/AlignCenter'
+import AlignRightIcon from '../components/icons/AlignRight'
+import { Extension } from '../types'
+import { blockActive } from '../utils'
+import Button from '../components/button'
 
 export default class Heading3 implements Extension {
   get name() {
-    return "heading3";
+    return 'heading3'
   }
+
   get group() {
-    return "block";
+    return 'block'
   }
+
   get showMenu() {
-    return true;
+    return true
   }
+
   get schema() {
     return {
-      content: "inline*",
-      group: "block",
+      content: 'inline*',
+      group: 'block',
       defining: true,
       attrs: {
-        align: { default: "left" },
-        id: { default: "" }
+        align: { default: 'left' },
+        id: { default: '' }
       },
       parseDOM: [
         {
-          tag: "h3",
+          tag: 'h3',
           getAttrs(dom) {
             return {
               id: dom.getAttribute('id') || uuid()
             }
           }
-        },
+        }
       ],
       toDOM(node) {
         return [
-          "h3",
+          'h3',
           {
             style: `text-align: ${node.attrs.align}`,
             id: node.attrs.id || uuid()
-          }, 0]
+          },
+          0
+        ]
       }
-    };
+    }
   }
+
   get icon() {
-    return <HeadingIcon style={{ width: "24px", height: "24px" }} />;
+    return <HeadingIcon style={{ width: '24px', height: '24px' }} />
   }
+
   active(state) {
-    return blockActive(state.schema.nodes.heading3)(state);
+    return blockActive(state.schema.nodes.heading3)(state)
   }
+
   enable(state) {
-    return setBlockType(state.schema.nodes.heading3)(state);
+    return setBlockType(state.schema.nodes.heading3)(state)
   }
+
   customMenu({ state, dispatch }) {
     return (
       <>
@@ -65,35 +74,36 @@ export default class Heading3 implements Extension {
           onClick={() => {
             setBlockType(state.schema.nodes.heading3, {
               align: 'left'
-            })(state, dispatch);
+            })(state, dispatch)
           }}
         >
-          <AlignLeftIcon style={{ width: "24px", height: "24px" }} />
+          <AlignLeftIcon style={{ width: '24px', height: '24px' }} />
         </Button>
         <Button
           type="button"
           onClick={() => {
             setBlockType(state.schema.nodes.heading3, {
               align: 'center'
-            })(state, dispatch);
+            })(state, dispatch)
           }}
         >
-          <AlignCenterIcon style={{ width: "24px", height: "24px" }} />
+          <AlignCenterIcon style={{ width: '24px', height: '24px' }} />
         </Button>
         <Button
           type="button"
           onClick={() => {
             setBlockType(state.schema.nodes.heading3, {
               align: 'right'
-            })(state, dispatch);
+            })(state, dispatch)
           }}
         >
-          <AlignRightIcon style={{ width: "24px", height: "24px" }} />
+          <AlignRightIcon style={{ width: '24px', height: '24px' }} />
         </Button>
       </>
-    );
+    )
   }
+
   onClick(state, dispatch) {
-    setBlockType(state.schema.nodes.heading3)(state, dispatch);
+    setBlockType(state.schema.nodes.heading3)(state, dispatch)
   }
 }
