@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { setBlockType } from 'prosemirror-commands'
 import uuid from 'uuid'
-import ParagraphIcon from '../components/icons/Paragraph'
+import BlockQuoteIcon from '../components/icons/Blockquote'
 import { Extension } from '../types'
 import { blockActive } from '../utils'
 
@@ -49,7 +49,7 @@ export default class BlockQuote implements Extension {
   }
 
   get icon() {
-    return "'"
+    return <BlockQuoteIcon style={{ width: '24px', height: '24px' }} />
   }
 
   active(state) {

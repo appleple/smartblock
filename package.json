@@ -8,7 +8,7 @@
     "test": "jest",
     "dev": "webpack-dev-server --config webpack.dev.js --host 0.0.0.0",
     "build": "webpack --config webpack.prod.js",
-    "build:lib": "tsc",
+    "build:lib": "rm -rf ./lib && tsc",
     "np": "np --no-cleanup",
     "lint": "eslint ./src/** --fix --ext .ts,.tsx",
     "deploy": "npm-run-all -s build build:lib test np",

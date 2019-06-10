@@ -26,7 +26,7 @@ export default [
   new BulletList(),
   new OrderedList(),
   new Table(),
-  // new BlockQuote(),
+  new BlockQuote(),
   // marks
   new Strong(),
   new Em(),
