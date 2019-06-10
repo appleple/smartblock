@@ -5,6 +5,7 @@ import ListItem from './list-item'
 import BulletList from './bullet-list'
 import OrderedList from './ordered-list'
 import Table from './table'
+import BlockQuote from './blockquote';
 
 import Underline from './underline'
 import Strike from './strike'
@@ -25,6 +26,7 @@ export default [
   new BulletList(),
   new OrderedList(),
   new Table(),
+  // new BlockQuote(),
   // marks
   new Strong(),
   new Em(),

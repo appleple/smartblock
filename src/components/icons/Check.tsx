@@ -1,4 +1,4 @@
-import * as React from 'react'
+import * as React from "react";
 
 const SvgCheck = (props: React.SVGProps<SVGSVGElement>) => (
   <svg width={21.722} height={21.722} viewBox="0 0 21.722 21.722" {...props}>
@@ -14,6 +14,6 @@ const SvgCheck = (props: React.SVGProps<SVGSVGElement>) => (
       strokeWidth={2}
     />
   </svg>
-)
+);
 
-export default SvgCheck
+export default SvgCheck;

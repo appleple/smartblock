@@ -1,4 +1,4 @@
-import * as React from 'react'
+import * as React from "react";
 
 const SvgTrash = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -28,10 +28,10 @@ const SvgTrash = (props: React.SVGProps<SVGSVGElement>) => (
         fontFamily="'ArialMT'"
         fontSize={256}
       >
-        {'U+F722'}
+        {"U+F722"}
       </text>
     </g>
   </svg>
-)
+);
 
-export default SvgTrash
+export default SvgTrash;

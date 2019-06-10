@@ -1,4 +1,4 @@
-import * as React from 'react'
+import * as React from "react";
 
 const SvgImage = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -29,10 +29,10 @@ const SvgImage = (props: React.SVGProps<SVGSVGElement>) => (
         fontFamily="'ArialMT'"
         fontSize={256}
       >
-        {'U+F72B'}
+        {"U+F72B"}
       </text>
     </g>
   </svg>
-)
+);
 
-export default SvgImage
+export default SvgImage;
