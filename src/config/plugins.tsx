@@ -1,7 +1,6 @@
 import { history } from 'prosemirror-history'
 import { dropCursor } from 'prosemirror-dropcursor'
 import { gapCursor } from 'prosemirror-gapcursor'
-import { placeholder } from '@aeaton/prosemirror-placeholder'
 import { Plugin } from 'prosemirror-state'
 import { Decoration, DecorationSet } from 'prosemirror-view'
 
@@ -36,9 +35,21 @@ const currentElementPlugin = () => {
   })
 }
 
+const placeholderPlugin = (text: string) => {
+  return new Plugin({
+    props: {
+      decorations(state) {
+        let doc = state.doc
+        if (doc.childCount == 1 && doc.firstChild.isTextblock && doc.firstChild.content.size == 0)
+          return DecorationSet.create(doc, [Decoration.widget(1, document.createTextNode(text))])
+      }
+    }
+  })
+}
+
 export default [
   currentElementPlugin(),
-  placeholder(),
+  placeholderPlugin('本文を入力しましょう'),
   dropCursor(),
   gapCursor(),
   history()

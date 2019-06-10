@@ -93,8 +93,8 @@ export default createGlobalStyle`
     border-radius: 3px;
   }
 
-  .ProseMirror p.empty-node:first-child::before {
-    content: "さぁ書き始めよう！";
+  .ProseMirror .ProseMirror-widget {
+    color: #ADADAD;
   }
 
   .ProseMirror td,
