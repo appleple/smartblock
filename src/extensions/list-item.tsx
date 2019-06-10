@@ -17,26 +17,27 @@ export default class ListItem implements Extension {
       content: "paragraph block*",
       group: "block",
       parseDOM: [
-                {
-                    tag: "li",
-                    getAttrs(dom) {
-                        return {
-                            id: dom.getAttribute('id')
-                        }
-                    }}],
+        {
+          tag: "li",
+          getAttrs(dom) {
+            return {
+              id: dom.getAttribute('id')
+            }
+          }
+        }
       ],
       attrs: {
         id: { default: "" }
       },
       toDOM(node) {
-                return [
-                    "li",
-                    {
-                        id: node.attrs.id || uuid()
-                    },  0] },
+        return [
+          "li",
+          {
+            id: node.attrs.id || uuid()
+          }, 0]
       },
       defining: true
-    };
+    }
   }
   keys(schema: Schema) {
     return {

@@ -180,13 +180,14 @@ function liftOutOfList(state, dispatch, range) {
   let atStart = range.startIndex == 0, atEnd = range.endIndex == list.childCount
   let parent = $start.node(-1), indexBefore = $start.index(-1)
   if (!parent.canReplace(indexBefore + (atStart ? 0 : 1), indexBefore + 1,
-                         item.content.append(atEnd ? Fragment.empty : Fragment.from(list))))
+    item.content.append(atEnd ? Fragment.empty : Fragment.from(list))))
     return false
   let start = $start.pos, end = start + item.nodeSize
-  tr.step(new ReplaceAroundStep(start - (atStart ? 1 : 0), end + (atEnd ? 1 : 0), start + 1, end - 1,
-                                new Slice((atStart ? Fragment.empty : Fragment.from(list.copy(Fragment.empty)))
-                                          .append(atEnd ? Fragment.empty : Fragment.from(list.copy(Fragment.empty))),
-                                          atStart ? 0 : 1, atEnd ? 0 : 1), atStart ? 0 : 1))
+  tr.step(new ReplaceAroundStep(start - (atStart ? 1 : 0), end + (atEnd ? 1 : 0), 
+    start + 1, end - 1,
+    new Slice((atStart ? Fragment.empty : Fragment.from(list.copy(Fragment.empty)))
+      .append(atEnd ? Fragment.empty : Fragment.from(list.copy(Fragment.empty))),
+    atStart ? 0 : 1, atEnd ? 0 : 1), atStart ? 0 : 1))
   dispatch(tr.scrollIntoView())
   return true
 }

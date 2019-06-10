@@ -8,9 +8,14 @@
       "modules": true
     }
   },
+  "env": {
+    "browser": true,
+    "node": true
+  },
   "extends": [
     "plugin:prettier/recommended",
     "prettier",
+    "prettier/standard",
     "prettier/@typescript-eslint",
     "typescript"
   ],

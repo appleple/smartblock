@@ -24,24 +24,25 @@ export default class BulletList implements Extension {
       content: "list_item+",
       group: "block",
       parseDOM: [
-                {
-                    tag: "ul",
-                    getAttrs(dom) {
+        {
+          tag: "ul",
+          getAttrs(dom) {
             return {
-                            id: dom.getAttribute('id')
-                        }
-                    }}],
+              id: dom.getAttribute('id')
+            }
+          }
+        }
       ],
       attrs: {
         id: { default: "" }
       },
       toDOM(node) {
-                return [
-                    "ul",
-                    {
-                        id: node.attrs.id || uuid()
-                    }, 0] }
-        ];
+        return [
+          "ul",
+          {
+            id: node.attrs.id || uuid()
+          }, 0
+        ]
       }
     };
   }
@@ -58,22 +59,22 @@ export default class BulletList implements Extension {
     wrapInList(state.schema.nodes.bullet_list)(state, dispatch);
   }
   customMenu({ state, dispatch }) {
-        return (
+    return (
       <>
         <Button
-            type="button"
-            onClick={() => {
-                liftListItem(state.schema.nodes.list_item)(state, dispatch);
-            }}><Undent style={{ width: '24px', height: '24px' }} /></Button>
+          type="button"
+          onClick={() => {
+            liftListItem(state.schema.nodes.list_item)(state, dispatch);
+          }}><Undent style={{ width: '24px', height: '24px' }} /></Button>
         <Button
-            type="button"
-            onClick={() => {
-                sinkListItem(state.schema.nodes.list_item)(state, dispatch);
-            }}
+          type="button"
+          onClick={() => {
+            sinkListItem(state.schema.nodes.list_item)(state, dispatch);
+          }}
         >
-            <Indent style={{ width: "24px", height: "24px" }} />
+          <Indent style={{ width: "24px", height: "24px" }} />
         </Button>
       </>
-        );
+    );
   }
 }

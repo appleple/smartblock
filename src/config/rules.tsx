@@ -1,10 +1,10 @@
 import {
-  inputRules,
-  wrappingInputRule,
-  textblockTypeInputRule,
-  smartQuotes,
-  emDash,
-  ellipsis
+    inputRules,
+    wrappingInputRule,
+    textblockTypeInputRule,
+    smartQuotes,
+    emDash,
+    ellipsis
 } from "prosemirror-inputrules";
 
 // export default inputRules({

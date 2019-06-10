@@ -30,22 +30,21 @@ export default class Heading3 implements Extension {
       },
       parseDOM: [
         {
-                    tag: "h3",
-                    getAttrs(dom) {
-                        return {
-                            id: dom.getAttribute('id') || uuid()
-                        }
-                    }},
-        }
+          tag: "h3",
+          getAttrs(dom) {
+            return {
+              id: dom.getAttribute('id') || uuid()
+            }
+          }
+        },
       ],
       toDOM(node) {
-                return [
-                    "h3",
-                    {
-                        style: `text-align: ${node.attrs.align}`,
+        return [
+          "h3",
+          {
+            style: `text-align: ${node.attrs.align}`,
             id: node.attrs.id || uuid()
-                    }, 0] }
-        ];
+          }, 0]
       }
     };
   }
@@ -62,37 +61,37 @@ export default class Heading3 implements Extension {
     return (
       <>
         <Button
-            type="button"
-            onClick={() => {
-                setBlockType(state.schema.nodes.heading3, {
-                    align: 'left'
-                })(state, dispatch);
-            }}
+          type="button"
+          onClick={() => {
+            setBlockType(state.schema.nodes.heading3, {
+              align: 'left'
+            })(state, dispatch);
+          }}
         >
-            <AlignLeftIcon style={{ width: "24px", height: "24px" }} />
+          <AlignLeftIcon style={{ width: "24px", height: "24px" }} />
         </Button>
         <Button
-            type="button"
-            onClick={() => {
-                setBlockType(state.schema.nodes.heading3, {
-                    align: 'center'
-                })(state, dispatch);
-            }}
+          type="button"
+          onClick={() => {
+            setBlockType(state.schema.nodes.heading3, {
+              align: 'center'
+            })(state, dispatch);
+          }}
         >
-            <AlignCenterIcon style={{ width: "24px", height: "24px" }} />
+          <AlignCenterIcon style={{ width: "24px", height: "24px" }} />
         </Button>
         <Button
-            type="button"
-            onClick={() => {
-                setBlockType(state.schema.nodes.heading3, {
-                    align: 'right'
-                })(state, dispatch);
-            }}
+          type="button"
+          onClick={() => {
+            setBlockType(state.schema.nodes.heading3, {
+              align: 'right'
+            })(state, dispatch);
+          }}
         >
-            <AlignRightIcon style={{ width: "24px", height: "24px" }} />
+          <AlignRightIcon style={{ width: "24px", height: "24px" }} />
         </Button>
       </>
-        );
+    );
   }
   onClick(state, dispatch) {
     setBlockType(state.schema.nodes.heading3)(state, dispatch);

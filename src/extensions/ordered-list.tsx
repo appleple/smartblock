@@ -24,27 +24,28 @@ export default class OrderedList implements Extension {
       content: "list_item+",
       group: "block",
       parseDOM: [
-                {
-                    tag: "ol",
-                    getAttrs(dom) {
-                        return {
-                            id: dom.getAttribute('id')
-                        }
-                    }}],
+        {
+          tag: "ol",
+          getAttrs(dom) {
+            return {
+              id: dom.getAttribute('id')
+            }
+          }
+        }
       ],
       attrs: {
         id: { default: "" }
       },
       toDOM(node) {
-                return [
-                    "ol",
-                    {
-                        id: node.attrs.id || uuid()
-                    }, 0] }
-        ];
+        return [
+          "ol",
+          {
+            id: node.attrs.id || uuid()
+          }, 0]
       }
-    };
+    }
   }
+
   get icon() {
     return <OrderedListIcon style={{ width: "24px", height: "24px" }} />;
   }
@@ -61,22 +62,22 @@ export default class OrderedList implements Extension {
     return (
       <>
         <Button
-            type="button"
-            onClick={() => {
-                liftListItem(state.schema.nodes.list_item)(state, dispatch);
-            }}
+          type="button"
+          onClick={() => {
+            liftListItem(state.schema.nodes.list_item)(state, dispatch);
+          }}
         >
-            <UndentIcon style={{ width: "24px", height: "24px" }} />
+          <UndentIcon style={{ width: "24px", height: "24px" }} />
         </Button>
         <Button
-            type="button"
-            onClick={() => {
-                sinkListItem(state.schema.nodes.list_item)(state, dispatch);
-            }}
+          type="button"
+          onClick={() => {
+            sinkListItem(state.schema.nodes.list_item)(state, dispatch);
+          }}
         >
-            <IndentIcon style={{ width: "24px", height: "24px" }} />
+          <IndentIcon style={{ width: "24px", height: "24px" }} />
         </Button>
       </>
-        );
+    );
   }
 }

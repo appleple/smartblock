@@ -23,11 +23,11 @@ export default class StrikeThrough implements Extension {
         { style: "text-decoration-line=line-through" }
       ],
       toDOM: () => [
-                "span",
-                {
-                    style: "text-decoration-line:line-through"
-                }
-            ]
+        "span",
+        {
+          style: "text-decoration-line:line-through"
+        }
+      ]
     };
   }
   get icon() {

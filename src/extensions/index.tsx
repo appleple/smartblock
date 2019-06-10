@@ -17,22 +17,22 @@ import MoveUp from "./move-up";
 import MoveDown from "./move-down";
 
 export default [
-  //blocks
-  new Paragraph(),
-  new Heading2(),
-  new Heading3(),
-  new ListItem(),
-  new BulletList(),
-  new OrderedList(),
-  new Table(),
-  //marks
-  new Strong(),
-  new Em(),
-  new Underline(),
-  new Strike(),
-  new Link(),
-  //utility
-  new MoveUp(),
-  new MoveDown(),
-  new Trash()
+    //blocks
+    new Paragraph(),
+    new Heading2(),
+    new Heading3(),
+    new ListItem(),
+    new BulletList(),
+    new OrderedList(),
+    new Table(),
+    //marks
+    new Strong(),
+    new Em(),
+    new Underline(),
+    new Strike(),
+    new Link(),
+    //utility
+    new MoveUp(),
+    new MoveDown(),
+    new Trash()
 ];

@@ -43,7 +43,6 @@ const Bar = styled.div`
 
 const calculateStyle = (view: EditorView, offsetTop, width) => {
   const { selection } = view.state;
-
   if (!selection || selection.empty) {
     return {
       left: -1000,
@@ -80,13 +79,13 @@ const getContainerWidth = container => {
 };
 
 const MenuBar = ({
-    menu,
-    children,
-    view
+  menu,
+  children,
+  view
 }: {
-    menu: any;
-    children?: React.ReactChildren;
-    view: EditorView;
+  menu: any;
+  children?: React.ReactChildren;
+  view: EditorView;
 }) => {
   const offsetTop = getContainerOffset(view.dom);
   const width = getContainerWidth(view.dom);
@@ -94,29 +93,29 @@ const MenuBar = ({
   const { state, dispatch } = view;
 
   return (
-        <FloaterStyle style={style}>
+    <FloaterStyle style={style}>
       <Bar>
-                {children}
-                {menu.map((item, key) => {
-                    return (
-                        <ButtonStyle
-                            key={`inline-${key}`}
-                            type={"button"}
-                            active={item.active && item.active(state)}
+        {children}
+        {menu.map((item, key) => {
+          return (
+            <ButtonStyle
+              key={`inline-${key}`}
+              type={"button"}
+              active={item.active && item.active(state)}
               title={item.title}
-                            disabled={item.enable && !item.enable(state)}
-                            onMouseDown={e => {
-                                e.preventDefault();
-                                item.onClick(state, dispatch);
-                            }}
-                        >
-                            {item.icon}
-                        </ButtonStyle>
-                    );
-                })}
-            </Bar>
-        </FloaterStyle>
-    );
+              disabled={item.enable && !item.enable(state)}
+              onMouseDown={e => {
+                e.preventDefault();
+                item.onClick(state, dispatch);
+              }}
+            >
+              {item.icon}
+            </ButtonStyle>
+          );
+        })}
+      </Bar>
+    </FloaterStyle>
+  );
 };
 
 export default MenuBar;

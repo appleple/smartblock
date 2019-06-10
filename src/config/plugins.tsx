@@ -11,35 +11,35 @@ import "@aeaton/prosemirror-footnotes/style/footnotes.css";
 import "@aeaton/prosemirror-placeholder/style/placeholder.css";
 
 const currentElementPlugin = () => {
-  return new Plugin({
-    props: {
-      decorations(state) {
-        const selection = state.selection;
-        const decorations = [];
+    return new Plugin({
+        props: {
+            decorations(state) {
+                const selection = state.selection;
+                const decorations = [];
 
-        state.doc.nodesBetween(
-          selection.from,
-          selection.to,
-          (node, position) => {
-            if (node.isBlock) {
-              decorations.push(
-                Decoration.node(position, position + node.nodeSize, {
-                  class: "selected"
-                })
-              );
+                state.doc.nodesBetween(
+                    selection.from,
+                    selection.to,
+                    (node, position) => {
+                        if (node.isBlock) {
+                            decorations.push(
+                                Decoration.node(position, position + node.nodeSize, {
+                                    class: "selected"
+                                })
+                            );
+                        }
+                    }
+                );
+                return DecorationSet.create(state.doc, decorations);
             }
-          }
-        );
-        return DecorationSet.create(state.doc, decorations);
-      }
-    }
-  });
+        }
+    });
 };
 
 export default [
-  currentElementPlugin(),
-  placeholder(),
-  dropCursor(),
-  gapCursor(),
-  history()
+    currentElementPlugin(),
+    placeholder(),
+    dropCursor(),
+    gapCursor(),
+    history()
 ];
