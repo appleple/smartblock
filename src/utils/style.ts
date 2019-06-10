@@ -123,6 +123,15 @@ export default createGlobalStyle`
     color: transparent;
   }
 
+  .ProseMirror .caption {
+    color: #909090;
+    display: block;
+    text-align: center;
+  }
+  .ProseMirror .caption:empty::before {
+    content: "キャプションを入れてください"
+  }
+
   svg {
     width: 32px;
     height: 32px;

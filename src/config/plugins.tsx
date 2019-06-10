@@ -40,8 +40,9 @@ const placeholderPlugin = (text: string) => {
     props: {
       decorations(state) {
         let doc = state.doc
-        if (doc.childCount == 1 && doc.firstChild.isTextblock && doc.firstChild.content.size == 0)
+        if (doc.childCount == 1 && doc.firstChild.isTextblock && doc.firstChild.content.size == 0) {
           return DecorationSet.create(doc, [Decoration.widget(1, document.createTextNode(text))])
+        }
       }
     }
   })
