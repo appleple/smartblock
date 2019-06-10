@@ -1,14 +1,18 @@
-import * as React from 'react';
-import { EditorView } from 'prosemirror-view';
-import imagesLoaded from 'imagesloaded';
-import { getParentNodeFromState, findNodePosition, calculateStyle } from '../utils';
-import { Extension } from '../types';
+import * as React from "react";
+import { EditorView } from "prosemirror-view";
+import imagesLoaded from "imagesloaded";
+import {
+    getParentNodeFromState,
+    findNodePosition,
+    calculateStyle
+} from "../utils";
+import { Extension } from "../types";
 
 const { useState, useEffect } = React;
 
 interface CustomLayoutProps {
-  view: EditorView,
-  menu: Extension[]
+  view: EditorView;
+  menu: Extension[];
 }
 
 const getCustomLayout = (props: CustomLayoutProps) => {
@@ -18,7 +22,7 @@ const getCustomLayout = (props: CustomLayoutProps) => {
     return;
   }
   const { name } = node.type;
-  const selectedItem = menu.find((item) => {
+  const selectedItem = menu.find(item => {
     if (item.name === name) {
       return true;
     }
@@ -31,7 +35,7 @@ const getCustomLayout = (props: CustomLayoutProps) => {
     return selectedItem.customLayout;
   }
   return null;
-}
+};
 
 const useImagesLoaded = (dom: HTMLElement) => {
   const [size, setSize] = useState({
@@ -49,8 +53,7 @@ const useImagesLoaded = (dom: HTMLElement) => {
     });
   });
   return size;
-}
-
+};
 
 export default (props: CustomLayoutProps) => {
   const customLayout = getCustomLayout(props);
@@ -63,19 +66,17 @@ export default (props: CustomLayoutProps) => {
   const parentPos = findNodePosition(view.state.doc, parentNode);
   const dom = view.nodeDOM(parentPos) as HTMLElement;
   const style = {
-    position: 'absolute',
-    zIndex: '10',
+    position: "absolute",
+    zIndex: "10",
     top: pos.top,
     left: 0
-  }
+  };
 
   const size = useImagesLoaded(dom);
-  
+
   if (!size.height) {
     return null;
   }
-  
-  return (<div style={style}>
-    {customLayout(props.view, dom)}
-  </div>);
-}
+
+  return <div style={style}>{customLayout(props.view, dom)}</div>;
+};

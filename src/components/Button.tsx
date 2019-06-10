@@ -1,27 +1,16 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Button = styled.button<{
-  active?: boolean
-}>`
-  ${props => {
-    if (props.disabled) {
-      return `
-        opacity: .4;
+                    ;  ;ac;ti;ve;?:; b;oo                                                                                                                                                                                                                                                                                 n `                                            it                                                        `;
+                                                ${props                                              (props.ac            {
+      return                     col            14CC5;
+            o        ty                     back                                   F            
       `;
-    }
-  }}
-  ${props => {
-    if (props.active) {
+          el     {
       return `
-        color: #014CC5;
-        opacity: 1;
-        background-color: #F2F2F4;
+        color                 
+          background: #fff;
       `;
-    } else {
-      return `
-        color: #777;
-        background: #fff;
-      `
     }
   }}
 

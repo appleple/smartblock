@@ -1,31 +1,30 @@
-import * as React from 'react'
-import * as ReactDOM from 'react-dom';
-import styled from 'styled-components';
-import { EditorView } from 'prosemirror-view';
-import { Schema } from 'prosemirror-model';
-import { keymap } from 'prosemirror-keymap';
-import { Node, DOMParser, DOMSerializer } from 'prosemirror-model';
-import { chainCommands } from 'prosemirror-commands';
-import scrollTo from 'scroll-to';
-import { EditorState } from 'prosemirror-state';
-import uuid from 'uuid';
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import styled from "styled-components";
+import { EditorView } from "prosemirror-view";
+import { Schema } from "prosemirror-model";
+import { keymap } from "prosemirror-keymap";
+import { Node, DOMParser, DOMSerializer } from "prosemirror-model";
+import { chainCommands } from "prosemirror-commands";
+import scrollTo from "scroll-to";
+import { EditorState } from "prosemirror-state";
+import uuid from "uuid";
 
-import Editor from './editor';
-import InlineMenu from './inline-menu';
-import EditMenu from './edit-menu';
-import Menu from './menu';
-import CustomLayout from './custom-layout';
-import plugins from '../config/plugins';
-import keys from '../config/keys';
-import { getScrollTop, getOffset, getViewport } from '../utils';
-import extensions from '../extensions';
-import { Extension } from '../types';
+import Editor from "./editor";
+import InlineMenu from "./inline-menu";
+import EditMenu from "./edit-menu";
+import Menu from "./menu";
+import CustomLayout from "./custom-layout";
+import plugins from "../config/plugins";
+import keys from "../config/keys";
+import { getScrollTop, getOffset, getViewport } from "../utils";
+import extensions from "../extensions";
+import { Extension } from "../types";
 
-
-const Input = styled('div')`
+const Input = styled("div")`
   width: 100%;
   overflow-y: auto;
-`
+`;
 
 const Container = styled.div`
   max-width: 780px;
@@ -39,24 +38,22 @@ interface ProseRender {
   view: EditorView;
 }
 
-type OutputJson = {
-  [key: string]: any
+interface OutputJson {
+  [key: string]: any;
 }
 
-type AppProps = {
+interface AppProps {
   onChange(json: OutputJson): void;
-  onInit?(json: { 
-    schema: Schema
-  }): void
+  onInit?(json: { schema: Schema }): void;
   json?: OutputJson;
   html?: string;
-  extensions: Extension[],
-  offsetTop?: number
+  extensions: Extension[];
+  offsetTop?: number;
 }
 
-type AppState = {
-  doc: Node
-  containerId: string
+interface AppState {
+  doc: Node;
+  containerId: string;
 }
 
 export default class App extends React.Component<AppProps, AppState> {
@@ -79,7 +76,7 @@ export default class App extends React.Component<AppProps, AppState> {
       const node = Node.fromJSON(this.schema, json);
       realHtml = this.getHtmlFromNode(node, schema);
     }
-    const div = document.createElement('div');
+    const div = document.createElement("div");
     div.innerHTML = realHtml;
     const doc = DOMParser.fromSchema(this.schema).parse(div);
     if (this.props.onInit) {
@@ -92,7 +89,7 @@ export default class App extends React.Component<AppProps, AppState> {
 
   getBlockSchemas(extensions: Extension[]) {
     const nodesSchema = extensions.filter(extension => {
-      if (extension.schema && extension.schema.group === 'block') {
+      if (extension.schema && extension.schema.group === "block") {
         return true;
       }
       return false;
@@ -106,7 +103,7 @@ export default class App extends React.Component<AppProps, AppState> {
 
   getBlocks(extensions: Extension[]) {
     const nodesSchema = extensions.filter(extension => {
-      if (extension.group === 'block') {
+      if (extension.group === "block") {
         return true;
       }
       return false;
@@ -125,7 +122,7 @@ export default class App extends React.Component<AppProps, AppState> {
 
   getMarks(extensions: Extension[]) {
     const marksSchema = extensions.filter(extension => {
-      if (extension.group === 'mark') {
+      if (extension.group === "mark") {
         return true;
       }
       return false;
@@ -135,7 +132,7 @@ export default class App extends React.Component<AppProps, AppState> {
 
   getEdits(extensions: Extension[]) {
     const editMarks = extensions.filter(extension => {
-      if (extension.group === 'edit') {
+      if (extension.group === "edit") {
         return true;
       }
       return false;
@@ -158,27 +155,31 @@ export default class App extends React.Component<AppProps, AppState> {
     const nodeDependencies = this.getSchemaBlockDependencies(extensions);
     const base = {
       doc: {
-        content: 'block+'
+        content: "block+"
       },
       text: {
-        group: 'inline'
+        group: "inline"
       },
       hard_break: {
         inline: true,
         group: "inline",
         selectable: false,
         parseDOM: [{ tag: "br" }],
-        toDOM() { return ['br'] }
+        toDOM() {
+                    return ["br"];
+                }
       }
     };
-    nodes = { ...nodes, ...base, ...nodeDependencies }
+    nodes = { ...nodes, ...base, ...nodeDependencies };
     const marks = this.getMarkSchemas(extensions);
-    return new Schema({ nodes, marks } as { nodes: any, marks: any });
+    return new Schema({ nodes, marks } as { nodes: any; marks: any });
   }
 
   getHtmlFromNode(doc: Node, schema: Schema) {
-    const fragment = DOMSerializer.fromSchema(schema).serializeFragment(doc.content);
-    const div = document.createElement('div');
+    const fragment = DOMSerializer.fromSchema(schema).serializeFragment(
+            doc.content
+        );
+    const div = document.createElement("div");
     div.appendChild(fragment);
     return div.innerHTML;
   }
@@ -186,10 +187,10 @@ export default class App extends React.Component<AppProps, AppState> {
   getKeys(extensions: Extension[]) {
     let extensionKeys = {};
 
-    extensions.forEach((extension) => {
+    extensions.forEach(extension => {
       if (extension.keys) {
         const registeredKeys = extension.keys(this.schema);
-        Object.keys(registeredKeys).forEach((key) => {
+        Object.keys(registeredKeys).forEach(key => {
           if (!extensionKeys[key]) {
             extensionKeys[key] = [];
           }
@@ -198,7 +199,7 @@ export default class App extends React.Component<AppProps, AppState> {
       }
     });
 
-    Object.keys(keys).forEach((key) => {
+    Object.keys(keys).forEach(key => {
       if (!extensionKeys[key]) {
         extensionKeys[key] = [];
       }
@@ -207,7 +208,7 @@ export default class App extends React.Component<AppProps, AppState> {
 
     const keyMaps = {};
 
-    Object.keys(extensionKeys).forEach((extensionKey) => {
+    Object.keys(extensionKeys).forEach(extensionKey => {
       keyMaps[extensionKey] = chainCommands(...extensionKeys[extensionKey]);
     });
 
@@ -217,7 +218,7 @@ export default class App extends React.Component<AppProps, AppState> {
   getPlugins() {
     const { extensions } = this.props;
     let customPlugins = [];
-    extensions.forEach((extension) => {
+    extensions.forEach(extension => {
       if (extension.plugins) {
         customPlugins = [...customPlugins, ...extension.plugins];
       }
@@ -229,14 +230,12 @@ export default class App extends React.Component<AppProps, AppState> {
   getNodeViews() {
     const { extensions } = this.props;
     let views = {};
-    extensions.forEach((extension) => {
+    extensions.forEach(extension => {
       if (extension.render) {
         views[extension.name] = (node: Node, view: EditorView, getPos) => {
-          const dom = document.createElement('div');
+          const dom = document.createElement("div");
           requestAnimationFrame(() => {
-            ReactDOM.render(<>
-              {extension.render(node, view, getPos)}
-            </>, dom);
+            ReactDOM.render(<>{extension.render(node, view, getPos)}</>, dom);
           });
 
           return {
@@ -248,28 +247,35 @@ export default class App extends React.Component<AppProps, AppState> {
               return true;
             }
           };
-
-        }
+                };
       }
     });
     return views;
   }
 
   getMenu(extensions: Extension[]) {
-    return extensions.filter((extension) => extension.showMenu);
+    return extensions.filter(extension => extension.showMenu);
   }
 
-  onChange = (state: EditorState, dispatch: typeof EditorView.prototype.dispatch) => {
+  onChange = (
+        state: EditorState,
+        dispatch: typeof EditorView.prototype.dispatch
+    ) => {
     const { doc } = state;
     if (this.container) {
-      const selected = this.container.querySelector('.selected') as HTMLDivElement;
+      const selected = this.container.querySelector(
+                ".selected"
+            ) as HTMLDivElement;
       if (selected) {
         const viewport = getViewport();
         const top = getScrollTop() + viewport.height;
         const offsetTop = getOffset(selected).top;
         const height = selected.offsetHeight;
         if (offsetTop + height + 80 >= top) {
-          if (/iPod|iPhone|iPad/.test(navigator.platform) && document.activeElement) {
+          if (
+                        /iPod|iPhone|iPad/.test(navigator.platform) &&
+            document.activeElement
+                    ) {
             const activeElement = document.activeElement as HTMLElement;
             if (activeElement.isContentEditable) {
               scrollTo(0, offsetTop);
@@ -291,11 +297,13 @@ export default class App extends React.Component<AppProps, AppState> {
     }
     const { childCount } = doc.content;
     const lastNode = doc.content.child(childCount - 1);
-    if (lastNode.type.name !== 'paragraph') {
+    if (lastNode.type.name !== "paragraph") {
       const { paragraph } = state.schema.nodes;
-      dispatch(state.tr.insert(state.doc.content.size, paragraph.createAndFill()));
+      dispatch(
+                state.tr.insert(state.doc.content.size, paragraph.createAndFill())
+            );
     }
-  }
+  };
 
   render() {
     const { extensions } = this.props;
@@ -309,12 +317,16 @@ export default class App extends React.Component<AppProps, AppState> {
 
     return (
       <Container>
-        <div id={containerId} ref={(ref) => {
-          if (ref && !this.container) {
-            this.container = ref;
-            this.forceUpdate();
-          }
-        }}>
+        <div
+                    id={containerId}
+                    ref={ref => {
+                        if (ref && !this.container) {
+                            this.container = ref;
+                            this.forceUpdate();
+                        }
+                    }}
+                >
+          >
           <Input>
             <Editor
               options={editorOptions}
