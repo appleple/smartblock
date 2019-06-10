@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import { Extension } from '../types';
+import { Extension } from "../types";
 export default class Test implements Extension {
     readonly name: string;
     readonly showMenu: boolean;

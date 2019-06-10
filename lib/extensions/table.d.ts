@@ -16,7 +16,7 @@ export default class Table implements Extension {
         dispatch: any;
     }): JSX.Element;
     keys(): {
-        'Tab': any;
+        Tab: any;
         'Shift-Tab': any;
     };
 }

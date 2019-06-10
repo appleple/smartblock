@@ -1,20 +1,20 @@
 import { EditorState } from 'prosemirror-state';
 import { joinUp, joinDown, lift, selectParentNode } from 'prosemirror-commands';
 declare const keys: {
-    'Enter': (state: EditorState<any>, dispatch: any, view: any) => boolean;
+    Enter: (state: EditorState<any>, dispatch: any, view: any) => boolean;
     'Mod-z': any;
     'Shift-Mod-z': any;
-    'Backspace': any;
+    Backspace: any;
     'Mod-y': any;
     'Alt-ArrowUp': typeof joinUp;
     'Alt-ArrowDown': typeof joinDown;
     'Mod-BracketLeft': typeof lift;
-    'Escape': typeof selectParentNode;
-    'Mod-Enter': <S extends import("prosemirror-model").Schema<any, any> = any>(p1: EditorState<S>, p2?: (tr: import("prosemirror-state").Transaction<S>) => void, p3?: import("prosemirror-view").EditorView<S>) => boolean;
-    'Shift-Enter': <S extends import("prosemirror-model").Schema<any, any> = any>(p1: EditorState<S>, p2?: (tr: import("prosemirror-state").Transaction<S>) => void, p3?: import("prosemirror-view").EditorView<S>) => boolean;
-    'Ctrl-Enter': <S extends import("prosemirror-model").Schema<any, any> = any>(p1: EditorState<S>, p2?: (tr: import("prosemirror-state").Transaction<S>) => void, p3?: import("prosemirror-view").EditorView<S>) => boolean;
+    Escape: typeof selectParentNode;
+    'Mod-Enter': (p1: EditorState<any>, p2?: (tr: import("prosemirror-state").Transaction<any>) => void, p3?: import("prosemirror-view").EditorView<any>) => boolean;
+    'Shift-Enter': (p1: EditorState<any>, p2?: (tr: import("prosemirror-state").Transaction<any>) => void, p3?: import("prosemirror-view").EditorView<any>) => boolean;
+    'Ctrl-Enter': (p1: EditorState<any>, p2?: (tr: import("prosemirror-state").Transaction<any>) => void, p3?: import("prosemirror-view").EditorView<any>) => boolean;
     'Mod-_': (state: any, dispatch: any) => boolean;
-    'Tab': any;
+    Tab: any;
     'Shift-Tab': any;
 };
 export default keys;

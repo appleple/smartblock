@@ -1,7 +1,7 @@
 /// <reference types="react" />
-import { Node, Schema } from "prosemirror-model";
-import { Plugin, EditorState, Transaction } from "prosemirror-state";
-import { EditorView } from "prosemirror-view";
+import { Node, Schema } from 'prosemirror-model';
+import { Plugin, EditorState, Transaction } from 'prosemirror-state';
+import { EditorView } from 'prosemirror-view';
 interface ExtensionSchema {
     content?: string;
     group?: string;

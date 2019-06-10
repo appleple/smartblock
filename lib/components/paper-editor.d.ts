@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { Schema } from 'prosemirror-model';
-import { Node } from 'prosemirror-model';
+import { Schema, Node } from 'prosemirror-model';
 import { EditorState } from 'prosemirror-state';
 import { Extension } from '../types';
 declare type OutputJson = {

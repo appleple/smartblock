@@ -99,7 +99,7 @@ export const blockActive = type => state => {
   let i = 0
   const [firstNode] = findChildren(
     state.doc,
-    _node => {
+    () => {
       if (rowNumber === i) {
         return true
       }
@@ -146,7 +146,7 @@ export const getParentNodeFromState = (state: EditorState) => {
   let i = 0
   const [firstNode] = findChildren(
     state.doc,
-    _node => {
+    () => {
       if (rowNumber === i || rowNumber + 1 === i) {
         i++
         return true
