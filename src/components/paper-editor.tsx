@@ -56,6 +56,8 @@ type AppState = {
   containerId: string
 }
 
+const EDITMENUHEIGHT = 80;
+
 export default class App extends React.Component<AppProps, AppState> {
   container: HTMLElement
 
@@ -272,17 +274,17 @@ export default class App extends React.Component<AppProps, AppState> {
         const top = getScrollTop() + viewport.height
         const offsetTop = getOffset(selected).top
         const height = selected.offsetHeight
-        if (offsetTop + height + 80 >= top) {
+        if (offsetTop + EDITMENUHEIGHT >= top) {
           if (
             /iPod|iPhone|iPad/.test(navigator.platform) &&
             document.activeElement
           ) {
             const activeElement = document.activeElement as HTMLElement
             if (activeElement.isContentEditable) {
-              scrollTo(0, offsetTop)
+              scrollTo(0, offsetTop - EDITMENUHEIGHT)
             }
           } else {
-            scrollTo(0, offsetTop + height + 80)
+            scrollTo(0, offsetTop - EDITMENUHEIGHT)
           }
         }
       }
