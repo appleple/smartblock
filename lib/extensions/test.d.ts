@@ -39,6 +39,8 @@ export default class Test implements Extension {
             size: any;
             id: any;
             "data-media_id": any;
+        })[] | (string | number | {
+            "class": string;
         })[])[];
     };
     readonly icon: JSX.Element;
