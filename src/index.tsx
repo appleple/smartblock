@@ -4,6 +4,7 @@ import EditMenu from './components/edit-menu'
 import Editor from './components/editor'
 import InlineMenu from './components/inline-menu'
 import Menu from './components/menu'
+import { Plugin } from 'prosemirror-state';
 import {
   getViewport,
   isInput,
@@ -74,5 +75,7 @@ export {
   liftListItem,
   /* types */
   Dispatch,
-  Extension
+  Extension,
+  /* official */
+  Plugin
 }
