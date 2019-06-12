@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { EditorState, TextSelection } from 'prosemirror-state'
+import { EditorState } from 'prosemirror-state'
 import { EditorView } from 'prosemirror-view'
 import 'prosemirror-view/style/prosemirror.css'
 
