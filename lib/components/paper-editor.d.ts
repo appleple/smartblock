@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { EditorView } from 'prosemirror-view';
 import { Schema, Node } from 'prosemirror-model';
 import { EditorState } from 'prosemirror-state';
 import { Extension } from '../types';
@@ -19,9 +20,11 @@ declare type AppProps = {
 declare type AppState = {
     doc: Node;
     containerId: string;
+    showMenus: boolean;
 };
 export default class App extends React.Component<AppProps, AppState> {
     container: HTMLElement;
+    view?: EditorView;
     schema: Schema;
     static defaultProps: {
         extensions: (import("..").Paragraph | import("..").Heading2 | import("..").Heading3 | import("..").ListItem | import("..").BulletList | import("..").OrderedList | import("../extensions/blockquote").default | import("..").Underline | import("..").Strike | import("..").Strong | import("..").Link | import("../extensions/em").default | import("..").Trash | import("..").MoveUp | import("..").MoveDown)[];
@@ -42,6 +45,7 @@ export default class App extends React.Component<AppProps, AppState> {
     getNodeViews(): {};
     getMenu(extensions: Extension[]): Extension[];
     onChange: (state: EditorState<any>, dispatch: (tr: import("prosemirror-state").Transaction<any>) => void) => void;
+    clearSelection: (e: any) => void;
     render(): JSX.Element;
 }
 export {};

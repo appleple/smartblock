@@ -55,7 +55,8 @@ type AppProps = {
 
 type AppState = {
   doc: Node
-  containerId: string
+  containerId: string,
+  showMenus: boolean
 }
 
 const EDITMENUHEIGHT = 80;
@@ -91,7 +92,7 @@ export default class App extends React.Component<AppProps, AppState> {
         schema
       })
     }
-    this.state = { doc, containerId: uuid() }
+    this.state = { doc, containerId: uuid(), showMenus: true }
   }
 
   getBlockSchemas(extensions: Extension[]) {
@@ -313,18 +314,21 @@ export default class App extends React.Component<AppProps, AppState> {
   }
 
   clearSelection = (e) => {
-    if (this.view) {
-      const { containerId } = this.state;
-      const { state, dispatch } = this.view;
-      if (e.target.getAttribute('id') === containerId) {
-        dispatch(state.tr.setSelection(TextSelection.create(state.doc, 0)))
-      }
+    const { containerId } = this.state;
+    if (e.target.getAttribute('id') === containerId) {
+      this.setState({
+        showMenus: false
+      });
+    } else {
+      this.setState({
+        showMenus: true
+      });
     }
   }
 
   render() {
     const { extensions, showBackBtn } = this.props
-    const { doc, containerId } = this.state
+    const { doc, containerId, showMenus } = this.state
     const { schema } = this
     const editorOptions = { schema, plugins: this.getPlugins(), doc }
     const blocks = this.getBlocks(extensions)
@@ -335,6 +339,7 @@ export default class App extends React.Component<AppProps, AppState> {
     return (<div id={containerId} onClick={this.clearSelection}>
       <Container>
         <div
+          className={showMenus ? '' : 'ProseMirrorHideSelection'}
           ref={ref => {
             if (ref && !this.container) {
               this.container = ref
@@ -347,18 +352,18 @@ export default class App extends React.Component<AppProps, AppState> {
               options={editorOptions}
               nodeViews={nodeViews}
               onChange={this.onChange}
-              render={({ editor, view }: ProseRender) => {
-                this.view = view;
-                return (
-                  <>
+              render={({ editor, view }: ProseRender) => (
+                <>
+                  {showMenus && <>
                     <Menu view={view} menu={this.getMenu(blocks)} />
                     <EditMenu view={view} menu={this.getMenu(edits)} />
                     <InlineMenu menu={this.getMenu(marks)} view={view} />
                     <CustomLayout view={view} menu={this.getMenu(blocks)} />
                     {showBackBtn && <BackBtn view={view} />}
-                    {editor}
-                  </>)
-              }}
+                  </>}
+                  {editor}
+                </>)
+              }
             />
           </Input>
         </div>

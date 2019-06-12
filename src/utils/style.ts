@@ -62,6 +62,10 @@ export default createGlobalStyle`
     border-radius: 3px;
   }
 
+  .ProseMirrorHideSelection .selected {
+    background-color: transparent;
+  }
+
   .ProseMirror .ProseMirror-widget {
     color: #ADADAD;
   }
@@ -107,7 +111,7 @@ export default createGlobalStyle`
     display: flex;
     flex-direction: column;
   }
-  
+
   .ProseMirror .media.selected {
     position: relative;
     background-color: #F2F2F4;
