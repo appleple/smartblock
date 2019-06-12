@@ -17,7 +17,11 @@ export default class Trash implements Extension {
   }
 
   get icon() {
-    return <TrashIcon style={{ width: '24px', height: '24px' }} />
+    return <TrashIcon style={{ width: '18px', height: '18px' }} />
+  }
+
+  get btnColor(): 'black' {
+    return 'black';
   }
 
   onClick(state, dispatch) {

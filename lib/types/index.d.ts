@@ -38,5 +38,6 @@ export interface Extension {
     keys?(schema: Schema): {
         [key: string]: any;
     };
+    btnColor?: 'black' | 'white';
 }
 export {};

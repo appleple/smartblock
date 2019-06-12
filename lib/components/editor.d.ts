@@ -8,6 +8,7 @@ declare type EditorProps = {
     nodeViews?: any;
     autoFocus?: boolean;
     options: any;
+    containerId: string;
     render?({ editor: EditorState, view: EditorView }: {
         editor: any;
         view: any;

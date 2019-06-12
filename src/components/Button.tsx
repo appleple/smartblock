@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 const Button = styled.button<{
-  active?: boolean
+  active?: boolean,
+  color?: 'black' | 'white'
 }>`
   ${props => {
     if (props.disabled) {
@@ -21,6 +22,14 @@ const Button = styled.button<{
       return `
         color: #777;
         background: #fff;
+      `
+    }
+  }}
+  ${props => {
+    if (props.color === 'black') {
+      return `
+        background-color: #333333 !important;
+        color: #FFF;
       `
     }
   }}

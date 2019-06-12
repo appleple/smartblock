@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { EditorState } from 'prosemirror-state'
+import { EditorState, TextSelection } from 'prosemirror-state'
 import { EditorView } from 'prosemirror-view'
 import 'prosemirror-view/style/prosemirror.css'
 
@@ -17,7 +17,6 @@ type EditorProps = {
 
 export default class Editor extends React.Component<EditorProps> {
   view: EditorView
-
   editorRef: React.RefObject<HTMLDivElement>
 
   constructor(props) {
@@ -50,7 +49,6 @@ export default class Editor extends React.Component<EditorProps> {
 
   render() {
     const editor = <div ref={this.editorRef} />
-
     return this.props.render
       ? this.props.render({
           editor,

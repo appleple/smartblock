@@ -13,9 +13,15 @@ export default class Menu extends React.Component<PositionProps, PositionState> 
     calculateStyle(props: PositionProps): {
         left: number;
         top: number;
+        right?: undefined;
+    } | {
+        right: number;
+        top: number;
+        left?: undefined;
     } | {
         top: number;
         left?: undefined;
+        right?: undefined;
     };
     componentDidMount(): void;
     componentWillReceiveProps(nextProps: any): void;

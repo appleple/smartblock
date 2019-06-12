@@ -11,7 +11,6 @@ const Tooltip = styled.div`
   font-size: 16px;
   box-shadow: 0 3px 40px 8px rgba(116, 116, 116, 0.2);
   border-radius: 3px;
-  overflow: hidden;
   width: 320px;
   line-height: 35px;
   display: block;
@@ -46,6 +45,9 @@ const Input = styled.input`
   padding: 0 10px;
   font-size: 16px;
   flex: 1;
+  &:focus {
+    outline: none;
+  }
 `
 
 const Button = styled.button`

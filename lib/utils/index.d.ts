@@ -38,3 +38,4 @@ export declare const calculateStyle: (view: EditorView<any>, offset?: {
     left: number;
     top: number;
 };
+export declare const isDescendant: (parent: HTMLElement, child: HTMLElement) => boolean;

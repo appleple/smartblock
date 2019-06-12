@@ -83,6 +83,14 @@ export default class Menu extends React.Component<
     }
 
     const { $anchor } = selection
+
+    if ($anchor.pos === 0) {
+      return {
+        right: -1000,
+        top: 0
+      }
+    }
+    
     const resolvedPos = state.doc.resolve($anchor.pos) as any
     const rowNumber = resolvedPos.path[1]
     let i = 0

@@ -34,7 +34,7 @@ export default [
   new Strike(),
   new Link(),
   // utility
-  new MoveUp(),
   new MoveDown(),
+  new MoveUp(),
   new Trash()
 ]

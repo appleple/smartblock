@@ -5,5 +5,6 @@ export default class Trash implements Extension {
     readonly group: string;
     readonly showMenu: boolean;
     readonly icon: JSX.Element;
+    readonly btnColor: 'black';
     onClick(state: any, dispatch: any): void;
 }

@@ -38,4 +38,5 @@ export interface Extension {
   enable?(state: EditorState): boolean
   onClick?(state: EditorState, dispatch: Dispatch, view?: EditorView): void
   keys?(schema: Schema): { [key: string]: any }
+  btnColor?: 'black' | 'white'
 }

@@ -22,7 +22,7 @@ const PositionBtnGroup = styled.div`
   max-width: 280px;
   animation: ${fadeIn} 0.3s;
   border-radius: 5px;
-  padding: 5px 0;
+  padding: 5px;
   background-color: #f2f2f4;
 `
 
@@ -72,6 +72,12 @@ export default class Menu extends React.Component<
     const resolvedPos = state.doc.resolve($anchor.pos) as any
     const rowNumber = resolvedPos.path[1]
     let i = 0
+    if ($anchor.pos === 0) {
+      return {
+        right: -1000,
+        top: 0
+      }
+    }
     const [firstNode] = findChildren(
       state.doc,
       _node => {
@@ -129,9 +135,10 @@ export default class Menu extends React.Component<
         {menu.map((item, key) => {
           return (
             <ButtonStyle
-              style={{ backgroundColor: 'transparent' }}
+              style={{ backgroundColor: 'transparent', width: '32px' }}
               key={`edit-${key}`}
               type="button"
+              color={item.btnColor}
               active={item.active && item.active(state)}
               title={item.title}
               disabled={item.enable && !item.enable(state)}
