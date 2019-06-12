@@ -14,6 +14,7 @@ import Editor from './editor'
 import InlineMenu from './inline-menu'
 import EditMenu from './edit-menu'
 import Menu from './menu'
+import BackBtn from './back-btn';
 import CustomLayout from './custom-layout'
 import plugins from '../config/plugins'
 import keys from '../config/keys'
@@ -48,7 +49,8 @@ type AppProps = {
   json?: OutputJson
   html?: string
   extensions: Extension[]
-  offsetTop?: number
+  offsetTop?: number,
+  showBackBtn?: boolean
 }
 
 type AppState = {
@@ -65,7 +67,8 @@ export default class App extends React.Component<AppProps, AppState> {
 
   static defaultProps = {
     extensions,
-    offsetTop: 0
+    offsetTop: 0,
+    showBackBtn: false
   }
 
   constructor(props) {
@@ -309,7 +312,7 @@ export default class App extends React.Component<AppProps, AppState> {
   }
 
   render() {
-    const { extensions } = this.props
+    const { extensions, showBackBtn } = this.props
     const { doc, containerId } = this.state
     const { schema } = this
     const editorOptions = { schema, plugins: this.getPlugins(), doc }
@@ -340,6 +343,7 @@ export default class App extends React.Component<AppProps, AppState> {
                   <EditMenu view={view} menu={this.getMenu(edits)} />
                   <InlineMenu menu={this.getMenu(marks)} view={view} />
                   <CustomLayout view={view} menu={this.getMenu(blocks)} />
+                  {showBackBtn && <BackBtn view={view} />}
                   {editor}
                 </>
               )}

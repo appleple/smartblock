@@ -9,6 +9,7 @@ import extensions from './src/extensions/';
 render(<>
 <GlobalStyle />
 <PaperEditor 
+showBackBtn={true}
 extensions={extensions}
 html={`
 <p>Hello World</p>

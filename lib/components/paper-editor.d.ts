@@ -14,6 +14,7 @@ declare type AppProps = {
     html?: string;
     extensions: Extension[];
     offsetTop?: number;
+    showBackBtn?: boolean;
 };
 declare type AppState = {
     doc: Node;
@@ -25,6 +26,7 @@ export default class App extends React.Component<AppProps, AppState> {
     static defaultProps: {
         extensions: (import("..").Paragraph | import("..").Heading2 | import("..").Heading3 | import("..").ListItem | import("..").BulletList | import("..").OrderedList | import("../extensions/blockquote").default | import("..").Underline | import("..").Strike | import("..").Strong | import("..").Link | import("../extensions/em").default | import("..").Trash | import("..").MoveUp | import("..").MoveDown)[];
         offsetTop: number;
+        showBackBtn: boolean;
     };
     constructor(props: any);
     getBlockSchemas(extensions: Extension[]): {};
