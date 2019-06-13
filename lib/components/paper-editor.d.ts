@@ -1,7 +1,5 @@
-import * as React from 'react';
-import { EditorView } from 'prosemirror-view';
-import { Schema, Node } from 'prosemirror-model';
-import { EditorState } from 'prosemirror-state';
+/// <reference types="react" />
+import { Schema } from 'prosemirror-model';
 import { Extension } from '../types';
 declare type OutputJson = {
     [key: string]: any;
@@ -17,35 +15,5 @@ declare type AppProps = {
     offsetTop?: number;
     showBackBtn?: boolean;
 };
-declare type AppState = {
-    doc: Node;
-    containerId: string;
-    showMenus: boolean;
-};
-export default class App extends React.Component<AppProps, AppState> {
-    container: HTMLElement;
-    view?: EditorView;
-    schema: Schema;
-    static defaultProps: {
-        extensions: (import("..").Paragraph | import("..").Heading2 | import("..").Heading3 | import("..").ListItem | import("..").BulletList | import("..").OrderedList | import("../extensions/blockquote").default | import("..").Underline | import("..").Strike | import("..").Strong | import("..").Link | import("../extensions/em").default | import("..").Trash | import("..").MoveUp | import("..").MoveDown)[];
-        offsetTop: number;
-        showBackBtn: boolean;
-    };
-    constructor(props: any);
-    getBlockSchemas(extensions: Extension[]): {};
-    getBlocks(extensions: Extension[]): Extension[];
-    getMarkSchemas(extensions: Extension[]): {};
-    getMarks(extensions: Extension[]): Extension[];
-    getEdits(extensions: Extension[]): Extension[];
-    getSchemaBlockDependencies(extensions: Extension[]): {};
-    getSchemaFromExtensions(extensions: Extension[]): Schema<any, any>;
-    getHtmlFromNode(doc: Node, schema: Schema): string;
-    getKeys(extensions: Extension[]): import("prosemirror-state").Plugin<any, any>;
-    getPlugins(): any[];
-    getNodeViews(): {};
-    getMenu(extensions: Extension[]): Extension[];
-    onChange: (state: EditorState<any>, dispatch: (tr: import("prosemirror-state").Transaction<any>) => void) => void;
-    clearSelection: (e: any) => void;
-    render(): JSX.Element;
-}
-export {};
+declare const _default: (props: AppProps) => JSX.Element;
+export default _default;

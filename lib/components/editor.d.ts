@@ -11,13 +11,7 @@ declare type EditorProps = {
     render?({ editor: EditorState, view: EditorView }: {
         editor: any;
         view: any;
-    }): React.ReactNode;
+    }): React.ReactElement;
 };
-export default class Editor extends React.Component<EditorProps> {
-    view: EditorView;
-    editorRef: React.RefObject<HTMLDivElement>;
-    constructor(props: any);
-    componentDidMount(): void;
-    render(): {};
-}
-export {};
+declare const _default: (props: EditorProps) => JSX.Element;
+export default _default;
