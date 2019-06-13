@@ -12,9 +12,8 @@ const Tooltip = styled.div`
   box-shadow: 0 3px 40px 8px rgba(116, 116, 116, 0.2);
   border-radius: 3px;
   width: 320px;
-  line-height: 35px;
+  line-height: 46px;
   display: block;
-  height: 35px;
   &:before {
     position: absolute;
     left: 20px;
@@ -29,16 +28,9 @@ const Tooltip = styled.div`
 
 const TooltipInner = styled.div`
   display: flex;
-  height: 35px;
+  height: 46px;
   border-radius: 3px;
   overflow: hidden;
-`
-
-const Label = styled.label`
-  display: block;
-  transition: background-color 0.3s;
-  vertical-align: middle;
-  flex: 1;
 `
 
 const Input = styled.input`

@@ -36,13 +36,13 @@ const calculateStyle = (view: EditorView) => {
   if (window.innerWidth <= 767) {
     return {
       left: 5,
-      top: elementTop + element.offsetHeight + 10
+      top: elementTop + element.offsetHeight + 9
     }
   }
 
   return {
     left: coords.left,
-    top: elementTop + element.offsetHeight + 10
+    top: elementTop + element.offsetHeight + 9
   }
 }
 
