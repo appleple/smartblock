@@ -6,7 +6,7 @@ import AlignLeftIcon from '../components/icons/AlignLeft'
 import AlignCenterIcon from '../components/icons/AlignCenter'
 import AlignRightIcon from '../components/icons/AlignRight'
 import { Extension } from '../types'
-import { blockActive } from '../utils'
+import { blockActive, getParentNodeFromState } from '../utils'
 import Button from '../components/button'
 
 export default class Heading3 implements Extension {
@@ -67,10 +67,12 @@ export default class Heading3 implements Extension {
   }
 
   customMenu({ state, dispatch }) {
+    const node = getParentNodeFromState(state);
     return (
       <>
         <Button
           type="button"
+          active={node && node.attrs.align === 'left'}
           onClick={() => {
             setBlockType(state.schema.nodes.heading3, {
               align: 'left'
@@ -81,6 +83,7 @@ export default class Heading3 implements Extension {
         </Button>
         <Button
           type="button"
+          active={node && node.attrs.align === 'center'}
           onClick={() => {
             setBlockType(state.schema.nodes.heading3, {
               align: 'center'
@@ -91,6 +94,7 @@ export default class Heading3 implements Extension {
         </Button>
         <Button
           type="button"
+          active={node && node.attrs.align === 'right'}
           onClick={() => {
             setBlockType(state.schema.nodes.heading3, {
               align: 'right'

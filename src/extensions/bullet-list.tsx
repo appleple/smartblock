@@ -72,6 +72,7 @@ export default class BulletList implements Extension {
       <>
         <Button
           type="button"
+          disabled={!liftListItem(state.schema.nodes.list_item)(state)}
           onClick={() => {
             liftListItem(state.schema.nodes.list_item)(state, dispatch)
           }}
@@ -80,6 +81,7 @@ export default class BulletList implements Extension {
         </Button>
         <Button
           type="button"
+          disabled={!sinkListItem(state.schema.nodes.list_item)(state)}
           onClick={() => {
             sinkListItem(state.schema.nodes.list_item)(state, dispatch)
           }}

@@ -3,6 +3,7 @@ import { EditorState } from 'prosemirror-state'
 import { EditorView } from 'prosemirror-view'
 import { Node, Slice, Fragment, NodeRange } from 'prosemirror-model'
 import { liftTarget, ReplaceAroundStep } from 'prosemirror-transform'
+import { Dispatch } from '../types';
 
 export const getScrollTop = () => {
   return (
@@ -261,7 +262,7 @@ function liftOutOfList(state, dispatch, range) {
 }
 
 export const liftListItem = itemType => {
-  return function(state: EditorState, dispatch) {
+  return function(state: EditorState, dispatch?: Dispatch) {
     const { $from, $to } = state.selection
     const range = $from.blockRange(
       $to,

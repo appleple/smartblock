@@ -6,7 +6,7 @@ import AlignLeftIcon from '../components/icons/AlignLeft'
 import AlignCenterIcon from '../components/icons/AlignCenter'
 import AlignRightIcon from '../components/icons/AlignRight'
 import { Extension } from '../types'
-import { blockActive } from '../utils'
+import { blockActive, getParentNodeFromState } from '../utils'
 import Button from '../components/button'
 
 export default class Paragraph implements Extension {
@@ -66,10 +66,12 @@ export default class Paragraph implements Extension {
   }
 
   customMenu({ state, dispatch }) {
+    const node = getParentNodeFromState(state);
     return (
       <>
         <Button
           type="button"
+          active={node && node.attrs.align === 'left'}
           onClick={() => {
             setBlockType(state.schema.nodes.paragraph, {
               align: 'left'
@@ -80,6 +82,7 @@ export default class Paragraph implements Extension {
         </Button>
         <Button
           type="button"
+          active={node && node.attrs.align === 'center'}
           onClick={() => {
             setBlockType(state.schema.nodes.paragraph, {
               align: 'center'
@@ -90,6 +93,7 @@ export default class Paragraph implements Extension {
         </Button>
         <Button
           type="button"
+          active={node && node.attrs.align === 'right'}
           onClick={() => {
             setBlockType(state.schema.nodes.paragraph, {
               align: 'right'
