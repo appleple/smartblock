@@ -117,7 +117,7 @@ export default createGlobalStyle`
     background-color: #F2F2F4;
   }
 
-  .ProseMirror .media img[size="small"] {
+  .ProseMirror .media img.small {
     width: 320px;
     height: auto;
     display: block;
