@@ -50,10 +50,6 @@ interface PositionProps {
   menu: any
 }
 
-interface PositionState {
-  style: React.CSSProperties
-}
-
 const calculateStyle = (props: PositionProps): React.CSSProperties => {
   const { view } = props
   const { state } = view

@@ -1,7 +1,9 @@
 import * as React from 'react'
-import { EditorState } from 'prosemirror-state'
+import { EditorState, TextSelection } from 'prosemirror-state'
 import { EditorView } from 'prosemirror-view'
 import 'prosemirror-view/style/prosemirror.css'
+
+const { useMemo, useRef, useEffect, useState } = React;
 
 type EditorProps = {
   onChange(
@@ -15,45 +17,56 @@ type EditorProps = {
   render?({ editor: EditorState, view: EditorView }): React.ReactNode
 }
 
-export default class Editor extends React.Component<EditorProps> {
-  view: EditorView
-  editorRef: React.RefObject<HTMLDivElement>
+const useForceUpdate = () => {
+  const [, setTick] = useState(0);
+  const update = () => {
+    setTick(tick => tick + 1);
+  }
+  return update;
+}
 
-  constructor(props) {
-    super(props)
-    this.editorRef = React.createRef()
-    this.view = new EditorView(null, {
+const useView = (props: EditorProps) => {
+  const forceUpdate = useForceUpdate();
+  const instance = useMemo(() => {
+    const view = new EditorView(null, {
       state: EditorState.create(props.options),
       dispatchTransaction: transaction => {
-        const { state, transactions } = this.view.state.applyTransaction(
+        const { state, transactions } = view.state.applyTransaction(
           transaction
         )
-        this.view.updateState(state)
+        view.updateState(state)
         if (transactions.some(tr => tr.docChanged)) {
-          this.props.onChange(state, this.view.dispatch)
+          props.onChange(state, view.dispatch)
         }
-        this.forceUpdate()
+        forceUpdate();
       },
-      attributes: this.props.attributes,
-      nodeViews: this.props.nodeViews
-    })
-    this.props.onChange(this.view.state, this.view.dispatch)
-  }
-
-  componentDidMount() {
-    this.editorRef.current.appendChild(this.view.dom)
-    if (this.props.autoFocus) {
-      this.view.focus()
-    }
-  }
-
-  render() {
-    const editor = <div ref={this.editorRef} />
-    return this.props.render
-      ? this.props.render({
-          editor,
-          view: this.view
-        })
-      : editor
-  }
+      attributes: props.attributes,
+      nodeViews: props.nodeViews
+    });
+    props.onChange(view.state, view.dispatch);
+    return view;
+  }, []);
+  return instance;
 }
+
+export default (props: EditorProps) => {
+  const editorRef = useRef<HTMLDivElement>(null);
+  const view = useView(props);
+  
+  useEffect(() => {
+    editorRef.current.appendChild(view.dom);
+    if (props.autoFocus) {
+      view.focus()
+    }
+  }, []);
+
+  const editor = <div ref={editorRef} />
+  return props.render
+    ? props.render({
+        editor,
+        view: view
+      })
+    : editor
+}
+
+

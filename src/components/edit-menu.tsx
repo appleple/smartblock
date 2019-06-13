@@ -99,8 +99,6 @@ export default (props: PositionProps) => {
     top: 0
   });
 
-  console.log('test');
-
   const { menu, view } = props
   const { state, dispatch } = view
 
