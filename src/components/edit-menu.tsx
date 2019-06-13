@@ -17,14 +17,39 @@ const fadeIn = keyframes`
 `
 
 const PositionBtnGroup = styled.div`
+  display: flex;
   position: absolute;
   right: 0;
   z-index: 10;
   max-width: 280px;
   animation: ${fadeIn} 0.3s;
   border-radius: 5px;
-  padding: 5px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  padding: 4px;
   background-color: #f2f2f4;
+`
+
+const Button = styled(ButtonStyle)`
+  margin: 3px;
+  width: 36px;
+  height: 36px;
+  ${props => {
+    if (props.color === 'black') {
+      return `
+        background-color: #333333 !important;
+        color: #FFF;
+      `
+    } else {
+      return `
+        background-color: transparent;
+        color: #333;
+      `
+    }
+  }}
+  &:last-child {
+    margin-right: 2px;
+  }
 `
 
 interface PositionProps {
@@ -89,7 +114,7 @@ const calculateStyle = (props: PositionProps) => {
   }
   return {
     right: 20,
-    top: elementTop - offsetTop - 35
+    top: elementTop - offsetTop - 40
   }
 }
 
@@ -111,8 +136,7 @@ export default (props: PositionProps) => {
     <PositionBtnGroup style={style}>
       {menu.map((item, key) => {
         return (
-          <ButtonStyle
-            style={{ backgroundColor: 'transparent', width: '32px' }}
+          <Button
             key={`edit-${key}`}
             type="button"
             color={item.btnColor}
@@ -125,7 +149,7 @@ export default (props: PositionProps) => {
             }}
           >
             {item.icon}
-          </ButtonStyle>
+          </Button>
         )
       })}
     </PositionBtnGroup>
