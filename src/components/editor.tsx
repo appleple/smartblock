@@ -25,7 +25,7 @@ const useForceUpdate = () => {
   return update;
 }
 
-const useView = (props: EditorProps): React.ReactElement => {
+const useView = (props: EditorProps): EditorView => {
   const forceUpdate = useForceUpdate();
   const instance = useMemo(() => {
     const view = new EditorView(null, {
