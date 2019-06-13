@@ -30,6 +30,8 @@ const Tooltip = styled.div`
 const TooltipInner = styled.div`
   display: flex;
   height: 35px;
+  border-radius: 3px;
+  overflow: hidden;
 `
 
 const Label = styled.label`
@@ -123,8 +125,8 @@ export default class TooltipReact extends React.Component<
               })
             }}
           />
-          <Button onClick={this.enterUrl}>
-            <CheckIcon style={{ width: '24px', height: '24px' }} />
+          <Button onClick={this.enterUrl} style={{paddingLeft: '7px'}}>
+            <CheckIcon style={{ width: '24px', height: '24px', overflow: 'hidden' }} />
           </Button>
         </TooltipInner>
       </Tooltip>
