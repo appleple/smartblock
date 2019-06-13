@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { EditorState, TextSelection } from 'prosemirror-state'
+import { EditorState } from 'prosemirror-state'
 import { EditorView } from 'prosemirror-view'
 import 'prosemirror-view/style/prosemirror.css'
 
@@ -14,7 +14,7 @@ type EditorProps = {
   nodeViews?: any
   autoFocus?: boolean
   options: any
-  render?({ editor: EditorState, view: EditorView }): React.ReactNode
+  render?({ editor: EditorState, view: EditorView }): React.ReactElement
 }
 
 const useForceUpdate = () => {
@@ -25,7 +25,7 @@ const useForceUpdate = () => {
   return update;
 }
 
-const useView = (props: EditorProps) => {
+const useView = (props: EditorProps): React.ReactElement => {
   const forceUpdate = useForceUpdate();
   const instance = useMemo(() => {
     const view = new EditorView(null, {

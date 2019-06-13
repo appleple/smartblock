@@ -7,7 +7,7 @@ import { keymap } from 'prosemirror-keymap'
 
 import { chainCommands } from 'prosemirror-commands'
 import scrollTo from 'scroll-to'
-import { EditorState, TextSelection } from 'prosemirror-state'
+import { EditorState } from 'prosemirror-state'
 import uuid from 'uuid'
 
 import Editor from './editor'
