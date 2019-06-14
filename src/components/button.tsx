@@ -14,7 +14,7 @@ const Button = styled.button<{
   ${props => {
     if (props.active) {
       return `
-        color: #014CC5;
+        color: #005CEE;
         opacity: 1;
         background-color: #F2F2F4;
       `;
@@ -34,6 +34,8 @@ const Button = styled.button<{
     }
   }}
 
+  width: 36px;
+  height: 36px;
   border: none;
   border-radius: 3px;
   appearance: none;
@@ -48,6 +50,13 @@ const Button = styled.button<{
   }
   &:last-child {
     margin-right: 0;
+  }
+  &:not([disabled]):hover {
+    color: #333;
+  }
+  
+  &[disabled]:hover {
+    cursor: not-allowed;
   }
 `;
 

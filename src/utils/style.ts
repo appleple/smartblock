@@ -125,10 +125,11 @@ export default createGlobalStyle`
   }
 
   .ProseMirror ::selection {
-    background-color: #D1DDF0;
     color: #014CC5;
+    background: #D1DDF0;
     border-right: 1px solid #014CC5;
     border-left: 1px solid #014CC5;
+    caret-color: red;
   }
 
   .ProseMirror figure {
