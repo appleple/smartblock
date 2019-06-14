@@ -30,7 +30,7 @@ const FloaterStyle = styled.div`
     content: '';
     display: block;
     border-style: solid;
-    border-width: 0 11.5px 12px 11.5px;
+    border-width: 0 12px 12px 12px;
     border-color: transparent transparent #ffffff transparent;
   }
 `

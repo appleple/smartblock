@@ -32,16 +32,17 @@ const PositionBtnGroup = styled.div`
     content: '';
     display: block;
     border-style: solid;
-    border-width: 0 11.5px 12px 11.5px;
+    border-width: 0 12px 12px 12px;
     border-color: transparent transparent #ffffff transparent;
   }
 `
 
 const PositionBtnGroupTop = styled.div`
-  padding: 0 5px 5px 5px;
+  padding: 0 5px 0 5px;
 `
 const PositionBtnGroupBottom = styled.div`
   border-top: 1px solid #ccc;
+  margin: 5px 0 0 0;
   padding: 5px 5px 0 5px;
 `
 
