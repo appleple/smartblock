@@ -24,16 +24,64 @@ export default createGlobalStyle`
     background-color: silver;
     line-height: 2px;
   }
+  
+  .ProseMirror p {
+    margin: 30px 0;
+    padding: 8px 5px;
+    min-height: 38px;
+    line-height: 1.4;
+    border-radius: 3px;
+    transition: background-color .3s;
+    box-sizing: border-box;
+  }
+  
+  .ProseMirror h2,
+   .ProseMirror h3 {
+    margin: 30px 0;
+    padding: 4px 5px;
+    min-height: 38px;
+    line-height: 1.4;
+    border-radius: 3px;
+    transition: background-color .3s;
+    box-sizing: border-box;
+  }
+
+
 
   .ProseMirror ul, .ProseMirror ol {
-    padding-left: 30px;
+    margin: 30px 0;
+    padding: 5px 5px 5px 30px;
+    min-height: 38px;
+    line-height: 1.4;
+    box-sizing: border-box;
+  }
+  
+  .ProseMirror li > p {
+    margin: 0;
+    padding: 3px 0;
+    min-height: auto;
+  }
+  
+  .ProseMirror li ul, .ProseMirror li ol {
+    margin: 0;
   }
 
   .ProseMirror blockquote {
-    padding-left: 1em;
-    border-left: 3px solid #eee;
-    margin-left: 0;
-    margin-right: 0;
+    position: relative;
+    min-height: 38px;
+    margin: 30px 0;
+    padding: 10px 10px 10px 30px;
+    line-height: 1.5;
+    box-sizing: border-box;
+  }
+  
+  .ProseMirror blockquote:before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    bottom: 5px;
+    left: 10px;
+    border-left: 5px solid #D3D3D3;
   }
 
   .ProseMirror th,
@@ -47,15 +95,7 @@ export default createGlobalStyle`
     line-height: 0;
   }
 
-  .ProseMirror p {
-    padding: 5px;
-    transition: background-color .3s;
-    border-radius: 2px;
-  }
-
-  .ProseMirror li > p {
-    margin: 0;
-  }
+ 
 
   .ProseMirror .selected {
     background-color: #F2F2F4;
@@ -102,7 +142,7 @@ export default createGlobalStyle`
     text-align: center;
   }
   .ProseMirror .caption:empty::before {
-    content: "キャプションを入れてください"
+    content: "ここにキャプションを入力"
   }
 
   .ProseMirror .media {
@@ -136,7 +176,7 @@ export default createGlobalStyle`
     margin-bottom: 5px;
   }
   .ProseMirror .media .caption:empty::before {
-    content: "キャプションを入れてください。"
+    content: "ここにキャプションを入力"
     display: inline-block;
   }
 `
