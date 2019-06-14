@@ -10,6 +10,10 @@ export default createGlobalStyle`
   .ProseMirror:focus {
     outline: none;
   }
+  
+  .ProseMirror a {
+    color: #014CC5;
+  }
 
   .ProseMirror hr {
     padding: 2px 10px;
