@@ -37,13 +37,22 @@ const Button = styled(ButtonStyle)`
   ${props => {
     if (props.color === 'black') {
       return `
-        background-color: #333333 !important;
+        background-color: #444 !important;
         color: #FFF;
+        
+        &:hover {
+          background-color: #111111 !important;
+          color: #FFF!important;
+        }
       `
     } else {
       return `
         background-color: transparent;
-        color: #333;
+        color: #666;
+        
+        &:hover {
+          color: #111;
+        }
       `
     }
   }}
