@@ -1,3 +1,4 @@
+import { Extension } from '../types'
 import { history } from 'prosemirror-history'
 import { dropCursor } from 'prosemirror-dropcursor'
 import { gapCursor } from 'prosemirror-gapcursor'
@@ -48,10 +49,22 @@ const placeholderPlugin = (text: string) => {
   })
 }
 
-export default [
+const plugins =  [
   currentElementPlugin(),
   placeholderPlugin('本文を入力しましょう'),
   dropCursor(),
   gapCursor(),
   history()
 ]
+
+export default class DefaultPlugins implements Extension {
+  get name() {
+    return 'default-plugins';
+  }
+  get showMenu() {
+    return false;
+  }
+  get plugins() {
+    return plugins;
+  }
+}

@@ -15,8 +15,6 @@ import EditMenu from './edit-menu'
 import Menu from './menu'
 import BackBtn from './back-btn';
 import CustomLayout from './custom-layout'
-import plugins from '../config/plugins'
-import keys from '../config/keys'
 import { getScrollTop, getOffset, getViewport } from '../utils'
 import defaultExtensions from '../extensions'
 import { Extension } from '../types'
@@ -165,14 +163,7 @@ const getKeys = (extensions: Extension[], schema: Schema) => {
         extensionKeys[key].push(registeredKeys[key])
       })
     }
-  })
-
-  Object.keys(keys).forEach(key => {
-    if (!extensionKeys[key]) {
-      extensionKeys[key] = []
-    }
-    extensionKeys[key].push(keys[key])
-  })
+  });
 
   const keyMaps = {}
 
@@ -244,7 +235,7 @@ const getPlugins = (extensions: Extension[], schema: Schema) => {
     }
   })
   const keyPlugin = getKeys(extensions, schema)
-  return [...plugins, ...customPlugins, keyPlugin]
+  return [...customPlugins, keyPlugin]
 }
 
 const getNodeViews = (extensions: Extension[]) => {

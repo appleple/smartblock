@@ -4,8 +4,8 @@ import Heading3 from './heading3'
 import ListItem from './list-item'
 import BulletList from './bullet-list'
 import OrderedList from './ordered-list'
-import Table from './table'
-import BlockQuote from './blockquote';
+import Table from './table' //WIP
+import BlockQuote from './blockquote'
 
 import Underline from './underline'
 import Strike from './strike'
@@ -16,6 +16,9 @@ import Em from './em'
 import Trash from './trash'
 import MoveUp from './move-up'
 import MoveDown from './move-down'
+
+import DefaultKeys from './default-keys'
+import DefaultPlugins from './default-plugins'
 
 export default [
   // blocks
@@ -36,5 +39,8 @@ export default [
   // utility
   new MoveDown(),
   new MoveUp(),
-  new Trash()
+  new Trash(),
+  // default
+  new DefaultKeys(),
+  new DefaultPlugins()
 ]
