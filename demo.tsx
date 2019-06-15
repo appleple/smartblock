@@ -11,6 +11,7 @@ render(<>
 <PaperEditor 
 showBackBtn={true}
 extensions={extensions}
+autoSave
 html={`
 <p>Hello World</p>
 <h2>Test</h2>

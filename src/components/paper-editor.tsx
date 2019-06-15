@@ -49,7 +49,8 @@ type AppProps = {
   html?: string
   extensions: Extension[]
   offsetTop?: number,
-  showBackBtn?: boolean
+  showBackBtn?: boolean,
+  autoSave: boolean
 }
 
 const EDITMENUHEIGHT = 80;
@@ -217,6 +218,11 @@ const onChange = (
       schema
     })
   }
+  if (props.autoSave) {
+    const { pathname } = location;
+    const html = getHtmlFromNode(doc, schema)
+    localStorage.setItem(`paper-editor:${pathname}`, html);
+  }
   const { childCount } = doc.content
   const lastNode = doc.content.child(childCount - 1)
   if (lastNode.type.name !== 'paragraph') {
@@ -267,7 +273,8 @@ export default (props: AppProps) => {
   const defaultProps = {
     extensions: defaultExtensions,
     offsetTop: 0,
-    showBackBtn: false
+    showBackBtn: false,
+    autoSave: false
   }
 
   props = Object.assign({}, defaultProps, props);
@@ -278,6 +285,13 @@ export default (props: AppProps) => {
   if (json) {
     const node = Node.fromJSON(schema, json)
     realHtml = getHtmlFromNode(node, schema)
+  }
+  if (props.autoSave) {
+    const { pathname } = location;
+    const localHtml = localStorage.getItem(`paper-editor:${pathname}`);
+    if (localHtml) {
+      realHtml = localHtml;
+    }
   }
   const div = document.createElement('div')
   div.innerHTML = realHtml
@@ -337,5 +351,4 @@ export default (props: AppProps) => {
       </div>
     </Container>
   </div>)
-  
 }
