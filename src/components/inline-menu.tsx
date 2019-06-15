@@ -41,6 +41,8 @@ const Bar = styled.div`
   align-items: baseline;
 `
 
+const ARROWOFFSET = 50;
+
 const calculateStyle = (view: EditorView, offsetTop, width) => {
   const { selection } = view.state
   if (!selection || selection.empty) {
@@ -54,8 +56,7 @@ const calculateStyle = (view: EditorView, offsetTop, width) => {
   const flag = dom.node instanceof Element
   const element = flag ? (dom.node as HTMLElement) : dom.node.parentElement
   const elementTop = getOffset(element).top
-
-  const coords = view.coordsAtPos(selection.$anchor.pos)
+  const coords = view.coordsAtPos(selection.$head.pos);
 
   if (window.innerWidth <= 767) {
     return {
@@ -64,8 +65,9 @@ const calculateStyle = (view: EditorView, offsetTop, width) => {
     }
   }
 
+
   return {
-    left: coords.left - (window.innerWidth - width) / 2,
+    left: coords.left - ARROWOFFSET - (window.innerWidth - width) / 2,
     top: elementTop + element.offsetHeight - offsetTop + 10
   }
 }

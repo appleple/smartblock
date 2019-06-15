@@ -5,6 +5,8 @@ import { render, unmountComponentAtNode } from 'react-dom'
 import TooltipReact from './tooltip-react'
 import { getOffset } from '../../utils'
 
+const ARROWOFFSET = 50;
+
 const calculateStyle = (view: EditorView) => {
   const { selection } = view.state
   const app = view.dom
@@ -31,7 +33,7 @@ const calculateStyle = (view: EditorView) => {
   const flag = dom.node instanceof Element
   const element = flag ? (dom.node as HTMLElement) : dom.node.parentElement
   const elementTop = getOffset(element).top
-  const coords = view.coordsAtPos(selection.$anchor.pos)
+  const coords = view.coordsAtPos(selection.$head.pos);
 
   if (window.innerWidth <= 767) {
     return {
@@ -41,7 +43,7 @@ const calculateStyle = (view: EditorView) => {
   }
 
   return {
-    left: coords.left,
+    left: coords.left - ARROWOFFSET,
     top: elementTop + element.offsetHeight + 9
   }
 }
