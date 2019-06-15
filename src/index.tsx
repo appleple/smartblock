@@ -35,6 +35,8 @@ import Strong from './extensions/strong'
 import Table from './extensions/table'
 import Trash from './extensions/trash'
 import Underline from './extensions/underline'
+import DefaultKeys from './extensions/default-keys';
+import DefaultPlugins from './extensions/default-plugins';
 import Extensions from './extensions'
 
 export {
@@ -76,6 +78,9 @@ export {
   /* types */
   Dispatch,
   Extension,
+  /* defaults */
+  DefaultKeys,
+  DefaultPlugins,
   /* official */
   Plugin
 }

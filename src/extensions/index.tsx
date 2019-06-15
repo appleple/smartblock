@@ -42,5 +42,7 @@ export default [
   new Trash(),
   // default
   new DefaultKeys(),
-  new DefaultPlugins()
+  new DefaultPlugins({
+    placeholder: '本文を入力しましょう'
+  })
 ]

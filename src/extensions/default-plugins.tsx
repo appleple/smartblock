@@ -16,7 +16,6 @@ const currentElementPlugin = () => {
       decorations(state) {
         const { selection } = state
         const decorations = []
-
         state.doc.nodesBetween(
           selection.from,
           selection.to,
@@ -49,15 +48,15 @@ const placeholderPlugin = (text: string) => {
   })
 }
 
-const plugins =  [
-  currentElementPlugin(),
-  placeholderPlugin('本文を入力しましょう'),
-  dropCursor(),
-  gapCursor(),
-  history()
-]
+type Config = {
+  placeholder: string;
+}
 
 export default class DefaultPlugins implements Extension {
+  placeholder: string;
+  constructor(config: Config) {
+    this.placeholder = config.placeholder;
+  }
   get name() {
     return 'default-plugins';
   }
@@ -65,6 +64,12 @@ export default class DefaultPlugins implements Extension {
     return false;
   }
   get plugins() {
-    return plugins;
+    return [
+      currentElementPlugin(),
+      placeholderPlugin(this.placeholder),
+      dropCursor(),
+      gapCursor(),
+      history()
+    ];
   }
 }
