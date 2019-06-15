@@ -4,7 +4,7 @@ import uuid from 'uuid'
 import OrderedListIcon from '../components/icons/OrderedList'
 import IndentIcon from '../components/icons/Indent'
 import UndentIcon from '../components/icons/Undent'
-import { liftListItem, blockActive } from '../utils'
+import { liftListItem, blockActive, getParentNodeFromState } from '../utils'
 import { Extension } from '../types'
 
 import Button from '../components/button'
@@ -60,10 +60,18 @@ export default class OrderedList implements Extension {
   }
 
   enable(state) {
+    const node = getParentNodeFromState(state);
+    if (node.type.name !== 'paragraph') {
+      return false;
+    }
     return wrapInList(state.schema.nodes.ordered_list)(state)
   }
 
   onClick(state, dispatch) {
+    const node = getParentNodeFromState(state);
+    if (node.type.name !== 'paragraph') {
+      return false;
+    }
     wrapInList(state.schema.nodes.ordered_list)(state, dispatch)
   }
 
