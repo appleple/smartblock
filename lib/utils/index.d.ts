@@ -40,3 +40,4 @@ export declare const calculateStyle: (view: EditorView<any>, offset?: {
     top: number;
 };
 export declare const isDescendant: (parent: HTMLElement, child: HTMLElement) => boolean;
+export declare const stripPtag: (html: string) => string;
