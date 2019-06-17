@@ -107,7 +107,7 @@ const MenuBar = ({
               active={item.active && item.active(state)}
               title={item.title}
               disabled={item.enable && !item.enable(state)}
-              onMouseDown={e => {
+              onClick={e => {
                 e.preventDefault()
                 item.onClick(state, dispatch)
               }}
