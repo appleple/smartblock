@@ -13,5 +13,7 @@ import Em from './em';
 import Trash from './trash';
 import MoveUp from './move-up';
 import MoveDown from './move-down';
-declare const _default: (Paragraph | Heading2 | Heading3 | ListItem | BulletList | OrderedList | BlockQuote | Underline | Strike | Strong | Link | Em | Trash | MoveUp | MoveDown)[];
+import DefaultKeys from './default-keys';
+import DefaultPlugins from './default-plugins';
+declare const _default: (Paragraph | Heading2 | Heading3 | ListItem | BulletList | OrderedList | BlockQuote | Underline | Strike | Strong | Link | Em | Trash | MoveUp | MoveDown | DefaultKeys | DefaultPlugins)[];
 export default _default;

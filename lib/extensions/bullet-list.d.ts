@@ -25,7 +25,7 @@ export default class BulletList implements Extension {
     readonly icon: JSX.Element;
     active(state: any): boolean;
     enable(state: any): boolean;
-    onClick(state: any, dispatch: any): void;
+    onClick(state: any, dispatch: any): boolean;
     customMenu({ state, dispatch }: {
         state: any;
         dispatch: any;

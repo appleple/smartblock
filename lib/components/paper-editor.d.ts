@@ -14,6 +14,7 @@ declare type AppProps = {
     extensions: Extension[];
     offsetTop?: number;
     showBackBtn?: boolean;
+    autoSave: boolean;
 };
 declare const _default: (props: AppProps) => JSX.Element;
 export default _default;

@@ -22,5 +22,7 @@ import Strong from './extensions/strong';
 import Table from './extensions/table';
 import Trash from './extensions/trash';
 import Underline from './extensions/underline';
+import DefaultKeys from './extensions/default-keys';
+import DefaultPlugins from './extensions/default-plugins';
 import Extensions from './extensions';
-export { PaperEditor, Button, EditMenu, Editor, InlineMenu, Menu, GlobalStyle, Extensions, Link, BulletList, Heading2, Heading3, ListItem, MoveDown, MoveUp, OrderedList, Paragraph, Strike, Strong, Table, Trash, Underline, getViewport, isInput, markActive, blockActive, canInsert, findNodePosition, findSelectedNodeWithType, getParentNodePosFromState, createTable, liftListItem, Dispatch, Extension, Plugin };
+export { PaperEditor, Button, EditMenu, Editor, InlineMenu, Menu, GlobalStyle, Extensions, Link, BulletList, Heading2, Heading3, ListItem, MoveDown, MoveUp, OrderedList, Paragraph, Strike, Strong, Table, Trash, Underline, getViewport, isInput, markActive, blockActive, canInsert, findNodePosition, findSelectedNodeWithType, getParentNodePosFromState, createTable, liftListItem, Dispatch, Extension, DefaultKeys, DefaultPlugins, Plugin };
