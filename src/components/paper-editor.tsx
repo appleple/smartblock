@@ -15,7 +15,7 @@ import EditMenu from './edit-menu'
 import Menu from './menu'
 import BackBtn from './back-btn';
 import CustomLayout from './custom-layout'
-import { getScrollTop, getOffset, getViewport } from '../utils'
+import { getScrollTop, getOffset, getViewport, stripPtag } from '../utils'
 import defaultExtensions from '../extensions'
 import { Extension } from '../types'
 
@@ -149,7 +149,7 @@ const getHtmlFromNode = (doc: Node, schema: Schema) => {
   )
   const div = document.createElement('div')
   div.appendChild(fragment)
-  return div.innerHTML
+  return stripPtag(div.innerHTML)
 }
 
 const getKeys = (extensions: Extension[], schema: Schema) => {

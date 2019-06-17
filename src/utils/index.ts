@@ -373,3 +373,7 @@ export const isDescendant = (parent: HTMLElement, child: HTMLElement) => {
   }
   return false;
 }
+
+export const stripPtag = (html: string) => {
+  return html.replace(/<li (.*?)><p (.*?)>(.*?)<\/p><\/li>/g, '<li $1>$3</li>')
+}
