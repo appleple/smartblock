@@ -56,6 +56,7 @@ const calculateStyle = (view: EditorView, offsetTop, width) => {
   const flag = dom.node instanceof Element
   const element = flag ? (dom.node as HTMLElement) : dom.node.parentElement
   const elementTop = getOffset(element).top
+  const left = getOffset(view.dom).left
   const coords = view.coordsAtPos(selection.$head.pos);
 
   if (window.innerWidth <= 767) {
@@ -67,7 +68,7 @@ const calculateStyle = (view: EditorView, offsetTop, width) => {
 
 
   return {
-    left: coords.left - ARROWOFFSET - (window.innerWidth - width) / 2,
+    left: coords.left - ARROWOFFSET - left,
     top: elementTop + element.offsetHeight - offsetTop + 10
   }
 }
