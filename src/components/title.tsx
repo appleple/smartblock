@@ -60,7 +60,9 @@ export default (props: TitleProps) => {
   const config = {
     onChange(state) {
       if (props.onChange) {
-        props.onChange(getHtmlFromNode(state.doc, schema))
+        let title = getHtmlFromNode(state.doc, schema);
+        title = title.replace(/<h1>(.*)<\/h1>/, '$1');
+        props.onChange(title)
       }
     },
     options: {
