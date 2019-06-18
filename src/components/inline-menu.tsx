@@ -55,22 +55,19 @@ const calculateStyle = (view: EditorView) => {
   const left = getOffset(view.dom).left
   const coords = view.coordsAtPos(selection.$head.pos);
   const offsetTop = getOffset(view.dom).top;
+  const top = coords.top + getScrollTop() + ARROWTOPOFFSET - offsetTop;
 
   if (window.innerWidth <= 767) {
     return {
       left: 5,
-      top: coords.top + getScrollTop() + ARROWTOPOFFSET - offsetTop
+      top
     }
   }
 
   return {
     left: coords.left - ARROWOFFSET - left,
-    top: coords.top + getScrollTop() + ARROWTOPOFFSET - offsetTop
+    top
   }
-}
-
-const getContainerOffset = container => {
-  return getOffset(container).top
 }
 
 const MenuBar = ({
@@ -82,7 +79,6 @@ const MenuBar = ({
   children?: React.ReactChildren
   view: EditorView
 }) => {
-  const offsetTop = getContainerOffset(view.dom)
   const style = calculateStyle(view)
   const { state, dispatch } = view
 

@@ -3,14 +3,14 @@ import { EditorView } from 'prosemirror-view'
 import { EditorState, Plugin } from 'prosemirror-state'
 import { render, unmountComponentAtNode } from 'react-dom'
 import TooltipReact from './tooltip-react'
-import { getOffset } from '../../utils'
+import { getOffset, getScrollTop } from '../../utils'
 
 const ARROWOFFSET = 50;
+const ARROWTOPOFFSET = 30;
 
 const calculateStyle = (view: EditorView) => {
   const { selection } = view.state
   const app = view.dom
-  const dom = view.domAtPos(selection.$anchor.pos)
   const { $anchor } = view.state.selection
   const { nodeAfter } = $anchor
   let link = null
@@ -30,21 +30,19 @@ const calculateStyle = (view: EditorView) => {
     }
   }
 
-  const flag = dom.node instanceof Element
-  const element = flag ? (dom.node as HTMLElement) : dom.node.parentElement
-  const elementTop = getOffset(element).top
   const coords = view.coordsAtPos(selection.$head.pos);
+  const top = coords.top + getScrollTop() + ARROWTOPOFFSET;
 
   if (window.innerWidth <= 767) {
     return {
-      left: 5,
-      top: elementTop + element.offsetHeight + 9
+      left: coords.left - ARROWOFFSET,
+      top
     }
   }
 
   return {
     left: coords.left - ARROWOFFSET,
-    top: elementTop + element.offsetHeight + 9
+    top
   }
 }
 
