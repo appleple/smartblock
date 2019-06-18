@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled, { keyframes } from 'styled-components'
 import { EditorView } from 'prosemirror-view'
-import { getOffset } from '../utils'
+import { getOffset, getScrollTop } from '../utils'
 import ButtonStyle from './button'
 
 const fadeIn = keyframes`
@@ -41,6 +41,7 @@ const Bar = styled.div`
 `
 
 const ARROWOFFSET = 50;
+const ARROWTOPOFFSET = 25;
 
 const calculateStyle = (view: EditorView) => {
   const { selection } = view.state
@@ -51,34 +52,25 @@ const calculateStyle = (view: EditorView) => {
     }
   }
 
-  const offsetTop = getContainerOffset(view.dom)
-  const dom = view.domAtPos(selection.$anchor.pos)
-  const flag = dom.node instanceof Element
-  const element = flag ? (dom.node as HTMLElement) : dom.node.parentElement
-  const elementTop = getOffset(element).top
   const left = getOffset(view.dom).left
   const coords = view.coordsAtPos(selection.$head.pos);
+  const offsetTop = getOffset(view.dom).top;
 
   if (window.innerWidth <= 767) {
     return {
       left: 5,
-      top: elementTop + element.offsetHeight - offsetTop + 10
+      top: coords.top + getScrollTop() + ARROWTOPOFFSET - offsetTop
     }
   }
 
-
   return {
     left: coords.left - ARROWOFFSET - left,
-    top: elementTop + element.offsetHeight - offsetTop + 10
+    top: coords.top + getScrollTop() + ARROWTOPOFFSET - offsetTop
   }
 }
 
 const getContainerOffset = container => {
   return getOffset(container).top
-}
-
-const getContainerWidth = container => {
-  return container.offsetWidth
 }
 
 const MenuBar = ({
