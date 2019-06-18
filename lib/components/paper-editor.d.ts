@@ -5,16 +5,20 @@ declare type OutputJson = {
     [key: string]: any;
 };
 declare type AppProps = {
-    onChange(json: OutputJson): void;
+    onChange?(json: OutputJson): void;
+    onTitleChange?(title: string): void;
     onInit?(json: {
         schema: Schema;
     }): void;
     json?: OutputJson;
     html?: string;
-    extensions: Extension[];
+    extensions?: Extension[];
     offsetTop?: number;
     showBackBtn?: boolean;
-    autoSave: boolean;
+    autoSave?: boolean;
+    showTitle?: boolean;
+    titleText?: string;
+    titlePlaceholder?: string;
 };
 declare const _default: (props: AppProps) => JSX.Element;
 export default _default;

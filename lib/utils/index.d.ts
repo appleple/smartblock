@@ -1,6 +1,6 @@
 import { EditorState } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
-import { Node } from 'prosemirror-model';
+import { Node, Schema } from 'prosemirror-model';
 import { Dispatch } from '../types';
 export declare const getScrollTop: () => number;
 export declare const getScrollLeft: () => number;
@@ -41,3 +41,4 @@ export declare const calculateStyle: (view: EditorView<any>, offset?: {
 };
 export declare const isDescendant: (parent: HTMLElement, child: HTMLElement) => boolean;
 export declare const stripPtag: (html: string) => string;
+export declare const getHtmlFromNode: (doc: Node<any>, schema: Schema<any, any>) => string;

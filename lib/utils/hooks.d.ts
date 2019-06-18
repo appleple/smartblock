@@ -12,5 +12,6 @@ declare type EditorProps = {
         view: any;
     }): React.ReactElement;
 };
-declare const _default: (props: EditorProps) => JSX.Element;
-export default _default;
+export declare const useForceUpdate: () => () => void;
+export declare const useView: (props: EditorProps) => EditorView<any>;
+export {};

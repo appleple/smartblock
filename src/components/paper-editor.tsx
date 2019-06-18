@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import styled from 'styled-components'
-import { EditorView } from 'prosemirror-view'
+import { EditorView, EditorProps } from 'prosemirror-view'
 import { Schema, Node, DOMParser, DOMSerializer } from 'prosemirror-model'
 import { keymap } from 'prosemirror-keymap'
 import { chainCommands } from 'prosemirror-commands'
@@ -48,6 +48,7 @@ type OutputJson = {
 
 type AppProps = {
   onChange?(json: OutputJson): void
+  onTitleChange?(title: string): void
   onInit?(json: { schema: Schema }): void
   json?: OutputJson
   html?: string
@@ -267,8 +268,12 @@ const getNodeViews = (extensions: Extension[]) => {
   return views
 }
 
-const titleChanged = (title: string) => {
-
+const titleChanged = (title: string, props: AppProps) => {
+  const { pathname } = location;
+  localStorage.setItem(`paper-editor-title:${pathname}`, title);
+  if (props.onTitleChange) {
+    props.onTitleChange(title);
+  }
 }
 
 export default (props: AppProps) => {
@@ -282,7 +287,8 @@ export default (props: AppProps) => {
   }
 
   props = Object.assign({}, defaultProps, props);
-  const { html, json, extensions, showBackBtn, titleText } = props
+  const { html, json, extensions, showBackBtn, showTitle } = props
+  let { titleText } = props
   const schema = getSchemaFromExtensions(props.extensions)
   let realHtml = html
 
@@ -296,9 +302,13 @@ export default (props: AppProps) => {
     if (localHtml) {
       realHtml = localHtml;
     }
+    if (showTitle) {
+      titleText = localStorage.getItem(`paper-editor-title:${pathname}`);
+    }
   }
   const div = document.createElement('div')
   div.innerHTML = realHtml
+
   const doc = DOMParser.fromSchema(schema).parse(div)
   if (props.onInit) {
     props.onInit({
@@ -329,7 +339,9 @@ export default (props: AppProps) => {
     <Container>
       {props.showTitle && 
         <Title 
-          onChange={titleChanged} 
+          onChange={(title) => {
+            titleChanged(title, props);
+          }} 
           defaultValue={titleText}
           placeholder={props.titlePlaceholder}
         />
@@ -344,7 +356,7 @@ export default (props: AppProps) => {
             options={editorOptions}
             nodeViews={nodeViews}
             onChange={(state, dispatch) => {
-              onChange(state,dispatch, props, schema, container);
+              onChange(state, dispatch, props, schema, container);
             }}
             render={({ editor, view }: ProseRender) => (
               <>
