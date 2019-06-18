@@ -1,5 +1,4 @@
 import * as React from 'react'
-import map from 'lodash/map'
 import styled, { keyframes } from 'styled-components'
 import { EditorView } from 'prosemirror-view'
 import { getOffset } from '../utils'
@@ -43,7 +42,7 @@ const Bar = styled.div`
 
 const ARROWOFFSET = 50;
 
-const calculateStyle = (view: EditorView, offsetTop, width) => {
+const calculateStyle = (view: EditorView) => {
   const { selection } = view.state
   if (!selection || selection.empty) {
     return {
@@ -52,6 +51,7 @@ const calculateStyle = (view: EditorView, offsetTop, width) => {
     }
   }
 
+  const offsetTop = getContainerOffset(view.dom)
   const dom = view.domAtPos(selection.$anchor.pos)
   const flag = dom.node instanceof Element
   const element = flag ? (dom.node as HTMLElement) : dom.node.parentElement
@@ -91,8 +91,7 @@ const MenuBar = ({
   view: EditorView
 }) => {
   const offsetTop = getContainerOffset(view.dom)
-  const width = getContainerWidth(view.dom)
-  const style = calculateStyle(view, offsetTop, width)
+  const style = calculateStyle(view)
   const { state, dispatch } = view
 
   return (
