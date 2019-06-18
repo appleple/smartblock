@@ -1,7 +1,7 @@
 import { findChildren } from 'prosemirror-utils'
 import { EditorState } from 'prosemirror-state'
 import { EditorView } from 'prosemirror-view'
-import { Node, Slice, Fragment, NodeRange } from 'prosemirror-model'
+import { Node, Slice, Fragment, NodeRange, DOMSerializer, Schema } from 'prosemirror-model'
 import { liftTarget, ReplaceAroundStep } from 'prosemirror-transform'
 import { Dispatch } from '../types';
 
@@ -376,4 +376,13 @@ export const isDescendant = (parent: HTMLElement, child: HTMLElement) => {
 
 export const stripPtag = (html: string) => {
   return html.replace(/<li (.*?)><p (.*?)>(.*?)<\/p><\/li>/g, '<li $1>$3</li>')
+}
+
+export const getHtmlFromNode = (doc: Node, schema: Schema) => {
+  const fragment = DOMSerializer.fromSchema(schema).serializeFragment(
+    doc.content
+  )
+  const div = document.createElement('div')
+  div.appendChild(fragment)
+  return stripPtag(div.innerHTML)
 }

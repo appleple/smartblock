@@ -15,7 +15,8 @@ import EditMenu from './edit-menu'
 import Menu from './menu'
 import BackBtn from './back-btn';
 import CustomLayout from './custom-layout'
-import { getScrollTop, getOffset, getViewport, stripPtag } from '../utils'
+import Title from './title';
+import { getScrollTop, getOffset, getViewport, getHtmlFromNode } from '../utils'
 import defaultExtensions from '../extensions'
 import { Extension } from '../types'
 
@@ -29,8 +30,11 @@ const Input = styled('div')`
 const Container = styled.div`
   max-width: 780px;
   margin: 0 auto;
-  position: relative;
   padding: 10px 0 80px 0;
+`
+
+const Inner = styled.div`
+  position: relative;
 `
 
 interface ProseRender {
@@ -43,14 +47,17 @@ type OutputJson = {
 }
 
 type AppProps = {
-  onChange(json: OutputJson): void
+  onChange?(json: OutputJson): void
   onInit?(json: { schema: Schema }): void
   json?: OutputJson
   html?: string
-  extensions: Extension[]
+  extensions?: Extension[]
   offsetTop?: number,
   showBackBtn?: boolean,
-  autoSave: boolean
+  autoSave?: boolean,
+  showTitle?: boolean,
+  titleText?: string,
+  titlePlaceholder?: string
 }
 
 const EDITMENUHEIGHT = 80;
@@ -141,15 +148,6 @@ const getSchemaFromExtensions = (extensions: Extension[]) => {
   nodes = { ...nodes, ...base, ...nodeDependencies }
   const marks = getMarkSchemas(extensions)
   return new Schema({ nodes, marks } as { nodes: any; marks: any })
-}
-
-const getHtmlFromNode = (doc: Node, schema: Schema) => {
-  const fragment = DOMSerializer.fromSchema(schema).serializeFragment(
-    doc.content
-  )
-  const div = document.createElement('div')
-  div.appendChild(fragment)
-  return stripPtag(div.innerHTML)
 }
 
 const getKeys = (extensions: Extension[], schema: Schema) => {
@@ -269,16 +267,22 @@ const getNodeViews = (extensions: Extension[]) => {
   return views
 }
 
+const titleChanged = (title: string) => {
+
+}
+
 export default (props: AppProps) => {
   const defaultProps = {
     extensions: defaultExtensions,
     offsetTop: 0,
     showBackBtn: false,
-    autoSave: false
+    autoSave: false,
+    showTitle: false,
+    titleText: ''
   }
 
   props = Object.assign({}, defaultProps, props);
-  const { html, json, extensions, showBackBtn } = props
+  const { html, json, extensions, showBackBtn, titleText } = props
   const schema = getSchemaFromExtensions(props.extensions)
   let realHtml = html
 
@@ -323,6 +327,14 @@ export default (props: AppProps) => {
     }
   }}>
     <Container>
+      {props.showTitle && 
+        <Title 
+          onChange={titleChanged} 
+          defaultValue={titleText}
+          placeholder={props.titlePlaceholder}
+        />
+      }
+      <Inner>
       <div
         className={showMenus ? '' : 'ProseMirrorHideSelection'}
         ref={container}
@@ -349,6 +361,7 @@ export default (props: AppProps) => {
           />
         </Input>
       </div>
+      </Inner>
     </Container>
   </div>)
 }

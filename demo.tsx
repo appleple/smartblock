@@ -7,12 +7,14 @@ import extensions from './src/extensions/';
 // extensions.push(new Test());
 
 render(<>
-<GlobalStyle />
-<PaperEditor 
-showBackBtn={true}
-extensions={extensions}
-autoSave
-html={`
+  <GlobalStyle />
+  <PaperEditor
+    showBackBtn
+    showTitle
+    titlePlaceholder="タイトルを入力してください"
+    extensions={extensions}
+    autoSave
+    html={`
 <p>Hello World</p>
 <h2>Test</h2>
 <ul>
@@ -27,17 +29,17 @@ html={`
 </table>
 <img src="https://appleple.github.io/SmartPhoto/assets/images/large-kuma.jpg" />
 `}
-// json={{
-//   type: 'doc',
-//   content: [
-//   {
-//     type: 'paragraph',
-//     content: [{
-//       type: 'text',
-//       text: 'Example Paragraph'
-//     }]
-//   }
-// ]}}
-onChange={({json, html}) => {
-}}/></>, 
-document.querySelector('#app'));
+    // json={{
+    //   type: 'doc',
+    //   content: [
+    //   {
+    //     type: 'paragraph',
+    //     content: [{
+    //       type: 'text',
+    //       text: 'Example Paragraph'
+    //     }]
+    //   }
+    // ]}}
+    onChange={({ json, html }) => {
+    }} /></>,
+  document.querySelector('#app'));
