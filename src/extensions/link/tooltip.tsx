@@ -132,8 +132,6 @@ const TooltipComponent = (props: {view: EditorView}) => {
   }
   const arrowPos = calculatePos(view, container);
 
-  console.log(arrowPos);
-
   return (<TooltipWrap 
     ref={container}
     style={style}
