@@ -75,6 +75,7 @@
     "@types/styled-components": "^4.1.15",
     "imagesloaded": "^4.1.4",
     "immutable": "^4.0.0-rc.12",
+    "is-mobile": "^2.0.1",
     "lodash": "^4.17.11",
     "prosemirror": "^0.11.1",
     "prosemirror-commands": "^1.0.7",

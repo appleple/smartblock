@@ -2,6 +2,7 @@ import * as React from 'react'
 import { findChildren } from 'prosemirror-utils'
 import { Extension } from '../types'
 import TrashIcon from '../components/icons/Trash'
+import isMobile from 'is-mobile';
 
 export default class Trash implements Extension {
   get name() {
@@ -47,6 +48,12 @@ export default class Trash implements Extension {
       firstIndex,
       firstIndex + firstNode.node.content.size + 2
     )
-    dispatch(removeTransaction)
+    if (isMobile()) {
+      if (confirm('このブロックを削除してもいいですか？')) {
+        dispatch(removeTransaction)
+      }
+    } else {
+      dispatch(removeTransaction)
+    }
   }
 }
