@@ -3,10 +3,6 @@ import styled from 'styled-components'
 import CheckIcon from '../../components/icons/Check'
 
 const Tooltip = styled.div`
-  position: absolute;
-  display: inline-block;
-  z-index: 1000;
-  background-color: #fff;
   color: #777;
   font-size: 16px;
   box-shadow: 0 3px 40px 8px rgba(116, 116, 116, 0.2);
@@ -14,16 +10,6 @@ const Tooltip = styled.div`
   width: 320px;
   line-height: 46px;
   display: block;
-  &:before {
-    position: absolute;
-    left: 20px;
-    top: -12px;
-    content: '';
-    display: block;
-    border-style: solid;
-    border-width: 0 12px 12px 12px;
-    border-color: transparent transparent #ffffff transparent;
-  }
 `
 
 const TooltipInner = styled.div`
@@ -54,7 +40,6 @@ const Button = styled.button`
 `
 
 type TooltipReactProps = {
-  style: React.CSSProperties
   url: string
   onClick(url: string): void
   editing: boolean
@@ -92,7 +77,7 @@ export default class TooltipReact extends React.Component<
   }
 
   render() {
-    const { style, editing } = this.props
+    const { editing } = this.props
     const { newUrl } = this.state
 
     if (!editing) {
@@ -100,7 +85,7 @@ export default class TooltipReact extends React.Component<
     }
 
     return (
-      <Tooltip style={style}>
+      <Tooltip>
         <TooltipInner>
           <Input
             type="text"

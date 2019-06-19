@@ -4,6 +4,8 @@ import { EditorView } from 'prosemirror-view'
 import { getOffset, getScrollTop } from '../utils'
 import ButtonStyle from './button'
 
+const { useState, useRef } = React;
+
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -24,7 +26,9 @@ const FloaterStyle = styled.div`
   box-shadow: 0 3px 40px 8px rgba(116, 116, 116, 0.2);
   &:before {
     position: absolute;
-    left: 20px;
+    ${props => `
+    left: ${props.pos}px;
+    `}
     top: -12px;
     content: '';
     display: block;
@@ -43,7 +47,7 @@ const Bar = styled.div`
 const ARROWOFFSET = 50;
 const ARROWTOPOFFSET = 25;
 
-const calculateStyle = (view: EditorView) => {
+const calculateStyle = (view: EditorView, container: React.RefObject<HTMLDivElement>) => {
   const { selection } = view.state
   if (!selection || selection.empty) {
     return {
@@ -52,22 +56,41 @@ const calculateStyle = (view: EditorView) => {
     }
   }
 
-  const left = getOffset(view.dom).left
+  const offsetLeft = getOffset(view.dom).left
   const coords = view.coordsAtPos(selection.$head.pos);
   const offsetTop = getOffset(view.dom).top;
   const top = coords.top + getScrollTop() + ARROWTOPOFFSET - offsetTop;
-
-  if (window.innerWidth <= 767) {
-    return {
-      left: 5,
-      top
+  let left = coords.left - ARROWOFFSET - offsetLeft;
+  if (container && container.current && container.current.offsetWidth) {
+    const width = container.current.offsetWidth;
+    if (left + width > window.innerWidth) {
+      return {
+        top,
+        left: window.innerWidth - width
+      }
     }
   }
-
   return {
-    left: coords.left - ARROWOFFSET - left,
+    left,
     top
   }
+}
+
+const calculateArrowPos = (view: EditorView, container: React.RefObject<HTMLDivElement>) => {
+  const { selection } = view.state
+  if (!selection || selection.empty) {
+    return 20;
+  }
+  const offsetLeft = getOffset(view.dom).left
+  const coords = view.coordsAtPos(selection.$head.pos);
+  let left = coords.left - ARROWOFFSET - offsetLeft;
+  const width = container.current.offsetWidth;
+  if (container && container.current && container.current.offsetWidth) {
+    if (left + width > window.innerWidth) {
+      return left - window.innerWidth + width;
+    }
+  }
+  return 20;
 }
 
 const MenuBar = ({
@@ -79,11 +102,14 @@ const MenuBar = ({
   children?: React.ReactChildren
   view: EditorView
 }) => {
-  const style = calculateStyle(view)
+
+  const container = useRef<HTMLDivElement>(null);
+  const style = calculateStyle(view, container)
+  const pos = calculateArrowPos(view, container);
   const { state, dispatch } = view
 
   return (
-    <FloaterStyle style={style}>
+    <FloaterStyle style={style} ref={container} pos={pos}>
       <Bar>
         {children}
         {menu.map((item, key) => {
