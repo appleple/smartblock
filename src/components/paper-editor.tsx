@@ -212,7 +212,7 @@ const onChange = (
   if (props.onChange) {
     const html = getHtmlFromNode(doc, schema)
     props.onChange({
-      json: doc.content,
+      json: doc.toJSON(),
       html,
       schema
     })
