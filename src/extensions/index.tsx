@@ -11,7 +11,7 @@ import Underline from './underline'
 import Strike from './strike'
 import Strong from './strong'
 import Link from './link'
-import Bold from './bold'
+import Emphasis from './emphasis'
 
 import Trash from './trash'
 import MoveUp from './move-up'
@@ -32,7 +32,7 @@ export default [
   new BlockQuote(),
   // marks
   new Strong(),
-  new Bold(),
+  new Emphasis(),
   new Underline(),
   new Strike(),
   new Link(),

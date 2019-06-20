@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import { Extension, ExtensionSchema } from '../types';
-export default class Bold extends Extension {
+export default class Emphasis extends Extension {
     constructor(schema?: ExtensionSchema);
     readonly name: string;
     readonly group: string;

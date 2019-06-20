@@ -35,7 +35,7 @@ import Strike from './extensions/strike'
 import Strong from './extensions/strong'
 import Table from './extensions/table'
 import Trash from './extensions/trash'
-import Bold from './extensions/bold'
+import Emphasis from './extensions/emphasis'
 import Underline from './extensions/underline'
 import DefaultKeys from './extensions/default-keys';
 import DefaultPlugins from './extensions/default-plugins';
@@ -67,7 +67,7 @@ export {
   Blockquote,
   Table,
   /* inline */
-  Bold,
+  Emphasis,
   Strike,
   Strong,
   Underline,
