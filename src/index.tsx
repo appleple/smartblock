@@ -26,6 +26,7 @@ import BulletList from './extensions/bullet-list'
 import Heading2 from './extensions/heading2'
 import Heading3 from './extensions/heading3'
 import ListItem from './extensions/list-item'
+import Blockquote from './extensions/blockquote';
 import MoveDown from './extensions/move-down'
 import MoveUp from './extensions/move-up'
 import OrderedList from './extensions/ordered-list'
@@ -48,7 +49,10 @@ export {
   InlineMenu,
   Menu,
   GlobalStyle,
-  /* extensions */
+  /* 
+    extensions 
+  */
+  /* blocks */
   Extensions,
   Link,
   BulletList,
@@ -59,6 +63,8 @@ export {
   MoveUp,
   OrderedList,
   Paragraph,
+  Blockquote,
+  /* inline */
   Strike,
   Strong,
   Table,
