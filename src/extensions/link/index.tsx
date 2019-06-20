@@ -1,11 +1,15 @@
 import * as React from 'react'
 import { toggleMark } from 'prosemirror-commands'
 import LinkIcon from '../../components/icons/Link'
-import { Extension } from '../../types'
+import { Extension, ExtensionSchema } from '../../types'
 import { markActive, getMarkInSelection } from '../../utils'
 import tooltip from './tooltip'
 
-export default class Link implements Extension {
+export default class Link extends Extension {
+  constructor(schema?: ExtensionSchema) {
+    super();
+    this.customSchema = schema;
+  }
   get name() {
     return 'link'
   }
@@ -19,6 +23,9 @@ export default class Link implements Extension {
   }
 
   get schema() {
+    if (this.customSchema) {
+      return this.customSchema;
+    }
     return {
       group: 'mark',
       attrs: {

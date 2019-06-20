@@ -1,10 +1,11 @@
 /// <reference types="react" />
-import { Extension } from '../types';
-export default class BlockQuote implements Extension {
+import { Extension, ExtensionSchema } from '../types';
+export default class BlockQuote extends Extension {
+    constructor(schema?: ExtensionSchema);
     readonly name: string;
     readonly group: string;
     readonly showMenu: boolean;
-    readonly schema: {
+    readonly schema: ExtensionSchema | {
         content: string;
         group: string;
         parseDOM: {

@@ -1,10 +1,14 @@
 import * as React from 'react'
 import { toggleMark } from 'prosemirror-commands'
 import StrikeIcon from '../components/icons/Strike'
-import { Extension } from '../types'
+import { Extension, ExtensionSchema } from '../types'
 import { markActive } from '../utils'
 
-export default class StrikeThrough implements Extension {
+export default class StrikeThrough extends Extension {
+  constructor(schema?: ExtensionSchema) {
+    super();
+    this.customSchema = schema;
+  }
   get name() {
     return 'strike'
   }
@@ -18,6 +22,9 @@ export default class StrikeThrough implements Extension {
   }
 
   get schema() {
+    if (this.customSchema) {
+      return this.customSchema;
+    }
     return {
       group: 'mark',
       parseDOM: [

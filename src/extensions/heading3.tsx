@@ -5,11 +5,15 @@ import HeadingIcon from '../components/icons/Heading2'
 import AlignLeftIcon from '../components/icons/AlignLeft'
 import AlignCenterIcon from '../components/icons/AlignCenter'
 import AlignRightIcon from '../components/icons/AlignRight'
-import { Extension } from '../types'
+import { Extension, ExtensionSchema } from '../types'
 import { blockActive, getParentNodeFromState } from '../utils'
 import Button from '../components/button'
 
-export default class Heading3 implements Extension {
+export default class Heading3 extends Extension {
+  constructor(schema?: ExtensionSchema) {
+    super();
+    this.customSchema = schema;
+  }
   get name() {
     return 'heading3'
   }
@@ -23,6 +27,9 @@ export default class Heading3 implements Extension {
   }
 
   get schema() {
+    if (this.customSchema) {
+      return this.customSchema;
+    }
     return {
       content: 'inline*',
       group: 'block',

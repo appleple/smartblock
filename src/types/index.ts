@@ -3,7 +3,7 @@ import { Plugin, EditorState, Transaction } from 'prosemirror-state'
 import { Transform } from 'prosemirror-transform'
 import { EditorView } from 'prosemirror-view'
 
-interface ExtensionSchema {
+export interface ExtensionSchema {
   content?: string
   group?: string
   parseDOM?: ({
@@ -21,9 +21,10 @@ type CustomLayoutProps = {
   state: EditorState
 }
 
-export interface Extension {
+export abstract class Extension {
   name: string
   schema?: ExtensionSchema
+  customSchema?: ExtensionSchema
   schemaDependencies?: {
     [key: string]: ExtensionSchema
   }

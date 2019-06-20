@@ -5,11 +5,16 @@ import OrderedListIcon from '../components/icons/OrderedList'
 import IndentIcon from '../components/icons/Indent'
 import UndentIcon from '../components/icons/Undent'
 import { liftListItem, blockActive, getParentNodeFromState } from '../utils'
-import { Extension } from '../types'
+import { Extension, ExtensionSchema } from '../types'
 
 import Button from '../components/button'
 
-export default class OrderedList implements Extension {
+export default class OrderedList extends Extension {
+  constructor(schema?: ExtensionSchema) {
+    super();
+    this.customSchema = schema;
+  }
+
   get name() {
     return 'ordered_list'
   }
@@ -23,6 +28,9 @@ export default class OrderedList implements Extension {
   }
 
   get schema() {
+    if (this.customSchema) {
+      return this.customSchema;
+    }
     return {
       content: 'list_item+',
       group: 'block',

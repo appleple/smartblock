@@ -1,10 +1,14 @@
 import * as React from 'react'
 import { toggleMark } from 'prosemirror-commands'
 import EmIcon from '../components/icons/Em'
-import { Extension } from '../types'
+import { Extension, ExtensionSchema } from '../types'
 import { markActive } from '../utils'
 
-export default class Strong implements Extension {
+export default class Strong extends Extension {
+  constructor(schema?: ExtensionSchema) {
+    super();
+    this.customSchema = schema;
+  }
   get name() {
     return 'em'
   }
@@ -18,6 +22,9 @@ export default class Strong implements Extension {
   }
 
   get schema() {
+    if (this.customSchema) {
+      return this.customSchema;
+    }
     return {
       group: 'mark',
       parseDOM: [{ tag: 'em' }, { style: 'font-style=italic' }],

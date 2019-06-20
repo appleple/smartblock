@@ -2,7 +2,7 @@
 import { Node, Schema } from 'prosemirror-model';
 import { Plugin, EditorState, Transaction } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
-interface ExtensionSchema {
+export interface ExtensionSchema {
     content?: string;
     group?: string;
     parseDOM?: ({
@@ -19,9 +19,10 @@ declare type CustomLayoutProps = {
     dispatch: Dispatch;
     state: EditorState;
 };
-export interface Extension {
+export declare abstract class Extension {
     name: string;
     schema?: ExtensionSchema;
+    customSchema?: ExtensionSchema;
     schemaDependencies?: {
         [key: string]: ExtensionSchema;
     };

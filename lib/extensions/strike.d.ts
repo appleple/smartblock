@@ -1,22 +1,11 @@
 /// <reference types="react" />
-import { Extension } from '../types';
-export default class StrikeThrough implements Extension {
+import { Extension, ExtensionSchema } from '../types';
+export default class StrikeThrough extends Extension {
+    constructor(schema?: ExtensionSchema);
     readonly name: string;
     readonly group: string;
     readonly showMenu: boolean;
-    readonly schema: {
-        group: string;
-        parseDOM: ({
-            tag: string;
-            style?: undefined;
-        } | {
-            style: string;
-            tag?: undefined;
-        })[];
-        toDOM: () => (string | {
-            style: string;
-        })[];
-    };
+    readonly schema: ExtensionSchema;
     readonly icon: JSX.Element;
     active(state: any): any;
     onClick(state: any, dispatch: any): void;

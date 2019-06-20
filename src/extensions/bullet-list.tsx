@@ -5,11 +5,14 @@ import Undent from '../components/icons/Undent'
 import Indent from '../components/icons/Indent'
 import List from '../components/icons/List'
 import { liftListItem, blockActive, getParentNodeFromState } from '../utils'
-import { Extension } from '../types'
-
+import { Extension, ExtensionSchema } from '../types'
 import Button from '../components/button'
 
-export default class BulletList implements Extension {
+export default class BulletList extends Extension {
+  constructor(schema?: ExtensionSchema) {
+    super();
+    this.customSchema = schema;
+  }
   get name() {
     return 'bullet_list'
   }
@@ -23,6 +26,9 @@ export default class BulletList implements Extension {
   }
 
   get schema() {
+    if (this.customSchema) {
+      return;
+    }
     return {
       content: 'list_item+',
       group: 'block',

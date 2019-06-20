@@ -1,9 +1,10 @@
 import { Schema } from 'prosemirror-model';
-import { Extension } from '../types';
-export default class ListItem implements Extension {
+import { Extension, ExtensionSchema } from '../types';
+export default class ListItem extends Extension {
+    constructor(schema?: ExtensionSchema);
     readonly name: string;
     readonly showMenu: boolean;
-    readonly schema: {
+    readonly schema: ExtensionSchema | {
         content: string;
         group: string;
         parseDOM: {

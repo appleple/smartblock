@@ -2,10 +2,14 @@ import * as React from 'react'
 import { setBlockType } from 'prosemirror-commands'
 import uuid from 'uuid'
 import BlockQuoteIcon from '../components/icons/Blockquote'
-import { Extension } from '../types'
+import { Extension, ExtensionSchema } from '../types'
 import { blockActive } from '../utils'
 
-export default class BlockQuote implements Extension {
+export default class BlockQuote extends Extension {
+  constructor(schema?: ExtensionSchema) {
+    super();
+    this.customSchema = schema;
+  }
   get name() {
     return 'blockquote'
   }
@@ -19,6 +23,9 @@ export default class BlockQuote implements Extension {
   }
 
   get schema() {
+    if (this.customSchema) {
+      return this.customSchema;
+    }
     return {
       content: 'inline*',
       group: 'block',
