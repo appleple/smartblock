@@ -4,7 +4,7 @@ import EmIcon from '../components/icons/Em'
 import { Extension, ExtensionSchema } from '../types'
 import { markActive } from '../utils'
 
-export default class Strong extends Extension {
+export default class Bold extends Extension {
   constructor(schema?: ExtensionSchema) {
     super();
     this.customSchema = schema;

@@ -35,6 +35,7 @@ import Strike from './extensions/strike'
 import Strong from './extensions/strong'
 import Table from './extensions/table'
 import Trash from './extensions/trash'
+import Bold from './extensions/bold'
 import Underline from './extensions/underline'
 import DefaultKeys from './extensions/default-keys';
 import DefaultPlugins from './extensions/default-plugins';
@@ -64,12 +65,13 @@ export {
   OrderedList,
   Paragraph,
   Blockquote,
+  Table,
   /* inline */
+  Bold,
   Strike,
   Strong,
-  Table,
-  Trash,
   Underline,
+  Trash,
   /* utils */
   getViewport,
   isInput,
