@@ -184,4 +184,21 @@ export default createGlobalStyle`
     content: "ここにキャプションを入力"
     display: inline-block;
   }
+  .ProseMirror .youtube-frame-wrap {
+    padding: 40px;
+  }
+  .ProseMirror .youtube-frame {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  }
 `

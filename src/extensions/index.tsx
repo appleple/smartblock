@@ -6,6 +6,7 @@ import BulletList from './bullet-list'
 import OrderedList from './ordered-list'
 import Table from './table' //WIP
 import BlockQuote from './blockquote'
+import Embed from './embed';
 
 import Underline from './underline'
 import Strike from './strike'
@@ -28,6 +29,7 @@ export default [
   new ListItem(),
   new BulletList(),
   new OrderedList(),
+  new Embed(),
   // new Table(),
   new BlockQuote(),
   // marks
