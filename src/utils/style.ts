@@ -187,6 +187,23 @@ export default createGlobalStyle`
   .ProseMirror .youtube-frame-wrap {
     padding: 40px;
   }
+  .ProseMirror .embed-wrap {
+    margin-bottom: 30px;
+  }
+  .ProseMirror .embed {
+    border: 1px solid rgba(201, 201, 204, 0.48);
+    box-shadow: 0 1px 3px rgba(0,0,0, .1);
+    padding: 25px;
+    font-size: 14px;
+    display: block;
+    color: #666;
+    &:link,
+    &:hover,
+    &:visited {
+      color: #666;
+      text-decoration: none;
+    }
+  }
   .ProseMirror .youtube-frame {
     position: relative;
     width: 100%;

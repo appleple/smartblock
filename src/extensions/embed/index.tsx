@@ -3,6 +3,7 @@ import { render, unmountComponentAtNode } from 'react-dom';
 import { setBlockType } from 'prosemirror-commands'
 import { Extension, ExtensionSchema } from '../../types'
 import { blockActive } from '../../utils'
+import LinkIcon from '../../components/icons/Link'
 import Popup from './popup';
 
 export default class Embed extends Extension {
@@ -42,6 +43,13 @@ export default class Embed extends Extension {
             return {
               src: dom.getAttribute('src')
             }
+          }
+        },
+        {
+          'tag': 'div.embed-wrap',
+          getAttrs(dom) {
+            const a = dom.querySelector('a');
+            return { src: a.getAttribute('href') };
           }
         }
       ],
@@ -84,14 +92,32 @@ export default class Embed extends Extension {
           }
         }
         return [
-          'div'
+          'div',
+          {
+            'class': 'embed-wrap'
+          },
+          [
+            'a',
+            {
+
+              'class': 'embed',
+              'href': node.attrs.src
+            },
+            [
+              'div',
+              {
+                'class': 'embed-inner'
+              },
+              node.attrs.src
+            ]
+          ]
         ]
       }
     }
   }
 
   get icon() {
-    return 'E'
+    return <LinkIcon style={{ width: '24px', height: '24px' }} />
   }
 
   active(state) {
