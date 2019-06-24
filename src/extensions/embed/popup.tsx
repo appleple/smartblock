@@ -59,8 +59,14 @@ const Button = styled.button`
   border-bottom-left-radius: 0;
 `
 
+const { useState, useEffect, useRef } = React;
+
 export default (props) => {
-  const [url, setUrl] = React.useState('');
+  const [url, setUrl] = useState('');
+  const input = useRef<HTMLInputElement>();
+  useEffect(() => {
+    input.current.focus();
+  });
   return (<Popup id="popup" onClick={(e) => {
     const target = e.target as HTMLDivElement;
     if (target.id === "popup" && props.onClose) {
@@ -71,6 +77,7 @@ export default (props) => {
       <PopupText>埋め込みリンク用のURLを入力してください</PopupText>
       <PopupTextField>
         <input 
+          ref={input}
           type="text" 
           value={url} 
           placeholder="https://"
@@ -83,7 +90,11 @@ export default (props) => {
             setUrl(e.target.value);
           }}
         />
-        <Button>
+        <Button onClick={(e) => {
+          if (props.onDone) {
+            props.onDone(url);
+          }
+        }}>
           <CheckIcon style={{ width: '24px', height: '24px', overflow: 'hidden' }} />
         </Button>
       </PopupTextField>

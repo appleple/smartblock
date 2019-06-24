@@ -99,7 +99,9 @@ export default createGlobalStyle`
     line-height: 0;
   }
 
- 
+  .ProseMirror a {
+    pointer-events: none;
+  }
 
   .ProseMirror .selected {
     background-color: #F2F2F4;
