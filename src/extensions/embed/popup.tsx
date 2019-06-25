@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import CheckIcon from '../../components/icons/Check'
 
 const PopupText = styled.p`
-  margin: 0 0 10px 0;
+  margin: 0 0 15px 0;
   color: #333;
-  font-size: 14px;
+  font-size: 16px;
 `
 
 const Popup = styled.div`
@@ -25,7 +25,7 @@ const PopupInnder = styled.div`
   background: #FFF;
   border-radius: 3px;
   box-shadow: 0 3px 10px 4px rgba(116, 116, 116, 0.2);
-  padding: 10px;
+  padding: 15px;
   box-sizing: border-box;
   input {
     display: block;
