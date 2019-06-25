@@ -14,6 +14,7 @@ const Popup = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
+  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,7 +33,7 @@ const PopupInnder = styled.div`
     flex: 1;
     width: 100%;
     padding: 0 5px;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 30px;
     box-sizing: border-box;
     border-radius: 3px 0 0 3px;
