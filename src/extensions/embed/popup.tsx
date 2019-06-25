@@ -3,10 +3,8 @@ import styled from 'styled-components';
 import CheckIcon from '../../components/icons/Check'
 
 const PopupText = styled.p`
-  text-align: center;
-  color: #666;
-  text-align: center;
-  margin-bottom: 15px;
+  margin: 0 0 10px 0;
+  color: #333;
   font-size: 14px;
 `
 
@@ -25,21 +23,26 @@ const Popup = styled.div`
 const PopupInnder = styled.div`
   flex-basis: 380px;
   background: #FFF;
-  border-radius: 5px;
-  box-shadow: 0 3px 40px 8px rgba(116, 116, 116, 0.6);
+  border-radius: 3px;
+  box-shadow: 0 3px 10px 4px rgba(116, 116, 116, 0.2);
   padding: 10px;
   box-sizing: border-box;
   input {
+    display: block;
+    flex: 1;
+    width: 100%;
+    padding: 0 5px;
     font-size: 14px;
     line-height: 30px;
-    display: block;
-    width: 100%;
     box-sizing: border-box;
-    border-radius: 5px;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
+    border-radius: 3px 0 0 3px;
     border: 1px solid #eee;
-    padding: 0 5px;
+  }
+  
+  input:focus {
+    outline: 0;
+    border: 1px solid #137af3;
+    box-shadow: 0 0 0 2px rgba(19,122,243,.4), inset 0 1px 1px rgba(0,0,0,.1);
   }
 `;
 
@@ -48,15 +51,20 @@ const PopupTextField = styled.div`
 `;
 
 const Button = styled.button`
-  border: none;
-  background-color: #014cc5;
-  width: 46px;
+  width: 38px;
+  height: 38px;
   color: #fff;
   font-size: 16px;
   cursor: pointer;
-  border-radius: 5px;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+  border-radius: 0 3px 3px 0;
+  border: 1px solid transparent;
+  background-color: #014cc5;
+  
+  &:focus {
+    outline: 0;
+    border: 1px solid #137af3;
+    box-shadow: 0 0 0 2px rgba(19,122,243,.4), inset 0 1px 1px rgba(0,0,0,.1);
+  }
 `
 
 const { useState, useEffect, useRef } = React;

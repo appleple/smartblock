@@ -187,18 +187,23 @@ export default createGlobalStyle`
     display: inline-block;
   }
   .ProseMirror .youtube-frame-wrap {
-    padding: 40px;
+    margin-bottom: 30px;
+    padding: 10px 40px;
   }
   .ProseMirror .embed-wrap {
     margin-bottom: 30px;
+    padding: 5px;
   }
   .ProseMirror .embed {
+    position: relative;
+    display: block;
+    padding: 20px;
+    color: #666;
+    font-size: 14px;
+    background: #FFF;
     border: 1px solid rgba(201, 201, 204, 0.48);
     box-shadow: 0 1px 3px rgba(0,0,0, .1);
-    padding: 25px;
-    font-size: 14px;
-    display: block;
-    color: #666;
+    
     &:link,
     &:hover,
     &:visited {
