@@ -249,9 +249,7 @@ const getNodeViews = (extensions: Extension[]) => {
     if (extension.render) {
       views[extension.name] = (node: Node, view: EditorView, getPos) => {
         const dom = document.createElement('div')
-        requestAnimationFrame(() => {
-          ReactDOM.render(<>{extension.render(node, view, getPos)}</>, dom)
-        })
+        ReactDOM.render(<>{extension.render(node, view, getPos)}</>, dom)
 
         return {
           dom,

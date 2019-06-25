@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 import CheckIcon from '../../components/icons/Check'
 
@@ -18,7 +19,7 @@ const Popup = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 10;
+  z-index: 12;
 `;
 
 const PopupInnder = styled.div`
@@ -70,43 +71,70 @@ const Button = styled.button`
 
 const { useState, useEffect, useRef } = React;
 
+function usePortal() {
+  const rootElemRef = React.useRef(document.createElement('div'));
+
+  useEffect(function setupElement() {
+    // Look for existing target dom element to append to
+    const parentElem = document.createElement("div");
+    document.body.appendChild(parentElem);
+    // Add the detached element to the parent
+    parentElem.appendChild(rootElemRef.current);
+    // This function is run on unmount
+    return function removeElement() {
+      rootElemRef.current.remove();
+    };
+  }, []);
+
+  return rootElemRef.current;
+}
+
+const Modal = (props) => {
+  const target = usePortal();
+  return (createPortal(props.children, target));
+}
+
 export default (props) => {
-  const [url, setUrl] = useState('');
+  const [url, setUrl] = useState(props.url);
   const input = useRef<HTMLInputElement>();
+
   useEffect(() => {
     input.current.focus();
   });
-  return (<Popup id="popup" onClick={(e) => {
-    const target = e.target as HTMLDivElement;
-    if (target.id === "popup" && props.onClose) {
-      props.onClose();
-    }
-  }}>
-    <PopupInnder>
-      <PopupText>埋め込みリンク用のURLを入力してください</PopupText>
-      <PopupTextField>
-        <input 
-          ref={input}
-          type="text" 
-          value={url} 
-          placeholder="https://"
-          onKeyDown={(e) => {
-            if (e.keyCode === 13 && props.onDone) {
-              props.onDone(url);
-            }
-          }}
-          onChange={(e) => {
-            setUrl(e.target.value);
-          }}
-        />
-        <Button onClick={(e) => {
-          if (props.onDone) {
-            props.onDone(url);
-          }
-        }}>
-          <CheckIcon style={{ width: '24px', height: '24px', overflow: 'hidden' }} />
-        </Button>
-      </PopupTextField>
-    </PopupInnder>
-  </Popup>)
+  return (
+    <Modal>
+      <Popup id="popup" onClick={(e) => {
+        const target = e.target as HTMLDivElement;
+        if (target.id === "popup" && props.onClose) {
+          props.onClose();
+        }
+      }}>
+        <PopupInnder>
+          <PopupText>埋め込みリンク用のURLを入力してください</PopupText>
+          <PopupTextField>
+            <input
+              ref={input}
+              type="text"
+              value={url}
+              placeholder="https://"
+              onKeyDown={(e) => {
+                if (e.keyCode === 13 && props.onDone) {
+                  props.onDone(url);
+                }
+              }}
+              onChange={(e) => {
+                setUrl(e.target.value);
+              }}
+            />
+            <Button onClick={(e) => {
+              if (props.onDone) {
+                props.onDone(url);
+              }
+            }}>
+              <CheckIcon style={{ width: '24px', height: '24px', overflow: 'hidden' }} />
+            </Button>
+          </PopupTextField>
+        </PopupInnder>
+      </Popup>
+    </Modal>)
 }

@@ -5,6 +5,7 @@ import { Extension, ExtensionSchema } from '../../types'
 import { blockActive } from '../../utils'
 import LinkIcon from '../../components/icons/Link'
 import Popup from './popup';
+import View from './view';
 
 export default class Embed extends Extension {
   constructor(schema?: ExtensionSchema) {
@@ -37,7 +38,7 @@ export default class Embed extends Extension {
         src: { default: '' }
       },
       parseDOM: [
-        { 
+        {
           tag: 'iframe',
           getAttrs(dom) {
             return {
@@ -78,7 +79,7 @@ export default class Embed extends Extension {
               [
                 'div',
                 {
-                  
+
                   'class': 'youtube-frame'
                 },
                 [
@@ -129,9 +130,10 @@ export default class Embed extends Extension {
   }
 
   onClick(state, dispatch) {
+    
     const div = document.createElement('div');
     document.body.append(div);
-    render(<Popup 
+    render(<Popup
       onClose={() => {
         unmountComponentAtNode(div);
       }}
@@ -142,5 +144,10 @@ export default class Embed extends Extension {
         unmountComponentAtNode(div);
       }}
     />, div);
+  }
+
+  render(node, view, getPos) {
+    const pos = getPos();
+    return <View node={node} view={view} pos={pos} />
   }
 }
