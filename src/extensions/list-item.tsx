@@ -24,7 +24,7 @@ export default class ListItem extends Extension {
       return this.customSchema;
     }
     return {
-      content: 'paragraph block*',
+      content: 'paragraph',
       group: 'block',
       parseDOM: [
         {
