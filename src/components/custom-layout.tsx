@@ -69,7 +69,8 @@ export default (props: CustomLayoutProps) => {
     position: 'absolute',
     zIndex: '10',
     top: pos.top,
-    left: 0
+    left: 0,
+    right: 0
   }
 
   const size = useImagesLoaded(dom)
