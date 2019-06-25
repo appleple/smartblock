@@ -206,6 +206,8 @@ export default createGlobalStyle`
   }
   .ProseMirror .embed-wrap {
     margin: 0 5px 30px 5px;
+    position: relative;
+    z-index: 10;
     padding: 5px;
   }
   .ProseMirror .embed {
