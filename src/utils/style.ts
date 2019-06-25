@@ -1,6 +1,10 @@
 import { createGlobalStyle } from 'styled-components'
 
 export default createGlobalStyle`
+   html {
+    font-size: 16px;
+   }
+   
   .ProseMirror {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴシック", "メイリオ", Meiryo, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     padding: 10px;
@@ -31,38 +35,47 @@ export default createGlobalStyle`
   
   .ProseMirror p {
     margin: 0 0 30px 0;
-    padding: 8px 5px;
-    min-height: 38px;
-    line-height: 1.8;
+    padding: 5px 10px;
+    min-height: 2.625rem;
+    line-height: 1.6;
+    font-size: 1rem;
     border-radius: 3px;
     transition: background-color .3s;
     box-sizing: border-box;
   }
   
   .ProseMirror h2,
-   .ProseMirror h3 {
+  .ProseMirror h3 {
     margin: 20px 0 10px 0;
-    padding: 4px 5px;
-    min-height: 38px;
+    padding: 5px 10px;
+    min-height: 2.625rem;
     line-height: 1.5;
     border-radius: 3px;
     transition: background-color .3s;
     box-sizing: border-box;
   }
 
+  .ProseMirror h2 {
+    font-size: 1.625rem;
+  }
+  
+  .ProseMirror h3 {
+    font-size: 1.375rem;
+  }
 
 
   .ProseMirror ul, .ProseMirror ol {
     margin: 0 0 30px 0;
     padding: 5px 5px 5px 30px;
-    min-height: 38px;
+    min-height: 2.625rem;
+    font-size: 1rem;
     line-height: 1.4;
     box-sizing: border-box;
   }
   
   .ProseMirror li > p {
     margin: 0;
-    padding: 3px 0;
+    padding: 0;
     min-height: auto;
   }
   
@@ -72,9 +85,10 @@ export default createGlobalStyle`
 
   .ProseMirror blockquote {
     position: relative;
-    min-height: 38px;
+    min-height: 2.625rem;
     margin: 0 0 30px 0;
     padding: 10px 10px 10px 30px;
+    font-size: .875rem;
     line-height: 1.5;
     box-sizing: border-box;
   }
@@ -191,7 +205,7 @@ export default createGlobalStyle`
     padding: 10px 40px;
   }
   .ProseMirror .embed-wrap {
-    margin-bottom: 30px;
+    margin: 0 5px 30px 5px;
     padding: 5px;
   }
   .ProseMirror .embed {
