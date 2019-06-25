@@ -18,7 +18,7 @@ const fadeIn = keyframes`
 
 const PositionBtnGroup = styled.div`
   position: absolute;
-  z-index: 10;
+  z-index: 11;
   animation: ${fadeIn} 0.3s;
   border-radius: 5px;
   box-shadow: 0 3px 40px 8px rgba(116, 116, 116, 0.2);
