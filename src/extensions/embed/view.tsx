@@ -1,5 +1,15 @@
 import * as React from 'react';
+import styled from 'styled-components';
 import Popup from './popup';
+import ExternalLink from '../../components/icons/ExternalLink';
+
+const Button = styled.button`
+  background-color: #FFF;
+  border: none;
+  color: #ADADAD;
+  margin-left: 5px;
+  vertical-align: middle;
+`;
 
 const { useState } = React;
 
@@ -23,8 +33,8 @@ export default (props) => {
     }
     if (youtubeId) {
       const url = `https://www.youtube.com/embed/${youtubeId}`;
-      return (<div contentEditable className="youtube-iframe-wrap">
-        <div className="youtube-iframe">
+      return (<div className="youtube-frame-wrap">
+        <div className="youtube-frame">
           <iframe src={url} />
         </div>
       </div>)
@@ -34,23 +44,25 @@ export default (props) => {
     <div className="embed">
       <div className="embed-inner">
         {node.attrs.src}
-        <button onClick={() => {
+        <Button onClick={() => {
           setShowPopup(true);
-        }}>編集</button>
+        }}>
+          <ExternalLink style={{ width: '16px', height: '16px' }} />
+        </Button>
       </div>
     </div>
   </div>
-    {showPopup && <Popup
-      url={node.attrs.url}
-      onClose={() => {
-        setShowPopup(false);
-      }}
-      onDone={(src) => {
-        setShowPopup(false);
-        dispatch(state.tr.setNodeMarkup(pos, node.type, {
-          ...node.attrs, src
-        }));
-      }}
-    />}
+  {showPopup && <Popup
+    url={node.attrs.src}
+    onClose={() => {
+      setShowPopup(false);
+    }}
+    onDone={(src) => {
+      setShowPopup(false);
+      dispatch(state.tr.setNodeMarkup(pos, node.type, {
+        ...node.attrs, src
+      }));
+    }}
+  />}
   </>)
 }

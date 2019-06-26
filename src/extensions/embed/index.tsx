@@ -130,7 +130,6 @@ export default class Embed extends Extension {
   }
 
   onClick(state, dispatch) {
-    
     const div = document.createElement('div');
     document.body.append(div);
     render(<Popup
@@ -144,10 +143,5 @@ export default class Embed extends Extension {
         unmountComponentAtNode(div);
       }}
     />, div);
-  }
-
-  render(node, view, getPos) {
-    const pos = getPos();
-    return <View node={node} view={view} pos={pos} />
   }
 }
