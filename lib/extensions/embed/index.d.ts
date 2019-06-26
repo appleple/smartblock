@@ -5,6 +5,7 @@ export default class Embed extends Extension {
     readonly name: string;
     readonly group: string;
     readonly showMenu: boolean;
+    readonly hideInlineMenuOnFocus: boolean;
     readonly schema: ExtensionSchema | {
         group: string;
         content: string;
@@ -33,13 +34,16 @@ export default class Embed extends Extension {
             src: string;
         })[])[])[] | (string | {
             'class': string;
-        } | (string | any[] | {
+        } | (string | {
             'class': string;
             'href': any;
-        })[])[];
+        } | (string | number | {
+            'class': string;
+        })[])[])[];
     };
     readonly icon: JSX.Element;
     active(state: any): boolean;
     enable(state: any): boolean;
     onClick(state: any, dispatch: any): void;
+    readonly plugins: import("prosemirror-state").Plugin<any, any>[];
 }
