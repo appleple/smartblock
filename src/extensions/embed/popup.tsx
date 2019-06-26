@@ -19,7 +19,8 @@ const Popup = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 12;
+  z-index: 101;
+  background: rgba(0,0,0,.2);
 `;
 
 const PopupInnder = styled.div`
