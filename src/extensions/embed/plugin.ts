@@ -5,7 +5,7 @@ import { setBlockType } from 'prosemirror-commands'
 export default () => {
   return new Plugin({
     props: {
-      handleTextInput(view, from, to, text) {
+      handleTextInput(view, _from, _to, text) {
         const { state } = view;
         const node = getParentNodeFromState(state);
         if (node.type.name === 'embed') {

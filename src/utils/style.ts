@@ -110,7 +110,7 @@ export default createGlobalStyle`
   }
 
   .ProseMirror a {
-    pointer-events: none;
+    
   }
 
   .ProseMirror .selected {

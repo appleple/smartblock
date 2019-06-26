@@ -6,6 +6,8 @@ import { blockActive } from '../../utils'
 import LinkIcon from '../../components/icons/Link'
 import Popup from './popup';
 import Plugin from './plugin';
+import { Fragment } from 'prosemirror-model';
+import { EditorState } from 'prosemirror-state';
 
 
 export default class Embed extends Extension {
@@ -134,7 +136,7 @@ export default class Embed extends Extension {
     return setBlockType(state.schema.nodes.embed)(state)
   }
 
-  onClick(state, dispatch) {
+  onClick(state: EditorState, dispatch) {
     const div = document.createElement('div');
     document.body.append(div);
     render(<Popup
@@ -142,9 +144,12 @@ export default class Embed extends Extension {
         unmountComponentAtNode(div);
       }}
       onDone={(src) => {
-        setBlockType(state.schema.nodes.embed, {
+        const { pos } = state.selection.$anchor;
+        const text = state.schema.text(src);
+        const node = state.schema.nodes.embed.createAndFill({
           src
-        })(state, dispatch);
+        }, text);
+        dispatch(state.tr.insert(pos - 1, node));
         unmountComponentAtNode(div);
       }}
     />, div);
