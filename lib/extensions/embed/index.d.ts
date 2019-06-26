@@ -1,5 +1,6 @@
 /// <reference types="react" />
 import { Extension, ExtensionSchema } from '../../types';
+import { EditorState } from 'prosemirror-state';
 export default class Embed extends Extension {
     constructor(schema?: ExtensionSchema);
     readonly name: string;
@@ -44,6 +45,6 @@ export default class Embed extends Extension {
     readonly icon: JSX.Element;
     active(state: any): boolean;
     enable(state: any): boolean;
-    onClick(state: any, dispatch: any): void;
+    onClick(state: EditorState, dispatch: any): void;
     readonly plugins: import("prosemirror-state").Plugin<any, any>[];
 }
