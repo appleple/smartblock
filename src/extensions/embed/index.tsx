@@ -149,7 +149,7 @@ export default class Embed extends Extension {
         const node = state.schema.nodes.embed.createAndFill({
           src
         }, text);
-        dispatch(state.tr.insert(pos - 1, node));
+        dispatch(state.tr.insert(pos, node));
         unmountComponentAtNode(div);
       }}
     />, div);
