@@ -17,11 +17,24 @@ const Button = styled.button<{
         color: #005CEE;
         opacity: 1;
         background-color: #F2F2F4;
+        
+        &:focus {
+          outline: 0;
+          color: #005CEE;
+          background-color: #F2F2F4;
+        }
+        
       `;
     } else {
       return `
         color: #777;
         background: #fff;
+        
+        &:focus {
+          outline: 0;
+          color: #777;
+          background: #fff;
+        }
       `
     }
   }}
@@ -37,14 +50,16 @@ const Button = styled.button<{
   width: 36px;
   height: 36px;
   border: none;
+  margin-right: 5px;
+  padding: 5px;
   border-radius: 3px;
   appearance: none;
   -webkit-appearance: none;
   font-size: 20px;
   cursor: pointer;
-  padding: 5px;
-  margin-right: 5px;
   text-align: center;
+  border: 1px solid transparent;
+  
   svg {
     fill: currentColor;
   }
@@ -52,12 +67,14 @@ const Button = styled.button<{
     margin-right: 0;
   }
   &:not([disabled]):hover {
-    color: #333;
+    color: #005CEE;
   }
   
   &[disabled]:hover {
     cursor: not-allowed;
   }
+  
+ 
 `;
 
 export default Button;
