@@ -36,7 +36,6 @@ export default createGlobalStyle`
   .ProseMirror p {
     margin: 0 0 30px 0;
     padding: 5px 10px;
-    min-height: 2.625rem;
     line-height: 1.6;
     font-size: 1rem;
     border-radius: 3px;
@@ -48,7 +47,6 @@ export default createGlobalStyle`
   .ProseMirror h3 {
     margin: 20px 0 10px 0;
     padding: 5px 10px;
-    min-height: 2.625rem;
     line-height: 1.5;
     border-radius: 3px;
     transition: background-color .3s;
@@ -67,7 +65,6 @@ export default createGlobalStyle`
   .ProseMirror ul, .ProseMirror ol {
     margin: 0 0 30px 0;
     padding: 5px 5px 5px 30px;
-    min-height: 2.625rem;
     font-size: 1rem;
     line-height: 1.4;
     box-sizing: border-box;
@@ -85,7 +82,6 @@ export default createGlobalStyle`
 
   .ProseMirror blockquote {
     position: relative;
-    min-height: 2.625rem;
     margin: 0 0 30px 0;
     padding: 10px 10px 10px 30px;
     font-size: .875rem;
