@@ -16,7 +16,7 @@ import Menu from './menu'
 import BackBtn from './back-btn';
 import CustomLayout from './custom-layout'
 import Title from './title';
-import { getScrollTop, getOffset, getViewport, getHtmlFromNode } from '../utils'
+import { getScrollTop, getOffset, getViewport, getHtmlFromNode, getParentNodeFromState } from '../utils'
 import defaultExtensions from '../extensions'
 import { Extension } from '../types'
 
@@ -274,6 +274,20 @@ const titleChanged = (title: string, props: AppProps) => {
   }
 }
 
+const shouldRenderInlineMenu = (view: EditorView, blocks: Extension[]) => {
+  const node = getParentNodeFromState(view.state);
+  const currentBlock = blocks.find((block) => {
+    if (block.name === node.type.name) {
+      return true;
+    }
+    return false;
+  })
+  if (currentBlock.hideInlineMenuOnFocus) {
+    return false;
+  }
+  return true;
+}
+
 export default (props: AppProps) => {
   const defaultProps = {
     extensions: defaultExtensions,
@@ -361,7 +375,7 @@ export default (props: AppProps) => {
                 {showMenus && <>
                   <Menu view={view} menu={getMenu(blocks)} />
                   <EditMenu view={view} menu={getMenu(edits)} />
-                  <InlineMenu menu={getMenu(marks)} view={view} />
+                  {shouldRenderInlineMenu(view, blocks) && <InlineMenu menu={getMenu(marks)} view={view} />}
                   <CustomLayout view={view} menu={getMenu(blocks)} />
                   {showBackBtn && <BackBtn view={view} />}
                 </>}

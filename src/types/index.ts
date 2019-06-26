@@ -33,6 +33,7 @@ export abstract class Extension {
   plugins?: Plugin<any, any>[]
   showMenu: boolean
   hideMenuOnFocus?: boolean
+  hideInlineMenuOnFocus?: boolean
   group?: string // "edit" | "mark" | "block"
   render?(node: Node, view: EditorView, getPos: () => number): React.ReactNode
   active?(state: EditorState): boolean

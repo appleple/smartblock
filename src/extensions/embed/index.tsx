@@ -5,7 +5,8 @@ import { Extension, ExtensionSchema } from '../../types'
 import { blockActive } from '../../utils'
 import LinkIcon from '../../components/icons/Link'
 import Popup from './popup';
-import View from './view';
+import Plugin from './plugin';
+
 
 export default class Embed extends Extension {
   constructor(schema?: ExtensionSchema) {
@@ -24,13 +25,17 @@ export default class Embed extends Extension {
     return true
   }
 
+  get hideInlineMenuOnFocus() {
+    return true
+  }
+
   get schema() {
     if (this.customSchema) {
       return this.customSchema;
     }
     return {
       group: 'block',
-      content: 'inline*',
+      content: 'text*',
       selectable: true,
       isolating: true,
       attrs: {
@@ -109,7 +114,7 @@ export default class Embed extends Extension {
               {
                 'class': 'embed-inner'
               },
-              node.attrs.src
+              0
             ]
           ]
         ]
@@ -143,5 +148,11 @@ export default class Embed extends Extension {
         unmountComponentAtNode(div);
       }}
     />, div);
+  }
+
+  get plugins() {
+    return [
+      Plugin()
+    ]
   }
 }

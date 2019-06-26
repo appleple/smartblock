@@ -36,7 +36,7 @@ export default class Link extends Extension {
       inclusive: false,
       parseDOM: [
         {
-          tag: 'a[href]',
+          tag: 'a[href]:not(.embed)',
           getAttrs(dom) {
             return {
               href: dom.getAttribute('href'),
