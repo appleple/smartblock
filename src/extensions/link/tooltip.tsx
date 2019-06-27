@@ -177,7 +177,7 @@ class Tooltip {
 
   destroy() {
     unmountComponentAtNode(this.tooltip)
-    this.tooltip.remove()
+    document.body.removeChild(this.tooltip);
   }
 }
 

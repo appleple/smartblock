@@ -83,7 +83,7 @@ function usePortal() {
     parentElem.appendChild(rootElemRef.current);
     // This function is run on unmount
     return function removeElement() {
-      rootElemRef.current.remove();
+      parentElem.removeChild(rootElemRef.current);
     };
   }, []);
 
