@@ -165,8 +165,7 @@ export default createGlobalStyle`
   .ProseMirror .media {
     padding: 10px;
     margin: 0;
-    display: flex;
-    flex-direction: column;
+    display: block;
   }
 
   .ProseMirror .media.selected {
