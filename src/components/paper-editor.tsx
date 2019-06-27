@@ -282,7 +282,7 @@ const shouldRenderInlineMenu = (view: EditorView, blocks: Extension[]) => {
     }
     return false;
   })
-  if (currentBlock.hideInlineMenuOnFocus) {
+  if (currentBlock && currentBlock.hideInlineMenuOnFocus) {
     return false;
   }
   return true;
