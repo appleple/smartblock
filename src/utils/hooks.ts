@@ -1,7 +1,7 @@
-import * as React from 'react';
+import { useEffect, useRef, useMemo, useState, RefObject, SyntheticEvent } from 'react';
 import { EditorState } from 'prosemirror-state'
 import { EditorView } from 'prosemirror-view'
-const { useMemo, useState } = React;
+import { getScrollTop, getScrollLeft } from './';
 
 type EditorProps = {
   onChange(
@@ -45,4 +45,40 @@ export const useView = (props: EditorProps): EditorView => {
     return view;
   }, []);
   return instance;
+}
+
+
+export const useScroll = () => {
+  const [scrollTop, setScrollTop] = useState(getScrollTop());
+  useEffect(() => {
+    const scrollEvent = () => {
+      setScrollTop(getScrollTop())
+    };
+    window.addEventListener('scroll', scrollEvent);
+    return () => {
+      window.removeEventListener('scroll', scrollEvent);
+    };
+  }, [scrollTop]);
+  return scrollTop;
+}
+
+export const useScrolling = (delay: number) => {
+  const [scrolling, setScrolling] = useState(false);
+  useEffect(() => {
+    let debounceTimer = null;
+    const eventHandler = () => {
+      if (scrolling === false) {
+        setScrolling(true);
+      }
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        setScrolling(false);
+      }, delay);
+    }
+    window.addEventListener('scroll', eventHandler);
+    return (() => {
+      window.removeEventListener('scroll', eventHandler);
+    })
+  }, []);
+  return scrolling;
 }

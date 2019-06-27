@@ -1,9 +1,10 @@
 import * as React from 'react'
 import { EditorState } from 'prosemirror-state'
 import { EditorView } from 'prosemirror-view'
-import { useView } from '../utils/hooks';
+import { useView, useScrolling } from '../utils/hooks';
+import { getScrollTop } from '../utils';
 
-const { useRef, useEffect } = React;
+const { useRef, useEffect, useState } = React;
 
 type EditorProps = {
   onChange(
@@ -14,7 +15,7 @@ type EditorProps = {
   nodeViews?: any
   autoFocus?: boolean
   options: any
-  render?({ editor: EditorState, view: EditorView }): React.ReactElement
+  render?({ editor: EditorState, view: EditorView, scrolling: boolean }): React.ReactElement
 }
 
 export default (props: EditorProps) => {
@@ -30,13 +31,14 @@ export default (props: EditorProps) => {
     }
   }, []);
 
+  const scrolling = useScrolling(300);
+
   const editor = <div ref={editorRef} />
-  return props.render
-    ? props.render({
-        editor,
-        view: view
-      })
-    : editor
+  return props.render({
+    editor,
+    view: view,
+    scrolling: scrolling
+  });
 }
 
 

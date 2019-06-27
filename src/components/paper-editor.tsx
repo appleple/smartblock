@@ -40,6 +40,7 @@ const Inner = styled.div`
 interface ProseRender {
   editor: React.ReactChild
   view: EditorView
+  scrolling: boolean
 }
 
 type OutputJson = {
@@ -201,10 +202,16 @@ const onChange = (
         ) {
           const activeElement = document.activeElement as HTMLElement
           if (activeElement.isContentEditable) {
-            scrollTo(0, offsetTop - EDITMENUHEIGHT)
+            scrollTo(0, offsetTop - EDITMENUHEIGHT, {
+              duration: 300
+            })
+            return true;
           }
         } else {
-          scrollTo(0, offsetTop - EDITMENUHEIGHT)
+          scrollTo(0, offsetTop - EDITMENUHEIGHT, {
+            duration: 300
+          })
+          return true;
         }
       }
     }
@@ -230,6 +237,7 @@ const onChange = (
       state.tr.insert(state.doc.content.size, paragraph.createAndFill())
     )
   }
+  return false;
 }
 
 const getPlugins = (extensions: Extension[], schema: Schema) => {
@@ -368,19 +376,30 @@ export default (props: AppProps) => {
             options={editorOptions}
             nodeViews={nodeViews}
             onChange={(state, dispatch) => {
-              onChange(state, dispatch, props, schema, container);
+              const shouldScroll = onChange(state, dispatch, props, schema, container);
+              if (shouldScroll) {
+                setTimeout(() => {
+                  console.log('test');
+                  setShowMenus(true);
+                }, 700);
+              }
             }}
-            render={({ editor, view }: ProseRender) => (
-              <>
-                {showMenus && <>
-                  <Menu view={view} menu={getMenu(blocks)} />
-                  <EditMenu view={view} menu={getMenu(edits)} />
-                  {shouldRenderInlineMenu(view, blocks) && <InlineMenu menu={getMenu(marks)} view={view} />}
-                  <CustomLayout view={view} menu={getMenu(blocks)} />
-                  {showBackBtn && <BackBtn view={view} />}
-                </>}
-                {editor}
-              </>)
+            render={({ editor, view, scrolling }: ProseRender) => {
+              if (scrolling) {
+                setShowMenus(false);
+              }
+              return(
+                <>
+                  {(showMenus) && <>
+                    <Menu view={view} menu={getMenu(blocks)} />
+                    <EditMenu view={view} menu={getMenu(edits)} />
+                    {shouldRenderInlineMenu(view, blocks) && <InlineMenu menu={getMenu(marks)} view={view} />}
+                    <CustomLayout view={view} menu={getMenu(blocks)} />
+                    {showBackBtn && <BackBtn view={view} />}
+                  </>}
+                  {editor}
+                </>);
+              }
             }
           />
         </Input>
