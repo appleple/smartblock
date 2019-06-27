@@ -67,7 +67,7 @@ export default class DefaultPlugins implements Extension {
     return [
       currentElementPlugin(),
       placeholderPlugin(this.placeholder),
-      dropCursor(),
+      // dropCursor(),
       gapCursor(),
       history()
     ];
