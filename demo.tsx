@@ -1,5 +1,3 @@
-import 'core-js/es5';
-import 'core-js/es6';
 import * as React from 'react';
 import { render } from 'react-dom';
 import { PaperEditor, GlobalStyle } from './src/';
