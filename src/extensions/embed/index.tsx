@@ -138,7 +138,7 @@ export default class Embed extends Extension {
 
   onClick(state: EditorState, dispatch) {
     const div = document.createElement('div');
-    document.body.append(div);
+    document.body.appendChild(div);
     render(<Popup
       onClose={() => {
         unmountComponentAtNode(div);
