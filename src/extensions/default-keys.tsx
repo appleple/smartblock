@@ -10,9 +10,10 @@ import {
   joinUp,
   joinDown,
   lift,
+  pcBaseKeymap,
   selectParentNode
 } from 'prosemirror-commands'
-import { getParentNodeFromState } from '../utils'
+import { getParentNodeFromState, getBrowser } from '../utils'
 
 const insertBreak = (state, dispatch) => {
   const br = state.schema.nodes.hard_break.create()
@@ -69,7 +70,7 @@ const insertBreakOrParagraph = (state: EditorState, dispatch, view) => {
 }
 
 const keys = {
-  'Enter': insertBreakOrParagraph,
+  'Enter': getBrowser().indexOf('ie') !== -1 ? pcBaseKeymap.Enter : insertBreakOrParagraph,
   'Mod-z': undo,
   'Shift-Mod-z': redo,
   'Backspace': undoInputRule,

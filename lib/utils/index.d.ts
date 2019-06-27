@@ -42,3 +42,4 @@ export declare const calculateStyle: (view: EditorView<any>, offset?: {
 export declare const isDescendant: (parent: HTMLElement, child: HTMLElement) => boolean;
 export declare const stripPtag: (html: string) => string;
 export declare const getHtmlFromNode: (doc: Node<any>, schema: Schema<any, any>) => string;
+export declare const getBrowser: () => string;

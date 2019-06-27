@@ -386,3 +386,38 @@ export const getHtmlFromNode = (doc: Node, schema: Schema) => {
   div.appendChild(fragment)
   return stripPtag(div.innerHTML)
 }
+
+export const getBrowser = () => {
+  const ua = window.navigator.userAgent.toLowerCase();
+  const ver = window.navigator.appVersion.toLowerCase();
+  let name = 'unknown';
+
+  if (ua.indexOf('msie') != -1) {
+    if (ver.indexOf('msie 6.') != -1) {
+      name = 'ie6';
+    } else if (ver.indexOf('msie 7.') != -1) {
+      name = 'ie7';
+    } else if (ver.indexOf('msie 8.') != -1) {
+      name = 'ie8';
+    } else if (ver.indexOf('msie 9.') != -1) {
+      name = 'ie9';
+    } else if (ver.indexOf('msie 10.') != -1) {
+      name = 'ie10';
+    } else {
+      name = 'ie';
+    }
+  } else if (ua.indexOf('trident/7') != -1) {
+    name = 'ie11';
+  } else if (ua.indexOf('edge') != -1) {
+    name = 'edge';
+  } else if (ua.indexOf('chrome') != -1) {
+    name = 'chrome';
+  } else if (ua.indexOf('safari') != -1) {
+    name = 'safari';
+  } else if (ua.indexOf('opera') != -1) {
+    name = 'opera';
+  } else if (ua.indexOf('firefox') != -1) {
+    name = 'firefox';
+  }
+  return name;
+}

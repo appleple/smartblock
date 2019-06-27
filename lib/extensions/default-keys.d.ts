@@ -5,7 +5,7 @@ export default class DefaultKeys implements Extension {
     readonly name: string;
     readonly showMenu: boolean;
     keys(): {
-        'Enter': (state: EditorState<any>, dispatch: any, view: any) => boolean;
+        'Enter': any;
         'Mod-z': any;
         'Shift-Mod-z': any;
         'Backspace': any;
