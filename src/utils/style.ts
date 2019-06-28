@@ -68,7 +68,6 @@ export default createGlobalStyle`
   
   @media screen and (min-width: 768px){
       .ProseMirror h1 {
-        margin: 0 0 50px 0;
         padding: 0 10px;
         font-size: 2.125rem;
       }
