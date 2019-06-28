@@ -27,6 +27,10 @@ export declare const getMarkInSelection: (markName: string, state: EditorState<a
 export declare const blockActive: (type: any) => (state: any) => boolean;
 export declare const canInsert: (type: any) => (state: any) => boolean;
 export declare const findNodePosition: (doc: Node<any>, target: Node<any>) => number;
+export declare const getRootNodeWithPosByIndex: (state: EditorState<any>, index: number) => import("prosemirror-utils").NodeWithPos;
+export declare const getRootNodeCountFromState: (state: EditorState<any>) => number;
+export declare const getParentNodeWithPosFromState: (state: EditorState<any>) => import("prosemirror-utils").NodeWithPos;
+export declare const getParentNodeIndexFromState: (state: EditorState<any>) => number;
 export declare const getParentNodeFromState: (state: EditorState<any>) => Node<any>;
 export declare const getParentNodePosFromState: (state: EditorState<any>) => number;
 export declare const findSelectedNodeWithType: (nodeType: any, state: any) => any;

@@ -2,7 +2,7 @@ import * as React from 'react'
 import { setTextSelection, findChildren } from 'prosemirror-utils'
 import MoveUpIcon from '../components/icons/GoUp'
 import { Extension } from '../types'
-import { findNodePosition } from '../utils'
+import { findNodePosition, getParentNodeIndexFromState, getParentNodeWithPosFromState, getRootNodeWithPosByIndex } from '../utils'
 
 export default class MoveUp implements Extension {
   get name() {
@@ -21,25 +21,15 @@ export default class MoveUp implements Extension {
     return <MoveUpIcon style={{ width: '24px', height: '24px' }} />
   }
 
+  enable(state) {
+    return getParentNodeIndexFromState(state) >= 1;
+  }
+
   onClick(_state, _dispatch, view) {
-    const { state } = view
-    const { selection } = state
-    const { $anchor } = selection
-    const resolvedPos = state.doc.resolve($anchor.pos) as any
-    const rowNumber = resolvedPos.path[1] as number
-    let i = 0
-    const [firstNode, secondNode] = findChildren(
-      state.doc,
-      _node => {
-        if (rowNumber === i || rowNumber - 1 === i) {
-          i++
-          return true
-        }
-        i++
-        return false
-      },
-      false
-    )
+    const { state } = view;
+    const rowNumber = getParentNodeIndexFromState(state);
+    const firstNode = getRootNodeWithPosByIndex(state, rowNumber - 1);
+    const secondNode = getRootNodeWithPosByIndex(state, rowNumber);
     if (firstNode) {
       const firstIndex = firstNode.pos
       const secondIndex = secondNode.pos

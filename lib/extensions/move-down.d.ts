@@ -5,5 +5,6 @@ export default class MoveDown implements Extension {
     readonly group: string;
     readonly showMenu: boolean;
     readonly icon: JSX.Element;
+    enable(state: any): boolean;
     onClick(_state: any, _dispatch: any, view: any): void;
 }

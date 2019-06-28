@@ -49,13 +49,6 @@ const ARROWTOPOFFSET = 25;
 
 const calculateStyle = (view: EditorView, container: React.RefObject<HTMLDivElement>) => {
   const { selection } = view.state
-  if (!selection || selection.empty) {
-    return {
-      left: -1000,
-      top: 0
-    }
-  }
-
   const offsetLeft = getOffset(view.dom).left
   const coords = view.coordsAtPos(selection.$head.pos);
   const offsetTop = getOffset(view.dom).top;
@@ -78,9 +71,6 @@ const calculateStyle = (view: EditorView, container: React.RefObject<HTMLDivElem
 
 const calculateArrowPos = (view: EditorView, container: React.RefObject<HTMLDivElement>) => {
   const { selection } = view.state
-  if (!selection || selection.empty) {
-    return 20;
-  }
   const offsetLeft = getOffset(view.dom).left
   const coords = view.coordsAtPos(selection.$head.pos);
   let left = coords.left - ARROWOFFSET - offsetLeft;
@@ -103,10 +93,16 @@ const MenuBar = ({
   view: EditorView
 }) => {
 
+  const { state, dispatch } = view
+  const { selection } = view.state
+  if (!selection || selection.empty) {
+    return <></>
+  }
+
   const container = useRef<HTMLDivElement>(null);
   const style = calculateStyle(view, container)
   const pos = calculateArrowPos(view, container);
-  const { state, dispatch } = view
+  
 
   return (
     <FloaterStyle style={style} ref={container} pos={pos}>

@@ -139,7 +139,24 @@ export const findNodePosition = (doc: Node, target: Node) => {
   return ret
 }
 
-export const getParentNodeFromState = (state: EditorState) => {
+export const getRootNodeWithPosByIndex = (state: EditorState, index: number) => {
+  let i = 0;
+  const [firstNode] = findChildren(state.doc, () => {
+    if (i === index) {
+      i++;
+      return true;
+    }
+    i++;
+    return false;
+  }, false);
+  return firstNode;
+}
+
+export const getRootNodeCountFromState = (state: EditorState) => {
+  return state.doc.content.childCount;
+}
+
+export const getParentNodeWithPosFromState = (state: EditorState) => {
   const { selection } = state
   const { $anchor } = selection
   const resolvedPos = state.doc.resolve($anchor.pos) as any
@@ -148,7 +165,7 @@ export const getParentNodeFromState = (state: EditorState) => {
   const [firstNode] = findChildren(
     state.doc,
     () => {
-      if (rowNumber === i || rowNumber + 1 === i) {
+      if (rowNumber === i) {
         i++
         return true
       }
@@ -157,6 +174,19 @@ export const getParentNodeFromState = (state: EditorState) => {
     },
     false
   )
+  return firstNode;
+}
+
+export const getParentNodeIndexFromState = (state: EditorState) => {
+  const { selection } = state
+  const { $anchor } = selection
+  const resolvedPos = state.doc.resolve($anchor.pos) as any
+  const rowNumber = resolvedPos.path[1] as number
+  return rowNumber;
+}
+
+export const getParentNodeFromState = (state: EditorState) => {
+  const firstNode = getParentNodeWithPosFromState(state);
   const { node } = firstNode
   return node
 }
