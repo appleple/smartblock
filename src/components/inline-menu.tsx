@@ -84,7 +84,7 @@ const calculateArrowPos = (view: EditorView, container: React.RefObject<HTMLDivE
   const offsetLeft = getOffset(view.dom).left
   const coords = view.coordsAtPos(selection.$head.pos);
   let left = coords.left - ARROWOFFSET - offsetLeft;
-  const width = container.current.offsetWidth;
+  const width = container.current ? container.current.offsetWidth : 0;
   if (container && container.current && container.current.offsetWidth) {
     if (left + width > window.innerWidth) {
       return left - window.innerWidth + width;

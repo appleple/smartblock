@@ -65,14 +65,19 @@ export const useScroll = () => {
 export const useScrolling = (delay: number) => {
   const [scrolling, setScrolling] = useState(false);
   useEffect(() => {
-    let debounceTimer = null;
+    let debounceTimer: number = null;
+    let count = 0;
     const eventHandler = () => {
-      if (scrolling === false) {
-        setScrolling(true);
+      count++;
+      if (count === 20) {
+        if (scrolling === false) {
+          setScrolling(true);
+        }
       }
       clearTimeout(debounceTimer);
       debounceTimer = setTimeout(() => {
         setScrolling(false);
+        count = 0;
       }, delay);
     }
     window.addEventListener('scroll', eventHandler);

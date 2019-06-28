@@ -205,13 +205,13 @@ const onChange = (
             scrollTo(0, offsetTop - EDITMENUHEIGHT, {
               duration: 300
             })
-            return true;
+            return;
           }
         } else {
           scrollTo(0, offsetTop - EDITMENUHEIGHT, {
             duration: 300
           })
-          return true;
+          return;
         }
       }
     }
@@ -237,7 +237,7 @@ const onChange = (
       state.tr.insert(state.doc.content.size, paragraph.createAndFill())
     )
   }
-  return false;
+  return;
 }
 
 const getPlugins = (extensions: Extension[], schema: Schema) => {
@@ -376,13 +376,7 @@ export default (props: AppProps) => {
             options={editorOptions}
             nodeViews={nodeViews}
             onChange={(state, dispatch) => {
-              const shouldScroll = onChange(state, dispatch, props, schema, container);
-              if (shouldScroll) {
-                setTimeout(() => {
-                  console.log('test');
-                  setShowMenus(true);
-                }, 700);
-              }
+              onChange(state, dispatch, props, schema, container);
             }}
             render={({ editor, view, scrolling }: ProseRender) => {
               if (scrolling) {
