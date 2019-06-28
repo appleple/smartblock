@@ -71,6 +71,7 @@ export const useScrolling = (delay: number) => {
       count++;
       if (count === 20) {
         if (scrolling === false) {
+          count = 0;
           setScrolling(true);
         }
       }
