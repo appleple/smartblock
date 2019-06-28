@@ -7,10 +7,11 @@ declare type EditorProps = {
     nodeViews?: any;
     autoFocus?: boolean;
     options: any;
-    render?({ editor: EditorState, view: EditorView }: {
+    render?({ editor: EditorState, view: EditorView, scrolling: boolean }: {
         editor: any;
         view: any;
+        scrolling: any;
     }): React.ReactElement;
 };
-declare const _default: (props: EditorProps) => JSX.Element;
+declare const _default: (props: EditorProps) => React.ReactElement<any, string | ((props: any) => React.ReactElement<any, string | any | (new (props: any) => React.Component<any, any, any>)>) | (new (props: any) => React.Component<any, any, any>)>;
 export default _default;

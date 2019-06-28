@@ -1,4 +1,4 @@
-import * as React from 'react';
+/// <reference types="react" />
 import { EditorState } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 declare type EditorProps = {
@@ -14,4 +14,6 @@ declare type EditorProps = {
 };
 export declare const useForceUpdate: () => () => void;
 export declare const useView: (props: EditorProps) => EditorView<any>;
+export declare const useScroll: () => number;
+export declare const useScrolling: (delay: number) => boolean;
 export {};
