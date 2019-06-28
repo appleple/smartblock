@@ -11,7 +11,7 @@ render(<>
   <PaperEditor
     showBackBtn
     showTitle
-    titlePlaceholder="タイトルを入力してください"
+    titlePlaceholder="ここにタイトルを入力"
     extensions={extensions}
     autoSave
     html={`

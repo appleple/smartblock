@@ -47,7 +47,7 @@ type TitleProps = {
 
 export default (props: TitleProps) => {
   const defaultProps = {
-    placeholder: 'タイトルを入力してください',
+    placeholder: 'ここにタイトルを入力',
     defaultValue: ''
   }
   props = Object.assign({}, defaultProps, props);

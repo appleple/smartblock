@@ -45,6 +45,6 @@ export default [
   // default
   new DefaultKeys(),
   new DefaultPlugins({
-    placeholder: '本文を入力しましょう'
+    placeholder: 'ここに本文を入力'
   })
 ]

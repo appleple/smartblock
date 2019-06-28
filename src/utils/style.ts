@@ -7,12 +7,18 @@ export default createGlobalStyle`
    
   .ProseMirror {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴシック", "メイリオ", Meiryo, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    padding: 10px;
+    padding: 10px 5px;
     background: #fff;
   }
 
   .ProseMirror:focus {
     outline: none;
+  }
+  
+  @media screen and (min-width: 768px){
+      .ProseMirror {
+        padding: 10px;
+      }
   }
   
   .ProseMirror a {
@@ -33,9 +39,13 @@ export default createGlobalStyle`
     line-height: 2px;
   }
   
+  .ProseMirror *:first-child {
+    margin-top: 0;
+  }
+  
   .ProseMirror p {
     margin: 0 0 30px 0;
-    padding: 5px 10px;
+    padding: 5px;
     line-height: 1.6;
     font-size: 1rem;
     border-radius: 3px;
@@ -43,11 +53,33 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
   
+  @media screen and (min-width: 768px){
+      .ProseMirror p {
+        padding: 5px 10px;
+      }
+  }
+  
+  .ProseMirror h1 {
+    margin: 0 0 30px 0;
+    padding: 0 5px;
+    font-size: 1.875rem;
+    line-height: 1.3;
+  }
+  
+  @media screen and (min-width: 768px){
+      .ProseMirror h1 {
+        margin: 0 0 50px 0;
+        padding: 0 10px;
+        font-size: 2.125rem;
+      }
+  }
+  
+  
   .ProseMirror h2,
   .ProseMirror h3 {
     margin: 20px 0 10px 0;
-    padding: 5px 10px;
-    line-height: 1.5;
+    padding: 5px;
+    line-height: 1.4;
     border-radius: 3px;
     transition: background-color .3s;
     box-sizing: border-box;
@@ -59,6 +91,13 @@ export default createGlobalStyle`
   
   .ProseMirror h3 {
     font-size: 1.375rem;
+  }
+  
+  @media screen and (min-width: 768px){
+      .ProseMirror h2,
+      .ProseMirror h3 {
+        padding: 5px 10px;
+      }
   }
 
 
@@ -83,7 +122,7 @@ export default createGlobalStyle`
   .ProseMirror blockquote {
     position: relative;
     margin: 0 0 30px 0;
-    padding: 10px 10px 10px 30px;
+    padding: 10px 5px 10px 25px;
     font-size: .875rem;
     line-height: 1.5;
     box-sizing: border-box;
@@ -96,6 +135,12 @@ export default createGlobalStyle`
     bottom: 5px;
     left: 10px;
     border-left: 5px solid #D3D3D3;
+  }
+  
+  @media screen and (min-width: 768px){
+      .ProseMirror blockquote {
+        padding: 10px 10px 10px 30px;
+      }
   }
 
   .ProseMirror th,
