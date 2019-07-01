@@ -4,6 +4,7 @@ import {undo, redo} from "prosemirror-history"
 import { Node } from "prosemirror-model";
 import { NodeView, EditorView } from "prosemirror-view";
 import { Selection, TextSelection } from "prosemirror-state";
+import "codemirror/lib/codemirror.css";
 
 function computeChange(oldVal, newVal) {
   if (oldVal == newVal) return null

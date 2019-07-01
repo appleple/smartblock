@@ -3,6 +3,7 @@ import { setBlockType } from 'prosemirror-commands'
 import uuid from 'uuid'
 import { Extension, ExtensionSchema } from '../../types'
 import CodeBlockView from './code-block-view';
+import { blockActive } from '../../utils';
 
 export default class Code extends Extension {
 
@@ -31,7 +32,7 @@ export default class Code extends Extension {
       group: 'block',
       parseDOM: [
         {
-          tag: 'p',
+          tag: 'code',
           getAttrs(dom) {
             return {
               id: dom.getAttribute('id') || uuid()
@@ -39,10 +40,35 @@ export default class Code extends Extension {
           }
         }
       ],
+      toDOM: node => {
+        return [
+          'pre',
+          {
+            id: node.attrs.id || uuid()
+          },
+          ['code', 0]
+        ]
+      },
       attrs: {
-
+        id: { default: '' }
       }
     }
+  }
+
+  get icon() {
+    return 'C'
+  }
+
+  active(state) {
+    return blockActive(state.schema.nodes.code)(state)
+  }
+
+  enable(state) {
+    return setBlockType(state.schema.nodes.code)(state)
+  }
+
+  onClick(state, dispatch) {
+    setBlockType(state.schema.nodes.code)(state, dispatch)
   }
   
   view(node, view, getPos) {
