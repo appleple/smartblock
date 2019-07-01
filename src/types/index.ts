@@ -1,7 +1,7 @@
 import { Node, Schema } from 'prosemirror-model'
 import { Plugin, EditorState, Transaction } from 'prosemirror-state'
 import { Transform } from 'prosemirror-transform'
-import { EditorView } from 'prosemirror-view'
+import { EditorView, NodeView } from 'prosemirror-view'
 
 export interface ExtensionSchema {
   content?: string
@@ -35,7 +35,7 @@ export abstract class Extension {
   hideMenuOnFocus?: boolean
   hideInlineMenuOnFocus?: boolean
   group?: string // "edit" | "mark" | "block"
-  render?(node: Node, view: EditorView, getPos: () => number): React.ReactNode
+  view?(node: Node, view: EditorView, getPos: () => number): NodeView
   active?(state: EditorState): boolean
   enable?(state: EditorState): boolean
   onClick?(state: EditorState, dispatch: Dispatch, view?: EditorView): void

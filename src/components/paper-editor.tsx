@@ -254,20 +254,9 @@ const getPlugins = (extensions: Extension[], schema: Schema) => {
 const getNodeViews = (extensions: Extension[]) => {
   const views = {}
   extensions.forEach(extension => {
-    if (extension.render) {
+    if (extension.view) {
       views[extension.name] = (node: Node, view: EditorView, getPos) => {
-        const dom = document.createElement('div')
-        ReactDOM.render(<>{extension.render(node, view, getPos)}</>, dom)
-
-        return {
-          dom,
-          ignoreMutation() {
-            return true
-          },
-          stopEvent() {
-            return true
-          }
-        }
+        return extension.view(node, view, getPos);
       }
     }
   })
