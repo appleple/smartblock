@@ -1,18 +1,19 @@
 import CodeMirror from "codemirror"
-import {exitCode} from "prosemirror-commands"
-import {undo, redo} from "prosemirror-history"
+import { exitCode } from "prosemirror-commands"
+import { undo, redo } from "prosemirror-history"
 import { Node } from "prosemirror-model";
 import { NodeView, EditorView } from "prosemirror-view";
 import { Selection, TextSelection } from "prosemirror-state";
 import "codemirror/lib/codemirror.css";
+import "codemirror/mode/javascript/javascript"
 
 function computeChange(oldVal, newVal) {
   if (oldVal == newVal) return null
   let start = 0, oldEnd = oldVal.length, newEnd = newVal.length
-  while (start < oldEnd && oldVal.charCodeAt(start) == newVal.charCodeAt(start)) ++start
+  while (start < oldEnd && oldVal.charCodeAt(start) == newVal.charCodeAt(start))++start
   while (oldEnd > start && newEnd > start &&
-         oldVal.charCodeAt(oldEnd - 1) == newVal.charCodeAt(newEnd - 1)) { oldEnd--; newEnd-- }
-  return {from: start, to: oldEnd, text: newVal.slice(start, newEnd)}
+    oldVal.charCodeAt(oldEnd - 1) == newVal.charCodeAt(newEnd - 1)) { oldEnd--; newEnd-- }
+  return { from: start, to: oldEnd, text: newVal.slice(start, newEnd) }
 }
 
 export default class CodeBlockView {
@@ -20,7 +21,7 @@ export default class CodeBlockView {
   view!: EditorView;
   getPos!: () => number;
   incomingChanges!: boolean;
-  cm!: CodeMirror;
+  cm!: CodeMirror.Editor;
   dom!: HTMLElement;
   updating!: boolean;
 
@@ -32,7 +33,7 @@ export default class CodeBlockView {
     this.incomingChanges = false
 
     // Create a CodeMirror instance
-    this.cm = new CodeMirror(null, {
+    this.cm = CodeMirror(null, {
       value: this.node.textContent,
       lineNumbers: true,
       extraKeys: this.codeMirrorKeymap()
@@ -82,7 +83,7 @@ export default class CodeBlockView {
     this.cm.focus()
     this.updating = true
     this.cm.setSelection(this.cm.posFromIndex(anchor),
-                         this.cm.posFromIndex(head))
+      this.cm.posFromIndex(head))
     this.updating = false
   }
 
@@ -117,9 +118,9 @@ export default class CodeBlockView {
   maybeEscape(unit, dir) {
     let pos = this.cm.getCursor()
     if (this.cm.somethingSelected() ||
-        pos.line != (dir < 0 ? this.cm.firstLine() : this.cm.lastLine()) ||
-        (unit == "char" &&
-         pos.ch != (dir < 0 ? 0 : this.cm.getLine(pos.line).length)))
+      pos.line != (dir < 0 ? this.cm.firstLine() : this.cm.lastLine()) ||
+      (unit == "char" &&
+        pos.ch != (dir < 0 ? 0 : this.cm.getLine(pos.line).length)))
       return CodeMirror.Pass
     this.view.focus()
     let targetPos = this.getPos() + (dir < 0 ? 0 : this.node.nodeSize)
@@ -135,7 +136,7 @@ export default class CodeBlockView {
     if (change) {
       this.updating = true
       this.cm.replaceRange(change.text, this.cm.posFromIndex(change.from),
-                           this.cm.posFromIndex(change.to))
+        this.cm.posFromIndex(change.to))
       this.updating = false
     }
     return true

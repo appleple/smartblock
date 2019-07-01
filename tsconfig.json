@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "module": "es6",
+    "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
     "outDir": "./lib",
     "sourceMap": true,
