@@ -1,13 +1,12 @@
 import * as React from 'react'
 import { toggleMark } from 'prosemirror-commands'
 import UnderlineIcon from '../components/icons/Underline'
-import { Extension, ExtensionSchema } from '../types'
+import { Extension, ExtensionProps } from '../types'
 import { markActive } from '../utils'
 
 export default class Underline extends Extension {
-  constructor(schema?: ExtensionSchema) {
-    super();
-    this.customSchema = schema;
+  constructor(props?: ExtensionProps) {
+    super(props);
   }
   get name() {
     return 'underline'
@@ -31,7 +30,8 @@ export default class Underline extends Extension {
       toDOM: () => [
         'span',
         {
-          style: 'text-decoration:underline'
+          style: 'text-decoration:underline',
+          class: this.className
         }
       ]
     }

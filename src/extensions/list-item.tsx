@@ -2,13 +2,12 @@ import { splitListItem, sinkListItem } from 'prosemirror-schema-list'
 import { Schema } from 'prosemirror-model'
 import { chainCommands } from 'prosemirror-commands'
 import uuid from 'uuid'
-import { Extension, ExtensionSchema } from '../types'
+import { Extension, ExtensionProps } from '../types'
 import { liftListItem } from '../utils'
 
 export default class ListItem extends Extension {
-  constructor(schema?: ExtensionSchema) {
-    super();
-    this.customSchema = schema;
+  constructor(props?: ExtensionProps) {
+    super(props);
   }
 
   get name() {

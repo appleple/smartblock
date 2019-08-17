@@ -1,13 +1,12 @@
 import * as React from 'react'
 import { toggleMark } from 'prosemirror-commands'
 import EmIcon from '../components/icons/Em'
-import { Extension, ExtensionSchema } from '../types'
+import { Extension, ExtensionProps } from '../types'
 import { markActive } from '../utils'
 
 export default class Emphasis extends Extension {
-  constructor(schema?: ExtensionSchema) {
-    super();
-    this.customSchema = schema;
+  constructor(props?: ExtensionProps) {
+    super(props);
   }
   get name() {
     return 'em'
@@ -31,6 +30,7 @@ export default class Emphasis extends Extension {
       toDOM: () => [
         'span',
         {
+          class: this.className,
           style: 'font-style:italic'
         }
       ]

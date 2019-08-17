@@ -21,13 +21,25 @@ type CustomLayoutProps = {
   state: EditorState
 }
 
+export type ExtensionProps = {
+  schema?: ExtensionSchema,
+  className?: string
+} | null;
+
 export abstract class Extension {
+  constructor(props: ExtensionProps) {
+    if (props) {
+      this.className = props.className;
+      this.customSchema = props.schema;
+    }
+  }
   name: string
   schema?: ExtensionSchema
   customSchema?: ExtensionSchema
   schemaDependencies?: {
     [key: string]: ExtensionSchema
   }
+  className?: string;
   customLayout?(props: CustomLayoutProps, dom: HTMLElement): JSX.Element
   icon?: JSX.Element | string
   plugins?: Plugin<any, any>[]

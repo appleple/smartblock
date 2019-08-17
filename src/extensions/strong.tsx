@@ -1,13 +1,12 @@
 import * as React from 'react'
 import { toggleMark } from 'prosemirror-commands'
 import StrongIcon from '../components/icons/Bold'
-import { Extension, ExtensionSchema } from '../types'
+import { Extension, ExtensionProps } from '../types'
 import { markActive } from '../utils'
 
 export default class Strong extends Extension {
-  constructor(schema?: ExtensionSchema) {
-    super();
-    this.customSchema = schema;
+  constructor(props?: ExtensionProps) {
+    super(props);
   }
   get name() {
     return 'strong'

@@ -5,14 +5,13 @@ import HeadingIcon from '../components/icons/Heading1'
 import AlignLeftIcon from '../components/icons/AlignLeft'
 import AlignCenterIcon from '../components/icons/AlignCenter'
 import AlignRightIcon from '../components/icons/AlignRight'
-import { Extension, ExtensionSchema } from '../types'
+import { Extension, ExtensionProps } from '../types'
 import { blockActive, getParentNodeFromState } from '../utils'
 import Button from '../components/button'
 
 export default class Heading2 extends Extension {
-  constructor(schema?: ExtensionSchema) {
-    super();
-    this.customSchema = schema;
+  constructor(props?: ExtensionProps) {
+    super(props);
   }
   get name() {
     return 'heading2'
@@ -53,7 +52,8 @@ export default class Heading2 extends Extension {
           'h2',
           {
             style: `text-align: ${node.attrs.align}`,
-            id: node.attrs.id || uuid()
+            id: node.attrs.id || uuid(),
+            class: this.className
           },
           0
         ]

@@ -30,7 +30,7 @@ import SplitIcon from '../components/icons/Split'
 import MergeIcon from '../components/icons/Merge'
 
 import { createTable, blockActive } from '../utils'
-import { Extension, ExtensionSchema } from '../types'
+import { Extension, ExtensionProps } from '../types'
 import Button from '../components/button'
 
 const schemas = tableNodes({
@@ -58,9 +58,8 @@ const CellButton = styled(Button)`
 `
 
 export default class Table extends Extension {
-  constructor(schema?: ExtensionSchema) {
-    super();
-    this.customSchema = schema;
+  constructor(props?: ExtensionProps) {
+    super(props);
   }
   get name() {
     return 'table'
@@ -92,7 +91,8 @@ export default class Table extends Extension {
       return [
         'table',
         {
-          id: node.attrs.id || uuid()
+          id: node.attrs.id || uuid(),
+          class: this.className
         },
         ['tbody', 0]
       ]

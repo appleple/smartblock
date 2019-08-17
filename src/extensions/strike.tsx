@@ -1,13 +1,12 @@
 import * as React from 'react'
 import { toggleMark } from 'prosemirror-commands'
 import StrikeIcon from '../components/icons/Strike'
-import { Extension, ExtensionSchema } from '../types'
+import { Extension, ExtensionProps } from '../types'
 import { markActive } from '../utils'
 
 export default class StrikeThrough extends Extension {
-  constructor(schema?: ExtensionSchema) {
-    super();
-    this.customSchema = schema;
+  constructor(props?: ExtensionProps) {
+    super(props);
   }
   get name() {
     return 'strike'
@@ -35,7 +34,8 @@ export default class StrikeThrough extends Extension {
       toDOM: () => [
         'span',
         {
-          style: 'text-decoration-line:line-through'
+          style: 'text-decoration-line:line-through',
+          class: this.className
         }
       ]
     }
