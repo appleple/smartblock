@@ -11,7 +11,7 @@ const SvgBack = (props: React.SVGProps<SVGSVGElement>) => (
         height={62}
         filterUnits="userSpaceOnUse"
       >
-        <feOffset dy={3} input="SourceAlpha" />
+        <feOffset dy={3} in="SourceAlpha" />
         <feGaussianBlur stdDeviation={3} result="blur" />
         <feFlood floodOpacity={0.161} />
         <feComposite operator="in" in2="blur" />

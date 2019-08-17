@@ -15,7 +15,9 @@ const fadeIn = keyframes`
   }
 `
 
-const FloaterStyle = styled.div`
+const FloaterStyle = styled.div<{
+  pos: number
+}>`
   position: absolute;
   z-index: 12;
   animation: ${fadeIn} 0.3s;

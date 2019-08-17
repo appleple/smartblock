@@ -1,11 +1,11 @@
 /// <reference types="react" />
-import { Extension, ExtensionSchema } from '../../types';
+import { Extension, ExtensionProps } from '../../types';
 export default class Link extends Extension {
-    constructor(schema?: ExtensionSchema);
+    constructor(props?: ExtensionProps);
     readonly name: string;
     readonly group: string;
     readonly showMenu: boolean;
-    readonly schema: ExtensionSchema | {
+    readonly schema: import("../../types").ExtensionSchema | {
         group: string;
         attrs: {
             href: {};
@@ -27,6 +27,7 @@ export default class Link extends Extension {
         toDOM(node: any): (string | number | {
             href: any;
             title: any;
+            class: any;
         })[];
     };
     readonly icon: JSX.Element;

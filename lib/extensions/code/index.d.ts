@@ -1,11 +1,11 @@
-/// <reference types="react" />
-import { Extension, ExtensionProps } from '../types';
-export default class BulletList extends Extension {
+import { Extension, ExtensionProps } from '../../types';
+import CodeBlockView from './code-block-view';
+export default class Code extends Extension {
     constructor(props?: ExtensionProps);
     readonly name: string;
     readonly group: string;
     readonly showMenu: boolean;
-    readonly schema: {
+    readonly schema: import("../../types").ExtensionSchema | {
         content: string;
         group: string;
         parseDOM: {
@@ -14,22 +14,19 @@ export default class BulletList extends Extension {
                 id: any;
             };
         }[];
+        toDOM: (node: any) => (string | (string | number)[] | {
+            id: any;
+            className: string;
+        })[];
         attrs: {
             id: {
                 default: string;
             };
         };
-        toDOM(node: any): (string | number | {
-            id: any;
-            class: any;
-        })[];
     };
-    readonly icon: JSX.Element;
+    readonly icon: string;
     active(state: any): boolean;
     enable(state: any): boolean;
-    onClick(state: any, dispatch: any): boolean;
-    customMenu({ state, dispatch }: {
-        state: any;
-        dispatch: any;
-    }): JSX.Element;
+    onClick(state: any, dispatch: any): void;
+    view(node: any, view: any, getPos: any): CodeBlockView;
 }

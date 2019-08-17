@@ -1,7 +1,7 @@
 /// <reference types="react" />
-import { Extension, ExtensionSchema } from '../types';
+import { Extension, ExtensionProps } from '../types';
 export default class Table extends Extension {
-    constructor(schema?: ExtensionSchema);
+    constructor(props?: ExtensionProps);
     readonly name: string;
     readonly group: string;
     readonly showMenu: boolean;

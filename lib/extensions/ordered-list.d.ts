@@ -1,11 +1,11 @@
 /// <reference types="react" />
-import { Extension, ExtensionSchema } from '../types';
+import { Extension, ExtensionProps } from '../types';
 export default class OrderedList extends Extension {
-    constructor(schema?: ExtensionSchema);
+    constructor(props?: ExtensionProps);
     readonly name: string;
     readonly group: string;
     readonly showMenu: boolean;
-    readonly schema: ExtensionSchema | {
+    readonly schema: import("../types").ExtensionSchema | {
         content: string;
         group: string;
         parseDOM: {
@@ -21,6 +21,7 @@ export default class OrderedList extends Extension {
         };
         toDOM(node: any): (string | number | {
             id: any;
+            class: any;
         })[];
     };
     readonly icon: JSX.Element;

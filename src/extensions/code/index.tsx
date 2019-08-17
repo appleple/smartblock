@@ -1,15 +1,14 @@
 import * as React from 'react'
 import { setBlockType } from 'prosemirror-commands'
 import uuid from 'uuid'
-import { Extension, ExtensionSchema } from '../../types'
+import { Extension, ExtensionProps } from '../../types'
 import CodeBlockView from './code-block-view';
 import { blockActive } from '../../utils';
 
 export default class Code extends Extension {
 
-  constructor(schema?: ExtensionSchema) {
-    super();
-    this.customSchema = schema;
+  constructor(props?: ExtensionProps) {
+    super(props);
   }
   get name() {
     return 'code'
@@ -44,7 +43,8 @@ export default class Code extends Extension {
         return [
           'pre',
           {
-            id: node.attrs.id || uuid()
+            id: node.attrs.id || uuid(),
+            className: this.className
           },
           ['code', 0]
         ]

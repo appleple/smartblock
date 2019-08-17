@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { render, unmountComponentAtNode } from 'react-dom';
 import { setBlockType } from 'prosemirror-commands'
-import { Extension, ExtensionSchema } from '../../types'
+import { Extension, ExtensionProps } from '../../types'
 import { blockActive } from '../../utils'
 import LinkIcon from '../../components/icons/Link'
 import Popup from './popup';
@@ -11,9 +11,8 @@ import { EditorState } from 'prosemirror-state';
 
 
 export default class Embed extends Extension {
-  constructor(schema?: ExtensionSchema) {
-    super();
-    this.customSchema = schema;
+  constructor(props?: ExtensionProps) {
+    super(props);
   }
   get name() {
     return 'embed'

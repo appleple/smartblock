@@ -1,13 +1,13 @@
 /// <reference types="react" />
-import { Extension, ExtensionSchema } from '../../types';
+import { Extension, ExtensionProps } from '../../types';
 import { EditorState } from 'prosemirror-state';
 export default class Embed extends Extension {
-    constructor(schema?: ExtensionSchema);
+    constructor(props?: ExtensionProps);
     readonly name: string;
     readonly group: string;
     readonly showMenu: boolean;
     readonly hideInlineMenuOnFocus: boolean;
-    readonly schema: ExtensionSchema | {
+    readonly schema: import("../../types").ExtensionSchema | {
         group: string;
         content: string;
         selectable: boolean;

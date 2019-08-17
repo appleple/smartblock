@@ -66,8 +66,8 @@ export default (props: CustomLayoutProps) => {
   const parentPos = findNodePosition(view.state.doc, parentNode)
   const dom = view.nodeDOM(parentPos) as HTMLElement
   const style = {
-    position: 'absolute',
-    zIndex: '10',
+    position: 'absolute' as 'absolute',
+    zIndex: 10,
     top: pos.top,
     left: 0,
     right: 0
