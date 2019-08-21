@@ -25,6 +25,7 @@ export default class Link extends Extension {
     if (this.customSchema) {
       return this.customSchema;
     }
+    const className = this.className;
     return {
       group: 'mark',
       attrs: {
@@ -46,7 +47,7 @@ export default class Link extends Extension {
       ],
       toDOM(node) {
         const { href, title } = node.attrs
-        return ['a', { href, title, class: this.className }, 0]
+        return ['a', { href, title, "class": className }, 0]
       }
     }
   }

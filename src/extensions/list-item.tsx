@@ -23,7 +23,7 @@ export default class ListItem extends Extension {
       return this.customSchema;
     }
     return {
-      content: 'paragraph',
+      content: 'paragraph block*',
       group: 'block',
       parseDOM: [
         {
