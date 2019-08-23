@@ -406,8 +406,10 @@ export const isDescendant = (parent: HTMLElement, child: HTMLElement) => {
 
 export const stripPtag = (html: string) => {
   return html
-    .replace(/<li(.*?)>(.*?)<p(.*?)>(.*?)<\/p>(.*?)<\/li>/g, '<li$1>$2$4$5</li>')
-    .replace(/<p(.*?)><\/p>/g, '');
+    .replace(/<li([^>^<]*)><p([^>]*)>([^<]*?)<\/p><\/li>/g, '<li$1>$3</li>')
+    .replace(/<li([^>^<]*)><p([^>]*)>([^<]*?)<\/p><ul/g, '<li$1>$3</li><ul')
+    .replace(/<li([^>^<]*)><p([^>]*)>([^<]*?)<\/p><ol/g, '<li$1>$3</li><ol')
+    .replace(/<p([^><]*)><\/p>/g, '');
 }
 
 export const getHtmlFromNode = (doc: Node, schema: Schema) => {
