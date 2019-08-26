@@ -404,12 +404,22 @@ export const isDescendant = (parent: HTMLElement, child: HTMLElement) => {
   return false;
 }
 
+const unwrap = (el: HTMLElement) => {
+  const parent = el.parentNode;
+  while (el.firstChild) {
+    parent.insertBefore(el.firstChild, el);
+  }
+  parent.removeChild(el);
+}
+
 export const stripPtag = (html: string) => {
-  return html
-    .replace(/<li([^>^<]*)><p([^>]*)>([^<]*?)<\/p><\/li>/g, '<li$1>$3</li>')
-    .replace(/<li([^>^<]*)><p([^>]*)>([^<]*?)<\/p><ul/g, '<li$1>$3</li><ul')
-    .replace(/<li([^>^<]*)><p([^>]*)>([^<]*?)<\/p><ol/g, '<li$1>$3</li><ol')
-    .replace(/<p([^><]*)><\/p>/g, '');
+  const div = document.createElement('div');
+  div.innerHTML = html;
+  const ps = div.querySelectorAll('p');
+  [].forEach.call(ps, (p: HTMLElement) => {
+    unwrap(p);
+  });
+  return div.innerHTML;
 }
 
 export const getHtmlFromNode = (doc: Node, schema: Schema) => {
@@ -417,7 +427,7 @@ export const getHtmlFromNode = (doc: Node, schema: Schema) => {
     doc.content
   )
   const div = document.createElement('div')
-  div.appendChild(fragment)
+  div.appendChild(fragment);
   return stripPtag(div.innerHTML)
 }
 
