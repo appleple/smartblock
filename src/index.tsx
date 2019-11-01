@@ -23,10 +23,11 @@ import { Dispatch, Extension } from './types'
 // extensions
 import Link from './extensions/link'
 import BulletList from './extensions/bullet-list'
+import CustomBlock from './extensions/custom-block'
 import Heading2 from './extensions/heading2'
 import Heading3 from './extensions/heading3'
 import ListItem from './extensions/list-item'
-import Blockquote from './extensions/blockquote';
+import Blockquote from './extensions/blockquote'
 import Embed from './extensions/embed';
 import MoveDown from './extensions/move-down'
 import MoveUp from './extensions/move-up'
@@ -39,7 +40,7 @@ import Trash from './extensions/trash'
 import Emphasis from './extensions/emphasis'
 import Underline from './extensions/underline'
 import DefaultKeys from './extensions/default-keys';
-import DefaultPlugins from './extensions/default-plugins';
+import DefaultPlugins from './extensions/default-plugins'
 import Extensions from './extensions'
 
 export {
@@ -58,6 +59,7 @@ export {
   Extensions,
   Link,
   BulletList,
+  CustomBlock,
   Heading2,
   Heading3,
   ListItem,

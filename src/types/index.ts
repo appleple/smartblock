@@ -1,6 +1,5 @@
 import { Node, Schema } from 'prosemirror-model'
 import { Plugin, EditorState, Transaction } from 'prosemirror-state'
-import { Transform } from 'prosemirror-transform'
 import { EditorView, NodeView } from 'prosemirror-view'
 
 export interface ExtensionSchema {
@@ -23,7 +22,8 @@ type CustomLayoutProps = {
 
 export type ExtensionProps = {
   schema?: ExtensionSchema,
-  className?: string
+  className?: string,
+  tagName?: string
 } | null;
 
 export abstract class Extension {
@@ -31,6 +31,7 @@ export abstract class Extension {
     if (props) {
       this.className = props.className;
       this.customSchema = props.schema;
+      this.tagName = props.tagName;
     }
   }
   name: string
@@ -39,6 +40,7 @@ export abstract class Extension {
   schemaDependencies?: {
     [key: string]: ExtensionSchema
   }
+  tagName?: string;
   className?: string;
   customLayout?(props: CustomLayoutProps, dom: HTMLElement): JSX.Element
   icon?: JSX.Element | string
