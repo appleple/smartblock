@@ -44,6 +44,14 @@ import DefaultKeys from './extensions/default-keys';
 import DefaultPlugins from './extensions/default-plugins'
 import Extensions from './extensions'
 
+// icons
+import Heading1Icon from './components/icons/Heading1';
+import Heading2Icon from './components/icons/Heading2';
+import Heading3Icon from './components/icons/Heading3';
+import Heading4Icon from './components/icons/Heading4';
+import Heading5Icon from './components/icons/Heading5';
+import Heading6Icon from './components/icons/Heading6';
+
 export {
   /* components */
   PaperEditor,
@@ -96,5 +104,12 @@ export {
   DefaultKeys,
   DefaultPlugins,
   /* official */
-  Plugin
+  Plugin,
+  /* icons */
+  Heading1Icon,
+  Heading2Icon,
+  Heading3Icon,
+  Heading4Icon,
+  Heading5Icon,
+  Heading6Icon
 }
