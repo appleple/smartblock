@@ -22,6 +22,8 @@ declare type CustomLayoutProps = {
 export declare type ExtensionProps = {
     schema?: ExtensionSchema;
     className?: string;
+    tagName?: string;
+    icon?: JSX.Element | string;
 } | null;
 export declare abstract class Extension {
     constructor(props: ExtensionProps);
@@ -31,8 +33,10 @@ export declare abstract class Extension {
     schemaDependencies?: {
         [key: string]: ExtensionSchema;
     };
+    tagName?: string;
     className?: string;
     customLayout?(props: CustomLayoutProps, dom: HTMLElement): JSX.Element;
+    customIcon?: JSX.Element | string;
     icon?: JSX.Element | string;
     plugins?: Plugin<any, any>[];
     showMenu: boolean;
