@@ -24,7 +24,8 @@ export type ExtensionProps = {
   schema?: ExtensionSchema,
   className?: string,
   tagName?: string,
-  icon?: JSX.Element | string
+  icon?: JSX.Element | string,
+  customName?: string
 } | null;
 
 export abstract class Extension {
@@ -34,9 +35,11 @@ export abstract class Extension {
       this.customSchema = props.schema;
       this.tagName = props.tagName;
       this.customIcon = props.icon;
+      this.customName = props.customName;
     }
   }
   name: string
+  customName?: string
   schema?: ExtensionSchema
   customSchema?: ExtensionSchema
   schemaDependencies?: {

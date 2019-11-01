@@ -1,13 +1,16 @@
 import { toggleMark } from 'prosemirror-commands'
 import { Extension, ExtensionProps } from '../types'
-import { markActive } from '../utils'
+import { markActive, getUniqId } from '../utils'
 
 export default class CustomMark extends Extension {
   constructor(props?: ExtensionProps) {
+    if (!props.customName) {
+      props.customName = getUniqId();
+    }
     super(props);
   }
   get name() {
-    return 'custom_mark'
+    return this.customName
   }
 
   get group() {
@@ -35,10 +38,10 @@ export default class CustomMark extends Extension {
   }
 
   active(state) {
-    return markActive(state.schema.marks.custom_mark)(state)
+    return markActive(state.schema.marks[this.name])(state)
   }
 
   onClick(state, dispatch) {
-    toggleMark(state.schema.marks.custom_mark)(state, dispatch)
+    toggleMark(state.schema.marks[this.name])(state, dispatch)
   }
 }

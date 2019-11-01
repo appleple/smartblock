@@ -24,10 +24,12 @@ export declare type ExtensionProps = {
     className?: string;
     tagName?: string;
     icon?: JSX.Element | string;
+    customName?: string;
 } | null;
 export declare abstract class Extension {
     constructor(props: ExtensionProps);
     name: string;
+    customName?: string;
     schema?: ExtensionSchema;
     customSchema?: ExtensionSchema;
     schemaDependencies?: {

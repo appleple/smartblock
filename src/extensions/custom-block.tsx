@@ -5,15 +5,18 @@ import AlignLeftIcon from '../components/icons/AlignLeft'
 import AlignCenterIcon from '../components/icons/AlignCenter'
 import AlignRightIcon from '../components/icons/AlignRight'
 import { Extension, ExtensionProps } from '../types'
-import { blockActive, getParentNodeFromState } from '../utils'
+import { blockActive, getParentNodeFromState, getUniqId } from '../utils'
 import Button from '../components/button'
 
 export default class CustomBlock extends Extension {
   constructor(props?: ExtensionProps) {
+    if (!props.customName) {
+      props.customName = getUniqId();
+    }
     super(props);
   }
   get name() {
-    return 'custom_block'
+    return this.customName
   }
 
   get group() {
@@ -66,11 +69,11 @@ export default class CustomBlock extends Extension {
   }
 
   active(state) {
-    return blockActive(state.schema.nodes.custom_block)(state)
+    return blockActive(state.schema.nodes[this.name])(state)
   }
 
   enable(state) {
-    return setBlockType(state.schema.nodes.custom_block)(state)
+    return setBlockType(state.schema.nodes[this.name])(state)
   }
 
   customMenu({ state, dispatch }) {
@@ -81,7 +84,7 @@ export default class CustomBlock extends Extension {
           type="button"
           active={node && node.attrs.align === 'left'}
           onClick={() => {
-            setBlockType(state.schema.nodes.custom_block, {
+            setBlockType(state.schema.nodes[this.name], {
               align: 'left'
             })(state, dispatch)
           }}
@@ -92,7 +95,7 @@ export default class CustomBlock extends Extension {
           type="button"
           active={node && node.attrs.align === 'center'}
           onClick={() => {
-            setBlockType(state.schema.nodes.custom_block, {
+            setBlockType(state.schema.nodes[this.name], {
               align: 'center'
             })(state, dispatch)
           }}
@@ -103,7 +106,7 @@ export default class CustomBlock extends Extension {
           type="button"
           active={node && node.attrs.align === 'right'}
           onClick={() => {
-            setBlockType(state.schema.nodes.custom_block, {
+            setBlockType(state.schema.nodes[this.name], {
               align: 'right'
             })(state, dispatch)
           }}
@@ -115,6 +118,6 @@ export default class CustomBlock extends Extension {
   }
 
   onClick(state, dispatch) {
-    setBlockType(state.schema.nodes.custom_block)(state, dispatch)
+    setBlockType(state.schema.nodes[this.name])(state, dispatch)
   }
 }
