@@ -23,7 +23,8 @@ type CustomLayoutProps = {
 export type ExtensionProps = {
   schema?: ExtensionSchema,
   className?: string,
-  tagName?: string
+  tagName?: string,
+  icon?: JSX.Element | string
 } | null;
 
 export abstract class Extension {
@@ -32,6 +33,7 @@ export abstract class Extension {
       this.className = props.className;
       this.customSchema = props.schema;
       this.tagName = props.tagName;
+      this.customIcon = props.icon;
     }
   }
   name: string
@@ -43,6 +45,7 @@ export abstract class Extension {
   tagName?: string;
   className?: string;
   customLayout?(props: CustomLayoutProps, dom: HTMLElement): JSX.Element
+  customIcon?: JSX.Element | string
   icon?: JSX.Element | string
   plugins?: Plugin<any, any>[]
   showMenu: boolean

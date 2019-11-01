@@ -1,15 +1,21 @@
 import * as React from 'react';
 import { render } from 'react-dom';
 import { PaperEditor, GlobalStyle } from './src/';
-import Test from './src/extensions/test';
-import Heading from './src/extensions/custom-block';
+// import Block from './src/extensions/custom-block';
+// import Mark from './src/extensions/custom-mark';
 import extensions from './src/extensions/';
 
-extensions.push(new Heading({
-  tagName: 'h5',
-  className: '',
-  icon: 'H<span>5</span>'
-}));
+// extensions.push(new Block({
+//   tagName: 'h5',
+//   className: '',
+//   icon: 'h5'
+// }));
+
+// extensions.push(new Mark({
+//   tagName: 'i',
+//   className: '',
+//   icon: 'i'
+// }));
 
 render(<>
   <GlobalStyle />

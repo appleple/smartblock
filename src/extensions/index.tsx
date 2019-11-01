@@ -21,6 +21,7 @@ import MoveDown from './move-down'
 
 import DefaultKeys from './default-keys'
 import DefaultPlugins from './default-plugins'
+import { Extension } from '..'
 
 export default [
   // blocks
@@ -49,4 +50,4 @@ export default [
   new DefaultPlugins({
     placeholder: 'ここに本文を入力'
   })
-]
+] as Extension[];

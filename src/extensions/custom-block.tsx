@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { setBlockType } from 'prosemirror-commands'
 import uuid from 'uuid'
-import HeadingIcon from '../components/icons/Heading2'
 import AlignLeftIcon from '../components/icons/AlignLeft'
 import AlignCenterIcon from '../components/icons/AlignCenter'
 import AlignRightIcon from '../components/icons/AlignRight'
@@ -9,12 +8,12 @@ import { Extension, ExtensionProps } from '../types'
 import { blockActive, getParentNodeFromState } from '../utils'
 import Button from '../components/button'
 
-export default class Heading extends Extension {
+export default class CustomBlock extends Extension {
   constructor(props?: ExtensionProps) {
     super(props);
   }
   get name() {
-    return 'heading'
+    return 'custom_block'
   }
 
   get group() {
@@ -63,15 +62,15 @@ export default class Heading extends Extension {
   }
 
   get icon() {
-    return this.tagName
+    return this.customIcon
   }
 
   active(state) {
-    return blockActive(state.schema.nodes.heading)(state)
+    return blockActive(state.schema.nodes.custom_block)(state)
   }
 
   enable(state) {
-    return setBlockType(state.schema.nodes.heading)(state)
+    return setBlockType(state.schema.nodes.custom_block)(state)
   }
 
   customMenu({ state, dispatch }) {
@@ -82,7 +81,7 @@ export default class Heading extends Extension {
           type="button"
           active={node && node.attrs.align === 'left'}
           onClick={() => {
-            setBlockType(state.schema.nodes.heading, {
+            setBlockType(state.schema.nodes.custom_block, {
               align: 'left'
             })(state, dispatch)
           }}
@@ -93,7 +92,7 @@ export default class Heading extends Extension {
           type="button"
           active={node && node.attrs.align === 'center'}
           onClick={() => {
-            setBlockType(state.schema.nodes.heading, {
+            setBlockType(state.schema.nodes.custom_block, {
               align: 'center'
             })(state, dispatch)
           }}
@@ -104,7 +103,7 @@ export default class Heading extends Extension {
           type="button"
           active={node && node.attrs.align === 'right'}
           onClick={() => {
-            setBlockType(state.schema.nodes.heading, {
+            setBlockType(state.schema.nodes.custom_block, {
               align: 'right'
             })(state, dispatch)
           }}
@@ -116,6 +115,6 @@ export default class Heading extends Extension {
   }
 
   onClick(state, dispatch) {
-    setBlockType(state.schema.nodes.heading)(state, dispatch)
+    setBlockType(state.schema.nodes.custom_block)(state, dispatch)
   }
 }

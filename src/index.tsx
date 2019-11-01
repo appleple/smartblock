@@ -24,6 +24,7 @@ import { Dispatch, Extension } from './types'
 import Link from './extensions/link'
 import BulletList from './extensions/bullet-list'
 import CustomBlock from './extensions/custom-block'
+import CustomMark from './extensions/custom-mark'
 import Heading2 from './extensions/heading2'
 import Heading3 from './extensions/heading3'
 import ListItem from './extensions/list-item'
@@ -75,6 +76,7 @@ export {
   Strike,
   Strong,
   Underline,
+  CustomMark,
   Trash,
   /* utils */
   getViewport,
