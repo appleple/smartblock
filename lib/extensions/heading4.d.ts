@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import { Extension, ExtensionProps } from '../types';
-export default class Heading3 extends Extension {
+export default class Heading4 extends Extension {
     constructor(props?: ExtensionProps);
     readonly name: string;
     readonly group: string;

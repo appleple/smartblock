@@ -25,8 +25,12 @@ import Link from './extensions/link'
 import BulletList from './extensions/bullet-list'
 import CustomBlock from './extensions/custom-block'
 import CustomMark from './extensions/custom-mark'
+import Heading1 from './extensions/heading1'
 import Heading2 from './extensions/heading2'
 import Heading3 from './extensions/heading3'
+import Heading4 from './extensions/heading4'
+import Heading5 from './extensions/heading5'
+import Heading6 from './extensions/heading6'
 import ListItem from './extensions/list-item'
 import Blockquote from './extensions/blockquote'
 import Embed from './extensions/embed';
@@ -69,8 +73,12 @@ export {
   Link,
   BulletList,
   CustomBlock,
+  Heading1,
   Heading2,
   Heading3,
+  Heading4,
+  Heading5,
+  Heading6,
   ListItem,
   MoveDown,
   MoveUp,

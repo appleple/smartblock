@@ -1,14 +1,13 @@
 import * as React from 'react'
 import { setBlockType } from 'prosemirror-commands'
 import uuid from 'uuid'
-import HeadingIcon from '../components/icons/Heading2'
+import HeadingIcon from '../components/icons/Heading3'
 import AlignLeftIcon from '../components/icons/AlignLeft'
 import AlignCenterIcon from '../components/icons/AlignCenter'
 import AlignRightIcon from '../components/icons/AlignRight'
 import { Extension, ExtensionProps } from '../types'
 import { blockActive, getParentNodeFromState } from '../utils'
 import Button from '../components/button'
-
 
 export default class Heading3 extends Extension {
   constructor(props?: ExtensionProps) {
@@ -34,10 +33,6 @@ export default class Heading3 extends Extension {
       content: 'inline*',
       group: 'block',
       defining: true,
-      attrs: {
-        align: { default: 'left' },
-        id: { default: '' }
-      },
       parseDOM: [
         {
           tag: 'h3',
@@ -48,6 +43,10 @@ export default class Heading3 extends Extension {
           }
         }
       ],
+      attrs: {
+        align: { default: 'left' },
+        id: { default: '' }
+      },
       toDOM(node) {
         return [
           'h3',
@@ -79,8 +78,8 @@ export default class Heading3 extends Extension {
     return (
       <>
         <Button
-          type="button"
           active={node && node.attrs.align === 'left'}
+          type="button"
           onClick={() => {
             setBlockType(state.schema.nodes.heading3, {
               align: 'left'
