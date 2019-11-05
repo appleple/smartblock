@@ -1,7 +1,7 @@
 import { useEffect, useRef, useMemo, useState, RefObject, SyntheticEvent } from 'react';
 import { EditorState } from 'prosemirror-state'
 import { EditorView } from 'prosemirror-view'
-import { getScrollTop, getScrollLeft } from './';
+import { getScrollTop, getScrollLeft, getOffset } from './';
 
 type EditorProps = {
   onChange(
@@ -62,14 +62,20 @@ export const useScroll = () => {
   return scrollTop;
 }
 
-export const useScrolling = (delay: number) => {
+export const useScrolling = (element: React.MutableRefObject<HTMLDivElement>, delay: number) => {
   const [scrolling, setScrolling] = useState(false);
   useEffect(() => {
     let debounceTimer: number = null;
     let count = 0;
+    let top = element.current.getBoundingClientRect().top;
     const eventHandler = () => {
+      const localTop = element.current.getBoundingClientRect().top;
+      if (localTop === top) {
+        return;
+      }
+      top = localTop;
       count++;
-      if (count === 20) {
+      if (count === 3) {
         if (scrolling === false) {
           count = 0;
           setScrolling(true);
@@ -81,9 +87,9 @@ export const useScrolling = (delay: number) => {
         count = 0;
       }, delay);
     }
-    window.addEventListener('scroll', eventHandler);
+    const interval = setInterval(eventHandler, 100);
     return (() => {
-      window.removeEventListener('scroll', eventHandler);
+      clearInterval(interval);
     })
   }, []);
   return scrolling;

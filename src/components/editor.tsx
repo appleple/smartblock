@@ -31,7 +31,7 @@ export default (props: EditorProps) => {
     }
   }, []);
 
-  const scrolling = useScrolling(300);
+  const scrolling = useScrolling(editorRef, 300);
 
   const editor = <div ref={editorRef} />
   return props.render({
