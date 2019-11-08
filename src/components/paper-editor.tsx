@@ -68,7 +68,7 @@ type AppProps = {
   titleText?: string,
   titlePlaceholder?: string,
   full?: boolean,
-  ref?(container: HTMLDivElement): void
+  ref?(div: React.MutableRefObject<HTMLDivElement>): void
 }
 
 const EDITMENUHEIGHT = 80;
@@ -328,6 +328,7 @@ export default (props: AppProps) => {
   }
 
   const [options, setOptions] = useState(null);
+  const app = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const div = document.createElement('div')
@@ -337,6 +338,9 @@ export default (props: AppProps) => {
       props.onInit({
         schema
       })
+    }
+    if (props.ref) {
+      props.ref(app);
     }
     const editorOptions = { schema, plugins: getPlugins(extensions, schema), doc }
     setOptions(editorOptions);
@@ -363,11 +367,7 @@ export default (props: AppProps) => {
         setShowMenus(true);
       }
     }}
-    ref={(self) => {
-      if (props.ref) {
-        props.ref(self);
-      }
-    }}
+    ref={app}
   >
     <Container full={props.full}>
       {props.showTitle && 

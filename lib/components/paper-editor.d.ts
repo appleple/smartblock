@@ -1,4 +1,4 @@
-/// <reference types="react" />
+import * as React from 'react';
 import { Schema } from 'prosemirror-model';
 import { Extension } from '../types';
 declare type OutputJson = {
@@ -20,7 +20,7 @@ declare type AppProps = {
     titleText?: string;
     titlePlaceholder?: string;
     full?: boolean;
-    ref?(container: HTMLDivElement): void;
+    ref?(div: React.MutableRefObject<HTMLDivElement>): void;
 };
 declare const _default: (props: AppProps) => JSX.Element;
 export default _default;
