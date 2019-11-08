@@ -67,7 +67,8 @@ type AppProps = {
   showTitle?: boolean,
   titleText?: string,
   titlePlaceholder?: string,
-  full?: boolean
+  full?: boolean,
+  ref?(container: HTMLDivElement): void
 }
 
 const EDITMENUHEIGHT = 80;
@@ -314,7 +315,7 @@ export default (props: AppProps) => {
     const node = Node.fromJSON(schema, json)
     realHtml = getHtmlFromNode(node, schema)
   }
-  
+
   if (props.autoSave) {
     const { pathname } = location;
     const localHtml = localStorage.getItem(`paper-editor:${pathname}`);
@@ -352,14 +353,22 @@ export default (props: AppProps) => {
   const edits = getEdits(extensions)
   const nodeViews = getNodeViews(extensions)
 
-  return (<div id={containerId} onClick={(e) => {
-    const target = e.target as HTMLDivElement;
-    if (target.getAttribute('id') === containerId) {
-      setShowMenus(false);
-    } else {
-      setShowMenus(true);
-    }
-  }}>
+  return (<div 
+    id={containerId} 
+    onClick={(e) => {
+      const target = e.target as HTMLDivElement;
+      if (target.getAttribute('id') === containerId) {
+        setShowMenus(false);
+      } else {
+        setShowMenus(true);
+      }
+    }}
+    ref={(self) => {
+      if (props.ref) {
+        props.ref(self);
+      }
+    }}
+  >
     <Container full={props.full}>
       {props.showTitle && 
         <Title 
