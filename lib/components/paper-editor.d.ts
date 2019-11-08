@@ -19,6 +19,7 @@ declare type AppProps = {
     showTitle?: boolean;
     titleText?: string;
     titlePlaceholder?: string;
+    full?: boolean;
 };
 declare const _default: (props: AppProps) => JSX.Element;
 export default _default;

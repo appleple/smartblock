@@ -27,8 +27,15 @@ const Input = styled('div')`
   overflow-y: auto;
 `
 
-const Container = styled.div`
-  max-width: 780px;
+const Container = styled.div<{
+  full: boolean
+}>`
+  ${props => {
+    if (!props.full) {
+      return `max-width: 780px;`
+    }
+    return '';
+  }}
   margin: 0 auto;
   padding: 10px 0 80px 0;
 `
@@ -59,7 +66,8 @@ type AppProps = {
   autoSave?: boolean,
   showTitle?: boolean,
   titleText?: string,
-  titlePlaceholder?: string
+  titlePlaceholder?: string,
+  full?: boolean
 }
 
 const EDITMENUHEIGHT = 80;
@@ -292,7 +300,8 @@ export default (props: AppProps) => {
     showBackBtn: false,
     autoSave: false,
     showTitle: false,
-    titleText: ''
+    titleText: '',
+    full: false
   }
 
   props = Object.assign({}, defaultProps, props);
@@ -345,7 +354,7 @@ export default (props: AppProps) => {
       setShowMenus(true);
     }
   }}>
-    <Container>
+    <Container full={props.full}>
       {props.showTitle && 
         <Title 
           onChange={(title) => {
