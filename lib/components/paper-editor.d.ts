@@ -20,7 +20,7 @@ declare type AppProps = {
     titleText?: string;
     titlePlaceholder?: string;
     full?: boolean;
-    ref?(div: React.MutableRefObject<HTMLDivElement>): void;
+    getEditorRef?(div: React.MutableRefObject<HTMLDivElement>): void;
 };
 declare const _default: (props: AppProps) => JSX.Element;
 export default _default;

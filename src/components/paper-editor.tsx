@@ -68,7 +68,7 @@ type AppProps = {
   titleText?: string,
   titlePlaceholder?: string,
   full?: boolean,
-  ref?(div: React.MutableRefObject<HTMLDivElement>): void
+  getEditorRef?(div: React.MutableRefObject<HTMLDivElement>): void
 }
 
 const EDITMENUHEIGHT = 80;
@@ -339,8 +339,8 @@ export default (props: AppProps) => {
         schema
       })
     }
-    if (props.ref) {
-      props.ref(app);
+    if (props.getEditorRef) {
+      props.getEditorRef(app);
     }
     const editorOptions = { schema, plugins: getPlugins(extensions, schema), doc }
     setOptions(editorOptions);
