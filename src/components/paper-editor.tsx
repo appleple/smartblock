@@ -20,7 +20,7 @@ import { getScrollTop, getOffset, getViewport, getHtmlFromNode, getParentNodeFro
 import defaultExtensions from '../extensions'
 import { Extension } from '../types'
 
-const { useState, useRef } = React;
+const { useState, useEffect, useRef } = React;
 
 const Input = styled('div')`
   width: 100%;
@@ -314,6 +314,7 @@ export default (props: AppProps) => {
     const node = Node.fromJSON(schema, json)
     realHtml = getHtmlFromNode(node, schema)
   }
+  
   if (props.autoSave) {
     const { pathname } = location;
     const localHtml = localStorage.getItem(`paper-editor:${pathname}`);
@@ -324,15 +325,21 @@ export default (props: AppProps) => {
       titleText = localStorage.getItem(`paper-editor-title:${pathname}`);
     }
   }
-  const div = document.createElement('div')
-  div.innerHTML = realHtml
 
-  const doc = DOMParser.fromSchema(schema).parse(div)
-  if (props.onInit) {
-    props.onInit({
-      schema
-    })
-  }
+  const [options, setOptions] = useState(null);
+
+  useEffect(() => {
+    const div = document.createElement('div')
+    div.innerHTML = realHtml
+    const doc = DOMParser.fromSchema(schema).parse(div)
+    if (props.onInit) {
+      props.onInit({
+        schema
+      })
+    }
+    const editorOptions = { schema, plugins: getPlugins(extensions, schema), doc }
+    setOptions(editorOptions);
+  }, []);
 
   const [showMenus, setShowMenus] = useState(true);
   const containerId = React.useMemo(() => {
@@ -340,7 +347,6 @@ export default (props: AppProps) => {
   }, []);
 
   const container = useRef<HTMLDivElement>(null);
-  const editorOptions = { schema, plugins: getPlugins(extensions, schema), doc }
   const blocks = getBlocks(extensions)
   const marks = getMarks(extensions)
   const edits = getEdits(extensions)
@@ -370,8 +376,8 @@ export default (props: AppProps) => {
         ref={container}
       >
         <Input>
-          <Editor
-            options={editorOptions}
+          {options && <Editor
+            options={options}
             nodeViews={nodeViews}
             onChange={(state, dispatch) => {
               const shouldScroll = onChange(state, dispatch, props, schema, container);
@@ -398,7 +404,7 @@ export default (props: AppProps) => {
                 </>);
               }
             }
-          />
+          />}
         </Input>
       </div>
       </Inner>
