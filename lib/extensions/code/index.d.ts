@@ -12,6 +12,7 @@ export default class Code extends Extension {
             tag: string;
             getAttrs(dom: any): {
                 id: any;
+                text: any;
             };
         }[];
         toDOM: (node: any) => (string | (string | number)[] | {
@@ -20,6 +21,9 @@ export default class Code extends Extension {
         })[];
         attrs: {
             id: {
+                default: string;
+            };
+            text: {
                 default: string;
             };
         };

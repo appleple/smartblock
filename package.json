@@ -1,12 +1,12 @@
 {
   "name": "paper-editor",
-  "version": "1.2.9",
+  "version": "1.2.10",
   "description": "Dropbox like Wysiwyg Editor",
   "main": "lib/index.js",
   "type": "lib/index.d.ts",
   "scripts": {
     "test": "jest",
-    "dev": "webpack-dev-server --config webpack.dev.js --host 0.0.0.0",
+    "dev": "webpack-dev-server --config webpack.dev.js --host 0.0.0.0 --port 3031",
     "build": "webpack --config webpack.prod.js",
     "build:lib": "rm -rf ./lib && tsc",
     "np": "np --no-cleanup",

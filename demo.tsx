@@ -8,14 +8,14 @@ import extensions from './src/extensions/';
 extensions.push(new Block({
   tagName: 'h5',
   className: '',
-  icon: 'h5',
+  icon: '<span class="fa fa-envelope-open"></span>',
 }));
 
-extensions.push(new Mark({
-  tagName: 'i',
-  className: '',
-  icon: 'i',
-}));
+// extensions.push(new Mark({
+//   tagName: 'i',
+//   className: '',
+//   icon: '<span class="fa fa-address-book"></span>',
+// }));
 
 render(<>
   <GlobalStyle />

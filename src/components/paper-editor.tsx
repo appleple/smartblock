@@ -311,6 +311,7 @@ export default (props: AppProps) => {
   const schema = getSchemaFromExtensions(props.extensions)
   let realHtml = html
 
+
   if (json) {
     const node = Node.fromJSON(schema, json)
     realHtml = getHtmlFromNode(node, schema)
@@ -334,6 +335,7 @@ export default (props: AppProps) => {
     const div = document.createElement('div')
     div.innerHTML = realHtml
     const doc = DOMParser.fromSchema(schema).parse(div)
+
     if (props.onInit) {
       props.onInit({
         schema

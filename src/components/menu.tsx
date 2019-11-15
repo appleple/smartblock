@@ -190,7 +190,7 @@ export default (props: PositionProps) => {
                 item.onClick(state, dispatch, view)
               }}
             >
-              {item.icon}
+              {typeof item.icon !== 'string' ? item.icon  : <span dangerouslySetInnerHTML={{ __html: item.icon }}></span>}
             </ButtonStyle>
           )
         })}

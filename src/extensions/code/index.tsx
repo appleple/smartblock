@@ -34,7 +34,8 @@ export default class Code extends Extension {
           tag: 'code',
           getAttrs(dom) {
             return {
-              id: dom.getAttribute('id') || uuid()
+              id: dom.getAttribute('id') || uuid(),
+              text: dom.textContent,
             }
           }
         }
@@ -50,7 +51,8 @@ export default class Code extends Extension {
         ]
       },
       attrs: {
-        id: { default: '' }
+        id: { default: '' },
+        text:  {default: ''}
       }
     }
   }

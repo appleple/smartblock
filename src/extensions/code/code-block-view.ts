@@ -34,7 +34,7 @@ export default class CodeBlockView {
 
     // Create a CodeMirror instance
     this.cm = CodeMirror(null, {
-      value: this.node.textContent,
+      value: this.node.attrs.text,
       lineNumbers: true,
       extraKeys: this.codeMirrorKeymap()
     })
