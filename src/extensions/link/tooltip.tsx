@@ -81,8 +81,9 @@ const calculatePos = (view: EditorView, container: React.RefObject<HTMLDivElemen
   if (nodeAfter) {
     link = nodeAfter.marks.find(mark => {
       if (mark.type.name === 'link') {
-        return 20
+        return true;
       }
+      return false;
     })
   }
 

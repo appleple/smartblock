@@ -25,11 +25,19 @@ export default class CustomMark extends Extension {
     if (this.customSchema) {
       return this.customSchema;
     }
-    const tag = this.tagName;
+    const { className, tagName } = this;
+    let tag = tagName;
+    if (className) {
+      tag += `.${className.replace(/\s/g, '.')}`;
+    }
     return {
       group: 'mark',
-      parseDOM: [{ tag }],
-      toDOM: () => [ tag, 0 ]
+      parseDOM: [{ 
+        tag
+      }],
+      toDOM: () => [ tag, {
+        class: className
+      }, 0 ]
     }
   }
 

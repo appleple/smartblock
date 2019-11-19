@@ -26,7 +26,7 @@ export default class CustomBlock extends Extension {
         toDOM(node: any): (string | number | {
             style: string;
             id: any;
-            class: any;
+            class: string;
         })[];
     };
     readonly icon: string | JSX.Element;

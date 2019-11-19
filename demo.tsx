@@ -6,8 +6,8 @@ import Mark from './src/extensions/custom-mark';
 import extensions from './src/extensions/';
 
 extensions.push(new Block({
-  tagName: 'h5',
-  className: '',
+  tagName: 'div',
+  className: 'acms-admin-alert',
   icon: '<span class="fa fa-envelope-open"></span>',
 }));
 

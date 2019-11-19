@@ -101,6 +101,7 @@ export default class CodeBlockView {
   codeMirrorKeymap() {
     let view = this.view
     let mod = /Mac/.test(navigator.platform) ? "Cmd" : "Ctrl"
+    // @ts-ignore:
     return CodeMirror.normalizeKeyMap({
       Up: () => this.maybeEscape("line", -1),
       Left: () => this.maybeEscape("char", -1),

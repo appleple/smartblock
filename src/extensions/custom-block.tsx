@@ -31,7 +31,11 @@ export default class CustomBlock extends Extension {
     if (this.customSchema) {
       return this.customSchema;
     }
-    const tagName = this.tagName;
+    const { tagName, className } = this;
+    let tag = tagName;
+    if (className) {
+      tag += `.${className.replace(/\s/g, '.')}`;
+    }
     return {
       content: 'inline*',
       group: 'block',
@@ -42,7 +46,7 @@ export default class CustomBlock extends Extension {
       },
       parseDOM: [
         {
-          tag: tagName,
+          tag,
           getAttrs(dom) {
             return {
               id: dom.getAttribute('id') || uuid()
@@ -56,7 +60,7 @@ export default class CustomBlock extends Extension {
           {
             style: `text-align: ${node.attrs.align}`,
             id: node.attrs.id || uuid(),
-            class: this.className
+            class: className
           },
           0
         ]
