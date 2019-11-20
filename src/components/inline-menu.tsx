@@ -123,7 +123,7 @@ const MenuBar = ({
                 item.onClick(state, dispatch)
               }}
             >
-              {item.icon}
+              {typeof item.icon !== 'string' ? item.icon  : <span dangerouslySetInnerHTML={{ __html: item.icon }}></span>}
             </ButtonStyle>
           )
         })}
