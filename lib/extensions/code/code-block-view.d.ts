@@ -18,7 +18,9 @@ export default class CodeBlockView {
     setSelection(anchor: any, head: any): void;
     valueChanged(): void;
     codeMirrorKeymap(): any;
-    maybeEscape(unit: any, dir: any): any;
+    maybeEscape(unit: any, dir: any): {
+        toString(): "CodeMirror.PASS";
+    };
     update(node: any): boolean;
     selectNode(): void;
     stopEvent(): boolean;

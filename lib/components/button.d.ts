@@ -1,9 +1,5 @@
-/// <reference types="react" />
-declare const Button: import("styled-components").StyledComponentClass<import("react").ClassAttributes<HTMLButtonElement> & import("react").ButtonHTMLAttributes<HTMLButtonElement> & {
+declare const Button: import("styled-components").StyledComponent<"button", any, {
     active?: boolean;
     color?: "black" | "white";
-}, any, import("react").ClassAttributes<HTMLButtonElement> & import("react").ButtonHTMLAttributes<HTMLButtonElement> & {
-    active?: boolean;
-    color?: "black" | "white";
-}>;
+}, never>;
 export default Button;
