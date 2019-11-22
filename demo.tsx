@@ -22,6 +22,7 @@ render(<>
   <PaperEditor
     showBackBtn
     showTitle
+    autoSave
     titlePlaceholder="ここにタイトルを入力"
     extensions={extensions}
     html={`
@@ -39,7 +40,10 @@ render(<>
 </table>
 <code>
 const a = 'b';<br/>
-a.toFixed();
+a.toFixed();<br/>
+const c = () => {<br/>
+  <br/>
+}
 </code>
 <img src="https://appleple.github.io/SmartPhoto/assets/images/large-kuma.jpg" />
 `}

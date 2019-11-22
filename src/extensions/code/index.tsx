@@ -24,6 +24,10 @@ export default class Code extends Extension {
     return true
   }
 
+  get hideInlineMenuOnFocus() {
+    return true
+  }
+
   get schema() {
     if (this.customSchema) {
       return this.customSchema;

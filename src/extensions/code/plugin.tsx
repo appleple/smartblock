@@ -26,14 +26,21 @@ function getDecorations({ doc, name }) {
 
       return {
         text: node.value,
-        classes,
+        classes
       }
     })
   }
 
   blocks.forEach(block => {
-    let startPos = block.pos + 1
-    const nodes = low.highlight('js', block.node.textContent).value
+    let startPos = block.pos + 1;
+    const items = block.node.content.content.map((item) => {
+      if (item.text) {
+        return item.text;
+      }
+      return '\n';
+    });
+    const textContent = items.join('');
+    const nodes = low.highlight('js', textContent).value;
     flatten(parseNodes(nodes))
       .map(node => {
         const from = startPos
