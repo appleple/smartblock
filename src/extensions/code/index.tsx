@@ -56,7 +56,12 @@ export default class Code extends Extension {
         ]
       },
       attrs: {
-        id: { default: '' },
+        id: { 
+          default: '',
+        },
+        lang: {
+          default: 'javascript'
+        }
       }
     }
   }
@@ -82,11 +87,11 @@ export default class Code extends Extension {
     return (
       <>
         <Button
-          active={node && node.attrs.align === 'left'}
+          active={node && node.attrs.lang === 'js'}
           type="button"
           onClick={() => {
-            setBlockType(state.schema.nodes.heading1, {
-              align: 'left'
+            setBlockType(state.schema.nodes.code, {
+              lang: 'js'
             })(state, dispatch)
           }}
         >
@@ -94,10 +99,10 @@ export default class Code extends Extension {
         </Button>
         <Button
           type="button"
-          active={node && node.attrs.align === 'center'}
+          active={node && node.attrs.lang === 'css'}
           onClick={() => {
-            setBlockType(state.schema.nodes.heading1, {
-              align: 'center'
+            setBlockType(state.schema.nodes.code, {
+              lang: 'css'
             })(state, dispatch)
           }}
         >
@@ -105,10 +110,10 @@ export default class Code extends Extension {
         </Button>
         <Button
           type="button"
-          active={node && node.attrs.align === 'right'}
+          active={node && node.attrs.lang === 'html'}
           onClick={() => {
-            setBlockType(state.schema.nodes.heading1, {
-              align: 'right'
+            setBlockType(state.schema.nodes.code, {
+              lang: 'html'
             })(state, dispatch)
           }}
         >
@@ -116,10 +121,10 @@ export default class Code extends Extension {
         </Button>
         <Button
           type="button"
-          active={node && node.attrs.align === 'right'}
+          active={node && node.attrs.lang === 'php'}
           onClick={() => {
-            setBlockType(state.schema.nodes.heading1, {
-              align: 'right'
+            setBlockType(state.schema.nodes.code, {
+              lang: 'php'
             })(state, dispatch)
           }}
         >
