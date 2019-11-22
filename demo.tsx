@@ -24,7 +24,6 @@ render(<>
     showTitle
     titlePlaceholder="ここにタイトルを入力"
     extensions={extensions}
-    autoSave
     html={`
 <p>Hello World</p>
 <h2>Test</h2>
@@ -38,6 +37,10 @@ render(<>
     <td>ee</td>
   </tr>
 </table>
+<code>
+const a = 'b';<br/>
+a.toFixed();
+</code>
 <img src="https://appleple.github.io/SmartPhoto/assets/images/large-kuma.jpg" />
 `}
     // json={{

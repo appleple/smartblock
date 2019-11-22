@@ -1,9 +1,11 @@
 import * as React from 'react'
+import { getParentNodeFromState } from '../../utils';
 import { setBlockType } from 'prosemirror-commands'
 import uuid from 'uuid'
 import { Extension, ExtensionProps } from '../../types'
-import CodeBlockView from './code-block-view';
 import { blockActive } from '../../utils';
+import Plugin from './plugin';
+import Button from '../../components/button'
 
 export default class Code extends Extension {
 
@@ -35,7 +37,6 @@ export default class Code extends Extension {
           getAttrs(dom) {
             return {
               id: dom.getAttribute('id') || uuid(),
-              text: dom.textContent,
             }
           }
         }
@@ -52,7 +53,6 @@ export default class Code extends Extension {
       },
       attrs: {
         id: { default: '' },
-        text:  {default: ''}
       }
     }
   }
@@ -72,8 +72,64 @@ export default class Code extends Extension {
   onClick(state, dispatch) {
     setBlockType(state.schema.nodes.code)(state, dispatch)
   }
-  
-  view(node, view, getPos) {
-    return new CodeBlockView(node, view, getPos);
+
+  customMenu({ state, dispatch }) {
+    const node = getParentNodeFromState(state);
+    return (
+      <>
+        <Button
+          active={node && node.attrs.align === 'left'}
+          type="button"
+          onClick={() => {
+            setBlockType(state.schema.nodes.heading1, {
+              align: 'left'
+            })(state, dispatch)
+          }}
+        >
+          JS
+        </Button>
+        <Button
+          type="button"
+          active={node && node.attrs.align === 'center'}
+          onClick={() => {
+            setBlockType(state.schema.nodes.heading1, {
+              align: 'center'
+            })(state, dispatch)
+          }}
+        >
+          CSS
+        </Button>
+        <Button
+          type="button"
+          active={node && node.attrs.align === 'right'}
+          onClick={() => {
+            setBlockType(state.schema.nodes.heading1, {
+              align: 'right'
+            })(state, dispatch)
+          }}
+        >
+          HTML
+        </Button>
+        <Button
+          type="button"
+          active={node && node.attrs.align === 'right'}
+          onClick={() => {
+            setBlockType(state.schema.nodes.heading1, {
+              align: 'right'
+            })(state, dispatch)
+          }}
+        >
+          PHP
+        </Button>
+      </>
+    )
+  }
+
+  get plugins() {
+    return [
+      Plugin({
+        name: 'code'
+      })
+    ]
   }
 }

@@ -280,4 +280,12 @@ export default createGlobalStyle`
       border: none;
     }
   }
+
+  .ProseMirror pre,
+  .ProseMirror pre.selected {
+    background-color: #333;
+    padding: 10px;
+    border-radius: 5px;
+    color: #FFF;
+  }
 `
