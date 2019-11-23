@@ -15,6 +15,8 @@ type Lang = {
 
 export default class Code extends Extension {
 
+
+  defaultLang = 'js';
   langs: Lang[] = [
     {
       label: 'JS',
@@ -60,6 +62,7 @@ export default class Code extends Extension {
     if (this.customSchema) {
       return this.customSchema;
     }
+    const { defaultLang } = this;
     return {
       content: 'inline*',
       group: 'block',
@@ -88,7 +91,7 @@ export default class Code extends Extension {
           default: '',
         },
         lang: {
-          default: 'javascript'
+          default: defaultLang
         }
       }
     }
