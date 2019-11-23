@@ -19,13 +19,15 @@ declare type CustomLayoutProps = {
     dispatch: Dispatch;
     state: EditorState;
 };
-export declare type ExtensionProps = {
+export declare type ExtensionProps = ({
     schema?: ExtensionSchema;
     className?: string;
     tagName?: string;
     icon?: JSX.Element | string;
     customName?: string;
-} | null;
+} & {
+    [key: string]: any;
+}) | null;
 export declare abstract class Extension {
     constructor(props: ExtensionProps);
     name: string;
@@ -34,6 +36,9 @@ export declare abstract class Extension {
     customSchema?: ExtensionSchema;
     schemaDependencies?: {
         [key: string]: ExtensionSchema;
+    };
+    customProps?: {
+        [key: string]: any;
     };
     tagName?: string;
     className?: string;

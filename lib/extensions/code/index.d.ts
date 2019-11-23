@@ -1,10 +1,17 @@
+import * as React from 'react';
 import { Extension, ExtensionProps } from '../../types';
-import CodeBlockView from './code-block-view';
+declare type Lang = {
+    label: React.ReactNode;
+    lang: string;
+};
 export default class Code extends Extension {
+    defaultLang: string;
+    langs: Lang[];
     constructor(props?: ExtensionProps);
     readonly name: string;
     readonly group: string;
     readonly showMenu: boolean;
+    readonly hideInlineMenuOnFocus: boolean;
     readonly schema: import("../../types").ExtensionSchema | {
         content: string;
         group: string;
@@ -12,7 +19,6 @@ export default class Code extends Extension {
             tag: string;
             getAttrs(dom: any): {
                 id: any;
-                text: any;
             };
         }[];
         toDOM: (node: any) => (string | (string | number)[] | {
@@ -23,7 +29,7 @@ export default class Code extends Extension {
             id: {
                 default: string;
             };
-            text: {
+            lang: {
                 default: string;
             };
         };
@@ -32,5 +38,10 @@ export default class Code extends Extension {
     active(state: any): boolean;
     enable(state: any): boolean;
     onClick(state: any, dispatch: any): void;
-    view(node: any, view: any, getPos: any): CodeBlockView;
+    customMenu({ state, dispatch }: {
+        state: any;
+        dispatch: any;
+    }): JSX.Element;
+    readonly plugins: import("prosemirror-state").Plugin<any, any>[];
 }
+export {};
