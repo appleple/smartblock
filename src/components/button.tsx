@@ -1,14 +1,14 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 const Button = styled.button<{
-  active?: boolean,
+  active?: boolean
   color?: 'black' | 'white'
 }>`
   ${props => {
     if (props.disabled) {
       return `
         opacity: .4;
-      `;
+      `
     }
   }}
   ${props => {
@@ -24,9 +24,9 @@ const Button = styled.button<{
           background-color: #F2F2F4;
         }
         
-      `;
-    } else {
-      return `
+      `
+    }
+    return `
         color: #777;
         background: #fff;
         
@@ -36,7 +36,6 @@ const Button = styled.button<{
           background: #fff;
         }
       `
-    }
   }}
   ${props => {
     if (props.color === 'black') {
@@ -75,6 +74,6 @@ const Button = styled.button<{
   }
   
  
-`;
+`
 
-export default Button;
+export default Button

@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react'
 
 const SvgBack = (props: React.SVGProps<SVGSVGElement>) => (
   <svg width={62} height={62} viewBox="0 0 62 62" {...props}>
@@ -33,6 +33,6 @@ const SvgBack = (props: React.SVGProps<SVGSVGElement>) => (
       />
     </g>
   </svg>
-);
+)
 
-export default SvgBack;
+export default SvgBack

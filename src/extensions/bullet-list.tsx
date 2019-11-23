@@ -10,8 +10,9 @@ import Button from '../components/button'
 
 export default class BulletList extends Extension {
   constructor(props?: ExtensionProps) {
-    super(props);
+    super(props)
   }
+
   get name() {
     return 'bullet_list'
   }
@@ -26,7 +27,7 @@ export default class BulletList extends Extension {
 
   get schema() {
     if (this.customSchema) {
-      return;
+      return
     }
     return {
       content: 'list_item+',
@@ -66,17 +67,17 @@ export default class BulletList extends Extension {
   }
 
   enable(state) {
-    const node = getParentNodeFromState(state);
+    const node = getParentNodeFromState(state)
     if (node.type.name !== 'paragraph') {
-      return false;
+      return false
     }
     return wrapInList(state.schema.nodes.bullet_list)(state)
   }
 
   onClick(state, dispatch) {
-    const node = getParentNodeFromState(state);
+    const node = getParentNodeFromState(state)
     if (node.type.name !== 'paragraph') {
-      return false;
+      return false
     }
     wrapInList(state.schema.nodes.bullet_list)(state, dispatch)
   }

@@ -11,10 +11,11 @@ import Button from '../components/button'
 export default class CustomBlock extends Extension {
   constructor(props?: ExtensionProps) {
     if (!props.customName) {
-      props.customName = getUniqId();
+      props.customName = getUniqId()
     }
-    super(props);
+    super(props)
   }
+
   get name() {
     return this.customName
   }
@@ -29,12 +30,12 @@ export default class CustomBlock extends Extension {
 
   get schema() {
     if (this.customSchema) {
-      return this.customSchema;
+      return this.customSchema
     }
-    const { tagName, className } = this;
-    let tag = tagName;
+    const { tagName, className } = this
+    let tag = tagName
     if (className) {
-      tag += `.${className.replace(/\s/g, '.')}`;
+      tag += `.${className.replace(/\s/g, '.')}`
     }
     return {
       content: 'inline*',
@@ -81,7 +82,7 @@ export default class CustomBlock extends Extension {
   }
 
   customMenu({ state, dispatch }) {
-    const node = getParentNodeFromState(state);
+    const node = getParentNodeFromState(state)
     return (
       <>
         <Button

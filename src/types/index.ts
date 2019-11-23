@@ -20,48 +20,73 @@ type CustomLayoutProps = {
   state: EditorState
 }
 
-export type ExtensionProps = {
-  schema?: ExtensionSchema,
-  className?: string,
-  tagName?: string,
-  icon?: JSX.Element | string,
-  customName?: string,
-} & { [key: string]: any } | null;
+export type ExtensionProps =
+  | {
+      schema?: ExtensionSchema
+      className?: string
+      tagName?: string
+      icon?: JSX.Element | string
+      customName?: string
+    } & { [key: string]: any }
+  | null
 
 export abstract class Extension {
   constructor(props: ExtensionProps) {
     if (props) {
-      this.className = props.className;
-      this.customSchema = props.schema;
-      this.tagName = props.tagName;
-      this.customIcon = props.icon;
-      this.customName = props.customName;
+      this.className = props.className
+      this.customSchema = props.schema
+      this.tagName = props.tagName
+      this.customIcon = props.icon
+      this.customName = props.customName
     }
   }
+
   name: string
+
   customName?: string
+
   schema?: ExtensionSchema
+
   customSchema?: ExtensionSchema
+
   schemaDependencies?: {
     [key: string]: ExtensionSchema
   }
+
   customProps?: {
     [key: string]: any
   }
-  tagName?: string;
-  className?: string;
+
+  tagName?: string
+
+  className?: string
+
   customLayout?(props: CustomLayoutProps, dom: HTMLElement): JSX.Element
+
   customIcon?: JSX.Element | string
+
   icon?: JSX.Element | string
+
   plugins?: Plugin<any, any>[]
+
   showMenu: boolean
+
   hideMenuOnFocus?: boolean
+
   hideInlineMenuOnFocus?: boolean
-  group?: string // "edit" | "mark" | "block"
+
+  group?: string
+
+  // "edit" | "mark" | "block"
   view?(node: Node, view: EditorView, getPos: () => number): NodeView
+
   active?(state: EditorState): boolean
+
   enable?(state: EditorState): boolean
+
   onClick?(state: EditorState, dispatch: Dispatch, view?: EditorView): void
+
   keys?(schema: Schema): { [key: string]: any }
+
   btnColor?: 'black' | 'white'
 }

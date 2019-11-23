@@ -1,10 +1,10 @@
+import { Plugin } from 'prosemirror-state'
 import PaperEditor from './components/paper-editor'
 import Button from './components/button'
 import EditMenu from './components/edit-menu'
 import Editor from './components/editor'
 import InlineMenu from './components/inline-menu'
 import Menu from './components/menu'
-import { Plugin } from 'prosemirror-state';
 import {
   getViewport,
   isInput,
@@ -33,7 +33,7 @@ import Heading5 from './extensions/heading5'
 import Heading6 from './extensions/heading6'
 import ListItem from './extensions/list-item'
 import Blockquote from './extensions/blockquote'
-import Embed from './extensions/embed';
+import Embed from './extensions/embed'
 import MoveDown from './extensions/move-down'
 import MoveUp from './extensions/move-up'
 import OrderedList from './extensions/ordered-list'
@@ -44,17 +44,17 @@ import Table from './extensions/table'
 import Trash from './extensions/trash'
 import Emphasis from './extensions/emphasis'
 import Underline from './extensions/underline'
-import DefaultKeys from './extensions/default-keys';
+import DefaultKeys from './extensions/default-keys'
 import DefaultPlugins from './extensions/default-plugins'
 import Extensions from './extensions'
 
 // icons
-import Heading1Icon from './components/icons/Heading1';
-import Heading2Icon from './components/icons/Heading2';
-import Heading3Icon from './components/icons/Heading3';
-import Heading4Icon from './components/icons/Heading4';
-import Heading5Icon from './components/icons/Heading5';
-import Heading6Icon from './components/icons/Heading6';
+import Heading1Icon from './components/icons/Heading1'
+import Heading2Icon from './components/icons/Heading2'
+import Heading3Icon from './components/icons/Heading3'
+import Heading4Icon from './components/icons/Heading4'
+import Heading5Icon from './components/icons/Heading5'
+import Heading6Icon from './components/icons/Heading6'
 
 export {
   /* components */

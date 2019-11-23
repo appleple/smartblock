@@ -10,7 +10,7 @@
     "build": "webpack --config webpack.prod.js",
     "build:lib": "rm -rf ./lib && tsc",
     "np": "np --no-cleanup",
-    "lint": "eslint ./src/** --fix --ext .ts,.tsx",
+    "lint": "eslint ./src/ --fix --ext .ts,.tsx",
     "deploy": "npm-run-all -s build build:lib test np",
     "build:svg": "npx @svgr/cli -d ./src/components/icons ./assets/images/icons --template ./tools/template.js --ext tsx --no-svgo"
   },
@@ -86,6 +86,7 @@
     "prosemirror-commands": "^1.0.7",
     "prosemirror-example-setup": "^1.0.1",
     "prosemirror-keymap": "^1.0.1",
+    "prosemirror-model": "^1.8.2",
     "prosemirror-schema-basic": "^1.0.1",
     "prosemirror-schema-list": "^1.0.3",
     "prosemirror-state": "^1.2.2",

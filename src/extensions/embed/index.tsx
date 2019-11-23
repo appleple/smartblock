@@ -1,19 +1,19 @@
 import * as React from 'react'
-import { render, unmountComponentAtNode } from 'react-dom';
+import { render, unmountComponentAtNode } from 'react-dom'
 import { setBlockType } from 'prosemirror-commands'
+import { Fragment } from 'prosemirror-model'
+import { EditorState } from 'prosemirror-state'
 import { Extension, ExtensionProps } from '../../types'
 import { blockActive } from '../../utils'
 import LinkIcon from '../../components/icons/Link'
-import Popup from './popup';
-import Plugin from './plugin';
-import { Fragment } from 'prosemirror-model';
-import { EditorState } from 'prosemirror-state';
-
+import Popup from './popup'
+import Plugin from './plugin'
 
 export default class Embed extends Extension {
   constructor(props?: ExtensionProps) {
-    super(props);
+    super(props)
   }
+
   get name() {
     return 'embed'
   }
@@ -32,7 +32,7 @@ export default class Embed extends Extension {
 
   get schema() {
     if (this.customSchema) {
-      return this.customSchema;
+      return this.customSchema
     }
     return {
       group: 'block',
@@ -53,40 +53,39 @@ export default class Embed extends Extension {
           }
         },
         {
-          'tag': 'div.embed-wrap',
+          tag: 'div.embed-wrap',
           getAttrs(dom) {
-            const a = dom.querySelector('a');
-            return { src: a.getAttribute('href') };
+            const a = dom.querySelector('a')
+            return { src: a.getAttribute('href') }
           }
         }
       ],
-      toDOM: (node) => {
+      toDOM: node => {
         if (node.attrs.src.indexOf('youtube') !== -1) {
-          const { src } = node.attrs;
-          let youtubeId = '';
-          const matches = /www\.youtube\.com\/watch\?v=(.*?)$/.exec(src);
+          const { src } = node.attrs
+          let youtubeId = ''
+          const matches = /www\.youtube\.com\/watch\?v=(.*?)$/.exec(src)
           if (matches && matches[1]) {
-            youtubeId = matches[1];
+            youtubeId = matches[1]
           }
           if (!youtubeId) {
-            const embedMatches = /www\.youtube\.com\/embed\/(.*?)$/.exec(src);
+            const embedMatches = /www\.youtube\.com\/embed\/(.*?)$/.exec(src)
             if (embedMatches && embedMatches[1]) {
-              youtubeId = embedMatches[1];
+              youtubeId = embedMatches[1]
             }
           }
           if (youtubeId) {
             const url = `https://www.youtube.com/embed/${youtubeId}`
-            return ([
+            return [
               'div',
               {
                 contenteditable: true,
-                'class': 'youtube-frame-wrap'
+                class: 'youtube-frame-wrap'
               },
               [
                 'div',
                 {
-
-                  'class': 'youtube-frame'
+                  class: 'youtube-frame'
                 },
                 [
                   'iframe',
@@ -95,25 +94,24 @@ export default class Embed extends Extension {
                   }
                 ]
               ]
-            ])
+            ]
           }
         }
         return [
           'div',
           {
-            'class': 'embed-wrap'
+            class: 'embed-wrap'
           },
           [
             'a',
             {
-
-              'class': 'embed',
-              'href': node.attrs.src
+              class: 'embed',
+              href: node.attrs.src
             },
             [
               'div',
               {
-                'class': 'embed-inner'
+                class: 'embed-inner'
               },
               0
             ]
@@ -136,27 +134,31 @@ export default class Embed extends Extension {
   }
 
   onClick(state: EditorState, dispatch) {
-    const div = document.createElement('div');
-    document.body.appendChild(div);
-    render(<Popup
-      onClose={() => {
-        unmountComponentAtNode(div);
-      }}
-      onDone={(src) => {
-        const { pos } = state.selection.$anchor;
-        const text = state.schema.text(src);
-        const node = state.schema.nodes.embed.createAndFill({
-          src
-        }, text);
-        dispatch(state.tr.insert(pos, node));
-        unmountComponentAtNode(div);
-      }}
-    />, div);
+    const div = document.createElement('div')
+    document.body.appendChild(div)
+    render(
+      <Popup
+        onClose={() => {
+          unmountComponentAtNode(div)
+        }}
+        onDone={src => {
+          const { pos } = state.selection.$anchor
+          const text = state.schema.text(src)
+          const node = state.schema.nodes.embed.createAndFill(
+            {
+              src
+            },
+            text
+          )
+          dispatch(state.tr.insert(pos, node))
+          unmountComponentAtNode(div)
+        }}
+      />,
+      div
+    )
   }
 
   get plugins() {
-    return [
-      Plugin()
-    ]
+    return [Plugin()]
   }
 }

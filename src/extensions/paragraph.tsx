@@ -11,8 +11,9 @@ import Button from '../components/button'
 
 export default class Paragraph extends Extension {
   constructor(props?: ExtensionProps) {
-    super(props);
+    super(props)
   }
+
   get name() {
     return 'paragraph'
   }
@@ -27,7 +28,7 @@ export default class Paragraph extends Extension {
 
   get schema() {
     if (this.customSchema) {
-      return this.customSchema;
+      return this.customSchema
     }
     return {
       content: 'inline*',
@@ -73,7 +74,7 @@ export default class Paragraph extends Extension {
   }
 
   customMenu({ state, dispatch }) {
-    const node = getParentNodeFromState(state);
+    const node = getParentNodeFromState(state)
     return (
       <>
         <Button

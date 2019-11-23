@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react'
 
 const SvgEdit = (props: React.SVGProps<SVGSVGElement>) => (
   <svg width={20} height={19.999} viewBox="0 0 20 19.999" {...props}>
@@ -36,6 +36,6 @@ const SvgEdit = (props: React.SVGProps<SVGSVGElement>) => (
       </g>
     </g>
   </svg>
-);
+)
 
-export default SvgEdit;
+export default SvgEdit

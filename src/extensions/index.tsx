@@ -4,10 +4,10 @@ import Heading3 from './heading2'
 import ListItem from './list-item'
 import BulletList from './bullet-list'
 import OrderedList from './ordered-list'
-import Table from './table' //WIP
+import Table from './table' // WIP
 import BlockQuote from './blockquote'
-import Embed from './embed';
-import Code from './code';
+import Embed from './embed'
+import Code from './code'
 
 import Underline from './underline'
 import Strike from './strike'
@@ -50,4 +50,4 @@ export default [
   new DefaultPlugins({
     placeholder: 'ここに本文を入力'
   })
-] as Extension[];
+] as Extension[]

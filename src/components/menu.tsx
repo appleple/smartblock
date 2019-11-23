@@ -5,7 +5,7 @@ import { EditorView } from 'prosemirror-view'
 import { getOffset, getParentNodeFromState } from '../utils'
 import ButtonStyle from './button'
 
-const { useState, useEffect } = React;
+const { useState, useEffect } = React
 
 const fadeIn = keyframes`
   from {
@@ -71,7 +71,7 @@ const calculateStyle = (props: PositionProps): React.CSSProperties => {
       top: 0
     }
   }
-  
+
   const resolvedPos = state.doc.resolve($anchor.pos) as any
   const rowNumber = resolvedPos.path[1]
   let i = 0
@@ -154,7 +154,6 @@ const shouldRenderMenu = (props: PositionProps) => {
   return true
 }
 
-
 export default (props: PositionProps) => {
   const { menu, view } = props
   const { state, dispatch } = view
@@ -163,12 +162,12 @@ export default (props: PositionProps) => {
   const [style, setState] = useState<React.CSSProperties>({
     left: 0,
     top: 0
-  });
+  })
 
   useEffect(() => {
-    const nextStyle = calculateStyle(props);
-    setState(nextStyle);
-  }, [props]);
+    const nextStyle = calculateStyle(props)
+    setState(nextStyle)
+  }, [props])
 
   if (!shouldRender) {
     return null
@@ -190,7 +189,11 @@ export default (props: PositionProps) => {
                 item.onClick(state, dispatch, view)
               }}
             >
-              {typeof item.icon !== 'string' ? item.icon  : <span dangerouslySetInnerHTML={{ __html: item.icon }}></span>}
+              {typeof item.icon !== 'string' ? (
+                item.icon
+              ) : (
+                <span dangerouslySetInnerHTML={{ __html: item.icon }} />
+              )}
             </ButtonStyle>
           )
         })}

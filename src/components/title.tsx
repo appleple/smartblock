@@ -1,11 +1,11 @@
-import * as React from 'react';
+import * as React from 'react'
 import { Schema, DOMParser } from 'prosemirror-model'
-import { Plugin } from 'prosemirror-state';
+import { Plugin } from 'prosemirror-state'
 import { Decoration, DecorationSet } from 'prosemirror-view'
-import { getHtmlFromNode } from '../utils';
-import { useView } from '../utils/hooks';
+import { getHtmlFromNode } from '../utils'
+import { useView } from '../utils/hooks'
 
-const { useRef, useEffect } = React;
+const { useRef, useEffect } = React
 const schemaDef = {
   nodes: {
     doc: {
@@ -30,9 +30,15 @@ const placeholderPlugin = (text: string) => {
   return new Plugin({
     props: {
       decorations(state) {
-        let doc = state.doc
-        if (doc.childCount == 1 && doc.firstChild.isTextblock && doc.firstChild.content.size == 0) {
-          return DecorationSet.create(doc, [Decoration.widget(1, document.createTextNode(text))])
+        const { doc } = state
+        if (
+          doc.childCount == 1 &&
+          doc.firstChild.isTextblock &&
+          doc.firstChild.content.size == 0
+        ) {
+          return DecorationSet.create(doc, [
+            Decoration.widget(1, document.createTextNode(text))
+          ])
         }
       }
     }
@@ -40,8 +46,8 @@ const placeholderPlugin = (text: string) => {
 }
 
 type TitleProps = {
-  placeholder: string,
-  defaultValue: string,
+  placeholder: string
+  defaultValue: string
   onChange(text: string): void
 }
 
@@ -50,9 +56,9 @@ export default (props: TitleProps) => {
     placeholder: 'ここにタイトルを入力',
     defaultValue: ''
   }
-  props = Object.assign({}, defaultProps, props);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const schema = new Schema({ ...schemaDef } as any);
+  props = Object.assign({}, defaultProps, props)
+  const titleRef = useRef<HTMLHeadingElement>(null)
+  const schema = new Schema({ ...schemaDef } as any)
   const div = document.createElement('div')
   div.innerHTML = props.defaultValue
   const doc = DOMParser.fromSchema(schema).parse(div)
@@ -60,23 +66,21 @@ export default (props: TitleProps) => {
   const config = {
     onChange(state) {
       if (props.onChange) {
-        let title = getHtmlFromNode(state.doc, schema);
-        title = title.replace(/<h1>(.*)<\/h1>/, '$1');
+        let title = getHtmlFromNode(state.doc, schema)
+        title = title.replace(/<h1>(.*)<\/h1>/, '$1')
         props.onChange(title)
       }
     },
     options: {
       schema,
       doc,
-      plugins: [
-        placeholderPlugin(props.placeholder)
-      ]
-    },
+      plugins: [placeholderPlugin(props.placeholder)]
+    }
   }
-  
+
   useEffect(() => {
-    titleRef.current.appendChild(view.dom);
-  }, []);
-  const view = useView(config);
-  return (<div ref={titleRef} />)
+    titleRef.current.appendChild(view.dom)
+  }, [])
+  const view = useView(config)
+  return <div ref={titleRef} />
 }

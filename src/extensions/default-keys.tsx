@@ -1,4 +1,3 @@
-import { Extension } from '../types'
 import { undoInputRule } from 'prosemirror-inputrules'
 import { undo, redo } from 'prosemirror-history'
 import { goToNextCell } from 'prosemirror-tables'
@@ -12,6 +11,7 @@ import {
   lift,
   selectParentNode
 } from 'prosemirror-commands'
+import { Extension } from '../types'
 import { getParentNodeFromState } from '../utils'
 
 const insertBreak = (state, dispatch) => {
@@ -53,7 +53,12 @@ const insertBreakOrParagraph = (state: EditorState, dispatch, view) => {
     insertBreak(state, dispatch)
     return
   }
-  if ((node.type.name !== 'paragraph' && node.type.name !== 'blockquote' && node.type.name !== 'code') || !nodeBefore) {
+  if (
+    (node.type.name !== 'paragraph' &&
+      node.type.name !== 'blockquote' &&
+      node.type.name !== 'code') ||
+    !nodeBefore
+  ) {
     baseKeymap.Enter(state, dispatch, view)
     return true
   }
@@ -69,20 +74,20 @@ const insertBreakOrParagraph = (state: EditorState, dispatch, view) => {
 }
 
 const keys = {
-  'Enter': insertBreakOrParagraph,
+  Enter: insertBreakOrParagraph,
   'Mod-z': undo,
   'Shift-Mod-z': redo,
-  'Backspace': undoInputRule,
+  Backspace: undoInputRule,
   'Mod-y': redo,
   'Alt-ArrowUp': joinUp,
   'Alt-ArrowDown': joinDown,
   'Mod-BracketLeft': lift,
-  'Escape': selectParentNode,
+  Escape: selectParentNode,
   'Mod-Enter': chainCommands(exitCode, insertBreak),
   'Shift-Enter': chainCommands(exitCode, insertBreak),
   'Ctrl-Enter': chainCommands(exitCode, insertBreak), // mac-only?
   'Mod-_': insertRule,
-  'Tab': goToNextCell(1),
+  Tab: goToNextCell(1),
   'Shift-Tab': goToNextCell(-1)
 }
 
@@ -98,12 +103,14 @@ Object.keys(baseKeymap).forEach(key => {
 
 export default class DefaultKeys implements Extension {
   get name() {
-    return 'default-keys';
+    return 'default-keys'
   }
+
   get showMenu() {
-    return false;
+    return false
   }
+
   keys() {
-    return keys;
+    return keys
   }
 }

@@ -5,10 +5,9 @@ import BlockQuoteIcon from '../components/icons/Blockquote'
 import { Extension, ExtensionProps } from '../types'
 import { blockActive } from '../utils'
 
-
 export default class BlockQuote extends Extension {
   constructor(props?: ExtensionProps) {
-    super(props);
+    super(props)
   }
 
   get name() {
@@ -25,7 +24,7 @@ export default class BlockQuote extends Extension {
 
   get schema() {
     if (this.customSchema) {
-      return this.customSchema;
+      return this.customSchema
     }
     return {
       content: 'inline*',
@@ -42,13 +41,17 @@ export default class BlockQuote extends Extension {
       ],
       attrs: {
         align: { default: 'left' },
-        id: { default: '' },
+        id: { default: '' }
       },
       toDOM: node => {
-        return [ 'blockquote', {
-          id: node.attrs.id || uuid(),
-          class: this.className
-        }, 0 ];
+        return [
+          'blockquote',
+          {
+            id: node.attrs.id || uuid(),
+            class: this.className
+          },
+          0
+        ]
       }
     }
   }

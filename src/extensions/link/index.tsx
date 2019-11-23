@@ -7,8 +7,9 @@ import tooltip from './tooltip'
 
 export default class Link extends Extension {
   constructor(props?: ExtensionProps) {
-    super(props);
+    super(props)
   }
+
   get name() {
     return 'link'
   }
@@ -23,9 +24,9 @@ export default class Link extends Extension {
 
   get schema() {
     if (this.customSchema) {
-      return this.customSchema;
+      return this.customSchema
     }
-    const className = this.className;
+    const { className } = this
     return {
       group: 'mark',
       attrs: {
@@ -47,7 +48,7 @@ export default class Link extends Extension {
       ],
       toDOM(node) {
         const { href, title } = node.attrs
-        return ['a', { href, title, "class": className }, 0]
+        return ['a', { href, title, class: className }, 0]
       }
     }
   }

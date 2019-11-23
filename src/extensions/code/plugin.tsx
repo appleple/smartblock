@@ -1,23 +1,23 @@
-import { Plugin } from 'prosemirror-state';
-import { getParentNodeFromState } from '../../utils';
+import { Plugin } from 'prosemirror-state'
 import { Decoration, DecorationSet } from 'prosemirror-view'
-import { setBlockType } from 'prosemirror-commands';
-import { findBlockNodes } from 'prosemirror-utils';
-import low from 'lowlight';
+import { setBlockType } from 'prosemirror-commands'
+import { findBlockNodes } from 'prosemirror-utils'
+import low from 'lowlight'
+import { getParentNodeFromState } from '../../utils'
 
 function getDecorations({ doc, name }) {
   const decorations = []
-  const blocks = findBlockNodes(doc).filter(item => item.node.type.name === name)
-  const flatten = list => list.reduce(
-    (a, b) => a.concat(Array.isArray(b) ? flatten(b) : b), [],
+  const blocks = findBlockNodes(doc).filter(
+    item => item.node.type.name === name
   )
+  const flatten = list =>
+    list.reduce((a, b) => a.concat(Array.isArray(b) ? flatten(b) : b), [])
 
   function parseNodes(nodes, className = []) {
     return nodes.map(node => {
-
       const classes = [
         ...className,
-        ...node.properties ? node.properties.className : [],
+        ...(node.properties ? node.properties.className : [])
       ]
 
       if (node.children) {
@@ -32,16 +32,17 @@ function getDecorations({ doc, name }) {
   }
 
   blocks.forEach(block => {
-    let startPos = block.pos + 1;
+    let startPos = block.pos + 1
+    console.log(block.node.content)
     // @ts-ignore
-    const items = block.node.content.content.map((item) => {
+    const items = block.node.content.content.map(item => {
       if (item.text) {
-        return item.text;
+        return item.text
       }
-      return '\n';
-    });
-    const textContent = items.join('');
-    const nodes = low.highlight(block.node.attrs.lang, textContent).value;
+      return '\n'
+    })
+    const textContent = items.join('')
+    const nodes = low.highlight(block.node.attrs.lang, textContent).value
     flatten(parseNodes(nodes))
       .map(node => {
         const from = startPos
@@ -52,12 +53,12 @@ function getDecorations({ doc, name }) {
         return {
           ...node,
           from,
-          to,
+          to
         }
       })
       .forEach(node => {
         const decoration = Decoration.inline(node.from, node.to, {
-          class: node.classes.join(' '),
+          class: node.classes.join(' ')
         })
         decorations.push(decoration)
       })
@@ -77,17 +78,20 @@ export default function HighlightPlugin({ name }) {
         const nodeName = state.selection.$head.parent.type.name
         const previousNodeName = oldState.selection.$head.parent.type.name
 
-        if (transaction.docChanged && [nodeName, previousNodeName].includes(name)) {
+        if (
+          transaction.docChanged &&
+          [nodeName, previousNodeName].includes(name)
+        ) {
           return getDecorations({ doc: transaction.doc, name })
         }
 
         return decorationSet.map(transaction.mapping, transaction.doc)
-      },
+      }
     },
     props: {
       decorations(state) {
         return this.getState(state)
-      },
-    },
+      }
+    }
   })
 }

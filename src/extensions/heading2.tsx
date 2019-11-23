@@ -11,8 +11,9 @@ import Button from '../components/button'
 
 export default class Heading2 extends Extension {
   constructor(props?: ExtensionProps) {
-    super(props);
+    super(props)
   }
+
   get name() {
     return 'heading2'
   }
@@ -27,7 +28,7 @@ export default class Heading2 extends Extension {
 
   get schema() {
     if (this.customSchema) {
-      return this.customSchema;
+      return this.customSchema
     }
     return {
       content: 'inline*',
@@ -74,7 +75,7 @@ export default class Heading2 extends Extension {
   }
 
   customMenu({ state, dispatch }) {
-    const node = getParentNodeFromState(state);
+    const node = getParentNodeFromState(state)
     return (
       <>
         <Button

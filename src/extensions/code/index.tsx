@@ -1,22 +1,19 @@
 import * as React from 'react'
-import { getParentNodeFromState } from '../../utils';
 import { setBlockType } from 'prosemirror-commands'
 import uuid from 'uuid'
+import { getParentNodeFromState } from '../../utils';
 import { Extension, ExtensionProps } from '../../types'
-import { blockActive } from '../../utils';
-import Plugin from './plugin';
-import Button from '../../components/button';
-
+import { blockActive } from '../../utils'
+import Plugin from './plugin'
+import Button from '../../components/button'
 
 type Lang = {
-  label: React.ReactNode;
-  lang: string;
+  label: React.ReactNode
+  lang: string
 }
 
 export default class Code extends Extension {
-
-
-  defaultLang = 'js';
+  defaultLang = 'js'
   langs: Lang[] = [
     {
       label: 'JS',
@@ -34,14 +31,15 @@ export default class Code extends Extension {
       label: 'CSS',
       lang: 'css'
     }
-  ];
+  ]
 
   constructor(props?: ExtensionProps) {
-    super(props);
+    super(props)
     if (props) {
-      this.langs = props.langs;
+      this.langs = props.langs
     }
   }
+
   get name() {
     return 'code'
   }
@@ -60,9 +58,9 @@ export default class Code extends Extension {
 
   get schema() {
     if (this.customSchema) {
-      return this.customSchema;
+      return this.customSchema
     }
-    const { defaultLang } = this;
+    const { defaultLang } = this
     return {
       content: 'inline*',
       group: 'block',
@@ -71,7 +69,7 @@ export default class Code extends Extension {
           tag: 'code',
           getAttrs(dom) {
             return {
-              id: dom.getAttribute('id') || uuid(),
+              id: dom.getAttribute('id') || uuid()
             }
           }
         }
@@ -87,8 +85,8 @@ export default class Code extends Extension {
         ]
       },
       attrs: {
-        id: { 
-          default: '',
+        id: {
+          default: ''
         },
         lang: {
           default: defaultLang
@@ -114,21 +112,22 @@ export default class Code extends Extension {
   }
 
   customMenu({ state, dispatch }) {
-    const node = getParentNodeFromState(state);
-    const { langs } = this;
+    const node = getParentNodeFromState(state)
+    const { langs } = this
     return (
       <>
-        {langs.map((lang) =><Button
-          active={node && node.attrs.lang === lang.lang}
-          type="button"
-          onClick={() => {
-            setBlockType(state.schema.nodes.code, {
-              lang: lang.lang
-            })(state, dispatch)
-          }}
-        >
-          {lang.label}
-        </Button>)}
+        {langs.map(lang => (
+          <Button
+            active={node && node.attrs.lang === lang.lang}
+            type="button"
+            onClick={() => {
+              setBlockType(state.schema.nodes.code, {
+                lang: lang.lang
+              })(state, dispatch)
+            }}
+          >
+            {lang.label}
+                            </Button>)}
       </>
     )
   }

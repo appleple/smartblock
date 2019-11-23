@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react'
 
 const SvgLink = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -29,10 +29,10 @@ const SvgLink = (props: React.SVGProps<SVGSVGElement>) => (
         fontFamily="'ArialMT'"
         fontSize={256}
       >
-        {"U+F724"}
+        {'U+F724'}
       </text>
     </g>
   </svg>
-);
+)
 
-export default SvgLink;
+export default SvgLink

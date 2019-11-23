@@ -102,8 +102,10 @@ export default class TooltipReact extends React.Component<
               })
             }}
           />
-          <Button onClick={this.enterUrl} style={{paddingLeft: '7px'}}>
-            <CheckIcon style={{ width: '24px', height: '24px', overflow: 'hidden' }} />
+          <Button onClick={this.enterUrl} style={{ paddingLeft: '7px' }}>
+            <CheckIcon
+              style={{ width: '24px', height: '24px', overflow: 'hidden' }}
+            />
           </Button>
         </TooltipInner>
       </Tooltip>

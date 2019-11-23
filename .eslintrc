@@ -15,7 +15,6 @@
     "plugin:import/typescript",
     "plugin:prettier/recommended",
     "prettier/@typescript-eslint"
-
   ],
   "rules": {
     "import/named": "off",

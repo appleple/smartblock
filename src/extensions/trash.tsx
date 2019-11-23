@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { findChildren } from 'prosemirror-utils'
+import isMobile from 'is-mobile'
 import { Extension } from '../types'
 import TrashIcon from '../components/icons/Trash'
-import isMobile from 'is-mobile';
 
 export default class Trash implements Extension {
   get name() {
@@ -22,7 +22,7 @@ export default class Trash implements Extension {
   }
 
   get btnColor(): 'black' {
-    return 'black';
+    return 'black'
   }
 
   onClick(state, dispatch) {

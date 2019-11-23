@@ -7,7 +7,7 @@ import { liftListItem } from '../utils'
 
 export default class ListItem extends Extension {
   constructor(props?: ExtensionProps) {
-    super(props);
+    super(props)
   }
 
   get name() {
@@ -20,7 +20,7 @@ export default class ListItem extends Extension {
 
   get schema() {
     if (this.customSchema) {
-      return this.customSchema;
+      return this.customSchema
     }
     return {
       content: 'paragraph block*',

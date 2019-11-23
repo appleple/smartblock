@@ -1,9 +1,16 @@
 import { findChildren } from 'prosemirror-utils'
 import { EditorState } from 'prosemirror-state'
 import { EditorView } from 'prosemirror-view'
-import { Node, Slice, Fragment, NodeRange, DOMSerializer, Schema } from 'prosemirror-model'
+import {
+  Node,
+  Slice,
+  Fragment,
+  NodeRange,
+  DOMSerializer,
+  Schema
+} from 'prosemirror-model'
 import { liftTarget, ReplaceAroundStep } from 'prosemirror-transform'
-import { Dispatch } from '../types';
+import { Dispatch } from '../types'
 
 export const getScrollTop = () => {
   return (
@@ -29,6 +36,10 @@ export const getOffset = el => {
     top: rect.top + getScrollTop(),
     left: rect.left + getScrollLeft()
   }
+}
+
+export const isInput = (el: HTMLElement) => {
+  return el.isContentEditable
 }
 
 export const getViewport = () => {
@@ -63,10 +74,6 @@ export const getViewport = () => {
     }
   }
   return viewport
-}
-
-export const isInput = (el: HTMLElement) => {
-  return el.isContentEditable
 }
 
 export const markActive = type => state => {
@@ -139,21 +146,28 @@ export const findNodePosition = (doc: Node, target: Node) => {
   return ret
 }
 
-export const getRootNodeWithPosByIndex = (state: EditorState, index: number) => {
-  let i = 0;
-  const [firstNode] = findChildren(state.doc, () => {
-    if (i === index) {
-      i++;
-      return true;
-    }
-    i++;
-    return false;
-  }, false);
-  return firstNode;
+export const getRootNodeWithPosByIndex = (
+  state: EditorState,
+  index: number
+) => {
+  let i = 0
+  const [firstNode] = findChildren(
+    state.doc,
+    () => {
+      if (i === index) {
+        i++
+        return true
+      }
+      i++
+      return false
+    },
+    false
+  )
+  return firstNode
 }
 
 export const getRootNodeCountFromState = (state: EditorState) => {
-  return state.doc.content.childCount;
+  return state.doc.content.childCount
 }
 
 export const getParentNodeWithPosFromState = (state: EditorState) => {
@@ -174,7 +188,7 @@ export const getParentNodeWithPosFromState = (state: EditorState) => {
     },
     false
   )
-  return firstNode;
+  return firstNode
 }
 
 export const getParentNodeIndexFromState = (state: EditorState) => {
@@ -182,11 +196,11 @@ export const getParentNodeIndexFromState = (state: EditorState) => {
   const { $anchor } = selection
   const resolvedPos = state.doc.resolve($anchor.pos) as any
   const rowNumber = resolvedPos.path[1] as number
-  return rowNumber;
+  return rowNumber
 }
 
 export const getParentNodeFromState = (state: EditorState) => {
-  const firstNode = getParentNodeWithPosFromState(state);
+  const firstNode = getParentNodeWithPosFromState(state)
   const { node } = firstNode
   return node
 }
@@ -203,7 +217,7 @@ export const findSelectedNodeWithType = (nodeType, state) => {
   let applicableNode = null
   state.doc.nodesBetween(from, to, node => {
     if (applicable) return false
-    if (node.type == nodeType) {
+    if (node.type === nodeType) {
       applicableNode = node
     }
   })
@@ -254,8 +268,8 @@ function liftOutOfList(state, dispatch, range) {
   }
   const $start = tr.doc.resolve(range.start)
   const item = $start.nodeAfter
-  const atStart = range.startIndex == 0
-  const atEnd = range.endIndex == list.childCount
+  const atStart = range.startIndex === 0
+  const atEnd = range.endIndex === list.childCount
   const parent = $start.node(-1)
   const indexBefore = $start.index(-1)
   if (
@@ -296,11 +310,11 @@ export const liftListItem = itemType => {
     const { $from, $to } = state.selection
     const range = $from.blockRange(
       $to,
-      node => node.childCount && node.firstChild.type == itemType
+      node => node.childCount && node.firstChild.type === itemType
     )
     if (!range) return false
     if (!dispatch) return true
-    if ($from.node(range.depth - 1).type == itemType) {
+    if ($from.node(range.depth - 1).type === itemType) {
       return liftToOuterList(state, dispatch, itemType, range)
     }
     return liftOutOfList(state, dispatch, range)
@@ -394,32 +408,32 @@ export const calculateStyle = (
 }
 
 export const isDescendant = (parent: HTMLElement, child: HTMLElement) => {
-  let node = child.parentNode;
-  while (node != null) {
-    if (node == parent) {
-      return true;
+  let node = child.parentNode
+  while (node !== null) {
+    if (node === parent) {
+      return true
     }
-    node = node.parentNode;
+    node = node.parentNode
   }
-  return false;
+  return false
 }
 
 const unwrap = (el: HTMLElement) => {
-  const parent = el.parentNode;
+  const parent = el.parentNode
   while (el.firstChild) {
-    parent.insertBefore(el.firstChild, el);
+    parent.insertBefore(el.firstChild, el)
   }
-  parent.removeChild(el);
+  parent.removeChild(el)
 }
 
 export const stripPtag = (html: string) => {
-  const div = document.createElement('div');
-  div.innerHTML = html;
-  const ps = div.querySelectorAll('li > p');
-  [].forEach.call(ps, (p: HTMLElement) => {
-    unwrap(p);
-  });
-  return div.innerHTML;
+  const div = document.createElement('div')
+  div.innerHTML = html
+  const ps = div.querySelectorAll('li > p')
+  ;[].forEach.call(ps, (p: HTMLElement) => {
+    unwrap(p)
+  })
+  return div.innerHTML
 }
 
 export const getHtmlFromNode = (doc: Node, schema: Schema) => {
@@ -427,45 +441,50 @@ export const getHtmlFromNode = (doc: Node, schema: Schema) => {
     doc.content
   )
   const div = document.createElement('div')
-  div.appendChild(fragment);
+  div.appendChild(fragment)
   return stripPtag(div.innerHTML)
 }
 
 export const getBrowser = () => {
-  const ua = window.navigator.userAgent.toLowerCase();
-  const ver = window.navigator.appVersion.toLowerCase();
-  let name = 'unknown';
+  const ua = window.navigator.userAgent.toLowerCase()
+  const ver = window.navigator.appVersion.toLowerCase()
+  let name = 'unknown'
 
-  if (ua.indexOf('msie') != -1) {
-    if (ver.indexOf('msie 6.') != -1) {
-      name = 'ie6';
-    } else if (ver.indexOf('msie 7.') != -1) {
-      name = 'ie7';
-    } else if (ver.indexOf('msie 8.') != -1) {
-      name = 'ie8';
-    } else if (ver.indexOf('msie 9.') != -1) {
-      name = 'ie9';
-    } else if (ver.indexOf('msie 10.') != -1) {
-      name = 'ie10';
+  if (ua.indexOf('msie') !== -1) {
+    if (ver.indexOf('msie 6.') !== -1) {
+      name = 'ie6'
+    } else if (ver.indexOf('msie 7.') !== -1) {
+      name = 'ie7'
+    } else if (ver.indexOf('msie 8.') !== -1) {
+      name = 'ie8'
+    } else if (ver.indexOf('msie 9.') !== -1) {
+      name = 'ie9'
+    } else if (ver.indexOf('msie 10.') !== -1) {
+      name = 'ie10'
     } else {
-      name = 'ie';
+      name = 'ie'
     }
-  } else if (ua.indexOf('trident/7') != -1) {
-    name = 'ie11';
-  } else if (ua.indexOf('edge') != -1) {
-    name = 'edge';
-  } else if (ua.indexOf('chrome') != -1) {
-    name = 'chrome';
-  } else if (ua.indexOf('safari') != -1) {
-    name = 'safari';
-  } else if (ua.indexOf('opera') != -1) {
-    name = 'opera';
-  } else if (ua.indexOf('firefox') != -1) {
-    name = 'firefox';
+  } else if (ua.indexOf('trident/7') !== -1) {
+    name = 'ie11'
+  } else if (ua.indexOf('edge') !== -1) {
+    name = 'edge'
+  } else if (ua.indexOf('chrome') !== -1) {
+    name = 'chrome'
+  } else if (ua.indexOf('safari') !== -1) {
+    name = 'safari'
+  } else if (ua.indexOf('opera') !== -1) {
+    name = 'opera'
+  } else if (ua.indexOf('firefox') !== -1) {
+    name = 'firefox'
   }
-  return name;
+  return name
 }
 
 export const getUniqId = () => {
-  return (Date.now().toString(36) + Math.random().toString(36).substr(2, 5)).toUpperCase();
+  return (
+    Date.now().toString(36) +
+    Math.random()
+      .toString(36)
+      .substr(2, 5)
+  ).toUpperCase()
 }

@@ -5,7 +5,7 @@ import { EditorView } from 'prosemirror-view'
 import { getOffset } from '../utils'
 import ButtonStyle from './button'
 
-const { useState, useEffect } = React;
+const { useState, useEffect } = React
 
 const fadeIn = keyframes`
   from {
@@ -45,8 +45,8 @@ const Button = styled(ButtonStyle)`
           color: #FFF!important;
         }
       `
-    } else {
-      return `
+    }
+    return `
         background-color: transparent;
         color: #666;
         
@@ -54,7 +54,6 @@ const Button = styled(ButtonStyle)`
           color: #111;
         }
       `
-    }
   }}
   &:last-child {
     margin-right: 2px;
@@ -131,15 +130,15 @@ export default (props: PositionProps) => {
   const [style, setState] = useState<React.CSSProperties>({
     right: 20,
     top: 0
-  });
+  })
 
   const { menu, view } = props
   const { state, dispatch } = view
 
   useEffect(() => {
-    const nextStyle = calculateStyle(props);
-    setState(nextStyle);
-  }, [props]);
+    const nextStyle = calculateStyle(props)
+    setState(nextStyle)
+  }, [props])
 
   return (
     <PositionBtnGroup style={style}>

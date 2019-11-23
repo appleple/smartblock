@@ -59,8 +59,9 @@ const CellButton = styled(Button)`
 
 export default class Table extends Extension {
   constructor(props?: ExtensionProps) {
-    super(props);
+    super(props)
   }
+
   get name() {
     return 'table'
   }
@@ -75,7 +76,7 @@ export default class Table extends Extension {
 
   get schema() {
     if (this.customSchema) {
-      return this.customSchema;
+      return this.customSchema
     }
     schemas.table.parseDOM = [
       {

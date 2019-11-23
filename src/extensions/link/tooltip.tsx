@@ -2,7 +2,7 @@ import * as React from 'react'
 import { EditorView } from 'prosemirror-view'
 import { EditorState, Plugin } from 'prosemirror-state'
 import { render, unmountComponentAtNode } from 'react-dom'
-import styled from 'styled-components';
+import styled from 'styled-components'
 import TooltipReact from './tooltip-react'
 import { getScrollTop } from '../../utils'
 
@@ -27,11 +27,14 @@ const TooltipWrap = styled.div<{
   }
 `
 
-const { useRef } = React;
-const ARROWOFFSET = 50;
-const ARROWTOPOFFSET = 30;
+const { useRef } = React
+const ARROWOFFSET = 50
+const ARROWTOPOFFSET = 30
 
-const calculateStyle = (view: EditorView, container: React.RefObject<HTMLDivElement>) => {
+const calculateStyle = (
+  view: EditorView,
+  container: React.RefObject<HTMLDivElement>
+) => {
   const { selection } = view.state
   const app = view.dom
   const { $anchor } = view.state.selection
@@ -53,11 +56,11 @@ const calculateStyle = (view: EditorView, container: React.RefObject<HTMLDivElem
     }
   }
 
-  const coords = view.coordsAtPos(selection.$head.pos);
-  const top = coords.top + getScrollTop() + ARROWTOPOFFSET;
-  let left =  coords.left - ARROWOFFSET;
+  const coords = view.coordsAtPos(selection.$head.pos)
+  const top = coords.top + getScrollTop() + ARROWTOPOFFSET
+  const left = coords.left - ARROWOFFSET
 
-  const width = 320; //container.current.offsetWidth
+  const width = 320 // container.current.offsetWidth
   if (left + width > window.innerWidth) {
     return {
       top,
@@ -71,7 +74,10 @@ const calculateStyle = (view: EditorView, container: React.RefObject<HTMLDivElem
   }
 }
 
-const calculatePos = (view: EditorView, container: React.RefObject<HTMLDivElement>) => {
+const calculatePos = (
+  view: EditorView,
+  container: React.RefObject<HTMLDivElement>
+) => {
   const { selection } = view.state
   const app = view.dom
   const { $anchor } = view.state.selection
@@ -81,9 +87,9 @@ const calculatePos = (view: EditorView, container: React.RefObject<HTMLDivElemen
   if (nodeAfter) {
     link = nodeAfter.marks.find(mark => {
       if (mark.type.name === 'link') {
-        return true;
+        return true
       }
-      return false;
+      return false
     })
   }
 
@@ -91,20 +97,20 @@ const calculatePos = (view: EditorView, container: React.RefObject<HTMLDivElemen
     return 20
   }
 
-  const coords = view.coordsAtPos(selection.$head.pos);
-  let left =  coords.left - ARROWOFFSET;
+  const coords = view.coordsAtPos(selection.$head.pos)
+  const left = coords.left - ARROWOFFSET
 
-  const width = 320; //container.current.offsetWidth
+  const width = 320 // container.current.offsetWidth
   if (left + width > window.innerWidth) {
-    return left - window.innerWidth + width;
+    return left - window.innerWidth + width
   }
 
-  return 20;
+  return 20
 }
 
-const TooltipComponent = (props: {view: EditorView}) => {
-  const { view } = props;
-  const container = useRef<HTMLDivElement>(null);
+const TooltipComponent = (props: { view: EditorView }) => {
+  const { view } = props
+  const container = useRef<HTMLDivElement>(null)
   const style = calculateStyle(view, container)
   const { selection } = view.state
   const { $anchor } = selection
@@ -131,33 +137,35 @@ const TooltipComponent = (props: {view: EditorView}) => {
     beforePos = pos - nodeBefore.nodeSize
     afterPos = pos + nodeAfter.nodeSize
   }
-  const arrowPos = calculatePos(view, container);
+  const arrowPos = calculatePos(view, container)
 
-  return (<TooltipWrap 
-    className="paper-editor-tooltip"
-    ref={container}
-    style={style}
-    pos={arrowPos}
-  >
-  <TooltipReact
-    url={url}
-    editing={editing}
-    onClick={href => {
-      const { tr } = view.state
-      tr.removeMark(beforePos, afterPos, view.state.schema.marks.link)
-      if (!href) {
-        view.dispatch(tr)
-        return
-      }
-      tr.addMark(
-        beforePos,
-        afterPos,
-        view.state.schema.marks.link.create({ href, editing: false })
-      )
-      view.dispatch(tr)
-    }}
-  />
-  </TooltipWrap>);
+  return (
+    <TooltipWrap
+      className="paper-editor-tooltip"
+      ref={container}
+      style={style}
+      pos={arrowPos}
+    >
+      <TooltipReact
+        url={url}
+        editing={editing}
+        onClick={href => {
+          const { tr } = view.state
+          tr.removeMark(beforePos, afterPos, view.state.schema.marks.link)
+          if (!href) {
+            view.dispatch(tr)
+            return
+          }
+          tr.addMark(
+            beforePos,
+            afterPos,
+            view.state.schema.marks.link.create({ href, editing: false })
+          )
+          view.dispatch(tr)
+        }}
+      />
+    </TooltipWrap>
+  )
 }
 
 class Tooltip {
@@ -179,7 +187,7 @@ class Tooltip {
 
   destroy() {
     unmountComponentAtNode(this.tooltip)
-    document.body.removeChild(this.tooltip);
+    document.body.removeChild(this.tooltip)
   }
 }
 

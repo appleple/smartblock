@@ -1,7 +1,14 @@
-import { useEffect, useRef, useMemo, useState, RefObject, SyntheticEvent } from 'react';
+import {
+  useEffect,
+  useRef,
+  useMemo,
+  useState,
+  RefObject,
+  SyntheticEvent
+} from 'react'
 import { EditorState } from 'prosemirror-state'
 import { EditorView } from 'prosemirror-view'
-import { getScrollTop, getScrollLeft, getOffset } from './';
+import { getScrollTop, getScrollLeft, getOffset } from '.'
 
 type EditorProps = {
   onChange(
@@ -16,81 +23,81 @@ type EditorProps = {
 }
 
 export const useForceUpdate = () => {
-  const [, setTick] = useState(0);
+  const [, setTick] = useState(0)
   const update = () => {
-    setTick(tick => tick + 1);
+    setTick(tick => tick + 1)
   }
-  return update;
+  return update
 }
 
 export const useView = (props: EditorProps): EditorView => {
-  const forceUpdate = useForceUpdate();
+  const forceUpdate = useForceUpdate()
   const instance = useMemo(() => {
     const view = new EditorView(null, {
       state: EditorState.create(props.options),
       dispatchTransaction: transaction => {
-        const { state, transactions } = view.state.applyTransaction(
-          transaction
-        )
+        const { state, transactions } = view.state.applyTransaction(transaction)
         view.updateState(state)
         if (transactions.some(tr => tr.docChanged)) {
           props.onChange(state, view.dispatch)
         }
-        forceUpdate();
+        forceUpdate()
       },
       attributes: props.attributes,
       nodeViews: props.nodeViews
-    });
-    props.onChange(view.state, view.dispatch);
-    return view;
-  }, []);
-  return instance;
+    })
+    props.onChange(view.state, view.dispatch)
+    return view
+  }, [])
+  return instance
 }
 
-
 export const useScroll = () => {
-  const [scrollTop, setScrollTop] = useState(getScrollTop());
+  const [scrollTop, setScrollTop] = useState(getScrollTop())
   useEffect(() => {
     const scrollEvent = () => {
       setScrollTop(getScrollTop())
-    };
-    window.addEventListener('scroll', scrollEvent);
+    }
+    window.addEventListener('scroll', scrollEvent)
     return () => {
-      window.removeEventListener('scroll', scrollEvent);
-    };
-  }, [scrollTop]);
-  return scrollTop;
+      window.removeEventListener('scroll', scrollEvent)
+    }
+  }, [scrollTop])
+  return scrollTop
 }
 
-export const useScrolling = (element: React.MutableRefObject<HTMLDivElement>, delay: number) => {
-  const [scrolling, setScrolling] = useState(false);
+export const useScrolling = (
+  element: React.MutableRefObject<HTMLDivElement>,
+  delay: number
+) => {
+  const [scrolling, setScrolling] = useState(false)
   useEffect(() => {
-    let debounceTimer: number = null;
-    let count = 0;
-    let top = element.current.getBoundingClientRect().top;
+    let debounceTimer: number = null
+    let count = 0
+    let { top } = element.current.getBoundingClientRect()
     const eventHandler = () => {
-      const localTop = element.current.getBoundingClientRect().top;
+      const localTop = element.current.getBoundingClientRect().top
       if (localTop === top) {
-        return;
+        return
       }
-      top = localTop;
-      count++;
+      top = localTop
+      count++
       if (count === 3) {
         if (scrolling === false) {
-          count = 0;
-          setScrolling(true);
+          count = 0
+          setScrolling(true)
         }
       }
-      clearTimeout(debounceTimer);
+      clearTimeout(debounceTimer)
       debounceTimer = setTimeout(() => {
-        setScrolling(false);
-        count = 0;
-      }, delay);
+        setScrolling(false)
+        count = 0
+      }, delay)
     }
-    const interval = setInterval(eventHandler, 100);
-    return (() => {
-      clearInterval(interval);
-    })
-  }, []);
-  return scrolling;
+    const interval = setInterval(eventHandler, 100)
+    return () => {
+      clearInterval(interval)
+    }
+  }, [])
+  return scrolling
 }

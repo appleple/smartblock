@@ -11,7 +11,7 @@ import Button from '../components/button'
 
 export default class OrderedList extends Extension {
   constructor(props?: ExtensionProps) {
-    super(props);
+    super(props)
   }
 
   get name() {
@@ -28,7 +28,7 @@ export default class OrderedList extends Extension {
 
   get schema() {
     if (this.customSchema) {
-      return this.customSchema;
+      return this.customSchema
     }
     return {
       content: 'list_item+',
@@ -68,17 +68,17 @@ export default class OrderedList extends Extension {
   }
 
   enable(state) {
-    const node = getParentNodeFromState(state);
+    const node = getParentNodeFromState(state)
     if (node.type.name !== 'paragraph') {
-      return false;
+      return false
     }
     return wrapInList(state.schema.nodes.ordered_list)(state)
   }
 
   onClick(state, dispatch) {
-    const node = getParentNodeFromState(state);
+    const node = getParentNodeFromState(state)
     if (node.type.name !== 'paragraph') {
-      return false;
+      return false
     }
     wrapInList(state.schema.nodes.ordered_list)(state, dispatch)
   }

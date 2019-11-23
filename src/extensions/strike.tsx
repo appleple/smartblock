@@ -6,8 +6,9 @@ import { markActive } from '../utils'
 
 export default class StrikeThrough extends Extension {
   constructor(props?: ExtensionProps) {
-    super(props);
+    super(props)
   }
+
   get name() {
     return 'strike'
   }
@@ -22,7 +23,7 @@ export default class StrikeThrough extends Extension {
 
   get schema() {
     if (this.customSchema) {
-      return this.customSchema;
+      return this.customSchema
     }
     return {
       group: 'mark',

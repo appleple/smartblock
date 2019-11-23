@@ -2,7 +2,12 @@ import * as React from 'react'
 import { setTextSelection, findChildren } from 'prosemirror-utils'
 import MoveDownIcon from '../components/icons/GoDown'
 import { Extension } from '../types'
-import { findNodePosition, getParentNodeIndexFromState, getRootNodeWithPosByIndex, getRootNodeCountFromState } from '../utils'
+import {
+  findNodePosition,
+  getParentNodeIndexFromState,
+  getRootNodeWithPosByIndex,
+  getRootNodeCountFromState
+} from '../utils'
 
 export default class MoveDown implements Extension {
   get name() {
@@ -22,16 +27,16 @@ export default class MoveDown implements Extension {
   }
 
   enable(state) {
-    const length = getRootNodeCountFromState(state);
-    const rowNumber = getParentNodeIndexFromState(state);
-    return rowNumber < length - 1;
+    const length = getRootNodeCountFromState(state)
+    const rowNumber = getParentNodeIndexFromState(state)
+    return rowNumber < length - 1
   }
 
   onClick(_state, _dispatch, view) {
     const { state } = view
-    const rowNumber = getParentNodeIndexFromState(state);
-    const firstNode = getRootNodeWithPosByIndex(state, rowNumber);
-    const secondNode = getRootNodeWithPosByIndex(state, rowNumber + 1);
+    const rowNumber = getParentNodeIndexFromState(state)
+    const firstNode = getRootNodeWithPosByIndex(state, rowNumber)
+    const secondNode = getRootNodeWithPosByIndex(state, rowNumber + 1)
     if (secondNode) {
       const firstIndex = firstNode.pos
       const secondIndex = secondNode.pos
