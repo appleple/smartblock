@@ -5,12 +5,40 @@ import uuid from 'uuid'
 import { Extension, ExtensionProps } from '../../types'
 import { blockActive } from '../../utils';
 import Plugin from './plugin';
-import Button from '../../components/button'
+import Button from '../../components/button';
+
+
+type Lang = {
+  label: React.ReactNode;
+  lang: string;
+}
 
 export default class Code extends Extension {
 
+  langs: Lang[] = [
+    {
+      label: 'JS',
+      lang: 'js'
+    },
+    {
+      label: 'PHP',
+      lang: 'php'
+    },
+    {
+      label: 'HTML',
+      lang: 'html'
+    },
+    {
+      label: 'CSS',
+      lang: 'css'
+    }
+  ];
+
   constructor(props?: ExtensionProps) {
     super(props);
+    if (props) {
+      this.langs = props.langs;
+    }
   }
   get name() {
     return 'code'
@@ -84,52 +112,20 @@ export default class Code extends Extension {
 
   customMenu({ state, dispatch }) {
     const node = getParentNodeFromState(state);
+    const { langs } = this;
     return (
       <>
-        <Button
-          active={node && node.attrs.lang === 'js'}
+        {langs.map((lang) =><Button
+          active={node && node.attrs.lang === lang.lang}
           type="button"
           onClick={() => {
             setBlockType(state.schema.nodes.code, {
-              lang: 'js'
+              lang: lang.lang
             })(state, dispatch)
           }}
         >
-          JS
-        </Button>
-        <Button
-          type="button"
-          active={node && node.attrs.lang === 'css'}
-          onClick={() => {
-            setBlockType(state.schema.nodes.code, {
-              lang: 'css'
-            })(state, dispatch)
-          }}
-        >
-          CSS
-        </Button>
-        <Button
-          type="button"
-          active={node && node.attrs.lang === 'html'}
-          onClick={() => {
-            setBlockType(state.schema.nodes.code, {
-              lang: 'html'
-            })(state, dispatch)
-          }}
-        >
-          HTML
-        </Button>
-        <Button
-          type="button"
-          active={node && node.attrs.lang === 'php'}
-          onClick={() => {
-            setBlockType(state.schema.nodes.code, {
-              lang: 'php'
-            })(state, dispatch)
-          }}
-        >
-          PHP
-        </Button>
+          {lang.label}
+        </Button>)}
       </>
     )
   }
