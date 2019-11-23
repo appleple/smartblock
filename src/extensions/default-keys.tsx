@@ -53,7 +53,7 @@ const insertBreakOrParagraph = (state: EditorState, dispatch, view) => {
     insertBreak(state, dispatch)
     return
   }
-  if ((node.type.name !== 'paragraph' && node.type.name !== 'blockquote') || !nodeBefore) {
+  if ((node.type.name !== 'paragraph' && node.type.name !== 'blockquote' && node.type.name !== 'code') || !nodeBefore) {
     baseKeymap.Enter(state, dispatch, view)
     return true
   }

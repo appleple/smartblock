@@ -25,8 +25,8 @@ export type ExtensionProps = {
   className?: string,
   tagName?: string,
   icon?: JSX.Element | string,
-  customName?: string
-} | null;
+  customName?: string,
+} & { [key: string]: any } | null;
 
 export abstract class Extension {
   constructor(props: ExtensionProps) {
@@ -44,6 +44,9 @@ export abstract class Extension {
   customSchema?: ExtensionSchema
   schemaDependencies?: {
     [key: string]: ExtensionSchema
+  }
+  customProps?: {
+    [key: string]: any
   }
   tagName?: string;
   className?: string;

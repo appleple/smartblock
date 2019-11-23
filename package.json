@@ -81,6 +81,7 @@
     "immutable": "^4.0.0-rc.12",
     "is-mobile": "^2.0.1",
     "lodash": "^4.17.11",
+    "lowlight": "^1.13.0",
     "prosemirror": "^0.11.1",
     "prosemirror-commands": "^1.0.7",
     "prosemirror-example-setup": "^1.0.1",

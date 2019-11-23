@@ -1,14 +1,44 @@
 import * as React from 'react'
+import { getParentNodeFromState } from '../../utils';
 import { setBlockType } from 'prosemirror-commands'
 import uuid from 'uuid'
 import { Extension, ExtensionProps } from '../../types'
-import CodeBlockView from './code-block-view';
 import { blockActive } from '../../utils';
+import Plugin from './plugin';
+import Button from '../../components/button';
+
+
+type Lang = {
+  label: React.ReactNode;
+  lang: string;
+}
 
 export default class Code extends Extension {
 
+  langs: Lang[] = [
+    {
+      label: 'JS',
+      lang: 'js'
+    },
+    {
+      label: 'PHP',
+      lang: 'php'
+    },
+    {
+      label: 'HTML',
+      lang: 'html'
+    },
+    {
+      label: 'CSS',
+      lang: 'css'
+    }
+  ];
+
   constructor(props?: ExtensionProps) {
     super(props);
+    if (props) {
+      this.langs = props.langs;
+    }
   }
   get name() {
     return 'code'
@@ -19,6 +49,10 @@ export default class Code extends Extension {
   }
 
   get showMenu() {
+    return true
+  }
+
+  get hideInlineMenuOnFocus() {
     return true
   }
 
@@ -35,7 +69,6 @@ export default class Code extends Extension {
           getAttrs(dom) {
             return {
               id: dom.getAttribute('id') || uuid(),
-              text: dom.textContent,
             }
           }
         }
@@ -51,8 +84,12 @@ export default class Code extends Extension {
         ]
       },
       attrs: {
-        id: { default: '' },
-        text:  {default: ''}
+        id: { 
+          default: '',
+        },
+        lang: {
+          default: 'javascript'
+        }
       }
     }
   }
@@ -72,8 +109,32 @@ export default class Code extends Extension {
   onClick(state, dispatch) {
     setBlockType(state.schema.nodes.code)(state, dispatch)
   }
-  
-  view(node, view, getPos) {
-    return new CodeBlockView(node, view, getPos);
+
+  customMenu({ state, dispatch }) {
+    const node = getParentNodeFromState(state);
+    const { langs } = this;
+    return (
+      <>
+        {langs.map((lang) =><Button
+          active={node && node.attrs.lang === lang.lang}
+          type="button"
+          onClick={() => {
+            setBlockType(state.schema.nodes.code, {
+              lang: lang.lang
+            })(state, dispatch)
+          }}
+        >
+          {lang.label}
+        </Button>)}
+      </>
+    )
+  }
+
+  get plugins() {
+    return [
+      Plugin({
+        name: 'code'
+      })
+    ]
   }
 }
