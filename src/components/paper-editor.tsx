@@ -235,7 +235,7 @@ const onChange = (
   }
   if (props.autoSave) {
     const { pathname } = location;
-    const html = getHtmlFromNode(doc, schema)
+    const html = getHtmlFromNode(doc, schema);
     localStorage.setItem(`paper-editor:${pathname}`, html);
   }
   const { childCount } = doc.content
@@ -334,7 +334,9 @@ export default (props: AppProps) => {
   useEffect(() => {
     const div = document.createElement('div')
     div.innerHTML = realHtml
-    const doc = DOMParser.fromSchema(schema).parse(div)
+    const doc = DOMParser.fromSchema(schema).parse(div, {
+      preserveWhitespace: true
+    });
 
     if (props.onInit) {
       props.onInit({

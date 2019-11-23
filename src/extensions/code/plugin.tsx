@@ -32,12 +32,11 @@ function getDecorations({ doc, name }) {
   }
 
   blocks.forEach(block => {
-    let startPos = block.pos + 1
-    console.log(block.node.content)
+    let startPos = block.pos + 1;
     // @ts-ignore
     const items = block.node.content.content.map(item => {
       if (item.text) {
-        return item.text
+        return item.text;
       }
       return '\n'
     })
@@ -45,8 +44,8 @@ function getDecorations({ doc, name }) {
     const nodes = low.highlight(block.node.attrs.lang, textContent).value
     flatten(parseNodes(nodes))
       .map(node => {
-        const from = startPos
-        const to = from + node.text.length
+        const from = startPos;
+        const to = from + node.text.length;
 
         startPos = to
 

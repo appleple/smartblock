@@ -429,8 +429,8 @@ const unwrap = (el: HTMLElement) => {
 export const stripPtag = (html: string) => {
   const div = document.createElement('div')
   div.innerHTML = html
-  const ps = div.querySelectorAll('li > p')
-  ;[].forEach.call(ps, (p: HTMLElement) => {
+  const ps = div.querySelectorAll('li > p');
+  [].forEach.call(ps, (p: HTMLElement) => {
     unwrap(p)
   })
   return div.innerHTML
