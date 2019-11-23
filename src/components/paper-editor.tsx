@@ -13,20 +13,14 @@ import Editor from './editor'
 import InlineMenu from './inline-menu'
 import EditMenu from './edit-menu'
 import Menu from './menu'
-import BackBtn from './back-btn'
+import BackBtn from './back-btn';
 import CustomLayout from './custom-layout'
-import Title from './title'
-import {
-  getScrollTop,
-  getOffset,
-  getViewport,
-  getHtmlFromNode,
-  getParentNodeFromState
-} from '../utils'
+import Title from './title';
+import { getScrollTop, getOffset, getViewport, getHtmlFromNode, getParentNodeFromState } from '../utils'
 import defaultExtensions from '../extensions'
 import { Extension } from '../types'
 
-const { useState, useEffect, useRef } = React
+const { useState, useEffect, useRef } = React;
 
 const Input = styled('div')`
   width: 100%;
@@ -40,7 +34,7 @@ const Container = styled.div<{
     if (!props.full) {
       return `max-width: 780px;`
     }
-    return ''
+    return '';
   }}
   margin: 0 auto;
   padding: 10px 0 80px 0;
@@ -67,17 +61,17 @@ type AppProps = {
   json?: OutputJson
   html?: string
   extensions?: Extension[]
-  offsetTop?: number
-  showBackBtn?: boolean
-  autoSave?: boolean
-  showTitle?: boolean
-  titleText?: string
-  titlePlaceholder?: string
-  full?: boolean
+  offsetTop?: number,
+  showBackBtn?: boolean,
+  autoSave?: boolean,
+  showTitle?: boolean,
+  titleText?: string,
+  titlePlaceholder?: string,
+  full?: boolean,
   getEditorRef?(div: React.MutableRefObject<HTMLDivElement>): void
 }
 
-const EDITMENUHEIGHT = 80
+const EDITMENUHEIGHT = 80;
 
 const getBlockSchemas = (extensions: Extension[]) => {
   const nodesSchema = extensions.filter(extension => {
@@ -179,7 +173,7 @@ const getKeys = (extensions: Extension[], schema: Schema) => {
         extensionKeys[key].push(registeredKeys[key])
       })
     }
-  })
+  });
 
   const keyMaps = {}
 
@@ -220,13 +214,13 @@ const onChange = (
             scrollTo(0, offsetTop - EDITMENUHEIGHT, {
               duration: 300
             })
-            return true
+            return true;
           }
         } else {
           scrollTo(0, offsetTop - EDITMENUHEIGHT, {
             duration: 300
           })
-          return true
+          return true;
         }
       }
     }
@@ -240,17 +234,19 @@ const onChange = (
     })
   }
   if (props.autoSave) {
-    const { pathname } = location
+    const { pathname } = location;
     const html = getHtmlFromNode(doc, schema)
-    localStorage.setItem(`paper-editor:${pathname}`, html)
+    localStorage.setItem(`paper-editor:${pathname}`, html);
   }
   const { childCount } = doc.content
   const lastNode = doc.content.child(childCount - 1)
   if (lastNode.type.name !== 'paragraph') {
     const { paragraph } = state.schema.nodes
-    dispatch(state.tr.insert(state.doc.content.size, paragraph.createAndFill()))
+    dispatch(
+      state.tr.insert(state.doc.content.size, paragraph.createAndFill())
+    )
   }
-  return false
+  return false;
 }
 
 const getPlugins = (extensions: Extension[], schema: Schema) => {
@@ -269,7 +265,7 @@ const getNodeViews = (extensions: Extension[]) => {
   extensions.forEach(extension => {
     if (extension.view) {
       views[extension.name] = (node: Node, view: EditorView, getPos) => {
-        return extension.view(node, view, getPos)
+        return extension.view(node, view, getPos);
       }
     }
   })
@@ -277,25 +273,25 @@ const getNodeViews = (extensions: Extension[]) => {
 }
 
 const titleChanged = (title: string, props: AppProps) => {
-  const { pathname } = location
-  localStorage.setItem(`paper-editor-title:${pathname}`, title)
+  const { pathname } = location;
+  localStorage.setItem(`paper-editor-title:${pathname}`, title);
   if (props.onTitleChange) {
-    props.onTitleChange(title)
+    props.onTitleChange(title);
   }
 }
 
 const shouldRenderInlineMenu = (view: EditorView, blocks: Extension[]) => {
-  const node = getParentNodeFromState(view.state)
-  const currentBlock = blocks.find(block => {
+  const node = getParentNodeFromState(view.state);
+  const currentBlock = blocks.find((block) => {
     if (block.name === node.type.name) {
-      return true
+      return true;
     }
-    return false
+    return false;
   })
   if (currentBlock && currentBlock.hideInlineMenuOnFocus) {
-    return false
+    return false;
   }
-  return true
+  return true;
 }
 
 export default (props: AppProps) => {
@@ -309,11 +305,12 @@ export default (props: AppProps) => {
     full: false
   }
 
-  props = Object.assign({}, defaultProps, props)
+  props = Object.assign({}, defaultProps, props);
   const { html, json, extensions, showBackBtn, showTitle } = props
   let { titleText } = props
   const schema = getSchemaFromExtensions(props.extensions)
   let realHtml = html
+
 
   if (json) {
     const node = Node.fromJSON(schema, json)
@@ -321,18 +318,18 @@ export default (props: AppProps) => {
   }
 
   if (props.autoSave) {
-    const { pathname } = location
-    const localHtml = localStorage.getItem(`paper-editor:${pathname}`)
+    const { pathname } = location;
+    const localHtml = localStorage.getItem(`paper-editor:${pathname}`);
     if (localHtml) {
-      realHtml = localHtml
+      realHtml = localHtml;
     }
     if (showTitle) {
-      titleText = localStorage.getItem(`paper-editor-title:${pathname}`)
+      titleText = localStorage.getItem(`paper-editor-title:${pathname}`);
     }
   }
 
-  const [options, setOptions] = useState(null)
-  const app = useRef<HTMLDivElement>(null)
+  const [options, setOptions] = useState(null);
+  const app = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const div = document.createElement('div')
@@ -345,80 +342,68 @@ export default (props: AppProps) => {
       })
     }
     if (props.getEditorRef) {
-      props.getEditorRef(app)
+      props.getEditorRef(app);
     }
-    const editorOptions = {
-      schema,
-      plugins: getPlugins(extensions, schema),
-      doc
-    }
-    setOptions(editorOptions)
-  }, [])
+    const editorOptions = { schema, plugins: getPlugins(extensions, schema), doc }
+    setOptions(editorOptions);
+  }, []);
 
-  const [showMenus, setShowMenus] = useState(true)
+  const [showMenus, setShowMenus] = useState(true);
   const containerId = React.useMemo(() => {
-    return uuid()
-  }, [])
+    return uuid();
+  }, []);
 
-  const container = useRef<HTMLDivElement>(null)
+  const container = useRef<HTMLDivElement>(null);
   const blocks = getBlocks(extensions)
   const marks = getMarks(extensions)
   const edits = getEdits(extensions)
   const nodeViews = getNodeViews(extensions)
 
-  return (
-    <div
-      id={containerId}
-      onClick={e => {
-        const target = e.target as HTMLDivElement
-        if (target.getAttribute('id') === containerId) {
-          setShowMenus(false)
-        } else {
-          setShowMenus(true)
-        }
-      }}
-      ref={app}
-    >
-      <Container full={props.full}>
-        {props.showTitle && (
-          <Title
-            onChange={title => {
-              titleChanged(title, props)
+  return (<div 
+    id={containerId} 
+    onClick={(e) => {
+      const target = e.target as HTMLDivElement;
+      if (target.getAttribute('id') === containerId) {
+        setShowMenus(false);
+      } else {
+        setShowMenus(true);
+      }
+    }}
+    ref={app}
+  >
+    <Container full={props.full}>
+      {props.showTitle && 
+        <Title 
+          onChange={(title) => {
+            titleChanged(title, props);
+          }} 
+          defaultValue={titleText}
+          placeholder={props.titlePlaceholder}
+        />
+      }
+      <Inner>
+      <div
+        className={showMenus ? '' : 'ProseMirrorHideSelection'}
+        ref={container}
+      >
+        <Input>
+          {options && <Editor
+            options={options}
+            nodeViews={nodeViews}
+            onChange={(state, dispatch) => {
+              const shouldScroll = onChange(state, dispatch, props, schema, container);
+              if (shouldScroll) {
+                setTimeout(() => {
+                  setShowMenus(true);
+                }, 700);
+              }
             }}
-            defaultValue={titleText}
-            placeholder={props.titlePlaceholder}
-          />
-        )}
-        <Inner>
-          <div
-            className={showMenus ? '' : 'ProseMirrorHideSelection'}
-            ref={container}
-          >
-            <Input>
-              {options && (
-                <Editor
-                  options={options}
-                  nodeViews={nodeViews}
-                  onChange={(state, dispatch) => {
-                    const shouldScroll = onChange(
-                      state,
-                      dispatch,
-                      props,
-                      schema,
-                      container
-                    )
-                    if (shouldScroll) {
-                      setTimeout(() => {
-                        setShowMenus(true)
-                      }, 700)
-                    }
-                  }}
-                  render={({ editor, view, scrolling }: ProseRender) => {
-                    if (scrolling) {
-                      setShowMenus(false)
-                    }
-                    return (
-                      <>
+            render={({ editor, view, scrolling }: ProseRender) => {
+              if (scrolling) {
+                setShowMenus(false);
+              }
+              return(
+                <>
                   {(showMenus) && <>
                     <Menu view={view} menu={getMenu(blocks)} />
                     <EditMenu view={view} menu={getMenu(edits)} />
@@ -427,15 +412,13 @@ export default (props: AppProps) => {
                     {showBackBtn && <BackBtn view={view} />}
                   </>}
                   {editor}
-                </>
-);
-                    )
-                  }}
-                />
-              )}
-            </Input>
-          </div>
-        </Inner>
-      </Container>
-          </div>)
+                </>);
+              }
+            }
+          />}
+        </Input>
+      </div>
+      </Inner>
+    </Container>
+  </div>)
 }

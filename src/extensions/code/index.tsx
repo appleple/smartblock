@@ -127,7 +127,7 @@ export default class Code extends Extension {
             }}
           >
             {lang.label}
-                            </Button>)}
+          </Button>))}
       </>
     )
   }
