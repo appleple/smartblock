@@ -1,4 +1,4 @@
-import * as React from 'react'
+import * as React from "react";
 
 const SvgBlockquote = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -22,6 +22,6 @@ const SvgBlockquote = (props: React.SVGProps<SVGSVGElement>) => (
       transform="translate(-144.497 -458.688)"
     />
   </svg>
-)
+);
 
-export default SvgBlockquote
+export default SvgBlockquote;

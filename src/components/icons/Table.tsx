@@ -1,4 +1,4 @@
-import * as React from 'react'
+import * as React from "react";
 
 const SvgTable = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -35,10 +35,10 @@ const SvgTable = (props: React.SVGProps<SVGSVGElement>) => (
         fontFamily="'ArialMT'"
         fontSize={256}
       >
-        {'U+F709'}
+        {"U+F709"}
       </text>
     </g>
   </svg>
-)
+);
 
-export default SvgTable
+export default SvgTable;

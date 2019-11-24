@@ -6,6 +6,7 @@ import { Extension, ExtensionProps } from '../../types'
 import { blockActive } from '../../utils'
 import Plugin from './plugin'
 import Button from '../../components/button'
+import CodeIcon from '../../components/icons/Code';
 
 type Lang = {
   label: React.ReactNode
@@ -16,19 +17,19 @@ export default class Code extends Extension {
   defaultLang = 'js'
   langs: Lang[] = [
     {
-      label: 'JS',
+      label: '<span style="font-size: 12px;">JS</span>',
       lang: 'js'
     },
     {
-      label: 'PHP',
+      label: '<span style="font-size: 12px;">PHP</span>',
       lang: 'php'
     },
     {
-      label: 'HTML',
-      lang: 'html'
+      label: '<span style="font-size: 12px;">XML</span>',
+      lang: 'xml'
     },
     {
-      label: 'CSS',
+      label: '<span style="font-size: 12px;">CSS</span>',
       lang: 'css'
     }
   ]
@@ -96,7 +97,7 @@ export default class Code extends Extension {
   }
 
   get icon() {
-    return 'C'
+    return <CodeIcon style={{ width: '24px', height: '24px' }} />
   }
 
   active(state) {
@@ -126,7 +127,11 @@ export default class Code extends Extension {
               })(state, dispatch)
             }}
           >
-            {lang.label}
+            {typeof lang.label !== 'string' ? (
+              lang.label
+            ) : (
+              <span dangerouslySetInnerHTML={{ __html: lang.label }} />
+            )}
           </Button>))}
       </>
     )

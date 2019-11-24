@@ -1,8 +1,8 @@
-import * as React from 'react'
+import * as React from "react";
 
 const SvgOrderedList = (props: React.SVGProps<SVGSVGElement>) => (
   <svg width={1792} height={1792} viewBox="0 0 1792 1792" {...props}>
-    <title>{'\u756A\u53F7\u4ED8\u304D\u30EA\u30B9\u30C8'}</title>
+    <title>{"\u756A\u53F7\u4ED8\u304D\u30EA\u30B9\u30C8"}</title>
     <g id="b3b81f28-1e36-4bd8-9f72-6ca2ae0e4ff1" data-name="\u30E9\u30D9\u30EB">
       <rect x={552} y={216.49} width={1240} height={256} />
       <rect x={552} y={757.63} width={1240} height={256} />
@@ -12,6 +12,6 @@ const SvgOrderedList = (props: React.SVGProps<SVGSVGElement>) => (
       <path d="M199.21,1397.33h5.49q45,0,73.3,29.92t28.27,79.89q0,64.24-39.53,98t-114.2,33.76Q79,1638.91,15.27,1606l26.91-82.36q57.64,28.56,99.38,28.55,28,0,42.82-11.25t14.83-31q0-16.47-7.69-24.7t-28.83-12.36q-21.13-4.11-62.31-4.11h-22v-71.38l93.33-75.77v-1.1H23.51v-87.85H300.78v87.85l-101.57,75.77Z" />
     </g>
   </svg>
-)
+);
 
-export default SvgOrderedList
+export default SvgOrderedList;

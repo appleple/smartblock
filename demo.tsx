@@ -5,11 +5,11 @@ import Block from './src/extensions/custom-block';
 import Mark from './src/extensions/custom-mark';
 import extensions from './src/extensions/';
 
-extensions.push(new Block({
-  tagName: 'div',
-  className: 'acms-admin-alert',
-  icon: '<span class="fa fa-envelope-open"></span>',
-}));
+// extensions.push(new Block({
+//   tagName: 'div',
+//   className: 'acms-admin-alert',
+//   icon: '<span class="fa fa-envelope-open"></span>',
+// }));
 
 // extensions.push(new Mark({
 //   tagName: 'i',

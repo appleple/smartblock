@@ -1,8 +1,8 @@
-import * as React from 'react'
+import * as React from "react";
 
 const SvgHide = (props: React.SVGProps<SVGSVGElement>) => (
   <svg width={1792} height={1792} viewBox="0 0 1792 1792" {...props}>
-    <title>{'\u975E\u8868\u793A'}</title>
+    <title>{"\u975E\u8868\u793A"}</title>
     <g id="bc30ece7-7f37-4ec5-a8bf-7bdf561d3dbc" data-name="\u30E9\u30D9\u30EB">
       <path
         d="M1533.09,115q3,.64,5.85,1.56Q1536,115.6,1533.09,115Z"
@@ -220,6 +220,6 @@ const SvgHide = (props: React.SVGProps<SVGSVGElement>) => (
       />
     </g>
   </svg>
-)
+);
 
-export default SvgHide
+export default SvgHide;

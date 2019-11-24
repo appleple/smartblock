@@ -1,4 +1,4 @@
-import * as React from 'react'
+import * as React from "react";
 
 const SvgImagePlus = (props: React.SVGProps<SVGSVGElement>) => (
   <svg width={60} height={55.118} viewBox="0 0 60 55.118" {...props}>
@@ -50,6 +50,6 @@ const SvgImagePlus = (props: React.SVGProps<SVGSVGElement>) => (
       </g>
     </g>
   </svg>
-)
+);
 
-export default SvgImagePlus
+export default SvgImagePlus;
