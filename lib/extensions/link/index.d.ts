@@ -27,7 +27,7 @@ export default class Link extends Extension {
         toDOM(node: any): (string | number | {
             href: any;
             title: any;
-            "class": string;
+            class: string;
         })[];
     };
     readonly icon: JSX.Element;

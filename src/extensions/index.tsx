@@ -33,7 +33,7 @@ export default [
   new OrderedList(),
   new Embed(),
   new Code(),
-  // new Table(),
+  new Table(),
   new BlockQuote(),
   // marks
   new Strong(),

@@ -1,6 +1,6 @@
 /// <reference types="react" />
-import { Extension, ExtensionProps } from '../../types';
 import { EditorState } from 'prosemirror-state';
+import { Extension, ExtensionProps } from '../../types';
 export default class Embed extends Extension {
     constructor(props?: ExtensionProps);
     readonly name: string;
@@ -28,18 +28,18 @@ export default class Embed extends Extension {
         }[];
         toDOM: (node: any) => (string | {
             contenteditable: boolean;
-            'class': string;
+            class: string;
         } | (string | {
-            'class': string;
+            class: string;
         } | (string | {
             src: string;
         })[])[])[] | (string | {
-            'class': string;
+            class: string;
         } | (string | {
-            'class': string;
-            'href': any;
+            class: string;
+            href: any;
         } | (string | number | {
-            'class': string;
+            class: string;
         })[])[])[];
     };
     readonly icon: JSX.Element;

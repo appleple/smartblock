@@ -8,6 +8,7 @@ export declare const getOffset: (el: any) => {
     top: any;
     left: any;
 };
+export declare const isInput: (el: HTMLElement) => boolean;
 export declare const getViewport: () => {
     left: number;
     top: number;
@@ -21,7 +22,6 @@ export declare const getViewport: () => {
     height: number;
     keyboardHeight: number;
 };
-export declare const isInput: (el: HTMLElement) => boolean;
 export declare const markActive: (type: any) => (state: any) => any;
 export declare const getMarkInSelection: (markName: string, state: EditorState<any>) => import("prosemirror-model").Mark<any>;
 export declare const blockActive: (type: any) => (state: any) => boolean;

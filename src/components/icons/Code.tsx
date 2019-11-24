@@ -6,9 +6,6 @@ const SvgCode = (props: React.SVGProps<SVGSVGElement>) => (
     x="0px"
     y="0px"
     viewBox="12 10 70 70"
-    style={{
-      enableBackground: "new 12 10 70 70"
-    }}
     xmlSpace="preserve"
     {...props}
   >

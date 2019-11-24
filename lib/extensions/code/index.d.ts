@@ -34,7 +34,7 @@ export default class Code extends Extension {
             };
         };
     };
-    readonly icon: string;
+    readonly icon: JSX.Element;
     active(state: any): boolean;
     enable(state: any): boolean;
     onClick(state: any, dispatch: any): void;
