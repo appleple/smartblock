@@ -34,6 +34,7 @@ import Heading6 from './extensions/heading6'
 import ListItem from './extensions/list-item'
 import Blockquote from './extensions/blockquote'
 import Embed from './extensions/embed'
+import Code from './extensions/code'
 import MoveDown from './extensions/move-down'
 import MoveUp from './extensions/move-up'
 import OrderedList from './extensions/ordered-list'
@@ -87,6 +88,7 @@ export {
   Blockquote,
   Table,
   Embed,
+  Code,
   /* inline */
   Emphasis,
   Strike,
