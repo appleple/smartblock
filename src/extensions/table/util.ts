@@ -1,17 +1,29 @@
 import { selectionCell, TableMap, CellSelection } from 'prosemirror-tables';
 import { setBlockType } from 'prosemirror-commands'
+import { EditorState } from 'prosemirror-state';
+import { Schema } from 'prosemirror-model';
+import { Dispatch } from '../..';
 
-function isInTable(state) {
+function isInTable(state: EditorState) {
   let $head = state.selection.$head
-  for (let d = $head.depth; d > 0; d--) if ($head.node(d).type.spec.tableRole == "row") return true
+  for (let d = $head.depth; d > 0; d--) {
+    // @ts-ignore
+    if ($head.node(d).type.spec.tableRole == "row") {
+      return true
+    }
+  }
   return false
 }
 
-function selectedRect(state) {
-  let sel = state.selection, $pos = selectionCell(state)
-  let table = $pos.node(-1), tableStart = $pos.start(-1), map = TableMap.get(table)
+function selectedRect(state: EditorState) {
+  let sel = state.selection
+  let $pos = selectionCell(state)
+  let table = $pos.node(-1)
+  let tableStart = $pos.start(-1)
+  let map = TableMap.get(table)
   let rect
   if (sel instanceof CellSelection) {
+    // @ts-ignore
     rect = map.rectBetween(sel.$anchorCell.pos - tableStart, sel.$headCell.pos - tableStart)
   } else {
     rect = map.findCell($pos.pos - tableStart)
@@ -23,20 +35,23 @@ function selectedRect(state) {
 }
 
 
-function tableNodeTypes(schema) {
+function tableNodeTypes(schema: Schema) {
   let result = schema.cached.tableNodeTypes
   if (!result) {
     result = schema.cached.tableNodeTypes = {}
     for (let name in schema.nodes) {
+      // @ts-ignore
       let type = schema.nodes[name], role = type.spec.tableRole
-      if (role) result[role] = type
+      if (role) {
+        result[role] = type
+      }
     }
   }
   return result
 }
 
 export function toggleCell(cellType: 'th' | 'td') {
-  return function(state, dispatch) {
+  return function(state: EditorState, dispatch: Dispatch) {
     if (!isInTable(state)) {
       return false
     }
