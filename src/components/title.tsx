@@ -26,22 +26,24 @@ const schemaDef = {
   }
 }
 
-const placeholderPlugin = (text: string) => {
+const placeholderPlugin = () => {
   return new Plugin({
     props: {
-      decorations(state) {
-        const { doc } = state
-        if (
-          doc.childCount == 1 &&
-          doc.firstChild.isTextblock &&
-          doc.firstChild.content.size == 0
-        ) {
-          return DecorationSet.create(doc, [
-            Decoration.widget(1, document.createTextNode(text))
-          ])
+      decorations: state => {
+        const decorations = []
+        const decorate = (node, pos) => {
+          if (node.type.isBlock && node.childCount === 0) {
+            decorations.push(
+              Decoration.node(pos, pos + node.nodeSize, {
+                class: 'empty-node',
+              })
+            )
+          }
         }
-      }
-    }
+        state.doc.descendants(decorate)
+        return DecorationSet.create(state.doc, decorations)
+      },
+    },
   })
 }
 

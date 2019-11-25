@@ -189,6 +189,16 @@ export default createGlobalStyle`
     display: none;
   }
 
+  .ProseMirror h1.empty-node::before {
+    content: "タイトルを入力してください";
+    font-style: normal;
+  }
+
+  .ProseMirror p.empty-node:first-child::before {
+    content: "本文を入力してください" !important;
+    font-style: normal;
+  }
+
   .ProseMirror ::selection {
     color: #014CC5;
     background: #D1DDF0;

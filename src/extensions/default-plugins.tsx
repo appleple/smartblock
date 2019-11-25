@@ -35,22 +35,29 @@ const currentElementPlugin = () => {
   })
 }
 
-const placeholderPlugin = (text: string) => {
+const placeholderPlugin = () => {
   return new Plugin({
     props: {
-      decorations(state) {
+      decorations: state => {
+        const decorations = []
         const { doc } = state
+        const decorate = (node, pos) => {
         if (
           doc.childCount == 1 &&
           doc.firstChild.isTextblock &&
           doc.firstChild.content.size == 0
         ) {
-          return DecorationSet.create(doc, [
-            Decoration.widget(1, document.createTextNode(text))
-          ])
+            decorations.push(
+              Decoration.node(pos, pos + node.nodeSize, {
+                class: 'empty-node',
+              })
+            )
+          }
         }
-      }
-    }
+        state.doc.descendants(decorate)
+        return DecorationSet.create(state.doc, decorations)
+      },
+    },
   })
 }
 
