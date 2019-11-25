@@ -196,18 +196,18 @@ export default class Table extends Extension {
         <CellButton
           type="button"
           onClick={() => {
-            addRowBefore(state, dispatch)
-          }}
-        >
-          <TopInsertIcon style={{ width: '24px', height: '24px' }} />
-        </CellButton>
-        <CellButton
-          type="button"
-          onClick={() => {
             addRowAfter(state, dispatch)
           }}
         >
           <BottomInsertIcon style={{ width: '24px', height: '24px' }} />
+        </CellButton>
+        <CellButton
+          type="button"
+          onClick={() => {
+            addRowBefore(state, dispatch)
+          }}
+        >
+          <TopInsertIcon style={{ width: '24px', height: '24px' }} />
         </CellButton>
         <CellButton
           type="button"
