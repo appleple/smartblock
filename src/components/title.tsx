@@ -76,7 +76,7 @@ export default (props: TitleProps) => {
     options: {
       schema,
       doc,
-      plugins: [placeholderPlugin(props.placeholder)]
+      plugins: [placeholderPlugin()]
     }
   }
 
