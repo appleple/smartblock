@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import { Extension, ExtensionProps } from '../types';
+import { Extension, ExtensionProps } from '../../types';
 export default class Table extends Extension {
     constructor(props?: ExtensionProps);
     readonly name: string;

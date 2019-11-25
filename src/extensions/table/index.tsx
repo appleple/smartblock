@@ -25,6 +25,8 @@ import TopInsertIcon from '../../components/icons/TopInsert'
 import BottomInsertIcon from '../../components/icons/BottomInsert'
 import SplitIcon from '../../components/icons/Split'
 import MergeIcon from '../../components/icons/Merge'
+import RemoveRowIcon from '../../components/icons/RemoveRow';
+import RemoveColIcon from '../../components/icons/RemoveCol';
 
 import { createTable, blockActive } from '../../utils'
 import { Extension, ExtensionProps } from '../../types'
@@ -180,14 +182,6 @@ export default class Table extends Extension {
         <CellButton
           type="button"
           onClick={() => {
-            addColumnBefore(state, dispatch)
-          }}
-        >
-          <LeftInsertIcon style={{ width: '24px', height: '24px' }} />
-        </CellButton>
-        <CellButton
-          type="button"
-          onClick={() => {
             addColumnAfter(state, dispatch)
           }}
         >
@@ -196,10 +190,10 @@ export default class Table extends Extension {
         <CellButton
           type="button"
           onClick={() => {
-            addRowAfter(state, dispatch)
+            addColumnBefore(state, dispatch)
           }}
         >
-          <BottomInsertIcon style={{ width: '24px', height: '24px' }} />
+          <LeftInsertIcon style={{ width: '24px', height: '24px' }} />
         </CellButton>
         <CellButton
           type="button"
@@ -212,10 +206,19 @@ export default class Table extends Extension {
         <CellButton
           type="button"
           onClick={() => {
+            addRowAfter(state, dispatch)
+          }}
+        >
+          <BottomInsertIcon style={{ width: '24px', height: '24px' }} />
+        </CellButton>
+
+        <CellButton
+          type="button"
+          onClick={() => {
             deleteColumn(state, dispatch)
           }}
         >
-          列削除
+          <RemoveColIcon style={{ width: '24px', height: '24px' }} />
         </CellButton>
         <CellButton
           type="button"
@@ -223,7 +226,7 @@ export default class Table extends Extension {
             deleteRow(state, dispatch)
           }}
         >
-          行削除
+          <RemoveRowIcon style={{ width: '24px', height: '24px' }} />
         </CellButton>
       </>
     )
