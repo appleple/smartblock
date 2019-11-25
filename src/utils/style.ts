@@ -52,6 +52,11 @@ export default createGlobalStyle`
     transition: background-color .3s;
     box-sizing: border-box;
   }
+
+  .ProseMirror table p {
+    margin: 0;
+    line-height: 1;
+  }
   
   @media screen and (min-width: 768px){
       .ProseMirror p {

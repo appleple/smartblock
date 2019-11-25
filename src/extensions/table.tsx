@@ -161,7 +161,7 @@ export default class Table extends Extension {
       <CellButton
           type="button"
           onClick={() => {
-            
+            toggleHeaderCell(state, dispatch)
           }}
         >
           <span style={{ display: 'inline-block', verticalAlign: 'text-bottom'}}>th</span>
@@ -169,7 +169,7 @@ export default class Table extends Extension {
       <CellButton
           type="button"
           onClick={() => {
-            
+            toggleHeaderCell(state, dispatch)
           }}
         >
           <span style={{ display: 'inline-block', verticalAlign: 'text-bottom'}}>td</span>
