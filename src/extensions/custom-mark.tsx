@@ -39,7 +39,7 @@ export default class CustomMark extends Extension {
         }
       ],
       toDOM: () => [
-        tag,
+        tagName,
         {
           class: className
         },
