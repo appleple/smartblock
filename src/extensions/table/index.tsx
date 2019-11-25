@@ -9,29 +9,26 @@ import {
   deleteRow,
   mergeCells,
   splitCell,
-  setCellAttr,
-  toggleHeaderRow,
-  toggleHeaderColumn,
   toggleHeaderCell,
   goToNextCell,
-  fixTable,
   tableEditing,
   columnResizing,
   tableNodes
 } from 'prosemirror-tables'
 import { setBlockType } from 'prosemirror-commands'
 import uuid from 'uuid'
-import TableIcon from '../components/icons/Table'
-import LeftInsertIcon from '../components/icons/LeftInsert'
-import RightInsertIcon from '../components/icons/RightInsert'
-import TopInsertIcon from '../components/icons/TopInsert'
-import BottomInsertIcon from '../components/icons/BottomInsert'
-import SplitIcon from '../components/icons/Split'
-import MergeIcon from '../components/icons/Merge'
+import { toggleCell } from './util';
+import TableIcon from '../../components/icons/Table'
+import LeftInsertIcon from '../../components/icons/LeftInsert'
+import RightInsertIcon from '../../components/icons/RightInsert'
+import TopInsertIcon from '../../components/icons/TopInsert'
+import BottomInsertIcon from '../../components/icons/BottomInsert'
+import SplitIcon from '../../components/icons/Split'
+import MergeIcon from '../../components/icons/Merge'
 
-import { createTable, blockActive } from '../utils'
-import { Extension, ExtensionProps } from '../types'
-import Button from '../components/button'
+import { createTable, blockActive } from '../../utils'
+import { Extension, ExtensionProps } from '../../types'
+import Button from '../../components/button'
 
 const schemas = tableNodes({
   group: 'block',
@@ -161,7 +158,7 @@ export default class Table extends Extension {
       <CellButton
           type="button"
           onClick={() => {
-            toggleHeaderCell(state, dispatch)
+            toggleCell('th')(state, dispatch)
           }}
         >
           <span style={{ display: 'inline-block', verticalAlign: 'text-bottom'}}>th</span>
@@ -169,7 +166,7 @@ export default class Table extends Extension {
       <CellButton
           type="button"
           onClick={() => {
-            toggleHeaderCell(state, dispatch)
+            toggleCell('td')(state, dispatch)
           }}
         >
           <span style={{ display: 'inline-block', verticalAlign: 'text-bottom'}}>td</span>
