@@ -25,6 +25,7 @@ export default class OrderedList extends Extension {
         })[];
     };
     readonly icon: JSX.Element;
+    readonly hideBlockMenuOnFocus: boolean;
     active(state: any): boolean;
     enable(state: any): boolean;
     onClick(state: any, dispatch: any): boolean;

@@ -41,12 +41,9 @@ const PositionBtnGroupTop = styled.div`
   padding: 0 5px 0 5px;
 `
 const PositionBtnGroupBottom = styled.div`
+  border-top: 1px solid #ccc;
   margin: 5px 0 0 0;
   padding: 5px 5px 0 5px;
-  border-top: 1px solid #ccc;
-  &:first-child {
-    border-top: none;
-  }
 `
 
 interface PositionProps {
@@ -176,18 +173,21 @@ export default (props: PositionProps) => {
     return null
   }
 
+  let hideMenuOnFocus = false;
   const activeItem = menu.find(item => {
     if (item.active && item.active(state)) {
       return true
     }
     return false
-  })
+  });
 
-  console.log(!activeItem.hideBlockMenuOnFocus);
+  if (activeItem && activeItem.hideBlockMenuOnFocus) {
+    hideMenuOnFocus = true;
+  }
 
   return (
     <PositionBtnGroup style={style}>
-      {!activeItem.hideBlockMenuOnFocus && <PositionBtnGroupTop>
+      <PositionBtnGroupTop>
         {menu.map((item, key) => {
           return (
             <ButtonStyle
@@ -195,7 +195,7 @@ export default (props: PositionProps) => {
               type="button"
               active={item.active && item.active(state)}
               title={item.title}
-              disabled={item.enable && !item.enable(state)}
+              disabled={(item.enable && !item.enable(state)) || hideMenuOnFocus}
               onClick={e => {
                 e.preventDefault()
                 item.onClick(state, dispatch, view)
@@ -209,7 +209,7 @@ export default (props: PositionProps) => {
             </ButtonStyle>
           )
         })}
-      </PositionBtnGroupTop>}
+      </PositionBtnGroupTop>
       {CustomMenu && CustomMenu.props && CustomMenu.props.children && (
         <PositionBtnGroupBottom>{CustomMenu}</PositionBtnGroupBottom>
       )}

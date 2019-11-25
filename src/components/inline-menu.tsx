@@ -89,6 +89,7 @@ const getActiveInlineMenu = (props: PositionProps) => {
     }
     return false
   })
+
   if (activeItem && activeItem.customInlineMenu) {
     return <>{activeItem.customInlineMenu(view)}</>
   }

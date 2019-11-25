@@ -158,6 +158,22 @@ export default class Table extends Extension {
       >
         <SplitIcon style={{ width: '24px', height: '24px' }} />
       </CellButton>
+      <CellButton
+          type="button"
+          onClick={() => {
+            
+          }}
+        >
+          <span style={{ display: 'inline-block', verticalAlign: 'text-bottom'}}>th</span>
+      </CellButton>
+      <CellButton
+          type="button"
+          onClick={() => {
+            
+          }}
+        >
+          <span style={{ display: 'inline-block', verticalAlign: 'text-bottom'}}>td</span>
+      </CellButton>
     </>)
   }
 

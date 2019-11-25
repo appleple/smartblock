@@ -42,12 +42,21 @@ export declare abstract class Extension {
     };
     tagName?: string;
     className?: string;
+    customMenu?({ state: EditorState, dispatch: Dispatch }: {
+        state: any;
+        dispatch: any;
+    }): JSX.Element;
+    customInlineMenu?({ state: EditorState, dispatch: Dispatch }: {
+        state: any;
+        dispatch: any;
+    }): JSX.Element;
     customLayout?(props: CustomLayoutProps, dom: HTMLElement): JSX.Element;
     customIcon?: JSX.Element | string;
     icon?: JSX.Element | string;
     plugins?: Plugin<any, any>[];
     showMenu: boolean;
     hideMenuOnFocus?: boolean;
+    hideBlockMenuOnFocus?: boolean;
     hideInlineMenuOnFocus?: boolean;
     group?: string;
     view?(node: Node, view: EditorView, getPos: () => number): NodeView;

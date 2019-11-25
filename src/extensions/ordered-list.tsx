@@ -63,6 +63,10 @@ export default class OrderedList extends Extension {
     return <OrderedListIcon style={{ width: '24px', height: '24px' }} />
   }
 
+  get hideBlockMenuOnFocus() {
+    return true;
+  }
+
   active(state) {
     return blockActive(state.schema.nodes.ordered_list)(state)
   }

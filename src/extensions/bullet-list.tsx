@@ -62,6 +62,10 @@ export default class BulletList extends Extension {
     return <List style={{ width: '24px', height: '24px' }} />
   }
 
+  get hideBlockMenuOnFocus() {
+    return true;
+  }
+
   active(state) {
     return blockActive(state.schema.nodes.bullet_list)(state)
   }
