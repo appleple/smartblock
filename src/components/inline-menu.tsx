@@ -4,6 +4,11 @@ import { EditorView } from 'prosemirror-view'
 import { getOffset, getScrollTop } from '../utils'
 import ButtonStyle from './button'
 
+interface PositionProps {
+  view: EditorView
+  blockMenu: any
+}
+
 const { useState, useRef } = React
 
 const fadeIn = keyframes`
@@ -74,6 +79,22 @@ const calculateStyle = (
   }
 }
 
+const getActiveInlineMenu = (props: PositionProps) => {
+  const { blockMenu, view } = props
+  const { state } = view
+
+  const activeItem = blockMenu.find(item => {
+    if (item.active && item.active(state)) {
+      return true
+    }
+    return false
+  })
+  if (activeItem && activeItem.customInlineMenu) {
+    return <>{activeItem.customInlineMenu(view)}</>
+  }
+  return false;
+}
+
 const calculateArrowPos = (
   view: EditorView,
   container: React.RefObject<HTMLDivElement>
@@ -93,10 +114,12 @@ const calculateArrowPos = (
 
 const MenuBar = ({
   menu,
+  blockMenu,
   children,
   view
 }: {
   menu: any
+  blockMenu: any
   children?: React.ReactChildren
   view: EditorView
 }) => {
@@ -109,6 +132,7 @@ const MenuBar = ({
   const container = useRef<HTMLDivElement>(null)
   const style = calculateStyle(view, container)
   const pos = calculateArrowPos(view, container)
+  const inlineMenu = getActiveInlineMenu({ blockMenu, view });
 
   return (
     <FloaterStyle style={style} ref={container} pos={pos}>
@@ -135,6 +159,9 @@ const MenuBar = ({
             </ButtonStyle>
           )
         })}
+        {inlineMenu && inlineMenu.props && inlineMenu.props.children && (
+          <>{inlineMenu}</>
+        )}
       </Bar>
     </FloaterStyle>
   )

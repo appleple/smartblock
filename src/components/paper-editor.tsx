@@ -409,7 +409,7 @@ export default (props: AppProps) => {
                   {(showMenus) && <>
                     <Menu view={view} menu={getMenu(blocks)} />
                     <EditMenu view={view} menu={getMenu(edits)} />
-                    {shouldRenderInlineMenu(view, blocks) && <InlineMenu menu={getMenu(marks)} view={view} />}
+                    {shouldRenderInlineMenu(view, blocks) && <InlineMenu menu={getMenu(marks)} blockMenu={getMenu(blocks)} view={view} />}
                     <CustomLayout view={view} menu={getMenu(blocks)} />
                     {showBackBtn && <BackBtn view={view} />}
                   </>}

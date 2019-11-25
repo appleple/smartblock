@@ -61,6 +61,10 @@ export abstract class Extension {
 
   className?: string
 
+  customMenu?({ state: EditorState, dispatch: Dispatch }): JSX.Element
+
+  customInlineMenu?({ state: EditorState, dispatch: Dispatch }): JSX.Element
+
   customLayout?(props: CustomLayoutProps, dom: HTMLElement): JSX.Element
 
   customIcon?: JSX.Element | string
@@ -72,6 +76,8 @@ export abstract class Extension {
   showMenu: boolean
 
   hideMenuOnFocus?: boolean
+
+  hideBlockMenuOnFocus?: boolean
 
   hideInlineMenuOnFocus?: boolean
 

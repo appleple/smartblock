@@ -41,9 +41,12 @@ const PositionBtnGroupTop = styled.div`
   padding: 0 5px 0 5px;
 `
 const PositionBtnGroupBottom = styled.div`
-  border-top: 1px solid #ccc;
   margin: 5px 0 0 0;
   padding: 5px 5px 0 5px;
+  border-top: 1px solid #ccc;
+  &:first-child {
+    border-top: none;
+  }
 `
 
 interface PositionProps {
@@ -173,9 +176,18 @@ export default (props: PositionProps) => {
     return null
   }
 
+  const activeItem = menu.find(item => {
+    if (item.active && item.active(state)) {
+      return true
+    }
+    return false
+  })
+
+  console.log(!activeItem.hideBlockMenuOnFocus);
+
   return (
     <PositionBtnGroup style={style}>
-      <PositionBtnGroupTop>
+      {!activeItem.hideBlockMenuOnFocus && <PositionBtnGroupTop>
         {menu.map((item, key) => {
           return (
             <ButtonStyle
@@ -197,7 +209,7 @@ export default (props: PositionProps) => {
             </ButtonStyle>
           )
         })}
-      </PositionBtnGroupTop>
+      </PositionBtnGroupTop>}
       {CustomMenu && CustomMenu.props && CustomMenu.props.children && (
         <PositionBtnGroupBottom>{CustomMenu}</PositionBtnGroupBottom>
       )}

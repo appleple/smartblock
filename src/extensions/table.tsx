@@ -113,6 +113,10 @@ export default class Table extends Extension {
     return <TableIcon style={{ width: '24px', height: '24px' }} />
   }
 
+  get hideBlockMenuOnFocus() {
+    return true;
+  }
+
   get plugins() {
     return [
       // columnResizing(),
@@ -134,6 +138,27 @@ export default class Table extends Extension {
     })
     const tr = state.tr.replaceSelectionWith(table)
     dispatch(tr)
+  }
+
+  customInlineMenu({ state, dispatch }) {
+    return (<>
+      <CellButton
+        type="button"
+        onClick={() => {
+          mergeCells(state, dispatch)
+        }}
+      >
+        <MergeIcon style={{ width: '24px', height: '24px' }} />
+      </CellButton>
+      <CellButton
+        type="button"
+        onClick={() => {
+          splitCell(state, dispatch)
+        }}
+      >
+        <SplitIcon style={{ width: '24px', height: '24px' }} />
+      </CellButton>
+    </>)
   }
 
   customMenu({ state, dispatch }) {
@@ -186,22 +211,6 @@ export default class Table extends Extension {
           }}
         >
           行削除
-        </CellButton>
-        <CellButton
-          type="button"
-          onClick={() => {
-            mergeCells(state, dispatch)
-          }}
-        >
-          <SplitIcon style={{ width: '24px', height: '24px' }} />
-        </CellButton>
-        <CellButton
-          type="button"
-          onClick={() => {
-            splitCell(state, dispatch)
-          }}
-        >
-          <MergeIcon style={{ width: '24px', height: '24px' }} />
         </CellButton>
       </>
     )
