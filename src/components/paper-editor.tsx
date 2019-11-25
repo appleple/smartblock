@@ -245,6 +245,11 @@ const onChange = (
     dispatch(
       state.tr.insert(state.doc.content.size, paragraph.createAndFill())
     )
+  } else if (lastNode.textContent.length !== 0) {
+    const { paragraph } = state.schema.nodes
+    dispatch(
+      state.tr.insert(state.doc.content.size, paragraph.createAndFill())
+    )
   }
   return false;
 }
