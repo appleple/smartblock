@@ -5,11 +5,11 @@
   "main": "lib/index.js",
   "type": "lib/index.d.ts",
   "scripts": {
-    "test": "jest",
+    "test": "jest **/*.test.js",
     "dev": "webpack-dev-server --config webpack.dev.js --host 0.0.0.0 --port 3031",
     "build": "webpack --config webpack.prod.js",
     "build:lib": "rm -rf ./lib && tsc",
-    "np": "np --no-cleanup --no-tests",
+    "np": "np --no-cleanup",
     "lint": "eslint ./src/ --fix --ext .ts,.tsx",
     "deploy": "npm-run-all -s build build:lib test np",
     "build:svg": "npx @svgr/cli -d ./src/components/icons ./assets/images/icons --template ./tools/template.js --ext tsx --no-svgo"
