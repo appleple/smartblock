@@ -1,6 +1,6 @@
 {
   "name": "paper-editor",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Dropbox like Wysiwyg Editor",
   "main": "lib/index.js",
   "type": "lib/index.d.ts",
