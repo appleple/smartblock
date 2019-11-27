@@ -1,0 +1,14 @@
+.__tests__/*
+assets/*
+dist/*
+node_modules/*
+tools/*
+.eslintrc
+.gitgnore
+.node-version
+demo.tsx
+index.html
+jest.config.js
+tsconfig.json
+webpack.dev.js
+webpack.prod.js
