@@ -11,12 +11,6 @@ import extensions from './src/extensions/';
 //   icon: '<span class="fa fa-envelope-open"></span>',
 // }));
 
-extensions.push(new Mark({
-  tagName: 'i',
-  className: 'hoge',
-  icon: '<span class="fa fa-address-book"></span>',
-}));
-
 render(<>
   <GlobalStyle />
   <PaperEditor
