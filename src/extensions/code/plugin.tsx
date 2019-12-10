@@ -79,7 +79,7 @@ export default function HighlightPlugin({ name }) {
 
         if (
           transaction.docChanged &&
-          [nodeName, previousNodeName].includes(name)
+          (nodeName === name || previousNodeName === name)
         ) {
           return getDecorations({ doc: transaction.doc, name })
         }
