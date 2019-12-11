@@ -19,12 +19,15 @@ export default class Code extends Extension {
             tag: string;
             getAttrs(dom: any): {
                 id: any;
+                lang: any;
             };
         }[];
-        toDOM: (node: any) => (string | (string | number)[] | {
+        toDOM: (node: any) => (string | {
             id: any;
             className: string;
-        })[];
+        } | (string | number | {
+            class: any;
+        })[])[];
         attrs: {
             id: {
                 default: string;
