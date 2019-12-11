@@ -70,7 +70,8 @@ export default class Code extends Extension {
           tag: 'code',
           getAttrs(dom) {
             return {
-              id: dom.getAttribute('id') || uuid()
+              id: dom.getAttribute('id') || uuid(),
+              lang: dom.getAttribute('class') ? dom.getAttribute('class') : defaultLang
             }
           }
         }
@@ -82,7 +83,9 @@ export default class Code extends Extension {
             id: node.attrs.id || uuid(),
             className: this.className
           },
-          ['code', 0]
+          ['code', {
+            class: node.attrs.lang
+          }, 0]
         ]
       },
       attrs: {
