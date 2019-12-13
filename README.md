@@ -13,14 +13,14 @@ SmartBlock.js is a JavaScript block based editor which enables you to write cont
 
 ## Install
 
-    $ npm install smart-block --save
+    $ npm install smartblock --save
 
 ## Usage
 
 ```js
 import * as React from 'react';
 import { render } from 'react-dom';
-import { SmartBlock, GlobalStyle } from 'smart-block';
+import { SmartBlock, GlobalStyle } from 'smartblock';
 
 render(<>
   <GlobalStyle />
@@ -40,7 +40,7 @@ render(<>
 You can add custom block like this
 
 ```js
-import { Extensions, CustomBlock, CustomMark } from 'smart-block';
+import { Extensions, CustomBlock, CustomMark } from 'smartblock';
 Extensions.push(new CustomBlock({  tagName: 'div',  className: '.alert',  icon: <SomeIconComponent />});
 
 render(<>
@@ -56,7 +56,7 @@ render(<>
 You can also add custom inline element like this
 
 ```js
-import { Extension, CustomBlock, CustomMark } from 'smart-block';
+import { Extension, CustomBlock, CustomMark } from 'smartblock';
 Extension.push(new CustomMark({  tagName: 'span',  className: '.small',  icon: <SomeIconComponent />});
 
 render(<>
