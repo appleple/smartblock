@@ -13,7 +13,9 @@ SmartBlock.js is a JavaScript block based editor which enables you to write cont
 
 ## Install
 
-    $ npm install smartblock --save
+```sh
+$ npm install smartblock --save
+```
 
 ## Usage
 
