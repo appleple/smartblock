@@ -1,6 +1,6 @@
 # SmartBlock
 
-SmartBlock.js is a JavaScript which enables you to write contents easily on websites even with <span style="font-weight:bold">SmartPhone</span>.
+SmartBlock.js is a JavaScript which enables you to write contents easily on websites even with **SmartPhone**.
 
 ## Features
 
@@ -8,7 +8,7 @@ SmartBlock.js is a JavaScript which enables you to write contents easily on webs
 *   Fully customizable
 *   Block based
 *   Keep clean HTML and wipe out unnecessary tags
-*   Get the result as <span style="font-weight:bold">HTML</span> or <span style="font-weight:bold">JSON</span>
+*   Get the result as **HTML** or **JSON**
 *   copy and paste contents
 
 ## Install
