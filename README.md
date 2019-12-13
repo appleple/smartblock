@@ -1,6 +1,6 @@
 # SmartBlock
 
-SmartBlock.js is a JavaScript which enables you to write contents easily on websites even with **SmartPhone**.
+SmartBlock.js is a JavaScript block based editor which enables you to write contents easily on websites even with **SmartPhone**.
 
 ## Features
 
