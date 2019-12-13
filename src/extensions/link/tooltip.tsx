@@ -141,7 +141,7 @@ const TooltipComponent = (props: { view: EditorView }) => {
 
   return (
     <TooltipWrap
-      className="paper-editor-tooltip"
+      className="smartblock-tooltip"
       ref={container}
       style={style}
       pos={arrowPos}

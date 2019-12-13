@@ -236,7 +236,7 @@ const onChange = (
   if (props.autoSave) {
     const { pathname } = location;
     const html = getHtmlFromNode(doc, schema);
-    localStorage.setItem(`paper-editor:${pathname}`, html);
+    localStorage.setItem(`smartblock:${pathname}`, html);
   }
   const { childCount } = doc.content
   const lastNode = doc.content.child(childCount - 1)
@@ -279,7 +279,7 @@ const getNodeViews = (extensions: Extension[]) => {
 
 const titleChanged = (title: string, props: AppProps) => {
   const { pathname } = location;
-  localStorage.setItem(`paper-editor-title:${pathname}`, title);
+  localStorage.setItem(`smartblock-title:${pathname}`, title);
   if (props.onTitleChange) {
     props.onTitleChange(title);
   }
@@ -324,12 +324,12 @@ export default (props: AppProps) => {
 
   if (props.autoSave) {
     const { pathname } = location;
-    const localHtml = localStorage.getItem(`paper-editor:${pathname}`);
+    const localHtml = localStorage.getItem(`smartblock:${pathname}`);
     if (localHtml) {
       realHtml = localHtml;
     }
     if (showTitle) {
-      titleText = localStorage.getItem(`paper-editor-title:${pathname}`);
+      titleText = localStorage.getItem(`smartblock-title:${pathname}`);
     }
   }
 
