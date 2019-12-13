@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { render } from 'react-dom';
-import { PaperEditor, GlobalStyle } from './src/';
+import { SmartBlock, GlobalStyle } from './src/';
 import Block from './src/extensions/custom-block';
 import Mark from './src/extensions/custom-mark';
 import extensions from './src/extensions/';
@@ -13,7 +13,7 @@ import extensions from './src/extensions/';
 
 render(<>
   <GlobalStyle />
-  <PaperEditor
+  <SmartBlock
     showBackBtn
     showTitle
     autoSave

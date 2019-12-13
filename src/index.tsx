@@ -1,5 +1,5 @@
 import { Plugin } from 'prosemirror-state'
-import PaperEditor from './components/paper-editor'
+import SmartBlock from './components/smart-block'
 import Button from './components/button'
 import EditMenu from './components/edit-menu'
 import Editor from './components/editor'
@@ -59,7 +59,7 @@ import Heading6Icon from './components/icons/Heading6'
 
 export {
   /* components */
-  PaperEditor,
+  SmartBlock,
   Button,
   EditMenu,
   Editor,

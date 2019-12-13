@@ -1,7 +1,7 @@
 {
-  "name": "paper-editor",
-  "version": "1.0.3",
-  "description": "Dropbox like Wysiwyg Editor",
+  "name": "smart-block",
+  "version": "1.0.0",
+  "description": "intuitive block based wysiwyg editor",
   "main": "lib/index.js",
   "type": "lib/index.d.ts",
   "scripts": {
@@ -18,7 +18,7 @@
     "type": "git",
     "url": ""
   },
-  "homepage": "",
+  "homepage": "info@appleple.com",
   "author": {
     "name": "steelydylan",
     "email": "hori@appleple.com"
