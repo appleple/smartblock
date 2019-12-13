@@ -1,5 +1,5 @@
 {
-  "name": "smart-block",
+  "name": "smartblock",
   "version": "1.0.0",
   "description": "intuitive block based wysiwyg editor",
   "main": "lib/index.js",
