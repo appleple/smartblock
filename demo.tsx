@@ -19,27 +19,17 @@ render(<>
     autoSave
     titlePlaceholder="ここにタイトルを入力"
     extensions={extensions}
+    titleText="SmartBlock.js"
     html={`
-<p>Hello World</p>
-<h2>Test</h2>
-<ul>
-  <li>リスト1</li>
-  <li>リスト2</li>
-</ul>
-<table>
-  <tr>
-    <th>aaa</th>
-    <td>ee</td>
-  </tr>
-</table>
-<code>
-const a = 'b';<br/>
-a.toFixed();<br/>
-const c = () => {<br/>
-  <br/>
-}
-</code>
-<img src="https://appleple.github.io/SmartPhoto/assets/images/large-kuma.jpg" />
+  <p>SmartBlock.js is a JavaScript which enables you to write contents easily on websites even with SmartPhone.</p>
+  <h2>Features</h2>
+  <ul>
+    <li>Easy to use with SmartPhone</li>
+    <li>Fully customizable</li>
+    <li>Block based</li>
+    <li>Keep clean HTML and wipe out unnecessary tags</li>
+    <li>Get the result as HTML or JSON</li>
+  </ul>
 `}
     // json={{
     //   type: 'doc',
