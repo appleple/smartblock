@@ -40,3 +40,19 @@ a {
 .demo {
   box-shadow: 0 2px 8px rgba(0,0,0,.14);
 }
+
+pre > code {
+  color: #FFF;
+  border: none;
+  background-color: transparent;
+}
+
+pre::before {
+  display: none;
+}
+
+#app {
+  background-color: #FFF;
+  border-radius: 2px;
+  box-shadow: 0 24px 24px -18px rgba(69,104,129,.33), 0 9px 45px 0 rgba(114,119,160,.12);
+}

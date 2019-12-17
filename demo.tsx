@@ -19,6 +19,9 @@ render(<>
     titlePlaceholder="ここにタイトルを入力"
     extensions={extensions}
     titleText="SmartBlock.js"
+    markdown={` # Features
+SmartBlock.js is a JavaScript which enables you to write contents easily on websites even with SmartPhone.
+`}
     html={`
   <p>SmartBlock.js is a JavaScript which enables you to write contents easily on websites even with SmartPhone.</p>
   <h2>Features</h2>
@@ -68,7 +71,73 @@ render(<>
   &lt;/&gt;, document.getElementById("app"));<br/>
   </code>
   <p>You can also add custom inline element like this</p>
-  
+  <h2>Options</h2>
+  <table>
+  <thead>
+  <tr>
+  <th>Props</th>
+  <th>description</th>
+  <th>type</th>
+  <th>default</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td>extensions</td>
+  <td>Array of extensions which extend the feature of SmartBlock</td>
+  <td>Extension[]</td>
+  <td>array of extensions</td>
+  </tr>
+  <tr>
+  <td>onChange</td>
+  <td>Callback function which is called when the content of the editor is changed. You can get both html and json</td>
+  <td>Function</td>
+  <td></td>
+  </tr>
+  <tr>
+  <td>onInit</td>
+  <td>Callback function which is called when the editor is initialized</td>
+  <td>Function</td>
+  <td></td>
+  </tr>
+  <tr>
+  <td>json</td>
+  <td>The editor contents will be initialized with the json data</td>
+  <td>Object</td>
+  <td>{}</td>
+  </tr>
+  <tr>
+  <td>HTML</td>
+  <td>The editor contents will be initialized with the HTML</td>
+  <td>String</td>
+  <td>&#39;&#39;</td>
+  </tr>
+  <tr>
+  <td>showTitle</td>
+  <td>Title will be shown</td>
+  <td>Boolean</td>
+  <td>false</td>
+  </tr>
+  <tr>
+  <td>showBackBtn</td>
+  <td>Btn to support history back will be shown</td>
+  <td>Boolean</td>
+  <td>false</td>
+  </tr>
+  <tr>
+  <td>autoSave</td>
+  <td>The HTML will be stored to the localstorage every time the content is changed</td>
+  <td>Boolean</td>
+  <td>false</td>
+  </tr>
+  <tr>
+  <td>getEditorRef</td>
+  <td>Get the editor ref object</td>
+  <td>Function</td>
+  <td></td>
+  </tr>
+  </tbody>
+  </table>
 `}
     // json={{
     //   type: 'doc',
