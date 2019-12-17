@@ -1,0 +1,42 @@
+.fa {
+  margin-right: .25em;
+}
+.button.is-icon .fa,
+.button.is-round .fa {
+  margin-right: 0;
+}
+.button {
+  background-color: #2196F3;
+  border-color: #2196F3;
+}
+.tree ol>li.is-current>a, 
+.tree ul>li.is-current>a {
+  background-color: #2196F3;
+}
+a {
+  color: #2196F3;
+}
+.header .menu {
+  margin-left: auto;
+  margin-right: 2.5rem;
+}
+.right {
+  text-align: right;
+}
+.left {
+  text-align: left;
+}
+.center {
+  text-align: center;
+}
+@media screen and (min-width: 768px) {
+  .uny-logo:before {
+  font-size: 12.5rem;
+  }
+}
+.firstview {
+  background-color: #f9f9f9;
+}
+.demo {
+  box-shadow: 0 2px 8px rgba(0,0,0,.14);
+}

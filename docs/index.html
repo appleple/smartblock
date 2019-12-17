@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SmartBlock.js is a JavaScript block based editor which enables you to write contents easily on websites even with SmartPhone</title>
+  <meta name="description" content="SmartBlock.js is a JavaScript block based editor which enables you to write contents easily on websites even with SmartPhone">
+  <meta name="author" content="appleplecom">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unpkg.com/uny@0.2.9/dist/css/uny.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <style>
+	  input[type="checkbox"] {
+		  -webkit-appearance: checkbox;
+		  appearance: checkbox;
+      margin-right: 5px;
+	  }
+  </style>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script src="https://unpkg.com/SmartBlock@1.6.39/js/SmartBlock.min.js"></script>
+</head>
+<body>
+  <header class="header is-sticky">
+    <h1 class="logo is-small"><a href="./">SmartBlock</a></h1>
+    <nav class="header-menu">
+      <!--<div class="pulldown">
+        <a href="javascript:void(0);">Language <i class="fa fa-angle-down"></i></a>
+        <div class="pulldown-content">
+          <a href="./" class="button is-list">English</a>
+          <a href="./index_ja.html" class="button is-list">日本語</a>
+        </div>
+      </div>-->
+      <div class="pulldown">
+        <a href="./about.html">Document</a>
+      </div>
+      <a href="https://github.com/appleple/SmartBlock" class="button is-white is-small"><i class="fa fa-github"></i> GitHub</a>
+      <a href="https://github.com/appleple/SmartBlock/archive/master.zip" class="button is-small"><i class="fa fa-download"></i> Download</a>
+    </nav>
+    <button class="button is-burger hide-on-medium hide-on-large offcanvas-open">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <main class="main">
+    <div class="content">
+
+      <section class="section firstview">
+        <div class="inner is-small">
+          <div class="box" style="text-align:center;">
+            <div class="type-xxlarge" style="line-height:1">SmartBlock</div>
+            <p class="margin-top-medium">SmartBlock.js is a JavaScript editor with block style<br/> which enables you to write contents easily on websites even with SmartPhone</p>
+          </div>
+        </div>
+        <div class="inner">
+          
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="inner is-small">
+			<div id="app"></div>
+          <!-- <p>This alone displays the editor that everyone wants 🎉</p> -->
+        </div>
+      </section>
+
+      <section class="section is-gray">
+        <div class="inner is-small">
+          <h2><i class="fa fa-book"></i> Document</h2>
+          <p>Usage, introduction of other functions, component introduction etc. <br>are described in detail in the document. </p>
+          <p><a href="#" class="button is-ghost-disabled"><i class="fa fa-book"></i> Coming soon ;)</a></p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="inner is-small">
+          <h2><i class="fa fa-github"></i> View on GitHub</h2>
+          <p>SmartBlock was developed by <a href="https://twitter.com/appleplecom">@appleplecom</a> and is open source (MIT license) on GitHub.<br>Please send us feedback, requests, bug reports and pull requests!</p>
+          <p>If you like it, please press Star ;)</p>
+          <p><a href="https://github.com/appleple/SmartBlock" class="button"><i class="fa fa-github"></i> GitHub page</a></p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="inner">
+      <div class="logo is-small">SmartBlock</div>
+      <div class="margin-left-small margin-right-small">
+        <p>A modern WYSIWYG Editor. <br>SmartBlock is provided with <a href="https://github.com/appleple/SmartBlock/blob/master/LICENSE">MIT license.</a> Made by @appleple &hearts; OSS</p>
+        <p>Icon fonts by Font Awesome</p>
+      </div>
+      <small class="copyright">&copy; 2017 SmartBlock</small>
+    </div>
+  </footer>
+
+  <div class="offcanvas">
+    <div class="offcanvas-overlay offcanvas-close"></div>
+    <div class="offcanvas-content">
+      <button class="button is-close offcanvas-close">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="inner">
+        <div class="offcanvas-menu">
+          <a class="is-current" href="./">English</a>
+          <a href="./index_ja.html">日本語</a>
+          <hr>
+          <a href="https://github.com/appleple/SmartBlock" class="button is-white is-small"><i class="fa fa-github"></i> GitHub</a>
+          <a href="https://github.com/appleple/SmartBlock/archive/master.zip" class="button is-small"><i class="fa fa-download"></i> Download</a>
+          <hr>
+          <p>version 1.0.3</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/uny@0.2.9/dist/js/uny.min.js"></script>
+  <script src="https://competent-einstein-976429.netlify.com/main.js"></script>
+</body>
+</html>
