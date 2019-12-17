@@ -14,7 +14,6 @@ import extensions from './src/extensions/';
 render(<>
   <GlobalStyle />
   <SmartBlock
-    showBackBtn
     showTitle
     titlePlaceholder="ここにタイトルを入力"
     extensions={extensions}
