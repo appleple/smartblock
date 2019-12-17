@@ -74,7 +74,7 @@ render(&lt;&gt;<br/>
 <p>You can also add custom inline element like this</p>
 <code lang="js">
 import { Extension, CustomBlock, CustomMark } from 'smartblock';<br/><br/>
-Extension.push(new CustomMark({  tagName: 'span',  className: '.small',  icon: <SomeIconComponent />});<br/>
+Extension.push(new CustomMark({  tagName: 'span',  className: '.small',  icon: &lt;SomeIconComponent /&gt;});<br/>
 <br/>
 render(&lt;><br/>
   &lt;GlobalStyle /&gt;<br/>
