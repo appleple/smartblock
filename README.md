@@ -68,7 +68,7 @@ render(<>
   <GlobalStyle />
   <SmartBlock 
     extensions={Extensions}
-    html={'<h2>Hello World</h2><p>hello</p>'}
+    html={'<h2>Hello World</h2><p><small>hello</small></p>'}
     onChange={({ json, html }) => { console.log(json, html);}}  
   />
 </>, document.getElementById("app"));

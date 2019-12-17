@@ -55,7 +55,7 @@ render(&lt;&gt;<br/>
 <h2>Customize</h2>
 <p>You can add custom block like this</p>
 <code lang="js">
-import { Extensions, CustomBlock, CustomMark } from 'smartblock';<br/>
+import { Extensions, CustomBlock, CustomMark } from 'smartblock';<br/><br/>
 Extensions.push(new CustomBlock({ <br/>
   tagName: 'div',  <br/>
   className: '.alert',  <br/>
@@ -72,6 +72,19 @@ render(&lt;&gt;<br/>
 &lt;/&gt;, document.getElementById("app"));<br/>
 </code>
 <p>You can also add custom inline element like this</p>
+<code lang="js">
+import { Extension, CustomBlock, CustomMark } from 'smartblock';<br/><br/>
+Extension.push(new CustomMark({  tagName: 'span',  className: '.small',  icon: <SomeIconComponent />});<br/>
+<br/>
+render(&lt;><br/>
+  &lt;GlobalStyle /&gt;<br/>
+  &lt;SmartBlock <br/>
+    extensions={Extensions}<br/>
+    html={'<h2>Hello World</h2><p><small>hello</small></p>'}<br/>
+    onChange={({ json, html }) => { console.log(json, html);}}  <br/>
+  /&gt;<br/>
+&lt;/&gt;, document.getElementById("app"));
+</code>
 <h2>Options</h2>
 <table>
 <thead>
