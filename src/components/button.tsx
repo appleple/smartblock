@@ -1,8 +1,14 @@
+import * as React from 'react';
 import styled from 'styled-components'
 
-const Button = styled.button<{
-  active?: boolean
-  color?: 'black' | 'white'
+const agnosticStyled = styled(
+  ({tag = 'button', children, ...props}) =>
+    React.createElement(tag, props, children)
+)
+
+const Button = agnosticStyled<{
+  active?: boolean;
+  color?: 'black' | 'white';
 }>`
   ${props => {
     if (props.disabled) {

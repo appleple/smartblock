@@ -22,6 +22,7 @@ import { Dispatch, Extension } from './types'
 
 // extensions
 import Link from './extensions/link'
+import Image from './extensions/Image'
 import BulletList from './extensions/bullet-list'
 import CustomBlock from './extensions/custom-block'
 import CustomMark from './extensions/custom-mark'
@@ -72,6 +73,7 @@ export {
   /* blocks */
   Extensions,
   Link,
+  Image,
   BulletList,
   CustomBlock,
   Heading1,

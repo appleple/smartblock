@@ -20,6 +20,22 @@ export default createGlobalStyle`
         padding: 10px;
       }
   }
+
+  .ProseMirror figure {
+    text-align: center;
+    padding: 5px;
+    margin: 0;
+    &.empty-node figcaption:before {
+      content: "Type Something..."
+    }
+  }
+  .ProseMirror figcaption {
+    color: #333;
+    font-size: 12px;
+  }
+  .ProseMirror img {
+    max-width: 100%;
+  }
   
   .ProseMirror a {
     color: #014CC5;
@@ -190,12 +206,12 @@ export default createGlobalStyle`
   }
 
   .ProseMirror h1.empty-node::before {
-    content: "タイトルを入力してください";
+    content: "Type Title here";
     font-style: normal;
   }
 
   .ProseMirror p.empty-node:first-child::before {
-    content: "本文を入力してください" !important;
+    content: "Type Something.." !important;
     font-style: normal;
   }
 
@@ -216,9 +232,6 @@ export default createGlobalStyle`
     color: #909090;
     display: block;
     text-align: center;
-  }
-  .ProseMirror .caption:empty::before {
-    content: "ここにキャプションを入力"
   }
 
   .ProseMirror .media {
@@ -249,10 +262,6 @@ export default createGlobalStyle`
     color: #333;
     margin-top: 0;
     margin-bottom: 5px;
-  }
-  .ProseMirror .media .caption:empty::before {
-    content: "ここにキャプションを入力"
-    display: inline-block;
   }
   .ProseMirror .youtube-frame-wrap {
     margin-bottom: 30px;

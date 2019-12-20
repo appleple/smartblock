@@ -1,117 +1,168 @@
-import * as React from 'react'
-import { setBlockType } from 'prosemirror-commands'
-import uuid from 'uuid'
-import { Extension, ExtensionProps } from '../../types'
-import { blockActive, getParentNodeFromState } from '../../utils'
-import Button from '../../components/button'
+import * as React from 'react';
+import ImageIcon from './image-icon';
+import { blockActive, findSelectedNodeWithType } from '../../utils';
+import { Extension } from '../../types'
+import { setBlockType } from 'prosemirror-commands';
+import uuid from 'uuid';
+import { EditorState } from 'prosemirror-state';
+import { MediaPlugin } from './plugins';
+import { hasClass, readFiles } from './util';
+import Button from '../../components/button';
+import FullIcon from './full-icon';
+import CenterIcon from './center-icon';
+import ImagePlusIcon from './image-plus-icon';
 
 export default class Image extends Extension {
-  constructor(props?: ExtensionProps) {
-    super(props)
-  }
+  imgClassName: string;
+  imgFullClassName: string;
+  captionClassName: string;
+  onChange: (files: File[]) => Promise<boolean> = (files) => Promise.resolve(true);
 
-  get name() {
-    return 'image'
-  }
-
-  get group() {
-    return 'block'
-  }
-
-  get showMenu() {
-    return true
-  }
-
-  get schema() {
-    if (this.customSchema) {
-      return this.customSchema
+  constructor(props) {
+    super(props);
+    this.imgClassName = props.imgClassName;
+    this.imgFullClassName = props.imgFullClassName;
+    this.captionClassName = props.captionClassName;
+    if (props.onChange) {
+      this.onChange = props.onChange;
     }
+  }
+  get name() {
+    return "image";
+  }
+  get showMenu() {
+    return true;
+  }
+  get group() {
+    return "block";
+  }
+  get hideBlockMenuOnFocus() {
+    return true;
+  }
+  get schema() {
+    const imgClassName = this.imgClassName;
     return {
-      content: 'inline*',
-      group: 'block',
-      defining: true,
+      content: "inline*",
+      isolating: true,
+      group: "block",
+      selectable: true,
+      attrs: {
+        src: { default: "" },
+        size: { default: "" },
+        id: { default: "" },
+        caption: { default: "" }
+      },
       parseDOM: [
         {
-          tag: 'img',
+          tag: "figure",
+          getAttrs(dom) {
+            const img = dom.querySelector("img");
+            if (!img) {
+              return {}
+            }
+            return {
+              src: img.getAttribute("src"),
+              id: img.getAttribute("id"),
+              size: hasClass(img, imgClassName) ? 'small' : 'full'
+            }
+          }
+        },
+        {
+          tag: "img",
           getAttrs(dom) {
             return {
-              id: dom.getAttribute('id') || uuid(),
-              src: dom.getAttribute('src')
+              src: dom.getAttribute("src"),
+              id: dom.getAttribute("id"),
+              size: hasClass(dom, imgClassName) ? 'small' : 'full'
             }
           }
         }
       ],
-      attrs: {
-        src: { default: '' },
-        id: { default: '' }
-      },
-      toDOM(node) {
+      toDOM: (node) => {
         return [
-          'img',
+          "figure",
           {
+            "class": this.className,
+          }, ["img", {
+            src: node.attrs.src,
+            "class": node.attrs.size === "full" ? this.imgFullClassName : this.imgClassName,
             id: node.attrs.id || uuid(),
-            src: node.attrs.src
-          },
-          0
-        ]
+          }],
+          ["figcaption", {"class": this.captionClassName}, 0],
+        ];
       }
-    }
+    };
   }
-
   get icon() {
-    return <HeadingIcon style={{ width: '24px', height: '24px' }} />
+    return <ImageIcon style={{ width: "24px", height: "24px" }} />;
   }
-
-  active(state) {
-    return blockActive(state.schema.nodes.heading6)(state)
+  get plugins() {
+    return [MediaPlugin()]
   }
-
-  enable(state) {
-    return setBlockType(state.schema.nodes.heading6)(state)
-  }
-
   customMenu({ state, dispatch }) {
-    const node = getParentNodeFromState(state)
+    const node = findSelectedNodeWithType(state.schema.nodes.image, state);
+
     return (
       <>
-        <Button
-          active={node && node.attrs.align === 'left'}
-          type="button"
+        <Button 
+          type="button" 
+          style={{
+            marginRight: '1px',
+            borderTopRightRadius: '0',
+            borderBottomRightRadius: '0',
+            opacity: node.attrs.size !== 'small' ? '.6' : '1'
+          }}
           onClick={() => {
-            setBlockType(state.schema.nodes.heading6, {
-              align: 'left'
-            })(state, dispatch)
+            const attr = Object.assign({}, node.attrs, {
+              size: 'full'
+            });
+            setBlockType(state.schema.nodes.media, attr)(state, dispatch);
           }}
         >
-          <AlignLeftIcon style={{ width: '24px', height: '24px' }} />
+          <FullIcon style={{ width: '24px', height: '24px' }} />
         </Button>
-        <Button
-          type="button"
-          active={node && node.attrs.align === 'center'}
-          onClick={() => {
-            setBlockType(state.schema.nodes.heading6, {
-              align: 'center'
-            })(state, dispatch)
+        <Button 
+          type="button" 
+          style={{
+            borderTopLeftRadius: '0',
+            borderBottomLeftRadius: '0',
+            opacity: node.attrs.size === 'small' ? '.6' : '1',
           }}
-        >
-          <AlignCenterIcon style={{ width: '24px', height: '24px' }} />
-        </Button>
-        <Button
-          type="button"
-          active={node && node.attrs.align === 'right'}
           onClick={() => {
-            setBlockType(state.schema.nodes.heading6, {
-              align: 'right'
-            })(state, dispatch)
+            const attr = Object.assign({}, node.attrs, {
+              size: 'small'
+            });
+            setBlockType(state.schema.nodes.media, attr)(state, dispatch);
           }}
-        >
-          <AlignRightIcon style={{ width: '24px', height: '24px' }} />
+        ><CenterIcon style={{ width: '24px', height: '24px' }} /></Button>
+        <Button tag="label">
+          <ImagePlusIcon style={{ width: '24px', height: '24px' }} />
+          <input type="file" style={{ display: 'none' }} onChange={async (e) => {
+            const items = await readFiles(e.target.files);
+            const [item] = items;
+            if (!item) {
+              return;
+            }
+            if (this.onChange) {
+              const success = await this.onChange(items);
+              if (success) {
+                setBlockType(state.schema.nodes.image, {
+                  src: item.preview
+                })(state, dispatch);
+              }
+            }
+          }} />
         </Button>
       </>
-    )
+    );
   }
+  active(state) {
+    return blockActive(state.schema.nodes.image)(state);
+  }
+  enable(state) {
+    return setBlockType(state.schema.nodes.image)(state);
+  }
+  onClick (state: EditorState, dispatch) {
 
-  onClick(state, dispatch) {
-    setBlockType(state.schema.nodes.heading6)(state, dispatch)
   }
 }

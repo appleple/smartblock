@@ -1,15 +1,10 @@
 import * as React from 'react';
 import { render } from 'react-dom';
-import { SmartBlock, GlobalStyle } from './src/';
-import Block from './src/extensions/custom-block';
-import Mark from './src/extensions/custom-mark';
+import { SmartBlock, GlobalStyle, Image } from './src/';
 import extensions from './src/extensions/';
 
-// extensions.push(new Block({
-//   tagName: 'div',
-//   className: 'acms-admin-alert',
-//   icon: '<span class="fa fa-envelope-open"></span>',
-// }));
+extensions.push(new Image({
+}));
 
 render(<>
   <GlobalStyle />
@@ -18,12 +13,9 @@ render(<>
     titlePlaceholder="ここにタイトルを入力"
     extensions={extensions}
     titleText="SmartBlock.js"
-    markdown={` # Features
-SmartBlock.js is a JavaScript which enables you to write contents easily on websites even with SmartPhone.
-You can edit this HTML
-`}
     html={`
 <p>SmartBlock.js is a JavaScript which enables you to write contents easily on websites even with SmartPhone.</p>
+<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" style="max-width:100%;">
 <h2>Features</h2>
 <ul>
     <li>Easy to use with SmartPhone</li>
