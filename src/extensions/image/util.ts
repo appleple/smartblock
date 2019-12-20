@@ -12,7 +12,7 @@ export const deleteSelectionAtPos = (
   let i = 0
   const [firstNode] = findChildren(
     state.doc,
-    _node => {
+    () => {
       if (rowNumber === i) {
         i++
         return true
@@ -40,7 +40,7 @@ export const getPosFromIndex = (doc: EditorState['doc'], index: number) => {
   let i = 0
   const [findNode] = findChildren(
     doc,
-    _node => {
+    () => {
       if (index === i) {
         i++
         return true

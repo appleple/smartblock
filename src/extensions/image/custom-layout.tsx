@@ -2,8 +2,9 @@ import * as React from 'react';
 import styled from 'styled-components';
 import uuid from 'uuid';
 import { findChildren } from 'prosemirror-utils'
-import { Button, findSelectedNodeWithType } from '';
 import { setBlockType } from 'prosemirror-commands';
+import Button from '../../components/button';
+import { findSelectedNodeWithType } from '../../utils';
 import CenterIcon from './center-icon';
 import FullIcon from './full-icon';
 import EditIcon from './edit-icon';
@@ -51,14 +52,12 @@ export default ({ state, dispatch, dom }) => {
   }
 
   const node = findSelectedNodeWithType(state.schema.nodes.media, state);
-  const [modalOpen, setModalOpen] = React.useState(false);
 
   return (<>
-    
     {node && node.attrs.media_id && <MediaMenuTool style={{ position: 'absolute', top: '-70px', left: '10px' }}>
       <BtnGroup>
-        <Button 
-          type="button" 
+        <Button
+          type="button"
           style={{
             marginRight: '1px',
             borderTopRightRadius: '0',
@@ -72,10 +71,10 @@ export default ({ state, dispatch, dom }) => {
             setBlockType(state.schema.nodes.media, attr)(state, dispatch);
           }}
         >
-          <FullIcon style={{ width: '20px', height: '20px', color: '#333'}} />
+          <FullIcon style={{ width: '20px', height: '20px', color: '#333' }} />
         </Button>
-        <Button 
-          type="button" 
+        <Button
+          type="button"
           style={{
             borderTopLeftRadius: '0',
             borderBottomLeftRadius: '0',
@@ -87,26 +86,11 @@ export default ({ state, dispatch, dom }) => {
             });
             setBlockType(state.schema.nodes.media, attr)(state, dispatch);
           }}
-        ><CenterIcon style={{ width: '20px', height: '20px', color: '#333'}} /></Button>
+        ><CenterIcon style={{ width: '20px', height: '20px', color: '#333' }} /></Button>
       </BtnGroup>
-      <Button 
-        type="button" 
-        style={{
-          background: '#333333',
-          padding: '2px 5px 8px 5px',
-          verticalAlign: 'middle',
-          width: 'auto'
-        }}
-        onClick={() => {
-          setModalOpen(true);
-        }}
-      >
-        <EditIcon style={{ width: '16px', height: '16px', color: '#FFF', verticalAlign: 'middle', display: 'inline-block' }} />
-        <span style={{fontSize: '12px', display: 'inline-block', marginLeft: '3px', color: '#FFF', verticalAlign: 'middle'}}>編集</span>
-      </Button>
     </MediaMenuTool>}
     {(!node || !node.attrs.media_id) && <MediaMenu style={style}>
-      <MediaDropArea mediaType="image" 
+      <MediaDropArea mediaType="image"
         onChange={(items) => {
           const nodes = items.map((item) => {
             const { media_edited: src, media_id } = item;
@@ -137,22 +121,8 @@ export default ({ state, dispatch, dom }) => {
             firstIndex + firstNode.node.content.size + 2
           )
           dispatch(removeTransaction.insert(firstIndex, nodes));
-        }} 
+        }}
       />
     </MediaMenu>}
-  {modalOpen && <MediaUpdate
-    mid={node.attrs.media_id}
-    onClose={() => {
-      setModalOpen(false);
-    }}
-    onUpdate={(item) => {
-      setModalOpen(false);
-      const attr = Object.assign({}, node.attrs, {
-        media_id: item.media_id,
-        src: item.media_edited
-      });
-      setBlockType(state.schema.nodes.media, attr)(state, dispatch);
-    }}
-   />}
   </>);
 }
