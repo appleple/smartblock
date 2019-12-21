@@ -1,11 +1,11 @@
-import * as React from 'react'
-import { setBlockType } from 'prosemirror-commands'
-import uuid from 'uuid'
+import * as React from 'react';
+import { setBlockType } from 'prosemirror-commands';
+import uuid from 'uuid';
 import { getParentNodeFromState } from '../../utils';
-import { Extension, ExtensionProps } from '../../types'
-import { blockActive } from '../../utils'
-import Plugin from './plugin'
-import Button from '../../components/button'
+import { Extension, ExtensionProps } from '../../types';
+import { blockActive } from '../../utils';
+import Plugin from './plugin';
+import Button from '../../components/button';
 import CodeIcon from '../../components/icons/Code';
 
 type Lang = {
@@ -35,33 +35,33 @@ export default class Code extends Extension {
   ]
 
   constructor(props?: ExtensionProps) {
-    super(props)
+    super(props);
     if (props) {
       this.langs = props.langs
     }
   }
 
   get name() {
-    return 'code'
+    return 'code';
   }
 
   get group() {
-    return 'block'
+    return 'block';
   }
 
   get showMenu() {
-    return true
+    return true;
   }
 
   get hideInlineMenuOnFocus() {
-    return true
+    return true;
   }
 
   get schema() {
     if (this.customSchema) {
-      return this.customSchema
+      return this.customSchema;
     }
-    const { defaultLang } = this
+    const { defaultLang } = this;
     return {
       content: 'inline*',
       group: 'block',
@@ -104,20 +104,20 @@ export default class Code extends Extension {
   }
 
   active(state) {
-    return blockActive(state.schema.nodes.code)(state)
+    return blockActive(state.schema.nodes.code)(state);
   }
 
   enable(state) {
-    return setBlockType(state.schema.nodes.code)(state)
+    return setBlockType(state.schema.nodes.code)(state);
   }
 
   onClick(state, dispatch) {
-    setBlockType(state.schema.nodes.code)(state, dispatch)
+    setBlockType(state.schema.nodes.code)(state, dispatch);
   }
 
   customMenu({ state, dispatch }) {
-    const node = getParentNodeFromState(state)
-    const { langs } = this
+    const node = getParentNodeFromState(state);
+    const { langs } = this;
     return (
       <>
         {langs.map(lang => (
