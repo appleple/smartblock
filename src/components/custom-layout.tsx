@@ -51,7 +51,7 @@ const useImagesLoaded = (dom: HTMLElement) => {
         setSize(newSize);
       }
     })
-  })
+  });
   return size;
 }
 
