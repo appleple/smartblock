@@ -38,7 +38,13 @@ render(<>
 
 ## Extensions
 
+### Paragraph
 
+<img src="./screenshots/paragraph.png" />
+
+### Heading1
+
+<img src="./screenshots/heading1.png" />
 
 ## Customize
 
