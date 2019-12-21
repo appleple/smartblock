@@ -1,6 +1,8 @@
 import { Extension } from "../src";
 import { Schema, Node } from "prosemirror-model";
 import { EditorView } from "prosemirror-view";
+import { EditorState } from 'prosemirror-state';
+import { DOMParser } from 'prosemirror-model';
 
 const getBlockSchemas = (extensions: Extension[]) => {
   const nodesSchema = extensions.filter(extension => {
@@ -80,4 +82,19 @@ export const getNodeViews = (extensions: Extension[]) => {
     }
   })
   return views
+}
+
+export const getEditorViewFromExtensions = (extensions: Extension[]) => {
+  const schema = getSchemaFromExtensions(extensions);
+  const div = document.createElement('div')
+  div.innerHTML = 'test';
+  const doc = DOMParser.fromSchema(schema).parse(div, {
+    preserveWhitespace: true
+  });
+  const options = { schema, plugins: [], doc };
+  return new EditorView(null, {
+    state: EditorState.create(options),
+    attributes: null,
+    nodeViews: {}
+  });
 }

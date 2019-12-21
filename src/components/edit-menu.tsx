@@ -76,8 +76,7 @@ const calculateStyle = (props: PositionProps) => {
 
   if (!selection) {
     return {
-      right: -1000,
-      top: 0
+      top: -1000
     }
   }
 
@@ -87,8 +86,7 @@ const calculateStyle = (props: PositionProps) => {
   let i = 0
   if ($anchor.pos === 0) {
     return {
-      right: -1000,
-      top: 0
+      top: -1000
     }
   }
   const [firstNode] = findChildren(
@@ -141,7 +139,7 @@ export default (props: PositionProps) => {
   }, [props])
 
   return (
-    <PositionBtnGroup style={style}>
+    <PositionBtnGroup style={style} className="smartblock-edit-menu">
       {menu.map((item, key) => {
         return (
           <Button

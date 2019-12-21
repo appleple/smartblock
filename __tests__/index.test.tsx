@@ -1,29 +1,40 @@
 import * as React from 'react';
 import * as TestRenderer from 'react-test-renderer'
+import Paragraph from '../src/extensions/paragraph';
+import { setTextSelection } from 'prosemirror-utils';
+import { TextSelection } from 'prosemirror-state';
 import EditMenu from '../src/components/edit-menu';
-import { EditorView } from 'prosemirror-view';
-import { EditorState } from 'prosemirror-state';
-import { getSchemaFromExtensions } from './util';
-import { DOMParser } from 'prosemirror-model';
+import { getEditorViewFromExtensions } from './util';
 
-let view: EditorView;
-
-describe('components', () => {
-  beforeAll(() => {
-    const schema = getSchemaFromExtensions([]);
-    const div = document.createElement('div')
-    div.innerHTML = 'test';
-    const doc = DOMParser.fromSchema(schema).parse(div, {
-      preserveWhitespace: true
-    });
-    const options = { schema, plugins: [], doc };
-    view = new EditorView(null, {
-      state: EditorState.create(options),
-      attributes: null,
-      nodeViews: {}
-    })
-  })
-  it('it', () => {
+describe('edit-menu', () => {
+  it('should exist', () => {
+    const view = getEditorViewFromExtensions([new Paragraph()]);
     const editMenu = TestRenderer.create(<EditMenu view={view} menu={[]} />);
-  })
+    const item = editMenu.root.findByProps({
+      className: 'smartblock-edit-menu'
+    });
+    expect(item).toBeTruthy();
+  });
+  it('should have proper position style', () => {
+    const view = getEditorViewFromExtensions([new Paragraph()]);
+    const editMenu = TestRenderer.create(<EditMenu view={view} menu={[]} />);
+    const item = editMenu.root.findByProps({
+      className: 'smartblock-edit-menu'
+    });
+    expect(item.props.style.top).toBe(0);
+    TestRenderer.act(() => {
+      editMenu.update(<EditMenu view={view} menu={[]} />);
+    });
+    // not focused
+    expect(item.props.style.top).toBe(-1000);
+    // TestRenderer.act(() => {
+    //   view.dispatch(
+    //     setTextSelection(0)(
+    //       view.state.tr
+    //     )
+    //   );
+    //   console.log(view);
+    //   editMenu.update(<EditMenu view={view} menu={[]} />);
+    // });
+  });
 })
