@@ -7,9 +7,9 @@ export const deleteSelectionAtPos = (
   pos,
   dispatch
 ): Transform => {
-  const resolvedPos = state.doc.resolve(pos) as any
-  const rowNumber = resolvedPos.path[1]
-  let i = 0
+  const resolvedPos = state.doc.resolve(pos) as any;
+  const rowNumber = resolvedPos.path[1];
+  let i = 0;
   const [firstNode] = findChildren(
     state.doc,
     () => {
@@ -21,23 +21,23 @@ export const deleteSelectionAtPos = (
       return false
     },
     false
-  )
-  const firstIndex = firstNode.pos
+  );
+  const firstIndex = firstNode.pos;
   const removeTransaction = state.tr.delete(
     firstIndex,
     firstIndex + firstNode.node.content.size + 2
-  )
-  return removeTransaction
+  );
+  return removeTransaction;
 }
 
 export const getNodeIndexFromPos = (doc: EditorState['doc'], pos: number) => {
-  const resolvedPos = doc.resolve(pos) as any
-  const rowNumber = resolvedPos.path[1]
-  return rowNumber
+  const resolvedPos = doc.resolve(pos) as any;
+  const rowNumber = resolvedPos.path[1];
+  return rowNumber;
 }
 
 export const getPosFromIndex = (doc: EditorState['doc'], index: number) => {
-  let i = 0
+  let i = 0;
   const [findNode] = findChildren(
     doc,
     () => {
@@ -49,8 +49,8 @@ export const getPosFromIndex = (doc: EditorState['doc'], index: number) => {
       return false
     },
     false
-  )
-  return findNode.pos
+  );
+  return findNode.pos;
 }
 
 export const hasClass = (el: HTMLElement, className: string) => {

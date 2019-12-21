@@ -1,27 +1,25 @@
-import { Plugin } from 'prosemirror-state'
-import { Decoration, DecorationSet } from 'prosemirror-view'
-import { setBlockType } from 'prosemirror-commands'
-import { findBlockNodes } from 'prosemirror-utils'
-import low from 'lowlight'
-import { getParentNodeFromState } from '../../utils'
+import { Plugin } from 'prosemirror-state';
+import { Decoration, DecorationSet } from 'prosemirror-view';
+import { findBlockNodes } from 'prosemirror-utils';
+import low from 'lowlight';
 
 function getDecorations({ doc, name }) {
-  const decorations = []
+  const decorations = [];
   const blocks = findBlockNodes(doc).filter(
     item => item.node.type.name === name
-  )
+  );
   const flatten = list =>
-    list.reduce((a, b) => a.concat(Array.isArray(b) ? flatten(b) : b), [])
+    list.reduce((a, b) => a.concat(Array.isArray(b) ? flatten(b) : b), []);
 
   function parseNodes(nodes, className = []) {
     return nodes.map(node => {
       const classes = [
         ...className,
         ...(node.properties ? node.properties.className : [])
-      ]
+      ];
 
       if (node.children) {
-        return parseNodes(node.children, classes)
+        return parseNodes(node.children, classes);
       }
 
       return {
@@ -39,9 +37,9 @@ function getDecorations({ doc, name }) {
         return item.text;
       }
       return '\n'
-    })
-    const textContent = items.join('')
-    const nodes = low.highlight(block.node.attrs.lang, textContent).value
+    });
+    const textContent = items.join('');
+    const nodes = low.highlight(block.node.attrs.lang, textContent).value;
     flatten(parseNodes(nodes))
       .map(node => {
         const from = startPos;
@@ -58,12 +56,12 @@ function getDecorations({ doc, name }) {
       .forEach(node => {
         const decoration = Decoration.inline(node.from, node.to, {
           class: node.classes.join(' ')
-        })
-        decorations.push(decoration)
+        });
+        decorations.push(decoration);
       })
   })
 
-  return DecorationSet.create(doc, decorations)
+  return DecorationSet.create(doc, decorations);
 }
 
 export default function HighlightPlugin({ name }) {
@@ -74,17 +72,17 @@ export default function HighlightPlugin({ name }) {
         // TODO: find way to cache decorations
         // see: https://discuss.prosemirror.net/t/how-to-update-multiple-inline-decorations-on-node-change/1493
 
-        const nodeName = state.selection.$head.parent.type.name
-        const previousNodeName = oldState.selection.$head.parent.type.name
+        const nodeName = state.selection.$head.parent.type.name;
+        const previousNodeName = oldState.selection.$head.parent.type.name;
 
         if (
           transaction.docChanged &&
           (nodeName === name || previousNodeName === name)
         ) {
-          return getDecorations({ doc: transaction.doc, name })
+          return getDecorations({ doc: transaction.doc, name });
         }
 
-        return decorationSet.map(transaction.mapping, transaction.doc)
+        return decorationSet.map(transaction.mapping, transaction.doc);
       }
     },
     props: {

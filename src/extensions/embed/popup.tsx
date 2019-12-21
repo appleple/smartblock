@@ -116,7 +116,7 @@ export default props => {
         }}
       >
         <PopupInnder>
-          <PopupText>埋め込みリンク用のURLを入力してください</PopupText>
+          <PopupText>Enter URL here...</PopupText>
           <PopupTextField>
             <input
               ref={input}

@@ -1,20 +1,19 @@
-import * as React from 'react'
-import * as ReactDOM from 'react-dom'
-import styled from 'styled-components'
-import { EditorView, EditorProps } from 'prosemirror-view'
-import { Schema, Node, DOMParser, DOMSerializer } from 'prosemirror-model'
-import { keymap } from 'prosemirror-keymap'
-import { chainCommands } from 'prosemirror-commands'
-import scrollTo from 'scroll-to'
-import { EditorState } from 'prosemirror-state'
+import * as React from 'react';
+import styled from 'styled-components';
+import { EditorView, EditorProps } from 'prosemirror-view';
+import { Schema, Node, DOMParser, DOMSerializer } from 'prosemirror-model';
+import { keymap } from 'prosemirror-keymap';
+import { chainCommands } from 'prosemirror-commands';
+import scrollTo from 'scroll-to';
+import { EditorState } from 'prosemirror-state';
 import uuid from 'uuid'
 
-import Editor from './editor'
-import InlineMenu from './inline-menu'
-import EditMenu from './edit-menu'
-import Menu from './menu'
+import Editor from './editor';
+import InlineMenu from './inline-menu';
+import EditMenu from './edit-menu';
+import Menu from './menu';
 import BackBtn from './back-btn';
-import CustomLayout from './custom-layout'
+import CustomLayout from './custom-layout';
 import Title from './title';
 import { getScrollTop, getOffset, getViewport, getHtmlFromNode, getParentNodeFromState } from '../utils'
 import defaultExtensions from '../extensions'
@@ -28,7 +27,7 @@ const Input = styled('div')`
 `
 
 const Container = styled.div<{
-  full: boolean
+  full: boolean;
 }>`
   ${props => {
     if (!props.full) {
@@ -45,30 +44,36 @@ const Inner = styled.div`
 `
 
 interface ProseRender {
-  editor: React.ReactChild
-  view: EditorView
-  scrolling: boolean
+  editor: React.ReactChild;
+  view: EditorView;
+  scrolling: boolean;
 }
 
 type OutputJson = {
-  [key: string]: any
+  [key: string]: any;
+}
+
+type EditorOptions = {
+  schema: Schema<any, any>;
+  plugins: any[];
+  doc: Node<Schema<any, any>>;
 }
 
 type AppProps = {
-  onChange?(json: OutputJson): void
-  onTitleChange?(title: string): void
-  onInit?(json: { schema: Schema }): void
-  json?: OutputJson
-  html?: string
-  extensions?: Extension[]
-  offsetTop?: number,
-  showBackBtn?: boolean,
-  autoSave?: boolean,
-  showTitle?: boolean,
-  titleText?: string,
-  titlePlaceholder?: string,
-  full?: boolean,
-  getEditorRef?(div: React.MutableRefObject<HTMLDivElement>): void
+  onChange?(json: OutputJson): void;
+  onTitleChange?(title: string): void;
+  onInit?(json: { schema: Schema }): void;
+  json?: OutputJson;
+  html?: string;
+  extensions?: Extension[];
+  offsetTop?: number;
+  showBackBtn?: boolean;
+  autoSave?: boolean;
+  showTitle?: boolean;
+  titleText?: string;
+  titlePlaceholder?: string;
+  full?: boolean;
+  getEditorRef?(div: React.MutableRefObject<HTMLDivElement>): void;
 }
 
 const EDITMENUHEIGHT = 80;
@@ -333,7 +338,7 @@ export default (props: AppProps) => {
     }
   }
 
-  const [options, setOptions] = useState(null);
+  const [options, setOptions] = useState<EditorOptions>(null);
   const app = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

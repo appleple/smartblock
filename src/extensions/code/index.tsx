@@ -9,8 +9,8 @@ import Button from '../../components/button'
 import CodeIcon from '../../components/icons/Code';
 
 type Lang = {
-  label: React.ReactNode
-  lang: string
+  label: React.ReactNode;
+  lang: string;
 }
 
 export default class Code extends Extension {

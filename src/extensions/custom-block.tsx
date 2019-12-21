@@ -1,12 +1,12 @@
-import * as React from 'react'
-import { setBlockType } from 'prosemirror-commands'
-import uuid from 'uuid'
-import AlignLeftIcon from '../components/icons/AlignLeft'
-import AlignCenterIcon from '../components/icons/AlignCenter'
-import AlignRightIcon from '../components/icons/AlignRight'
-import { Extension, ExtensionProps } from '../types'
-import { blockActive, getParentNodeFromState, getUniqId } from '../utils'
-import Button from '../components/button'
+import * as React from 'react';
+import { setBlockType } from 'prosemirror-commands';
+import uuid from 'uuid';
+import AlignLeftIcon from '../components/icons/AlignLeft';
+import AlignCenterIcon from '../components/icons/AlignCenter';
+import AlignRightIcon from '../components/icons/AlignRight';
+import { Extension, ExtensionProps } from '../types';
+import { blockActive, getParentNodeFromState, getUniqId } from '../utils';
+import Button from '../components/button';
 
 export default class CustomBlock extends Extension {
   constructor(props?: ExtensionProps) {

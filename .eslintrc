@@ -20,18 +20,13 @@
       "allowShortCircuit": true,
       "allowTernary": true
     }],
+    "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/prefer-interface": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/explicit-member-accessibility": "off",
     "react/jsx-filename-extension": "off",
     "@typescript-eslint/indent": "off",
     "react/prop-types": "off",
-    "react-hooks/rules-of-hooks": "error",
-    "prettier/prettier": [
-      "error", {
-        "singleQuote": true,
-        "semi": false
-      }
-    ]
+    "react-hooks/rules-of-hooks": "error"
   }
 }

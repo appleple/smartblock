@@ -9,70 +9,70 @@ function isInTable(state: EditorState) {
   for (let d = $head.depth; d > 0; d--) {
     // @ts-ignore
     if ($head.node(d).type.spec.tableRole == "row") {
-      return true
+      return true;
     }
   }
-  return false
+  return false;
 }
 
 function selectedRect(state: EditorState) {
-  let sel = state.selection
-  let $pos = selectionCell(state)
-  let table = $pos.node(-1)
-  let tableStart = $pos.start(-1)
-  let map = TableMap.get(table)
-  let rect
+  let sel = state.selection;
+  let $pos = selectionCell(state);
+  let table = $pos.node(-1);
+  let tableStart = $pos.start(-1);
+  let map = TableMap.get(table);
+  let rect;
   if (sel instanceof CellSelection) {
     // @ts-ignore
-    rect = map.rectBetween(sel.$anchorCell.pos - tableStart, sel.$headCell.pos - tableStart)
+    rect = map.rectBetween(sel.$anchorCell.pos - tableStart, sel.$headCell.pos - tableStart);
   } else {
-    rect = map.findCell($pos.pos - tableStart)
+    rect = map.findCell($pos.pos - tableStart);
   }
-  rect.tableStart = tableStart
-  rect.map = map
-  rect.table = table
-  return rect
+  rect.tableStart = tableStart;
+  rect.map = map;
+  rect.table = table;
+  return rect;
 }
 
 
 function tableNodeTypes(schema: Schema) {
-  let result = schema.cached.tableNodeTypes
+  let result = schema.cached.tableNodeTypes;
   if (!result) {
-    result = schema.cached.tableNodeTypes = {}
+    result = schema.cached.tableNodeTypes = {};
     for (let name in schema.nodes) {
       // @ts-ignore
-      let type = schema.nodes[name], role = type.spec.tableRole
+      let type = schema.nodes[name], role = type.spec.tableRole;
       if (role) {
-        result[role] = type
+        result[role] = type;
       }
     }
   }
-  return result
+  return result;
 }
 
 export function toggleCell(cellType: 'th' | 'td') {
   return function(state: EditorState, dispatch: Dispatch) {
     if (!isInTable(state)) {
-      return false
+      return false;
     }
     if (dispatch) {
-      let types = tableNodeTypes(state.schema)
-      let rect = selectedRect(state), tr = state.tr
-      let cellsRect = rect
+      let types = tableNodeTypes(state.schema);
+      let rect = selectedRect(state), tr = state.tr;
+      let cellsRect = rect;
       let type = types.cell;
       if (cellType === 'th') {
         type = types.header_cell;
       }
       rect.map.cellsInRect(cellsRect).forEach(relativeCellPos => {
-        const cellPos = relativeCellPos + rect.tableStart
-        const cell = tr.doc.nodeAt(cellPos)
+        const cellPos = relativeCellPos + rect.tableStart;
+        const cell = tr.doc.nodeAt(cellPos);
 
         if (cell) {
-          tr.setNodeMarkup(cellPos, type, cell.attrs)
+          tr.setNodeMarkup(cellPos, type, cell.attrs);
         }
       })
-      dispatch(tr)
+      dispatch(tr);
     }
-    return true
+    return true;
   }
 }

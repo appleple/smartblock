@@ -48,29 +48,29 @@ const placeholderPlugin = () => {
 }
 
 type TitleProps = {
-  placeholder: string
-  defaultValue: string
-  onChange(text: string): void
+  placeholder: string;
+  defaultValue: string;
+  onChange(text: string): void;
 }
 
 export default (props: TitleProps) => {
   const defaultProps = {
-    placeholder: 'ここにタイトルを入力',
+    placeholder: 'Title here...',
     defaultValue: ''
   }
-  props = Object.assign({}, defaultProps, props)
-  const titleRef = useRef<HTMLHeadingElement>(null)
-  const schema = new Schema({ ...schemaDef } as any)
-  const div = document.createElement('div')
-  div.innerHTML = props.defaultValue
-  const doc = DOMParser.fromSchema(schema).parse(div)
+  props = Object.assign({}, defaultProps, props);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const schema = new Schema({ ...schemaDef } as any);
+  const div = document.createElement('div');
+  div.innerHTML = props.defaultValue;
+  const doc = DOMParser.fromSchema(schema).parse(div);
 
   const config = {
     onChange(state) {
       if (props.onChange) {
-        let title = getHtmlFromNode(state.doc, schema)
-        title = title.replace(/<h1>(.*)<\/h1>/, '$1')
-        props.onChange(title)
+        let title = getHtmlFromNode(state.doc, schema);
+        title = title.replace(/<h1>(.*)<\/h1>/, '$1');
+        props.onChange(title);
       }
     },
     options: {
@@ -80,9 +80,10 @@ export default (props: TitleProps) => {
     }
   }
 
+  const view = useView(config)
   useEffect(() => {
     titleRef.current.appendChild(view.dom)
-  }, [])
-  const view = useView(config)
+  }, []);
+  
   return <div ref={titleRef} />
 }

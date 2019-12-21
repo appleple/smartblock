@@ -7,7 +7,7 @@ import TooltipReact from './tooltip-react'
 import { getScrollTop } from '../../utils'
 
 const TooltipWrap = styled.div<{
-  pos: number
+  pos: number;
 }>`
   position: absolute;
   display: inline-block;
@@ -32,19 +32,18 @@ const ARROWOFFSET = 50
 const ARROWTOPOFFSET = 30
 
 const calculateStyle = (
-  view: EditorView,
-  container: React.RefObject<HTMLDivElement>
+  view: EditorView
 ) => {
-  const { selection } = view.state
-  const app = view.dom
-  const { $anchor } = view.state.selection
-  const { nodeAfter } = $anchor
-  let link = null
+  const { selection } = view.state;
+  const app = view.dom;
+  const { $anchor } = view.state.selection;
+  const { nodeAfter } = $anchor;
+  let link = null;
 
   if (nodeAfter) {
     link = nodeAfter.marks.find(mark => {
       if (mark.type.name === 'link') {
-        return true
+        return true;
       }
     })
   }
@@ -56,11 +55,11 @@ const calculateStyle = (
     }
   }
 
-  const coords = view.coordsAtPos(selection.$head.pos)
-  const top = coords.top + getScrollTop() + ARROWTOPOFFSET
-  const left = coords.left - ARROWOFFSET
+  const coords = view.coordsAtPos(selection.$head.pos);
+  const top = coords.top + getScrollTop() + ARROWTOPOFFSET;
+  const left = coords.left - ARROWOFFSET;
 
-  const width = 320 // container.current.offsetWidth
+  const width = 320; // container.current.offsetWidth
   if (left + width > window.innerWidth) {
     return {
       top,
@@ -75,69 +74,68 @@ const calculateStyle = (
 }
 
 const calculatePos = (
-  view: EditorView,
-  container: React.RefObject<HTMLDivElement>
+  view: EditorView
 ) => {
-  const { selection } = view.state
-  const app = view.dom
-  const { $anchor } = view.state.selection
-  const { nodeAfter } = $anchor
-  let link = null
+  const { selection } = view.state;
+  const app = view.dom;
+  const { $anchor } = view.state.selection;
+  const { nodeAfter } = $anchor;
+  let link = null;
 
   if (nodeAfter) {
     link = nodeAfter.marks.find(mark => {
       if (mark.type.name === 'link') {
-        return true
+        return true;
       }
-      return false
+      return false;
     })
   }
 
   if (!selection || selection.empty || !app || !link) {
-    return 20
+    return 20;
   }
 
-  const coords = view.coordsAtPos(selection.$head.pos)
-  const left = coords.left - ARROWOFFSET
+  const coords = view.coordsAtPos(selection.$head.pos);
+  const left = coords.left - ARROWOFFSET;
 
-  const width = 320 // container.current.offsetWidth
+  const width = 320; // container.current.offsetWidth
   if (left + width > window.innerWidth) {
-    return left - window.innerWidth + width
+    return left - window.innerWidth + width;
   }
 
-  return 20
+  return 20;
 }
 
 const TooltipComponent = (props: { view: EditorView }) => {
-  const { view } = props
-  const container = useRef<HTMLDivElement>(null)
-  const style = calculateStyle(view, container)
-  const { selection } = view.state
-  const { $anchor } = selection
-  const { nodeBefore, nodeAfter, pos } = $anchor
-  let link = null
-  let editing = false
+  const { view } = props;
+  const container = useRef<HTMLDivElement>(null);
+  const style = calculateStyle(view);
+  const { selection } = view.state;
+  const { $anchor } = selection;
+  const { nodeBefore, nodeAfter, pos } = $anchor;
+  let link = null;
+  let editing = false;
   if (nodeAfter) {
     link = nodeAfter.marks.find(mark => {
       if (mark.type.name === 'link') {
-        return true
+        return true;
       }
     })
   }
-  let url = ''
+  let url = '';
   if (link) {
-    url = link.attrs.href
+    url = link.attrs.href;
   }
   if (link) {
-    editing = link.attrs.editing
+    editing = link.attrs.editing;
   }
-  let beforePos = selection.from
-  let afterPos = selection.to
+  let beforePos = selection.from;
+  let afterPos = selection.to;
   if (beforePos === afterPos && nodeBefore && nodeAfter) {
-    beforePos = pos - nodeBefore.nodeSize
-    afterPos = pos + nodeAfter.nodeSize
+    beforePos = pos - nodeBefore.nodeSize;
+    afterPos = pos + nodeAfter.nodeSize;
   }
-  const arrowPos = calculatePos(view, container)
+  const arrowPos = calculatePos(view);
 
   return (
     <TooltipWrap
@@ -150,18 +148,18 @@ const TooltipComponent = (props: { view: EditorView }) => {
         url={url}
         editing={editing}
         onClick={href => {
-          const { tr } = view.state
-          tr.removeMark(beforePos, afterPos, view.state.schema.marks.link)
+          const { tr } = view.state;
+          tr.removeMark(beforePos, afterPos, view.state.schema.marks.link);
           if (!href) {
-            view.dispatch(tr)
-            return
+            view.dispatch(tr);
+            return;
           }
           tr.addMark(
             beforePos,
             afterPos,
             view.state.schema.marks.link.create({ href, editing: false })
-          )
-          view.dispatch(tr)
+          );
+          view.dispatch(tr);
         }}
       />
     </TooltipWrap>
@@ -172,29 +170,29 @@ class Tooltip {
   tooltip: HTMLDivElement
 
   constructor(view: EditorView) {
-    this.tooltip = document.createElement('div')
-    document.body.appendChild(this.tooltip)
-    this.update(view, null)
+    this.tooltip = document.createElement('div');
+    document.body.appendChild(this.tooltip);
+    this.update(view);
   }
 
   render(view: EditorView) {
-    render(<TooltipComponent view={view} />, this.tooltip)
+    render(<TooltipComponent view={view} />, this.tooltip);
   }
 
-  update(view: EditorView, oldState: EditorState) {
-    this.render(view)
+  update(view: EditorView) {
+    this.render(view);
   }
 
   destroy() {
-    unmountComponentAtNode(this.tooltip)
-    document.body.removeChild(this.tooltip)
+    unmountComponentAtNode(this.tooltip);
+    document.body.removeChild(this.tooltip);
   }
 }
 
 export default () => {
   return new Plugin({
     view(view) {
-      return new Tooltip(view)
+      return new Tooltip(view);
     }
-  })
+  });
 }

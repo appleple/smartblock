@@ -6,24 +6,24 @@ import { markActive } from '../utils'
 
 export default class Strong extends Extension {
   constructor(props?: ExtensionProps) {
-    super(props)
+    super(props);
   }
 
   get name() {
-    return 'strong'
+    return 'strong';
   }
 
   get group() {
-    return 'mark'
+    return 'mark';
   }
 
   get showMenu() {
-    return true
+    return true;
   }
 
   get schema() {
     if (this.customSchema) {
-      return this.customSchema
+      return this.customSchema;
     }
     return {
       group: 'mark',
@@ -42,10 +42,10 @@ export default class Strong extends Extension {
   }
 
   active(state) {
-    return markActive(state.schema.marks.strong)(state)
+    return markActive(state.schema.marks.strong)(state);
   }
 
   onClick(state, dispatch) {
-    toggleMark(state.schema.marks.strong)(state, dispatch)
+    toggleMark(state.schema.marks.strong)(state, dispatch);
   }
 }

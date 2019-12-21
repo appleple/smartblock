@@ -6,15 +6,15 @@ import TrashIcon from '../components/icons/Trash'
 
 export default class Trash implements Extension {
   get name() {
-    return 'trash'
+    return 'trash';
   }
 
   get group() {
-    return 'edit'
+    return 'edit';
   }
 
   get showMenu() {
-    return true
+    return true;
   }
 
   get icon() {
@@ -22,38 +22,38 @@ export default class Trash implements Extension {
   }
 
   get btnColor(): 'black' {
-    return 'black'
+    return 'black';
   }
 
   onClick(state, dispatch) {
-    const { selection } = state
-    const { $anchor } = selection
-    const resolvedPos = state.doc.resolve($anchor.pos) as any
-    const rowNumber = resolvedPos.path[1]
-    let i = 0
+    const { selection } = state;
+    const { $anchor } = selection;
+    const resolvedPos = state.doc.resolve($anchor.pos) as any;
+    const rowNumber = resolvedPos.path[1];
+    let i = 0;
     const [firstNode] = findChildren(
       state.doc,
       _node => {
         if (rowNumber === i) {
           i++
-          return true
+          return true;
         }
         i++
-        return false
+        return false;
       },
       false
-    )
-    const firstIndex = firstNode.pos
+    );
+    const firstIndex = firstNode.pos;
     const removeTransaction = state.tr.delete(
       firstIndex,
       firstIndex + firstNode.node.content.size + 2
-    )
+    );
     if (isMobile()) {
       if (confirm('このブロックを削除してもいいですか？')) {
-        dispatch(removeTransaction)
+        dispatch(removeTransaction);
       }
     } else {
-      dispatch(removeTransaction)
+      dispatch(removeTransaction);
     }
   }
 }

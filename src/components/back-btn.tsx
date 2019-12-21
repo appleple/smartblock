@@ -1,8 +1,8 @@
-import * as React from 'react'
-import { EditorView } from 'prosemirror-view'
-import { undo, undoDepth } from 'prosemirror-history'
-import styled, { keyframes } from 'styled-components'
-import UndoIcon from './icons/Undo'
+import * as React from 'react';
+import { EditorView } from 'prosemirror-view';
+import { undo, undoDepth } from 'prosemirror-history';
+import styled, { keyframes } from 'styled-components';
+import UndoIcon from './icons/Undo';
 
 const appear = keyframes`
   from {
@@ -14,7 +14,7 @@ const appear = keyframes`
 `
 
 interface Props {
-  view: EditorView
+  view: EditorView;
 }
 
 const BackBtn = styled.button`
@@ -37,12 +37,12 @@ const BackBtn = styled.button`
 `
 
 export default (props: Props) => {
-  const { state, dispatch } = props.view
+  const { state, dispatch } = props.view;
 
-  const depth = undoDepth(state)
+  const depth = undoDepth(state);
 
   if (!depth) {
-    return <></>
+    return <></>;
   }
 
   return (

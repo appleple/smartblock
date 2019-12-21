@@ -6,10 +6,12 @@ const agnosticStyled = styled(
     React.createElement(tag, props, children)
 )
 
-const Button = agnosticStyled<{
+type ButtonProps = {
   active?: boolean;
   color?: 'black' | 'white';
-}>`
+}
+
+export default agnosticStyled<ButtonProps>`
   ${props => {
     if (props.disabled) {
       return `
@@ -78,8 +80,4 @@ const Button = agnosticStyled<{
   &[disabled]:hover {
     cursor: not-allowed;
   }
-  
- 
 `
-
-export default Button

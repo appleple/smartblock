@@ -12,9 +12,9 @@ export default () => {
           setBlockType(state.schema.nodes.embed, {
             src: node.textContent + text
           })(state, view.dispatch)
-          return false
+          return false;
         }
-        return false
+        return false;
       }
     }
   })

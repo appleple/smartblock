@@ -11,28 +11,28 @@ const Button = styled.button`
   vertical-align: middle;
 `
 
-const { useState } = React
+const { useState } = React;
 
 export default props => {
-  const { node, view, pos } = props
-  const { state, dispatch } = view
-  const [showPopup, setShowPopup] = useState(false)
+  const { node, view, pos } = props;
+  const { state, dispatch } = view;
+  const [showPopup, setShowPopup] = useState(false);
 
   if (node.attrs.src.indexOf('youtube') !== -1) {
-    const { src } = node.attrs
-    let youtubeId = ''
+    const { src } = node.attrs;
+    let youtubeId = '';
     const matches = /www\.youtube\.com\/watch\?v=(.*?)$/.exec(src)
     if (matches && matches[1]) {
-      youtubeId = matches[1]
+      youtubeId = matches[1];
     }
     if (!youtubeId) {
       const embedMatches = /www\.youtube\.com\/embed\/(.*?)$/.exec(src)
       if (embedMatches && embedMatches[1]) {
-        youtubeId = embedMatches[1]
+        youtubeId = embedMatches[1];
       }
     }
     if (youtubeId) {
-      const url = `https://www.youtube.com/embed/${youtubeId}`
+      const url = `https://www.youtube.com/embed/${youtubeId}`;
       return (
         <div className="youtube-frame-wrap">
           <div className="youtube-frame">
@@ -50,7 +50,7 @@ export default props => {
             {node.attrs.src}
             <Button
               onClick={() => {
-                setShowPopup(true)
+                setShowPopup(true);
               }}
             >
               <ExternalLink style={{ width: '16px', height: '16px' }} />
@@ -62,16 +62,16 @@ export default props => {
         <Popup
           url={node.attrs.src}
           onClose={() => {
-            setShowPopup(false)
+            setShowPopup(false);
           }}
           onDone={src => {
-            setShowPopup(false)
+            setShowPopup(false);
             dispatch(
               state.tr.setNodeMarkup(pos, node.type, {
                 ...node.attrs,
                 src
               })
-            )
+            );
           }}
         />
       )}

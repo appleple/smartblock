@@ -1,25 +1,22 @@
 import {
   useEffect,
-  useRef,
   useMemo,
   useState,
-  RefObject,
-  SyntheticEvent
 } from 'react'
 import { EditorState } from 'prosemirror-state'
 import { EditorView } from 'prosemirror-view'
-import { getScrollTop, getScrollLeft, getOffset } from '.'
+import { getScrollTop } from '.'
 
 type EditorProps = {
   onChange(
     state: EditorState,
     dispatch: typeof EditorView.prototype.dispatch
-  ): any
-  attributes?: any
-  nodeViews?: any
-  autoFocus?: boolean
-  options: any
-  render?({ editor: EditorState, view: EditorView }): React.ReactElement
+  ): void;
+  attributes?: { [index: string]: any };
+  nodeViews?: { [index: string]: any };
+  autoFocus?: boolean;
+  options: { [index: string]: any };
+  render?({ editor: EditorState, view: EditorView }): React.ReactElement;
 }
 
 export const useForceUpdate = () => {
@@ -27,7 +24,7 @@ export const useForceUpdate = () => {
   const update = () => {
     setTick(tick => tick + 1)
   }
-  return update
+  return update;
 }
 
 export const useView = (props: EditorProps): EditorView => {
@@ -63,41 +60,41 @@ export const useScroll = () => {
       window.removeEventListener('scroll', scrollEvent)
     }
   }, [scrollTop])
-  return scrollTop
+  return scrollTop;
 }
 
 export const useScrolling = (
   element: React.MutableRefObject<HTMLDivElement>,
   delay: number
 ) => {
-  const [scrolling, setScrolling] = useState(false)
+  const [scrolling, setScrolling] = useState(false);
   useEffect(() => {
-    let debounceTimer: number = null
-    let count = 0
-    let { top } = element.current.getBoundingClientRect()
+    let debounceTimer: number = null;
+    let count = 0;
+    let { top } = element.current.getBoundingClientRect();
     const eventHandler = () => {
-      const localTop = element.current.getBoundingClientRect().top
+      const localTop = element.current.getBoundingClientRect().top;
       if (localTop === top) {
-        return
+        return;
       }
-      top = localTop
-      count++
+      top = localTop;
+      count++;
       if (count === 3) {
         if (scrolling === false) {
-          count = 0
-          setScrolling(true)
+          count = 0;
+          setScrolling(true);
         }
       }
-      clearTimeout(debounceTimer)
+      clearTimeout(debounceTimer);
       debounceTimer = setTimeout(() => {
-        setScrolling(false)
-        count = 0
-      }, delay)
+        setScrolling(false);
+        count = 0;
+      }, delay);
     }
-    const interval = setInterval(eventHandler, 100)
+    const interval = setInterval(eventHandler, 100);
     return () => {
-      clearInterval(interval)
+      clearInterval(interval);
     }
   }, [])
-  return scrolling
+  return scrolling;
 }

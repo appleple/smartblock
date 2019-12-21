@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components'
 import { findChildren } from 'prosemirror-utils'
 import { EditorView } from 'prosemirror-view'
 import { getOffset, getParentNodeFromState } from '../utils'
-import ButtonStyle from './button'
+import ButtonStyle from './button';
 
 const { useState, useEffect } = React
 

@@ -7,19 +7,19 @@ import { blockActive } from '../utils'
 
 export default class BlockQuote extends Extension {
   constructor(props?: ExtensionProps) {
-    super(props)
+    super(props);
   }
 
   get name() {
-    return 'blockquote'
+    return 'blockquote';
   }
 
   get group() {
-    return 'block'
+    return 'block';
   }
 
   get showMenu() {
-    return true
+    return true;
   }
 
   get schema() {
@@ -61,14 +61,14 @@ export default class BlockQuote extends Extension {
   }
 
   active(state) {
-    return blockActive(state.schema.nodes.blockquote)(state)
+    return blockActive(state.schema.nodes.blockquote)(state);
   }
 
   enable(state) {
-    return setBlockType(state.schema.nodes.blockquote)(state)
+    return setBlockType(state.schema.nodes.blockquote)(state);
   }
 
   onClick(state, dispatch) {
-    setBlockType(state.schema.nodes.blockquote)(state, dispatch)
+    setBlockType(state.schema.nodes.blockquote)(state, dispatch);
   }
 }

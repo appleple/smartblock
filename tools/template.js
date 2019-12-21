@@ -1,7 +1,7 @@
 function template(
   { template },
-  opts,
-  { imports, componentName, props, jsx, exports }
+  _opts,
+  { componentName, jsx }
 ) {
   const typeScriptTpl = template.smart({ plugins: ['typescript'] })
   return typeScriptTpl.ast`
@@ -10,4 +10,4 @@ function template(
     export default ${componentName};
   `
 }
-module.exports = template
+module.exports = template;

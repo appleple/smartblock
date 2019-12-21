@@ -40,13 +40,13 @@ const Button = styled.button`
 `
 
 type TooltipReactProps = {
-  url: string
-  onClick(url: string): void
-  editing: boolean
+  url: string;
+  onClick(url: string): void;
+  editing: boolean;
 }
 
 type TooltipReactState = {
-  newUrl: string
+  newUrl: string;
 }
 
 export default class TooltipReact extends React.Component<
@@ -58,7 +58,7 @@ export default class TooltipReact extends React.Component<
   }
 
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       newUrl: props.url
     }
@@ -68,20 +68,20 @@ export default class TooltipReact extends React.Component<
     if (nextProps.url !== prevProps.url) {
       this.setState({
         newUrl: nextProps.url
-      })
+      });
     }
   }
 
   enterUrl = () => {
-    this.props.onClick(this.state.newUrl)
+    this.props.onClick(this.state.newUrl);
   }
 
   render() {
-    const { editing } = this.props
-    const { newUrl } = this.state
+    const { editing } = this.props;
+    const { newUrl } = this.state;
 
     if (!editing) {
-      return null
+      return null;
     }
 
     return (

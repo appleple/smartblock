@@ -1,15 +1,15 @@
-import * as React from 'react'
-import styled, { keyframes } from 'styled-components'
-import { EditorView } from 'prosemirror-view'
-import { getOffset, getScrollTop } from '../utils'
-import ButtonStyle from './button'
+import * as React from 'react';
+import styled, { keyframes } from 'styled-components';
+import { EditorView } from 'prosemirror-view';
+import { getOffset, getScrollTop } from '../utils';
+import ButtonStyle from './button';
 
 interface PositionProps {
-  view: EditorView
-  blockMenu: any
+  view: EditorView;
+  blockMenu: any;
 }
 
-const { useState, useRef } = React
+const { useState, useRef } = React;
 
 const fadeIn = keyframes`
   from {
@@ -18,10 +18,10 @@ const fadeIn = keyframes`
   to {
     opacity: 1;
   }
-`
+`;
 
 const FloaterStyle = styled.div<{
-  pos: number
+  pos: number;
 }>`
   position: absolute;
   z-index: 12;
@@ -51,21 +51,21 @@ const Bar = styled.div`
   align-items: baseline;
 `
 
-const ARROWOFFSET = 50
-const ARROWTOPOFFSET = 25
+const ARROWOFFSET = 50;
+const ARROWTOPOFFSET = 25;
 
 const calculateStyle = (
   view: EditorView,
   container: React.RefObject<HTMLDivElement>
 ) => {
-  const { selection } = view.state
-  const offsetLeft = getOffset(view.dom).left
-  const coords = view.coordsAtPos(selection.$head.pos)
-  const offsetTop = getOffset(view.dom).top
-  const top = coords.top + getScrollTop() + ARROWTOPOFFSET - offsetTop
-  const left = coords.left - ARROWOFFSET - offsetLeft
+  const { selection } = view.state;
+  const offsetLeft = getOffset(view.dom).left;
+  const coords = view.coordsAtPos(selection.$head.pos);
+  const offsetTop = getOffset(view.dom).top;
+  const top = coords.top + getScrollTop() + ARROWTOPOFFSET - offsetTop;
+  const left = coords.left - ARROWOFFSET - offsetLeft;
   if (container && container.current && container.current.offsetWidth) {
-    const width = container.current.offsetWidth
+    const width = container.current.offsetWidth;
     if (left + width > window.innerWidth) {
       return {
         top,
@@ -80,14 +80,14 @@ const calculateStyle = (
 }
 
 const getActiveInlineMenu = (props: PositionProps) => {
-  const { blockMenu, view } = props
-  const { state } = view
+  const { blockMenu, view } = props;
+  const { state } = view;
 
   const activeItem = blockMenu.find(item => {
     if (item.active && item.active(state)) {
-      return true
+      return true;
     }
-    return false
+    return false;
   })
 
   if (activeItem && activeItem.customInlineMenu) {
@@ -100,17 +100,17 @@ const calculateArrowPos = (
   view: EditorView,
   container: React.RefObject<HTMLDivElement>
 ) => {
-  const { selection } = view.state
-  const offsetLeft = getOffset(view.dom).left
-  const coords = view.coordsAtPos(selection.$head.pos)
-  const left = coords.left - ARROWOFFSET - offsetLeft
+  const { selection } = view.state;
+  const offsetLeft = getOffset(view.dom).left;
+  const coords = view.coordsAtPos(selection.$head.pos);
+  const left = coords.left - ARROWOFFSET - offsetLeft;
   const width = container.current ? container.current.offsetWidth : 0
   if (container && container.current && container.current.offsetWidth) {
     if (left + width > window.innerWidth) {
-      return left - window.innerWidth + width
+      return left - window.innerWidth + width;
     }
   }
-  return 20
+  return 20;
 }
 
 const MenuBar = ({
@@ -119,21 +119,21 @@ const MenuBar = ({
   children,
   view
 }: {
-  menu: any
-  blockMenu: any
-  children?: React.ReactChildren
-  view: EditorView
+  menu: any;
+  blockMenu: any;
+  children?: React.ReactChildren;
+  view: EditorView;
 }) => {
   const { state, dispatch } = view
   const { selection } = view.state
-  if (!selection || selection.empty) {
-    return <></>
-  }
-
   const container = useRef<HTMLDivElement>(null)
   const style = calculateStyle(view, container)
   const pos = calculateArrowPos(view, container)
   const inlineMenu = getActiveInlineMenu({ blockMenu, view });
+
+  if (!selection || selection.empty) {
+    return <></>
+  }
 
   return (
     <FloaterStyle style={style} ref={container} pos={pos}>

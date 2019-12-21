@@ -1,28 +1,28 @@
-import * as React from 'react'
-import { wrapInList, sinkListItem } from 'prosemirror-schema-list'
-import uuid from 'uuid'
-import Undent from '../components/icons/Undent'
-import Indent from '../components/icons/Indent'
-import List from '../components/icons/List'
-import { liftListItem, blockActive, getParentNodeFromState } from '../utils'
-import { Extension, ExtensionProps } from '../types'
-import Button from '../components/button'
+import * as React from 'react';
+import { wrapInList, sinkListItem } from 'prosemirror-schema-list';
+import uuid from 'uuid';
+import Undent from '../components/icons/Undent';
+import Indent from '../components/icons/Indent';
+import List from '../components/icons/List';
+import { liftListItem, blockActive, getParentNodeFromState } from '../utils';
+import { Extension, ExtensionProps } from '../types';
+import Button from '../components/button';
 
 export default class BulletList extends Extension {
   constructor(props?: ExtensionProps) {
-    super(props)
+    super(props);
   }
 
   get name() {
-    return 'bullet_list'
+    return 'bullet_list';
   }
 
   get group() {
-    return 'block'
+    return 'block';
   }
 
   get showMenu() {
-    return true
+    return true;
   }
 
   get schema() {
@@ -67,23 +67,23 @@ export default class BulletList extends Extension {
   }
 
   active(state) {
-    return blockActive(state.schema.nodes.bullet_list)(state)
+    return blockActive(state.schema.nodes.bullet_list)(state);
   }
 
   enable(state) {
     const node = getParentNodeFromState(state)
     if (node.type.name !== 'paragraph') {
-      return false
+      return false;
     }
-    return wrapInList(state.schema.nodes.bullet_list)(state)
+    return wrapInList(state.schema.nodes.bullet_list)(state);
   }
 
   onClick(state, dispatch) {
-    const node = getParentNodeFromState(state)
+    const node = getParentNodeFromState(state);
     if (node.type.name !== 'paragraph') {
-      return false
+      return false;
     }
-    wrapInList(state.schema.nodes.bullet_list)(state, dispatch)
+    wrapInList(state.schema.nodes.bullet_list)(state, dispatch);
   }
 
   customMenu({ state, dispatch }) {
@@ -93,7 +93,7 @@ export default class BulletList extends Extension {
           type="button"
           disabled={!liftListItem(state.schema.nodes.list_item)(state)}
           onClick={() => {
-            liftListItem(state.schema.nodes.list_item)(state, dispatch)
+            liftListItem(state.schema.nodes.list_item)(state, dispatch);
           }}
         >
           <Undent style={{ width: '24px', height: '24px' }} />

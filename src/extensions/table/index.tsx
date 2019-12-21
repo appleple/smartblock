@@ -54,28 +54,28 @@ const CellButton = styled(Button)`
   .icon {
     font-size: 30px;
   }
-`
+`;
 
 export default class Table extends Extension {
   constructor(props?: ExtensionProps) {
-    super(props)
+    super(props);
   }
 
   get name() {
-    return 'table'
+    return 'table';
   }
 
   get group() {
-    return 'block'
+    return 'block';
   }
 
   get showMenu() {
-    return true
+    return true;
   }
 
   get schema() {
     if (this.customSchema) {
-      return this.customSchema
+      return this.customSchema;
     }
     schemas.table.parseDOM = [
       {
@@ -95,17 +95,17 @@ export default class Table extends Extension {
           class: this.className
         },
         ['tbody', 0]
-      ]
+      ];
     }
     schemas.table.attrs = {
       id: { default: '' }
     }
-    return schemas.table
+    return schemas.table;
   }
 
   get schemaDependencies() {
-    const { table, ...noTable } = schemas
-    return noTable
+    const { table, ...noTable } = schemas;
+    return noTable;
   }
 
   get icon() {
@@ -124,19 +124,19 @@ export default class Table extends Extension {
   }
 
   active(state) {
-    return blockActive(state.schema.nodes.table)(state)
+    return blockActive(state.schema.nodes.table)(state);
   }
 
   enable(state) {
-    return setBlockType(state.schema.nodes.table)(state)
+    return setBlockType(state.schema.nodes.table)(state);
   }
 
   onClick(state, dispatch) {
     const table = createTable(state.schema, {
       id: uuid()
-    })
-    const tr = state.tr.replaceSelectionWith(table)
-    dispatch(tr)
+    });
+    const tr = state.tr.replaceSelectionWith(table);
+    dispatch(tr);
   }
 
   customInlineMenu({ state, dispatch }) {
@@ -144,7 +144,7 @@ export default class Table extends Extension {
       <CellButton
         type="button"
         onClick={() => {
-          mergeCells(state, dispatch)
+          mergeCells(state, dispatch);
         }}
       >
         <MergeIcon style={{ width: '24px', height: '24px' }} />
@@ -152,7 +152,7 @@ export default class Table extends Extension {
       <CellButton
         type="button"
         onClick={() => {
-          splitCell(state, dispatch)
+          splitCell(state, dispatch);
         }}
       >
         <SplitIcon style={{ width: '24px', height: '24px' }} />
@@ -160,7 +160,7 @@ export default class Table extends Extension {
       <CellButton
           type="button"
           onClick={() => {
-            toggleCell('th')(state, dispatch)
+            toggleCell('th')(state, dispatch);
           }}
         >
           <span style={{ display: 'inline-block', verticalAlign: 'text-bottom'}}>th</span>
@@ -168,7 +168,7 @@ export default class Table extends Extension {
       <CellButton
           type="button"
           onClick={() => {
-            toggleCell('td')(state, dispatch)
+            toggleCell('td')(state, dispatch);
           }}
         >
           <span style={{ display: 'inline-block', verticalAlign: 'text-bottom'}}>td</span>
@@ -182,7 +182,7 @@ export default class Table extends Extension {
         <CellButton
           type="button"
           onClick={() => {
-            addColumnAfter(state, dispatch)
+            addColumnAfter(state, dispatch);
           }}
         >
           <RightInsertIcon style={{ width: '24px', height: '24px' }} />
@@ -190,7 +190,7 @@ export default class Table extends Extension {
         <CellButton
           type="button"
           onClick={() => {
-            addColumnBefore(state, dispatch)
+            addColumnBefore(state, dispatch);
           }}
         >
           <LeftInsertIcon style={{ width: '24px', height: '24px' }} />
@@ -198,7 +198,7 @@ export default class Table extends Extension {
         <CellButton
           type="button"
           onClick={() => {
-            addRowBefore(state, dispatch)
+            addRowBefore(state, dispatch);
           }}
         >
           <TopInsertIcon style={{ width: '24px', height: '24px' }} />
@@ -206,7 +206,7 @@ export default class Table extends Extension {
         <CellButton
           type="button"
           onClick={() => {
-            addRowAfter(state, dispatch)
+            addRowAfter(state, dispatch);
           }}
         >
           <BottomInsertIcon style={{ width: '24px', height: '24px' }} />
@@ -215,7 +215,7 @@ export default class Table extends Extension {
         <CellButton
           type="button"
           onClick={() => {
-            deleteColumn(state, dispatch)
+            deleteColumn(state, dispatch);
           }}
         >
           <RemoveColIcon style={{ width: '24px', height: '24px' }} />
@@ -223,7 +223,7 @@ export default class Table extends Extension {
         <CellButton
           type="button"
           onClick={() => {
-            deleteRow(state, dispatch)
+            deleteRow(state, dispatch);
           }}
         >
           <RemoveRowIcon style={{ width: '24px', height: '24px' }} />

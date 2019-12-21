@@ -28,7 +28,7 @@ export const MediaPlugin = () => {
         }
       }
     },
-    filterTransaction: (tr, state) => {
+    filterTransaction: () => {
       return true;
     }
   })

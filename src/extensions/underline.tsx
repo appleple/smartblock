@@ -6,24 +6,24 @@ import { markActive } from '../utils'
 
 export default class Underline extends Extension {
   constructor(props?: ExtensionProps) {
-    super(props)
+    super(props);
   }
 
   get name() {
-    return 'underline'
+    return 'underline';
   }
 
   get group() {
-    return 'mark'
+    return 'mark';
   }
 
   get showMenu() {
-    return true
+    return true;
   }
 
   get schema() {
     if (this.customSchema) {
-      return this.customSchema
+      return this.customSchema;
     }
     return {
       group: 'mark',
@@ -43,10 +43,10 @@ export default class Underline extends Extension {
   }
 
   active(state) {
-    return markActive(state.schema.marks.underline)(state)
+    return markActive(state.schema.marks.underline)(state);
   }
 
   onClick(state, dispatch) {
-    toggleMark(state.schema.marks.underline)(state, dispatch)
+    toggleMark(state.schema.marks.underline)(state, dispatch);
   }
 }
