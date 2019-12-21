@@ -1,11 +1,12 @@
-import * as React from 'react'
-import styled, { keyframes } from 'styled-components'
-import { findChildren } from 'prosemirror-utils'
-import { EditorView } from 'prosemirror-view'
-import { getOffset, getParentNodeFromState } from '../utils'
+import * as React from 'react';
+import styled, { keyframes } from 'styled-components';
+import { findChildren } from 'prosemirror-utils';
+import { EditorView } from 'prosemirror-view';
+import { getOffset, getParentNodeFromState } from '../utils';
 import ButtonStyle from './button';
+import { Extension } from '..';
 
-const { useState, useEffect } = React
+const { useState, useEffect } = React;
 
 const fadeIn = keyframes`
   from {
@@ -48,13 +49,13 @@ const PositionBtnGroupBottom = styled.div`
 
 interface PositionProps {
   view: EditorView;
-  menu: any;
+  menu: Extension[];
 }
 
 const calculateStyle = (props: PositionProps): React.CSSProperties => {
-  const { view } = props
-  const { state } = view
-  const { selection } = state
+  const { view } = props;
+  const { state } = view;
+  const { selection } = state;
 
   if (!selection || !selection.empty) {
     return {
@@ -63,7 +64,7 @@ const calculateStyle = (props: PositionProps): React.CSSProperties => {
     }
   }
 
-  const { $anchor } = selection
+  const { $anchor } = selection;
 
   if ($anchor.pos === 0) {
     return {
@@ -72,9 +73,9 @@ const calculateStyle = (props: PositionProps): React.CSSProperties => {
     }
   }
 
-  const resolvedPos = state.doc.resolve($anchor.pos) as any
-  const rowNumber = resolvedPos.path[1]
-  let i = 0
+  const resolvedPos = state.doc.resolve($anchor.pos) as any;
+  const rowNumber = resolvedPos.path[1];
+  let i = 0;
   const [firstNode] = findChildren(
     state.doc,
     _node => {
@@ -94,10 +95,10 @@ const calculateStyle = (props: PositionProps): React.CSSProperties => {
     }
   }
 
-  const coords = view.coordsAtPos(firstNode.pos)
-  const dom = view.nodeDOM(firstNode.pos) as HTMLElement
-  const elementTop = getOffset(dom).top
-  const offsetTop = getOffset(view.dom).top
+  const coords = view.coordsAtPos(firstNode.pos);
+  const dom = view.nodeDOM(firstNode.pos) as HTMLElement;
+  const elementTop = getOffset(dom).top;
+  const offsetTop = getOffset(view.dom).top;
 
   if (coords.top === 0) {
     return {
@@ -117,14 +118,14 @@ const calculateStyle = (props: PositionProps): React.CSSProperties => {
 }
 
 const getActiveMenu = (props: PositionProps) => {
-  const { menu, view } = props
-  const { state } = view
+  const { menu, view } = props;
+  const { state } = view;
 
   const activeItem = menu.find(item => {
     if (item.active && item.active(state)) {
-      return true
+      return true;
     }
-    return false
+    return false;
   })
   if (activeItem && activeItem.customMenu) {
     return <>{activeItem.customMenu(view)}</>
@@ -133,52 +134,52 @@ const getActiveMenu = (props: PositionProps) => {
 }
 
 const shouldRenderMenu = (props: PositionProps) => {
-  const { menu, view } = props
-  const node = getParentNodeFromState(view.state)
+  const { menu, view } = props;
+  const node = getParentNodeFromState(view.state);
   if (!node || !menu || !menu.length) {
-    return
+    return;
   }
   const { name } = node.type
   const selectedItem = menu.find(item => {
     if (item.name === name) {
-      return true
+      return true;
     }
-    return false
+    return false;
   })
   if (!selectedItem) {
-    return true
+    return true;
   }
   if (selectedItem.hideMenuOnFocus) {
-    return false
+    return false;
   }
-  return true
+  return true;
 }
 
 export default (props: PositionProps) => {
-  const { menu, view } = props
-  const { state, dispatch } = view
-  const CustomMenu = getActiveMenu(props)
-  const shouldRender = shouldRenderMenu(props)
+  const { menu, view } = props;
+  const { state, dispatch } = view;
+  const CustomMenu = getActiveMenu(props);
+  const shouldRender = shouldRenderMenu(props);
   const [style, setState] = useState<React.CSSProperties>({
     left: 0,
     top: 0
-  })
+  });
 
   useEffect(() => {
-    const nextStyle = calculateStyle(props)
-    setState(nextStyle)
-  }, [props])
+    const nextStyle = calculateStyle(props);
+    setState(nextStyle);
+  }, [props]);
 
   if (!shouldRender) {
-    return null
+    return null;
   }
 
   let hideMenuOnFocus = false;
   const activeItem = menu.find(item => {
     if (item.active && item.active(state)) {
-      return true
+      return true;
     }
-    return false
+    return false;
   });
 
   if (activeItem && activeItem.hideBlockMenuOnFocus) {
@@ -197,11 +198,10 @@ export default (props: PositionProps) => {
               key={key}
               type="button"
               active={item.active && item.active(state)}
-              title={item.title}
               disabled={(item.enable && !item.enable(state)) || hideMenuOnFocus}
               onClick={e => {
-                e.preventDefault()
-                item.onClick(state, dispatch, view)
+                e.preventDefault();
+                item.onClick(state, dispatch, view);
               }}
             >
               {typeof item.icon !== 'string' ? (

@@ -1,11 +1,11 @@
-import * as React from 'react'
-import styled, { keyframes } from 'styled-components'
-import { findChildren } from 'prosemirror-utils'
-import { EditorView } from 'prosemirror-view'
-import { getOffset } from '../utils'
-import ButtonStyle from './button'
+import * as React from 'react';
+import styled, { keyframes } from 'styled-components';
+import { findChildren } from 'prosemirror-utils';
+import { EditorView } from 'prosemirror-view';
+import { getOffset } from '../utils';
+import ButtonStyle from './button';
 
-const { useState, useEffect } = React
+const { useState, useEffect } = React;
 
 const fadeIn = keyframes`
   from {
@@ -62,17 +62,17 @@ const Button = styled(ButtonStyle)`
 
 interface PositionProps {
   view: EditorView;
-  menu: any;
+  menu: Extension[];
 }
 
 const getContainerOffset = container => {
-  return getOffset(container).top
+  return getOffset(container).top;
 }
 
 const calculateStyle = (props: PositionProps) => {
-  const { view } = props
-  const { state } = view
-  const { selection } = state
+  const { view } = props;
+  const { state } = view;
+  const { selection } = state;
 
   if (!selection) {
     return {
@@ -80,10 +80,10 @@ const calculateStyle = (props: PositionProps) => {
     }
   }
 
-  const { $anchor } = selection
-  const resolvedPos = state.doc.resolve($anchor.pos) as any
-  const rowNumber = resolvedPos.path[1]
-  let i = 0
+  const { $anchor } = selection;
+  const resolvedPos = state.doc.resolve($anchor.pos) as any;
+  const rowNumber = resolvedPos.path[1];
+  let i = 0;
   if ($anchor.pos === 0) {
     return {
       top: -1000
@@ -108,10 +108,10 @@ const calculateStyle = (props: PositionProps) => {
     }
   }
 
-  const coords = view.coordsAtPos(firstNode.pos)
-  const dom = view.nodeDOM(firstNode.pos) as HTMLElement
-  const elementTop = getOffset(dom).top
-  const offsetTop = getContainerOffset(view.dom)
+  const coords = view.coordsAtPos(firstNode.pos);
+  const dom = view.nodeDOM(firstNode.pos) as HTMLElement;
+  const elementTop = getOffset(dom).top;
+  const offsetTop = getContainerOffset(view.dom);
 
   if (coords.top === 0) {
     return {
@@ -128,15 +128,15 @@ export default (props: PositionProps) => {
   const [style, setState] = useState<React.CSSProperties>({
     right: 20,
     top: 0
-  })
+  });
 
-  const { menu, view } = props
-  const { state, dispatch } = view
+  const { menu, view } = props;
+  const { state, dispatch } = view;
 
   useEffect(() => {
-    const nextStyle = calculateStyle(props)
-    setState(nextStyle)
-  }, [props])
+    const nextStyle = calculateStyle(props);
+    setState(nextStyle);
+  }, [props]);
 
   return (
     <PositionBtnGroup style={style} className="smartblock-edit-menu">
@@ -150,8 +150,8 @@ export default (props: PositionProps) => {
             title={item.title}
             disabled={item.enable && !item.enable(state)}
             onClick={e => {
-              e.preventDefault()
-              item.onClick(state, dispatch, view)
+              e.preventDefault();
+              item.onClick(state, dispatch, view);
             }}
           >
             {item.icon}

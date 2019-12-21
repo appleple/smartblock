@@ -1,11 +1,11 @@
-import * as React from 'react'
-import { Schema, DOMParser } from 'prosemirror-model'
-import { Plugin } from 'prosemirror-state'
-import { Decoration, DecorationSet } from 'prosemirror-view'
-import { getHtmlFromNode } from '../utils'
-import { useView } from '../utils/hooks'
+import * as React from 'react';
+import { Schema, DOMParser } from 'prosemirror-model';
+import { Plugin } from 'prosemirror-state';
+import { Decoration, DecorationSet } from 'prosemirror-view';
+import { getHtmlFromNode } from '../utils';
+import { useView } from '../utils/hooks';
 
-const { useRef, useEffect } = React
+const { useRef, useEffect } = React;
 const schemaDef = {
   nodes: {
     doc: {
@@ -30,7 +30,7 @@ const placeholderPlugin = () => {
   return new Plugin({
     props: {
       decorations: state => {
-        const decorations = []
+        const decorations = [];
         const decorate = (node, pos) => {
           if (node.type.isBlock && node.childCount === 0) {
             decorations.push(
@@ -40,8 +40,8 @@ const placeholderPlugin = () => {
             )
           }
         }
-        state.doc.descendants(decorate)
-        return DecorationSet.create(state.doc, decorations)
+        state.doc.descendants(decorate);
+        return DecorationSet.create(state.doc, decorations);
       },
     },
   })
@@ -80,7 +80,7 @@ export default (props: TitleProps) => {
     }
   }
 
-  const view = useView(config)
+  const view = useView(config);
   useEffect(() => {
     titleRef.current.appendChild(view.dom)
   }, []);

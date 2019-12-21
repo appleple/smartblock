@@ -168,4 +168,4 @@ const MenuBar = ({
   )
 }
 
-export default MenuBar
+export default MenuBar;
