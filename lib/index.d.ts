@@ -9,6 +9,7 @@ import { getViewport, isInput, markActive, blockActive, canInsert, findNodePosit
 import GlobalStyle from './utils/style';
 import { Dispatch, Extension } from './types';
 import Link from './extensions/link';
+import Image from './extensions/image';
 import BulletList from './extensions/bullet-list';
 import CustomBlock from './extensions/custom-block';
 import CustomMark from './extensions/custom-mark';
@@ -41,4 +42,4 @@ import Heading3Icon from './components/icons/Heading3';
 import Heading4Icon from './components/icons/Heading4';
 import Heading5Icon from './components/icons/Heading5';
 import Heading6Icon from './components/icons/Heading6';
-export { SmartBlock, Button, EditMenu, Editor, InlineMenu, Menu, GlobalStyle, Extensions, Link, BulletList, CustomBlock, Heading1, Heading2, Heading3, Heading4, Heading5, Heading6, ListItem, MoveDown, MoveUp, OrderedList, Paragraph, Blockquote, Table, Embed, Code, Emphasis, Strike, Strong, Underline, CustomMark, Trash, getViewport, isInput, markActive, blockActive, canInsert, findNodePosition, findSelectedNodeWithType, getParentNodePosFromState, createTable, liftListItem, Dispatch, Extension, DefaultKeys, DefaultPlugins, Plugin, Heading1Icon, Heading2Icon, Heading3Icon, Heading4Icon, Heading5Icon, Heading6Icon };
+export { SmartBlock, Button, EditMenu, Editor, InlineMenu, Menu, GlobalStyle, Extensions, Link, Image, BulletList, CustomBlock, Heading1, Heading2, Heading3, Heading4, Heading5, Heading6, ListItem, MoveDown, MoveUp, OrderedList, Paragraph, Blockquote, Table, Embed, Code, Emphasis, Strike, Strong, Underline, CustomMark, Trash, getViewport, isInput, markActive, blockActive, canInsert, findNodePosition, findSelectedNodeWithType, getParentNodePosFromState, createTable, liftListItem, Dispatch, Extension, DefaultKeys, DefaultPlugins, Plugin, Heading1Icon, Heading2Icon, Heading3Icon, Heading4Icon, Heading5Icon, Heading6Icon };

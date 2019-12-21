@@ -51,6 +51,10 @@ export declare abstract class Extension {
         dispatch: any;
     }): JSX.Element;
     customLayout?(props: CustomLayoutProps, dom: HTMLElement): JSX.Element;
+    customButton?({ state: EditorState, dispatch: Dispatch }: {
+        state: any;
+        dispatch: any;
+    }): JSX.Element;
     customIcon?: JSX.Element | string;
     icon?: JSX.Element | string;
     plugins?: Plugin<any, any>[];
