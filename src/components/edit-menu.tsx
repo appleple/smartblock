@@ -61,8 +61,8 @@ const Button = styled(ButtonStyle)`
 `
 
 interface PositionProps {
-  view: EditorView
-  menu: any
+  view: EditorView;
+  menu: any;
 }
 
 const getContainerOffset = container => {
