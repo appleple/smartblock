@@ -23,7 +23,7 @@ export default createGlobalStyle`
 
   .ProseMirror figure {
     text-align: center;
-    padding: 5px;
+    padding: 10px 5px;
     margin: 0;
     &.empty-node figcaption:before {
       content: "Type Something..."

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import ImageIcon from './image-icon';
 import { blockActive, findSelectedNodeWithType } from '../../utils';
-import { Extension } from '../../types'
+import { Extension, Dispatch } from '../../types'
 import { setBlockType } from 'prosemirror-commands';
 import uuid from 'uuid';
 import { EditorState } from 'prosemirror-state';
@@ -99,9 +99,36 @@ export default class Image extends Extension {
   get plugins() {
     return [MediaPlugin()]
   }
+  async changeImage(state: EditorState, dispatch: Dispatch, files: FileList) {
+    const items = await readFiles(files);
+    const [item] = items;
+    if (!item) {
+      return;
+    }
+    if (this.onChange) {
+      const success = await this.onChange(items);
+      if (success) {
+        setBlockType(state.schema.nodes.image, {
+          src: item.preview
+        })(state, dispatch);
+      }
+    }
+  }
+  customButton({ state, dispatch }) {
+    const disabled = (this.enable && !this.enable(state)) || this.hideMenuOnFocus;
+    return (<Button 
+      tag="label"
+      active={this.active && this.active(state)}
+      disabled={disabled}
+    >
+      {this.icon}
+      {!disabled && <input type="file" style={{ display: 'none' }} onChange={(e) => {
+        this.changeImage(state, dispatch, e.target.files);
+      }} />}
+    </Button>)
+  }
   customMenu({ state, dispatch }) {
     const node = findSelectedNodeWithType(state.schema.nodes.image, state);
-
     return (
       <>
         <Button 
@@ -137,20 +164,8 @@ export default class Image extends Extension {
         ><CenterIcon style={{ width: '24px', height: '24px' }} /></Button>
         <Button tag="label">
           <ImagePlusIcon style={{ width: '24px', height: '24px' }} />
-          <input type="file" style={{ display: 'none' }} onChange={async (e) => {
-            const items = await readFiles(e.target.files);
-            const [item] = items;
-            if (!item) {
-              return;
-            }
-            if (this.onChange) {
-              const success = await this.onChange(items);
-              if (success) {
-                setBlockType(state.schema.nodes.image, {
-                  src: item.preview
-                })(state, dispatch);
-              }
-            }
+          <input type="file" style={{ display: 'none' }} onChange={(e) => {
+            this.changeImage(state, dispatch, e.target.files);
           }} />
         </Button>
       </>
@@ -161,8 +176,5 @@ export default class Image extends Extension {
   }
   enable(state) {
     return setBlockType(state.schema.nodes.image)(state);
-  }
-  onClick (state: EditorState, dispatch) {
-
   }
 }

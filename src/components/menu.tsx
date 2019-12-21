@@ -47,8 +47,8 @@ const PositionBtnGroupBottom = styled.div`
 `
 
 interface PositionProps {
-  view: EditorView
-  menu: any
+  view: EditorView;
+  menu: any;
 }
 
 const calculateStyle = (props: PositionProps): React.CSSProperties => {
@@ -189,6 +189,9 @@ export default (props: PositionProps) => {
     <PositionBtnGroup style={style}>
       <PositionBtnGroupTop>
         {menu.map((item, key) => {
+          if (item.customButton) {
+            return item.customButton({ state, dispatch });
+          }
           return (
             <ButtonStyle
               key={key}
