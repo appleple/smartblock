@@ -1,34 +1,34 @@
-import * as React from 'react'
-import { setBlockType } from 'prosemirror-commands'
-import uuid from 'uuid'
-import HeadingIcon from '../components/icons/Heading4'
-import AlignLeftIcon from '../components/icons/AlignLeft'
-import AlignCenterIcon from '../components/icons/AlignCenter'
-import AlignRightIcon from '../components/icons/AlignRight'
-import { Extension, ExtensionProps } from '../types'
-import { blockActive, getParentNodeFromState } from '../utils'
-import Button from '../components/button'
+import * as React from 'react';
+import { setBlockType } from 'prosemirror-commands';
+import uuid from 'uuid';
+import HeadingIcon from '../components/icons/Heading4';
+import AlignLeftIcon from '../components/icons/AlignLeft';
+import AlignCenterIcon from '../components/icons/AlignCenter';
+import AlignRightIcon from '../components/icons/AlignRight';
+import { Extension, ExtensionProps } from '../types';
+import { blockActive, getParentNodeFromState } from '../utils';
+import Button from '../components/button';
 
 export default class Heading4 extends Extension {
   constructor(props?: ExtensionProps) {
-    super(props)
+    super(props);
   }
 
   get name() {
-    return 'heading4'
+    return 'heading4';
   }
 
   get group() {
-    return 'block'
+    return 'block';
   }
 
   get showMenu() {
-    return true
+    return true;
   }
 
   get schema() {
     if (this.customSchema) {
-      return this.customSchema
+      return this.customSchema;
     }
     return {
       content: 'inline*',
@@ -67,15 +67,15 @@ export default class Heading4 extends Extension {
   }
 
   active(state) {
-    return blockActive(state.schema.nodes.heading4)(state)
+    return blockActive(state.schema.nodes.heading4)(state);
   }
 
   enable(state) {
-    return setBlockType(state.schema.nodes.heading4)(state)
+    return setBlockType(state.schema.nodes.heading4)(state);
   }
 
   customMenu({ state, dispatch }) {
-    const node = getParentNodeFromState(state)
+    const node = getParentNodeFromState(state);
     return (
       <>
         <Button
@@ -84,7 +84,7 @@ export default class Heading4 extends Extension {
           onClick={() => {
             setBlockType(state.schema.nodes.heading4, {
               align: 'left'
-            })(state, dispatch)
+            })(state, dispatch);
           }}
         >
           <AlignLeftIcon style={{ width: '24px', height: '24px' }} />
@@ -95,7 +95,7 @@ export default class Heading4 extends Extension {
           onClick={() => {
             setBlockType(state.schema.nodes.heading4, {
               align: 'center'
-            })(state, dispatch)
+            })(state, dispatch);
           }}
         >
           <AlignCenterIcon style={{ width: '24px', height: '24px' }} />
@@ -106,7 +106,7 @@ export default class Heading4 extends Extension {
           onClick={() => {
             setBlockType(state.schema.nodes.heading4, {
               align: 'right'
-            })(state, dispatch)
+            })(state, dispatch);
           }}
         >
           <AlignRightIcon style={{ width: '24px', height: '24px' }} />
@@ -116,6 +116,6 @@ export default class Heading4 extends Extension {
   }
 
   onClick(state, dispatch) {
-    setBlockType(state.schema.nodes.heading4)(state, dispatch)
+    setBlockType(state.schema.nodes.heading4)(state, dispatch);
   }
 }

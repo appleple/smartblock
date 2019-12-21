@@ -11,24 +11,24 @@ import Button from '../components/button'
 
 export default class Paragraph extends Extension {
   constructor(props?: ExtensionProps) {
-    super(props)
+    super(props);
   }
 
   get name() {
-    return 'paragraph'
+    return 'paragraph';
   }
 
   get group() {
-    return 'block'
+    return 'block';
   }
 
   get showMenu() {
-    return true
+    return true;
   }
 
   get schema() {
     if (this.customSchema) {
-      return this.customSchema
+      return this.customSchema;
     }
     return {
       content: 'inline*',
@@ -66,15 +66,15 @@ export default class Paragraph extends Extension {
   }
 
   active(state) {
-    return blockActive(state.schema.nodes.paragraph)(state)
+    return blockActive(state.schema.nodes.paragraph)(state);
   }
 
   enable(state) {
-    return setBlockType(state.schema.nodes.paragraph)(state)
+    return setBlockType(state.schema.nodes.paragraph)(state);
   }
 
   customMenu({ state, dispatch }) {
-    const node = getParentNodeFromState(state)
+    const node = getParentNodeFromState(state);
     return (
       <>
         <Button
@@ -83,7 +83,7 @@ export default class Paragraph extends Extension {
           onClick={() => {
             setBlockType(state.schema.nodes.paragraph, {
               align: 'left'
-            })(state, dispatch)
+            })(state, dispatch);
           }}
         >
           <AlignLeftIcon style={{ width: '24px', height: '24px' }} />
@@ -94,7 +94,7 @@ export default class Paragraph extends Extension {
           onClick={() => {
             setBlockType(state.schema.nodes.paragraph, {
               align: 'center'
-            })(state, dispatch)
+            })(state, dispatch);
           }}
         >
           <AlignCenterIcon style={{ width: '24px', height: '24px' }} />
@@ -105,7 +105,7 @@ export default class Paragraph extends Extension {
           onClick={() => {
             setBlockType(state.schema.nodes.paragraph, {
               align: 'right'
-            })(state, dispatch)
+            })(state, dispatch);
           }}
         >
           <AlignRightIcon style={{ width: '24px', height: '24px' }} />
@@ -115,6 +115,6 @@ export default class Paragraph extends Extension {
   }
 
   onClick(state, dispatch) {
-    setBlockType(state.schema.nodes.paragraph)(state, dispatch)
+    setBlockType(state.schema.nodes.paragraph)(state, dispatch);
   }
 }

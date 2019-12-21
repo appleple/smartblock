@@ -1,27 +1,27 @@
-import Paragraph from './paragraph'
-import Heading2 from './heading1'
-import Heading3 from './heading2'
-import ListItem from './list-item'
-import BulletList from './bullet-list'
-import OrderedList from './ordered-list'
-import Table from './table' // WIP
-import BlockQuote from './blockquote'
-import Embed from './embed'
-import Code from './code'
+import Paragraph from './paragraph';
+import Heading2 from './heading1';
+import Heading3 from './heading2';
+import ListItem from './list-item';
+import BulletList from './bullet-list';
+import OrderedList from './ordered-list';
+import Table from './table';
+import BlockQuote from './blockquote';
+import Embed from './embed';
+import Code from './code';
 
-import Underline from './underline'
-import Strike from './strike'
-import Strong from './strong'
-import Link from './link'
-import Emphasis from './emphasis'
+import Underline from './underline';
+import Strike from './strike';
+import Strong from './strong';
+import Link from './link';
+import Emphasis from './emphasis';
 
-import Trash from './trash'
-import MoveUp from './move-up'
-import MoveDown from './move-down'
+import Trash from './trash';
+import MoveUp from './move-up';
+import MoveDown from './move-down';
 
-import DefaultKeys from './default-keys'
-import DefaultPlugins from './default-plugins'
-import { Extension } from '..'
+import DefaultKeys from './default-keys';
+import DefaultPlugins from './default-plugins';
+import { Extension } from '..';
 
 export default [
   // blocks
@@ -48,6 +48,6 @@ export default [
   // default
   new DefaultKeys(),
   new DefaultPlugins({
-    placeholder: 'ここに本文を入力'
+    placeholder: 'Content here...'
   })
 ] as Extension[]

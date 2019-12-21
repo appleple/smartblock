@@ -1,21 +1,21 @@
-import { history } from 'prosemirror-history'
-import { dropCursor } from 'prosemirror-dropcursor'
-import { gapCursor } from 'prosemirror-gapcursor'
-import { Plugin } from 'prosemirror-state'
-import { Decoration, DecorationSet } from 'prosemirror-view'
-import { Extension } from '../types'
+import { history } from 'prosemirror-history';
+import { dropCursor } from 'prosemirror-dropcursor';
+import { gapCursor } from 'prosemirror-gapcursor';
+import { Plugin } from 'prosemirror-state';
+import { Decoration, DecorationSet } from 'prosemirror-view';
+import { Extension } from '../types';
 
-import 'prosemirror-tables/style/tables.css'
-import 'prosemirror-gapcursor/style/gapcursor.css'
-import '@aeaton/prosemirror-footnotes/style/footnotes.css'
-import '@aeaton/prosemirror-placeholder/style/placeholder.css'
+import 'prosemirror-tables/style/tables.css';
+import 'prosemirror-gapcursor/style/gapcursor.css';
+import '@aeaton/prosemirror-footnotes/style/footnotes.css';
+import '@aeaton/prosemirror-placeholder/style/placeholder.css';
 
 const currentElementPlugin = () => {
   return new Plugin({
     props: {
       decorations(state) {
-        const { selection } = state
-        const decorations = []
+        const { selection } = state;
+        const decorations = [];
         state.doc.nodesBetween(
           selection.from,
           selection.to,
@@ -29,7 +29,7 @@ const currentElementPlugin = () => {
             }
           }
         )
-        return DecorationSet.create(state.doc, decorations)
+        return DecorationSet.create(state.doc, decorations);
       }
     }
   })
@@ -39,8 +39,8 @@ const placeholderPlugin = () => {
   return new Plugin({
     props: {
       decorations: state => {
-        const decorations = []
-        const { doc } = state
+        const decorations = [];
+        const { doc } = state;
         const decorate = (node, pos) => {
         if (
           doc.childCount == 1 &&
@@ -54,22 +54,22 @@ const placeholderPlugin = () => {
             )
           }
         }
-        state.doc.descendants(decorate)
-        return DecorationSet.create(state.doc, decorations)
+        state.doc.descendants(decorate);
+        return DecorationSet.create(state.doc, decorations);
       },
     },
   })
 }
 
 type Config = {
-  placeholder: string
+  placeholder: string;
 }
 
 export default class DefaultPlugins implements Extension {
-  placeholder: string
+  placeholder: string;
 
   constructor(config: Config) {
-    this.placeholder = config.placeholder
+    this.placeholder = config.placeholder;
   }
 
   get name() {
@@ -77,7 +77,7 @@ export default class DefaultPlugins implements Extension {
   }
 
   get showMenu() {
-    return false
+    return false;
   }
 
   get plugins() {

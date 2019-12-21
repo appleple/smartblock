@@ -10,20 +10,20 @@ export default class Emphasis extends Extension {
   }
 
   get name() {
-    return 'em'
+    return 'em';
   }
 
   get group() {
-    return 'mark'
+    return 'mark';
   }
 
   get showMenu() {
-    return true
+    return true;
   }
 
   get schema() {
     if (this.customSchema) {
-      return this.customSchema
+      return this.customSchema;
     }
     return {
       group: 'mark',
@@ -43,10 +43,10 @@ export default class Emphasis extends Extension {
   }
 
   active(state) {
-    return markActive(state.schema.marks.em)(state)
+    return markActive(state.schema.marks.em)(state);
   }
 
   onClick(state, dispatch) {
-    toggleMark(state.schema.marks.em)(state, dispatch)
+    toggleMark(state.schema.marks.em)(state, dispatch);
   }
 }

@@ -6,19 +6,19 @@ import { markActive } from '../utils'
 
 export default class StrikeThrough extends Extension {
   constructor(props?: ExtensionProps) {
-    super(props)
+    super(props);
   }
 
   get name() {
-    return 'strike'
+    return 'strike';
   }
 
   get group() {
-    return 'mark'
+    return 'mark';
   }
 
   get showMenu() {
-    return true
+    return true;
   }
 
   get schema() {
@@ -47,10 +47,10 @@ export default class StrikeThrough extends Extension {
   }
 
   active(state) {
-    return markActive(state.schema.marks.strike)(state)
+    return markActive(state.schema.marks.strike)(state);
   }
 
   onClick(state, dispatch) {
-    toggleMark(state.schema.marks.strike)(state, dispatch)
+    toggleMark(state.schema.marks.strike)(state, dispatch);
   }
 }

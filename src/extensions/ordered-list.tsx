@@ -1,34 +1,34 @@
-import * as React from 'react'
-import { wrapInList, sinkListItem } from 'prosemirror-schema-list'
-import uuid from 'uuid'
-import OrderedListIcon from '../components/icons/OrderedList'
-import IndentIcon from '../components/icons/Indent'
-import UndentIcon from '../components/icons/Undent'
-import { liftListItem, blockActive, getParentNodeFromState } from '../utils'
-import { Extension, ExtensionProps } from '../types'
+import * as React from 'react';
+import { wrapInList, sinkListItem } from 'prosemirror-schema-list';
+import uuid from 'uuid';
+import OrderedListIcon from '../components/icons/OrderedList';
+import IndentIcon from '../components/icons/Indent';
+import UndentIcon from '../components/icons/Undent';
+import { liftListItem, blockActive, getParentNodeFromState } from '../utils';
+import { Extension, ExtensionProps } from '../types';
 
-import Button from '../components/button'
+import Button from '../components/button';
 
 export default class OrderedList extends Extension {
   constructor(props?: ExtensionProps) {
-    super(props)
+    super(props);
   }
 
   get name() {
-    return 'ordered_list'
+    return 'ordered_list';
   }
 
   get group() {
-    return 'block'
+    return 'block';
   }
 
   get showMenu() {
-    return true
+    return true;
   }
 
   get schema() {
     if (this.customSchema) {
-      return this.customSchema
+      return this.customSchema;
     }
     return {
       content: 'list_item+',
@@ -68,23 +68,23 @@ export default class OrderedList extends Extension {
   }
 
   active(state) {
-    return blockActive(state.schema.nodes.ordered_list)(state)
+    return blockActive(state.schema.nodes.ordered_list)(state);
   }
 
   enable(state) {
-    const node = getParentNodeFromState(state)
+    const node = getParentNodeFromState(state);
     if (node.type.name !== 'paragraph') {
-      return false
+      return false;
     }
-    return wrapInList(state.schema.nodes.ordered_list)(state)
+    return wrapInList(state.schema.nodes.ordered_list)(state);
   }
 
   onClick(state, dispatch) {
-    const node = getParentNodeFromState(state)
+    const node = getParentNodeFromState(state);
     if (node.type.name !== 'paragraph') {
-      return false
+      return false;
     }
-    wrapInList(state.schema.nodes.ordered_list)(state, dispatch)
+    wrapInList(state.schema.nodes.ordered_list)(state, dispatch);
   }
 
   customMenu({ state, dispatch }) {

@@ -1,26 +1,26 @@
-import { splitListItem, sinkListItem } from 'prosemirror-schema-list'
-import { Schema } from 'prosemirror-model'
-import { chainCommands } from 'prosemirror-commands'
-import uuid from 'uuid'
-import { Extension, ExtensionProps } from '../types'
-import { liftListItem } from '../utils'
+import { splitListItem, sinkListItem } from 'prosemirror-schema-list';
+import { Schema } from 'prosemirror-model';
+import { chainCommands } from 'prosemirror-commands';
+import uuid from 'uuid';
+import { Extension, ExtensionProps } from '../types';
+import { liftListItem } from '../utils';
 
 export default class ListItem extends Extension {
   constructor(props?: ExtensionProps) {
-    super(props)
+    super(props);
   }
 
   get name() {
-    return 'list_item'
+    return 'list_item';
   }
 
   get showMenu() {
-    return false
+    return false;
   }
 
   get schema() {
     if (this.customSchema) {
-      return this.customSchema
+      return this.customSchema;
     }
     return {
       content: 'paragraph block*',

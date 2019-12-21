@@ -5,31 +5,31 @@ import { markActive, getUniqId } from '../utils'
 export default class CustomMark extends Extension {
   constructor(props?: ExtensionProps) {
     if (!props.customName) {
-      props.customName = getUniqId()
+      props.customName = getUniqId();
     }
-    super(props)
+    super(props);
   }
 
   get name() {
-    return this.customName
+    return this.customName;
   }
 
   get group() {
-    return 'mark'
+    return 'mark';
   }
 
   get showMenu() {
-    return true
+    return true;
   }
 
   get schema() {
     if (this.customSchema) {
-      return this.customSchema
+      return this.customSchema;
     }
-    const { className, tagName } = this
-    let tag = tagName
+    const { className, tagName } = this;
+    let tag = tagName;
     if (className) {
-      tag += `.${className.replace(/\s/g, '.')}`
+      tag += `.${className.replace(/\s/g, '.')}`;
     }
     return {
       group: 'mark',
@@ -49,14 +49,14 @@ export default class CustomMark extends Extension {
   }
 
   get icon() {
-    return this.customIcon
+    return this.customIcon;
   }
 
   active(state) {
-    return markActive(state.schema.marks[this.name])(state)
+    return markActive(state.schema.marks[this.name])(state);
   }
 
   onClick(state, dispatch) {
-    toggleMark(state.schema.marks[this.name])(state, dispatch)
+    toggleMark(state.schema.marks[this.name])(state, dispatch);
   }
 }
