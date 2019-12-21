@@ -1,6 +1,6 @@
-import { findChildren } from 'prosemirror-utils'
-import { EditorState } from 'prosemirror-state'
-import { EditorView } from 'prosemirror-view'
+import { findChildren } from 'prosemirror-utils';
+import { EditorState } from 'prosemirror-state';
+import { EditorView } from 'prosemirror-view';
 import {
   Node,
   Slice,
@@ -8,9 +8,9 @@ import {
   NodeRange,
   DOMSerializer,
   Schema
-} from 'prosemirror-model'
-import { liftTarget, ReplaceAroundStep } from 'prosemirror-transform'
-import { Dispatch } from '../types'
+} from 'prosemirror-model';
+import { liftTarget, ReplaceAroundStep } from 'prosemirror-transform';
+import { Dispatch } from '../types';
 
 export const getScrollTop = () => {
   return (
@@ -18,7 +18,7 @@ export const getScrollTop = () => {
     document.documentElement.scrollTop ||
     document.body.scrollTop ||
     0
-  )
+  );
 }
 
 export const getScrollLeft = () => {
@@ -27,7 +27,7 @@ export const getScrollLeft = () => {
     document.documentElement.scrollLeft ||
     document.body.scrollLeft ||
     0
-  )
+  );
 }
 
 export const getOffset = el => {
@@ -39,7 +39,7 @@ export const getOffset = el => {
 }
 
 export const isInput = (el: HTMLElement) => {
-  return el.isContentEditable
+  return el.isContentEditable;
 }
 
 export const getViewport = () => {
@@ -73,7 +73,7 @@ export const getViewport = () => {
         viewport.height * (viewport.height > viewport.width ? 0.34 : 0.55)
     }
   }
-  return viewport
+  return viewport;
 }
 
 export const markActive = type => state => {
