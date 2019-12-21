@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { setTextSelection, findChildren } from 'prosemirror-utils';
+import { setTextSelection } from 'prosemirror-utils';
 import MoveUpIcon from '../components/icons/GoUp';
 import { Extension } from '../types';
 import {
