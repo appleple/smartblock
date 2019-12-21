@@ -16,7 +16,7 @@ export default class Image extends Extension {
   imgClassName: string;
   imgFullClassName: string;
   captionClassName: string;
-  onChange: (files: File[]) => Promise<boolean> = (files) => Promise.resolve(true);
+  onChange: (preview: string) => Promise<string> = (preview) => Promise.resolve(preview);
 
   constructor(props) {
     super(props);
@@ -106,10 +106,10 @@ export default class Image extends Extension {
       return;
     }
     if (this.onChange) {
-      const success = await this.onChange(items);
+      const success = await this.onChange(item.preview);
       if (success) {
         setBlockType(state.schema.nodes.image, {
-          src: item.preview
+          src: success
         })(state, dispatch);
       }
     }
