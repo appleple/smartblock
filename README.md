@@ -42,7 +42,37 @@ render(<>
 
 ## Extensions
 
+### Blocks
 
+- Pragraph
+- Heading1
+- Heading2
+- Heading3
+- Heading4
+- Heading5
+- Heading6
+- OrderdList
+- BulletList
+- ListItem
+- Blockquoe
+- Table
+- Code
+- Image
+
+### Marks
+
+- Emphasis
+- Strike
+- Strong
+- Underline
+
+### Utils
+
+- MoveDown
+- MoveUp
+- Trash
+- DefaultKeys
+- DefaultPlugins
 
 ## Customize
 
