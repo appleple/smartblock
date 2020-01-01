@@ -1,6 +1,6 @@
 {
   "name": "smartblock",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "intuitive block based wysiwyg editor",
   "main": "lib/index.js",
   "type": "lib/index.d.ts",
