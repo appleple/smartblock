@@ -2,11 +2,17 @@
 import { EditorState } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 declare type EditorProps = {
-    onChange(state: EditorState, dispatch: typeof EditorView.prototype.dispatch): any;
-    attributes?: any;
-    nodeViews?: any;
+    onChange(state: EditorState, dispatch: typeof EditorView.prototype.dispatch): void;
+    attributes?: {
+        [index: string]: any;
+    };
+    nodeViews?: {
+        [index: string]: any;
+    };
     autoFocus?: boolean;
-    options: any;
+    options: {
+        [index: string]: any;
+    };
     render?({ editor: EditorState, view: EditorView }: {
         editor: any;
         view: any;

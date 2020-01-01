@@ -4,6 +4,7 @@ import { findChildren } from 'prosemirror-utils';
 import { EditorView } from 'prosemirror-view';
 import { getOffset } from '../utils';
 import ButtonStyle from './button';
+import { Extension } from '..';
 
 const { useState, useEffect } = React;
 
@@ -147,7 +148,6 @@ export default (props: PositionProps) => {
             type="button"
             color={item.btnColor}
             active={item.active && item.active(state)}
-            title={item.title}
             disabled={item.enable && !item.enable(state)}
             onClick={e => {
               e.preventDefault();
