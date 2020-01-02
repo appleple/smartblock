@@ -4,6 +4,7 @@ import { findBlockNodes } from 'prosemirror-utils';
 import * as low from 'lowlight';
 
 function getDecorations({ doc, name }) {
+
   const decorations = [];
   const blocks = findBlockNodes(doc).filter(
     item => item.node.type.name === name

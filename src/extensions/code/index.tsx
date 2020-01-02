@@ -69,6 +69,7 @@ export default class Code extends Extension {
         {
           tag: 'code',
           getAttrs(dom) {
+            dom.innerHTML = dom.innerHTML.replace(/\n/g, '<br/>');
             return {
               id: dom.getAttribute('id') || uuid(),
               lang: dom.getAttribute('class') ? dom.getAttribute('class') : defaultLang

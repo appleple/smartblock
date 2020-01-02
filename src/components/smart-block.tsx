@@ -7,6 +7,7 @@ import { chainCommands } from 'prosemirror-commands';
 import scrollTo from 'scroll-to';
 import { EditorState } from 'prosemirror-state';
 import * as uuid from 'uuid/v4'
+import { Converter }  from 'showdown';
 
 import Editor from './editor';
 import InlineMenu from './inline-menu';
@@ -19,6 +20,8 @@ import { getScrollTop, getOffset, getViewport, getHtmlFromNode, getParentNodeFro
 import defaultExtensions from '../extensions'
 import { Extension } from '../types'
 
+const converter = new Converter();
+converter.setFlavor('github');
 const { useState, useEffect, useRef } = React;
 
 const Input = styled('div')`
@@ -65,6 +68,7 @@ type AppProps = {
   onInit?(json: { schema: Schema }): void;
   json?: OutputJson;
   html?: string;
+  markdown?: string;
   extensions?: Extension[];
   offsetTop?: number;
   showBackBtn?: boolean;
@@ -234,6 +238,7 @@ const onChange = (
     const html = getHtmlFromNode(doc, schema)
     props.onChange({
       json: doc.toJSON(),
+      markdown: converter.makeMd(html),
       html,
       schema
     })
@@ -316,7 +321,7 @@ export default (props: AppProps) => {
   }
 
   props = Object.assign({}, defaultProps, props);
-  const { html, json, extensions, showBackBtn, showTitle } = props
+  const { html, json, extensions, showBackBtn, showTitle, markdown } = props
   let { titleText } = props
   const schema = getSchemaFromExtensions(props.extensions)
   let realHtml = html
@@ -325,6 +330,10 @@ export default (props: AppProps) => {
   if (json) {
     const node = Node.fromJSON(schema, json)
     realHtml = getHtmlFromNode(node, schema)
+  }
+
+  if (markdown) {
+    realHtml = converter.makeHtml(markdown);
   }
 
   if (props.autoSave) {

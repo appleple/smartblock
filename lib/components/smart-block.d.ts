@@ -12,6 +12,7 @@ declare type AppProps = {
     }): void;
     json?: OutputJson;
     html?: string;
+    markdown?: string;
     extensions?: Extension[];
     offsetTop?: number;
     showBackBtn?: boolean;
