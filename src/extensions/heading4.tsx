@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { setBlockType } from 'prosemirror-commands';
-import * as uuid from 'uuid'
+import * as uuid from 'uuid/v4'
 import HeadingIcon from '../components/icons/Heading4';
 import AlignLeftIcon from '../components/icons/AlignLeft';
 import AlignCenterIcon from '../components/icons/AlignCenter';

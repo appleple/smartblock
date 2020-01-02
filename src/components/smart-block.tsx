@@ -6,7 +6,7 @@ import { keymap } from 'prosemirror-keymap';
 import { chainCommands } from 'prosemirror-commands';
 import scrollTo from 'scroll-to';
 import { EditorState } from 'prosemirror-state';
-import * as uuid from 'uuid'
+import * as uuid from 'uuid/v4'
 
 import Editor from './editor';
 import InlineMenu from './inline-menu';

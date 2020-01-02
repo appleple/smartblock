@@ -2,7 +2,6 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
     "outDir": "./lib",
     "sourceMap": true,
