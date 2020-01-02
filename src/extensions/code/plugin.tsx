@@ -1,7 +1,7 @@
 import { Plugin } from 'prosemirror-state';
 import { Decoration, DecorationSet } from 'prosemirror-view';
 import { findBlockNodes } from 'prosemirror-utils';
-import low from 'lowlight';
+import * as low from 'lowlight';
 
 function getDecorations({ doc, name }) {
   const decorations = [];

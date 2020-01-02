@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { setBlockType } from 'prosemirror-commands';
-import uuid from 'uuid';
+import * as uuid from 'uuid'
 import { getParentNodeFromState } from '../../utils';
 import { Extension, ExtensionProps } from '../../types';
 import { blockActive } from '../../utils';

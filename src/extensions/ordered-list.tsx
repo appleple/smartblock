@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { wrapInList, sinkListItem } from 'prosemirror-schema-list';
-import uuid from 'uuid';
+import * as uuid from 'uuid'
 import OrderedListIcon from '../components/icons/OrderedList';
 import IndentIcon from '../components/icons/Indent';
 import UndentIcon from '../components/icons/Undent';

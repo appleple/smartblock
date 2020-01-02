@@ -3,7 +3,7 @@ import ImageIcon from './image-icon';
 import { blockActive, findSelectedNodeWithType } from '../../utils';
 import { Extension, Dispatch } from '../../types'
 import { setBlockType } from 'prosemirror-commands';
-import uuid from 'uuid';
+import * as uuid from 'uuid'
 import { EditorState } from 'prosemirror-state';
 import { MediaPlugin } from './plugins';
 import { hasClass, readFiles } from './util';
