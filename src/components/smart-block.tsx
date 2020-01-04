@@ -56,6 +56,13 @@ type OutputJson = {
   [key: string]: any;
 }
 
+type Output = {
+  json: OutputJson;
+  html: string;
+  schema: Schema;
+  markdown?: string;
+}
+
 type EditorOptions = {
   schema: Schema<any, any>;
   plugins: any[];
@@ -63,7 +70,7 @@ type EditorOptions = {
 }
 
 type AppProps = {
-  onChange?(json: OutputJson): void;
+  onChange?(output: Output): void;
   onTitleChange?(title: string): void;
   onInit?(json: { schema: Schema }): void;
   json?: OutputJson;
@@ -76,6 +83,7 @@ type AppProps = {
   showTitle?: boolean;
   titleText?: string;
   titlePlaceholder?: string;
+  outputMarkdown?: boolean;
   full?: boolean;
   getEditorRef?(div: React.MutableRefObject<HTMLDivElement>): void;
 }
@@ -236,12 +244,17 @@ const onChange = (
   }
   if (props.onChange) {
     const html = getHtmlFromNode(doc, schema)
-    props.onChange({
+    const change: Output = {
       json: doc.toJSON(),
-      markdown: converter.makeMd(html),
       html,
       schema
-    })
+    };
+
+    if (props.outputMarkdown) {
+      change.markdown = converter.makeMd(html)
+    }
+
+    props.onChange(change);
   }
   if (props.autoSave) {
     const { pathname } = location;

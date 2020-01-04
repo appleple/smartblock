@@ -4,8 +4,14 @@ import { Extension } from '../types';
 declare type OutputJson = {
     [key: string]: any;
 };
+declare type Output = {
+    json: OutputJson;
+    html: string;
+    schema: Schema;
+    markdown?: string;
+};
 declare type AppProps = {
-    onChange?(json: OutputJson): void;
+    onChange?(output: Output): void;
     onTitleChange?(title: string): void;
     onInit?(json: {
         schema: Schema;
@@ -20,6 +26,7 @@ declare type AppProps = {
     showTitle?: boolean;
     titleText?: string;
     titlePlaceholder?: string;
+    outputMarkdown?: boolean;
     full?: boolean;
     getEditorRef?(div: React.MutableRefObject<HTMLDivElement>): void;
 };

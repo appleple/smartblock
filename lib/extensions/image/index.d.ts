@@ -5,7 +5,7 @@ export default class Image extends Extension {
     imgClassName: string;
     imgFullClassName: string;
     captionClassName: string;
-    onChange: (preview: string) => Promise<string>;
+    onChange: (preview: string, file: File) => Promise<string>;
     constructor(props: any);
     readonly name: string;
     readonly showMenu: boolean;
