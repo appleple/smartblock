@@ -187,7 +187,7 @@ export default (props: PositionProps) => {
   }
 
   return (
-    <PositionBtnGroup style={style}>
+    <PositionBtnGroup style={style} className="smartblock-menu">
       <PositionBtnGroupTop>
         {menu.map((item, key) => {
           if (item.customButton) {
