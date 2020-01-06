@@ -87,6 +87,40 @@ describe('menu', () => {
     expect(item).toBeTruthy();
   });
 
+  it('should not have custom-menu when the selected extension return null', () => {
+    class TestParagraph extends Paragraph {
+      customMenu() {
+        return null;
+      }
+    }
+    const paragraph = new TestParagraph();
+    const view = getEditorViewFromExtensions([paragraph]);
+    const menu = TestRenderer.create(<Menu view={view} menu={[paragraph]} />);
+    view.dispatch(
+      setTextSelection(1)(
+        view.state.tr
+      )
+    );
+    view.coordsAtPos = () => ({
+      top: 100,
+      left: 0,
+      right: 0,
+      bottom: 0
+    });
+    TestRenderer.act(() => {
+      menu.update(<Menu view={view} menu={[paragraph]} />);
+    });
+    expect(() => {
+      try {
+        const item = menu.root.findByProps({
+          className: 'smartblock-custom-menu'
+        });
+      } catch (e) {
+        throw e;
+      }
+    }).toThrowError();
+  });
+
   it('should have active menu', () => {
     const paragraph = new Paragraph();
     const view = getEditorViewFromExtensions([paragraph]);
