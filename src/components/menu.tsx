@@ -214,7 +214,7 @@ export default (props: PositionProps) => {
         })}
       </PositionBtnGroupTop>
       {CustomMenu && CustomMenu.props && CustomMenu.props.children && (
-        <PositionBtnGroupBottom>{CustomMenu}</PositionBtnGroupBottom>
+        <PositionBtnGroupBottom className="smartblock-custom-menu">{CustomMenu}</PositionBtnGroupBottom>
       )}
     </PositionBtnGroup>
   )

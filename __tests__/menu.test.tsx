@@ -62,4 +62,55 @@ describe('menu', () => {
     });
     expect(menu.root.children.length).toBe(0);
   });
+
+  it('should have custom-menu when the selected extension has', () => {
+    const paragraph = new Paragraph();
+    const view = getEditorViewFromExtensions([paragraph]);
+    const menu = TestRenderer.create(<Menu view={view} menu={[paragraph]} />);
+    view.dispatch(
+      setTextSelection(1)(
+        view.state.tr
+      )
+    );
+    view.coordsAtPos = () => ({
+      top: 100,
+      left: 0,
+      right: 0,
+      bottom: 0
+    });
+    TestRenderer.act(() => {
+      menu.update(<Menu view={view} menu={[paragraph]} />);
+    });
+    const item = menu.root.findByProps({
+      className: 'smartblock-custom-menu'
+    });
+    expect(item).toBeTruthy();
+  });
+
+  it('should have active menu', () => {
+    const paragraph = new Paragraph();
+    const view = getEditorViewFromExtensions([paragraph]);
+    const menu = TestRenderer.create(<Menu view={view} menu={[paragraph]} />);
+    view.dispatch(
+      setTextSelection(1)(
+        view.state.tr
+      )
+    );
+    view.coordsAtPos = () => ({
+      top: 100,
+      left: 0,
+      right: 0,
+      bottom: 0
+    });
+    TestRenderer.act(() => {
+      menu.update(<Menu view={view} menu={[paragraph]} />);
+    });
+    const item = menu.root.findByProps({
+      className: 'smartblock-custom-menu'
+    });
+    const button = item.findAllByProps({
+      active: true
+    });
+    expect(button).toBeTruthy();
+  });
 })
