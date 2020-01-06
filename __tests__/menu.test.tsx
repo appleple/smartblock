@@ -16,7 +16,6 @@ describe('menu', () => {
     const paragraph = new Paragraph();
     const view = getEditorViewFromExtensions([paragraph]);
     const menu = TestRenderer.create(<Menu view={view} menu={[paragraph]} />);
-    const { tr } = view.state;
     view.dispatch(
       setTextSelection(1)(
         view.state.tr
@@ -38,7 +37,29 @@ describe('menu', () => {
     expect(item.props.style.top).not.toBe(-1000);
   });
 
-  it('should not render when the extension does not allow to do so', () => {
-
+  it('should not render when the extension does not allow to show menu', () => {
+    class TestParagraph extends Paragraph {
+      get hideMenuOnFocus() {
+        return true;
+      }
+    }
+    const paragraph = new TestParagraph();
+    const view = getEditorViewFromExtensions([paragraph]);
+    const menu = TestRenderer.create(<Menu view={view} menu={[paragraph]} />);
+    view.dispatch(
+      setTextSelection(1)(
+        view.state.tr
+      )
+    );
+    view.coordsAtPos = () => ({
+      top: 100,
+      left: 0,
+      right: 0,
+      bottom: 0
+    });
+    TestRenderer.act(() => {
+      menu.update(<Menu view={view} menu={[paragraph]} />);
+    });
+    expect(menu.root.children.length).toBe(0);
   });
 })
