@@ -59,8 +59,8 @@ const calculateStyle = (props: PositionProps): React.CSSProperties => {
 
   if (!selection || !selection.empty) {
     return {
-      left: -1000,
-      top: 0
+      top: -1000,
+      right: 0
     }
   }
 
@@ -68,8 +68,8 @@ const calculateStyle = (props: PositionProps): React.CSSProperties => {
 
   if ($anchor.pos === 0) {
     return {
-      right: -1000,
-      top: 0
+      top: -1000,
+      right: 0
     }
   }
 

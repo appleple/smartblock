@@ -136,7 +136,7 @@ const MenuBar = ({
   }
 
   return (
-    <FloaterStyle style={style} ref={container} pos={pos}>
+    <FloaterStyle style={style} ref={container} pos={pos} className="smartblock-inline-menu">
       <Bar>
         {children}
         {menu.map((item, key) => {
