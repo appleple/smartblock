@@ -1,6 +1,7 @@
-import { render } from 'preact';
+import * as React from 'react';
+import { render } from 'react-dom';
 
-export {
+import {
   /* components */
   SmartBlock,
   Button,
@@ -69,6 +70,9 @@ export {
 } from '../';
 
 
-export default () => {
-
+export default (item: string | HTMLElement, option) => {
+  const dom = typeof item === 'string' ? document.querySelector(item) : item;
+  render(<SmartBlock 
+    {...option}
+  />, dom);
 }
