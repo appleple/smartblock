@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { render } from 'react-dom';
 import SmartBlock from './lib/components/smart-block';
+import GlobalStyle from './lib/utils/style'
 import sample from './sample';
 
 
