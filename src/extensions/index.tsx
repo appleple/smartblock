@@ -4,10 +4,8 @@ import Heading3 from './heading2';
 import ListItem from './list-item';
 import BulletList from './bullet-list';
 import OrderedList from './ordered-list';
-import Table from './table';
 import BlockQuote from './blockquote';
 import Embed from './embed';
-import Code from './code';
 
 import Underline from './underline';
 import Strike from './strike';
@@ -21,7 +19,7 @@ import MoveDown from './move-down';
 
 import DefaultKeys from './default-keys';
 import DefaultPlugins from './default-plugins';
-import { Extension } from '..';
+import { Extension } from '../types/';
 
 export default [
   // blocks
@@ -32,8 +30,8 @@ export default [
   new BulletList(),
   new OrderedList(),
   new Embed(),
-  new Code(),
-  new Table(),
+  // new Code(),
+  // new Table(),
   new BlockQuote(),
   // marks
   new Strong(),
