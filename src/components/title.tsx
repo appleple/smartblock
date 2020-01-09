@@ -85,5 +85,5 @@ export default (props: TitleProps) => {
     titleRef.current.appendChild(view.dom)
   }, []);
   
-  return <div ref={titleRef} />
+  return <div ref={titleRef} className="smartblock-title" />
 }

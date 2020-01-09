@@ -143,7 +143,7 @@ const getSchemaFromExtensions = (extensions: Extension[]) => {
   }
   nodes = { ...nodes, ...base, ...nodeDependencies }
   const marks = getMarkSchemas(extensions)
-  return new Schema({ nodes, marks } as { nodes: any; marks: any })
+  return new Schema({ nodes, marks })
 }
 
 const getKeys = (extensions: Extension[], schema: Schema) => {
