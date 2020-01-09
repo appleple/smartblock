@@ -7,7 +7,7 @@
   "scripts": {
     "test": "jest **/*.test.tsx",
     "dev": "webpack-dev-server --config webpack.dev.js --host 0.0.0.0 --port 3031",
-    "build": "webpack --config webpack.prod.js && cp ./dist/main.js ./docs/main.js",
+    "build": "webpack --config webpack.prod.js",
     "build:lib": "rm -rf ./lib && tsc",
     "np": "np --no-cleanup",
     "lint": "eslint ./src/ --fix --ext .ts,.tsx",
