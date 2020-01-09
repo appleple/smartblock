@@ -1,11 +1,14 @@
 import SmartBlock from './src/adapter';
-import sample from './sample';
+import markdown from './sample';
+import * as showdown from 'showdown';
 
 SmartBlock('#app', {
   showTitle: true,
   titlePlaceholder: 'ここにタイトルを入力',
-  markdown: sample,
-  onChange: ({ html }) => {
-    console.log(html)
+  markdown,
+  showdown,
+  outputMarkdown: true,
+  onChange: ({ markdown }) => {
+    console.log(markdown)
   }
 });
