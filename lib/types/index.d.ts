@@ -2,6 +2,7 @@
 import { Node, Schema } from 'prosemirror-model';
 import { Plugin, EditorState, Transaction } from 'prosemirror-state';
 import { EditorView, NodeView } from 'prosemirror-view';
+import * as showdown from 'showdown';
 export interface ExtensionSchema {
     content?: string;
     group?: string;
@@ -72,4 +73,34 @@ export declare abstract class Extension {
     };
     btnColor?: 'black' | 'white';
 }
+declare type OutputJson = {
+    [key: string]: any;
+};
+export declare type Output = {
+    json: OutputJson;
+    html: string;
+    schema: Schema;
+    markdown?: string;
+};
+export declare type AppProps = {
+    onChange?(output: Output): void;
+    onTitleChange?(title: string): void;
+    onInit?(json: {
+        schema: Schema;
+    }): void;
+    json?: OutputJson;
+    html?: string;
+    markdown?: string;
+    showdown?: showdown;
+    extensions?: Extension[];
+    offsetTop?: number;
+    showBackBtn?: boolean;
+    autoSave?: boolean;
+    showTitle?: boolean;
+    titleText?: string;
+    titlePlaceholder?: string;
+    outputMarkdown?: boolean;
+    full?: boolean;
+    getEditorRef?(div: React.MutableRefObject<HTMLDivElement>): void;
+};
 export {};

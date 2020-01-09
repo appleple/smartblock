@@ -1,32 +1,38 @@
-import * as React from 'react';
-import { render } from 'react-dom';
-import { SmartBlock, GlobalStyle, Image, Heading3 } from './src/';
+import SmartBlock from './src/adapter';
 import extensions from './src/extensions/';
-import sample from './sample';
+import Code from './src/extensions/code';
+import markdown from './sample';
+import * as showdown from 'showdown';
 
+extensions.push(new Code());
 
-extensions.push(new Image({
-}));
+SmartBlock('#app', {
+  showTitle: true,
+  titlePlaceholder: 'ここにタイトルを入力',
+  markdown,
+  showdown,
+  outputMarkdown: true,
+  extensions,
+  onChange: ({ markdown }) => {
+    console.log(markdown)
+  }
+});
 
-render(<>
-  <GlobalStyle />
-  <SmartBlock
-    showTitle
-    titlePlaceholder="ここにタイトルを入力"
-    extensions={extensions}
-    titleText="SmartBlock.js"
-    markdown={sample}
-    // json={{
-    //   type: 'doc',
-    //   content: [
-    //   {
-    //     type: 'paragraph',
-    //     content: [{
-    //       type: 'text',
-    //       text: 'Example Paragraph'
-    //     }]
-    //   }
-    // ]}}
-    onChange={({ json, html }) => {
-    }} /></>,
-  document.querySelector('#app'));
+// JSX version
+// import * as React from 'react';
+// import { render } from 'react-dom';
+// import SmartBlock from './src/components/smartblock';
+// import GlobalStyle from './src/utils/style';
+// import extensions from './src/extensions';
+// ​
+// render(<>
+//   <GlobalStyle />
+//   <SmartBlock 
+// 	extensions={extensions} 
+// 	html="html" 
+// 	showTitle={true} 
+// 	onChange={({html}) => console.log(html)}
+//   />
+// </>,
+// document.getElementById('app')
+// );

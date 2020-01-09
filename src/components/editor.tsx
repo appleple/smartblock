@@ -10,10 +10,10 @@ type EditorProps = {
     state: EditorState,
     dispatch: typeof EditorView.prototype.dispatch
   ): any;
-  attributes?: any;
-  nodeViews?: any;
+  attributes?: any; //todo
+  nodeViews?: any; // todo
   autoFocus?: boolean;
-  options: any;
+  options: any; // todo
   render?({
     editor: EditorState,
     view: EditorView,

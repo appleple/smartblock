@@ -135,6 +135,10 @@ const MenuBar = ({
     return <></>
   }
 
+  if (menu.length === 0) {
+    return <></>
+  }
+
   return (
     <FloaterStyle style={style} ref={container} pos={pos} className="smartblock-inline-menu">
       <Bar>

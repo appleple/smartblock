@@ -22,6 +22,21 @@ describe('inline-menu', () => {
     expect(editMenu.root.children.length).toBe(0)
   });
 
+  it('should not have have menu when no menu', () => {
+    const paragraph = new Paragraph();
+    const strong = new Strong();
+    const view = getEditorViewFromExtensions([paragraph, strong]);
+    /* mock view.coordsAtPos */
+    view.coordsAtPos = (pos) => ({
+      top: 100,
+      left: 0,
+      right: 0,
+      bottom: 0
+    });
+    const editMenu = TestRenderer.create(<InlineMenu view={view} menu={[]} blockMenu={[paragraph]} />);
+    expect(editMenu.root.children.length).toBe(0)
+  });
+
   it('should have components when focused', () => {
     const paragraph = new Paragraph();
     const strong = new Strong();

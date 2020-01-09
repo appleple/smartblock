@@ -7,7 +7,6 @@ import { chainCommands } from 'prosemirror-commands';
 import scrollTo from 'scroll-to';
 import { EditorState } from 'prosemirror-state';
 import * as uuid from 'uuid/v4'
-import { Converter }  from 'showdown';
 
 import Editor from './editor';
 import InlineMenu from './inline-menu';
@@ -17,11 +16,10 @@ import BackBtn from './back-btn';
 import CustomLayout from './custom-layout';
 import Title from './title';
 import { getScrollTop, getOffset, getViewport, getHtmlFromNode, getParentNodeFromState } from '../utils'
-import defaultExtensions from '../extensions'
-import { Extension } from '../types'
+import defaultExtensions from '../extensions/base'
+import { Extension, AppProps, Output } from '../types'
 
-const converter = new Converter();
-converter.setFlavor('github');
+
 const { useState, useEffect, useRef } = React;
 
 const Input = styled('div')`
@@ -52,40 +50,10 @@ interface ProseRender {
   scrolling: boolean;
 }
 
-type OutputJson = {
-  [key: string]: any;
-}
-
-type Output = {
-  json: OutputJson;
-  html: string;
-  schema: Schema;
-  markdown?: string;
-}
-
 type EditorOptions = {
   schema: Schema<any, any>;
   plugins: any[];
   doc: Node<Schema<any, any>>;
-}
-
-type AppProps = {
-  onChange?(output: Output): void;
-  onTitleChange?(title: string): void;
-  onInit?(json: { schema: Schema }): void;
-  json?: OutputJson;
-  html?: string;
-  markdown?: string;
-  extensions?: Extension[];
-  offsetTop?: number;
-  showBackBtn?: boolean;
-  autoSave?: boolean;
-  showTitle?: boolean;
-  titleText?: string;
-  titlePlaceholder?: string;
-  outputMarkdown?: boolean;
-  full?: boolean;
-  getEditorRef?(div: React.MutableRefObject<HTMLDivElement>): void;
 }
 
 const EDITMENUHEIGHT = 80;
@@ -210,7 +178,8 @@ const onChange = (
   dispatch: typeof EditorView.prototype.dispatch,
   props: AppProps,
   schema: Schema,
-  container?: React.MutableRefObject<HTMLDivElement>
+  container?: React.MutableRefObject<HTMLDivElement>,
+  showdown?: any //any
 ) => {
   const { doc } = state
   if (container && container.current) {
@@ -250,7 +219,9 @@ const onChange = (
       schema
     };
 
-    if (props.outputMarkdown) {
+    if (props.outputMarkdown && showdown) {
+      const converter = new showdown.Converter();
+      converter.setFlavor('github');
       change.markdown = converter.makeMd(html)
     }
 
@@ -330,11 +301,11 @@ export default (props: AppProps) => {
     autoSave: false,
     showTitle: false,
     titleText: '',
-    full: false
+    full: false,
   }
 
   props = Object.assign({}, defaultProps, props);
-  const { html, json, extensions, showBackBtn, showTitle, markdown } = props
+  const { html, json, extensions, showBackBtn, showTitle, markdown, showdown } = props
   let { titleText } = props
   const schema = getSchemaFromExtensions(props.extensions)
   let realHtml = html
@@ -345,7 +316,9 @@ export default (props: AppProps) => {
     realHtml = getHtmlFromNode(node, schema)
   }
 
-  if (markdown) {
+  if (markdown && showdown) {
+    const converter = new showdown.Converter();
+    converter.setFlavor('github');
     realHtml = converter.makeHtml(markdown);
   }
 
@@ -425,7 +398,7 @@ export default (props: AppProps) => {
             options={options}
             nodeViews={nodeViews}
             onChange={(state, dispatch) => {
-              const shouldScroll = onChange(state, dispatch, props, schema, container);
+              const shouldScroll = onChange(state, dispatch, props, schema, container, showdown);
               if (shouldScroll) {
                 setTimeout(() => {
                   setShowMenus(true);
