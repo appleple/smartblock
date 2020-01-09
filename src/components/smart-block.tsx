@@ -16,7 +16,7 @@ import BackBtn from './back-btn';
 import CustomLayout from './custom-layout';
 import Title from './title';
 import { getScrollTop, getOffset, getViewport, getHtmlFromNode, getParentNodeFromState } from '../utils'
-import defaultExtensions from '../extensions'
+import defaultExtensions from '../extensions/base'
 import { Extension, AppProps, Output } from '../types'
 
 

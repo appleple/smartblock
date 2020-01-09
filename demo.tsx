@@ -1,5 +1,5 @@
 import SmartBlock from './src/adapter';
-import extensions from './src/extensions/base';
+import extensions from './src/extensions/';
 import Code from './src/extensions/code';
 import markdown from './sample';
 import * as showdown from 'showdown';

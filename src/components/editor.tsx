@@ -2,7 +2,6 @@ import * as React from 'react';
 import { EditorState } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import { useView, useScrolling } from '../utils/hooks';
-import * as showdown from 'showdown';
 
 const { useRef, useEffect } = React;
 
@@ -15,7 +14,6 @@ type EditorProps = {
   nodeViews?: any; // todo
   autoFocus?: boolean;
   options: any; // todo
-  showdown: showdown; // todo
   render?({
     editor: EditorState,
     view: EditorView,
