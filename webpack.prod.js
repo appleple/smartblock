@@ -4,7 +4,15 @@ const { CheckerPlugin } = require('awesome-typescript-loader');
 module.exports = {
   mode: "production",
   entry: {
-    main: './demo.tsx'
+    main: './src/adapter/index.tsx'
+  },
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: "bundle",
+    filename: '[name].js',
+    library: 'SmartBlock',
+    libraryExport: "default",
+    libraryTarget: 'umd'
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],

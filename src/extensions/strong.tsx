@@ -29,7 +29,7 @@ export default class Strong extends Extension {
       group: 'mark',
       parseDOM: [{ tag: 'strong' }, { style: 'font-weight=bold' }],
       toDOM: () => [
-        'span',
+        'strong',
         {
           style: 'font-weight:bold'
         }
