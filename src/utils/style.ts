@@ -29,6 +29,19 @@ export default createGlobalStyle`
       content: "Type Something..."
     }
   }
+  
+  .ProseMirror .empty-node::before {
+    float: left;
+    color: #aaa;
+    pointer-events: none;
+    height: 0;
+    font-style: italic;
+  }
+  
+  .ProseMirror p.empty-node:first-child::before {
+    content: 'Start typing…';
+  }
+
   .ProseMirror figcaption {
     color: #333;
     font-size: 12px;
