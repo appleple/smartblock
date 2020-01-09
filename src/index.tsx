@@ -1,5 +1,5 @@
 import { Plugin } from 'prosemirror-state'
-import SmartBlock from './components/smart-block'
+import SmartBlock from './components/smartblock'
 import Button from './components/button'
 import EditMenu from './components/edit-menu'
 import Editor from './components/editor'
