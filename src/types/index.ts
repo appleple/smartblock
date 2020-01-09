@@ -104,7 +104,7 @@ type OutputJson = {
   [key: string]: any;
 }
 
-type Output = {
+export type Output = {
   json: OutputJson;
   html: string;
   schema: Schema;

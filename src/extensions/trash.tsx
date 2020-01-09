@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { findChildren } from 'prosemirror-utils'
-import isMobile from 'is-mobile'
 import { Extension } from '../types'
 import TrashIcon from '../components/icons/Trash'
 
@@ -48,11 +47,7 @@ export default class Trash implements Extension {
       firstIndex,
       firstIndex + firstNode.node.content.size + 2
     );
-    if (isMobile()) {
-      if (confirm('このブロックを削除してもいいですか？')) {
-        dispatch(removeTransaction);
-      }
-    } else {
+    if (confirm('このブロックを削除してもいいですか？')) {
       dispatch(removeTransaction);
     }
   }

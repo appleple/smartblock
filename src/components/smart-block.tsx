@@ -17,7 +17,7 @@ import CustomLayout from './custom-layout';
 import Title from './title';
 import { getScrollTop, getOffset, getViewport, getHtmlFromNode, getParentNodeFromState } from '../utils'
 import defaultExtensions from '../extensions'
-import { Extension, AppProps } from '../types'
+import { Extension, AppProps, Output } from '../types'
 
 
 const { useState, useEffect, useRef } = React;
@@ -221,6 +221,7 @@ const onChange = (
 
     if (props.outputMarkdown && showdown) {
       const converter = new showdown.Converter();
+      converter.setFlavor('github');
       change.markdown = converter.makeMd(html)
     }
 
@@ -317,6 +318,7 @@ export default (props: AppProps) => {
 
   if (markdown && showdown) {
     const converter = new showdown.Converter();
+    converter.setFlavor('github');
     realHtml = converter.makeHtml(markdown);
   }
 
