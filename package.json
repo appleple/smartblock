@@ -3,6 +3,9 @@
   "version": "1.1.1",
   "description": "intuitive block based wysiwyg editor",
   "main": "lib/index.js",
+  "exports": {
+    "./": "./lib"
+  },
   "type": "lib/index.d.ts",
   "scripts": {
     "test": "jest **/*.test.tsx",
