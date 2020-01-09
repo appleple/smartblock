@@ -31,11 +31,12 @@ $ npm install smartblock --save
 ```js
 import * as React from 'react';
 import { render } from 'react-dom';
-import { SmartBlock, GlobalStyle } from 'smartblock';
+import { SmartBlock, GlobalStyle, Extensions } from 'smartblock';
 
 render(<>
   <GlobalStyle />
   <SmartBlock 
+    extensions={Extensions}
     html={'<h2>Hello World</h2><p>hello</p>'}
     onChange={({ json, html }) => { console.log(json, html);}}  
   />
