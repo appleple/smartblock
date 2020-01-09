@@ -17,3 +17,22 @@ SmartBlock('#app', {
     console.log(markdown)
   }
 });
+
+// JSX version
+// import * as React from 'react';
+// import { render } from 'react-dom';
+// import SmartBlock from './src/components/smartblock';
+// import GlobalStyle from './src/utils/style';
+// import extensions from './src/extensions';
+// ​
+// render(<>
+//   <GlobalStyle />
+//   <SmartBlock 
+// 	extensions={extensions} 
+// 	html="html" 
+// 	showTitle={true} 
+// 	onChange={({html}) => console.log(html)}
+//   />
+// </>,
+// document.getElementById('app')
+// );
