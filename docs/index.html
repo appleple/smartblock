@@ -20,11 +20,10 @@
 	  }
   </style>
   <script>hljs.initHighlightingOnLoad();</script>
-  <script src="https://unpkg.com/SmartBlock@1.6.39/js/SmartBlock.min.js"></script>
 </head>
 <body>
   <header class="header is-sticky is-ghost">
-    <h1 class="logo is-small"><a href="./">SmartBlock</a></h1>
+    <h1 class="logo is-small"><a href="./"><img src="./logo.svg" /></a></h1>
     <nav class="header-menu">
       <!--<div class="pulldown">
         <a href="javascript:void(0);">Language <i class="fa fa-angle-down"></i></a>
@@ -60,9 +59,9 @@
   <main class="main">
     <div class="content">
 
-      <section class="section is-gray">
+      <section class="section is-gray" style="padding-top: 0;">
         <div class="inner is-small">
-          <div class="app-frame">
+          <div class="app-frame" style="transform: translateY(-100px);">
             <div id="app"></div>
           </div>
         </div>
@@ -121,15 +120,19 @@
   </div>
 
   <script src="https://unpkg.com/uny@0.2.9/dist/js/uny.min.js"></script>
-  <script src="https://unpkg.com/smartblock@1.2.0/dist/smartblock.js"></script>
-  <script src="https://unpkg.com/smartblock@1.2.0/dist/extensions.js"></script>
+  <script src="./smartblock.js"></script>
 <script type="text/template" id="template">
 <p>SmartBlock is a block styled editor created by JavaScript. Which gives you nice experience of editing contents at touchscreen. On this page you can see it in action. Try to edit this text ! :)</p>
 <h2>Features</h2>
 <ul>
   <li>Easy to use with touchscreen device (e.g. smartphone, tablet)</li>  
   <li>Fully customizable</li>
+  <li>Block styled editor</li>
+  <li>Keep clean HTML and wipe out unnecessary tags</li>
+  <li>Get the result as HTML or JSON</li>
+  <li>Keep style when copy and paste contents</li>
 </ul>
+<p style="text-align:center;">SmartBlock is provided with MIT license. <br/>Made by : @appleple ♥ OSS</p>
 </script>
   <script>
   const template = document.getElementById('template');

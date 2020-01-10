@@ -8,7 +8,7 @@ module.exports = {
     SmartBlock: './src/adapter/index.tsx',
     Code: './src/extensions/code/index.tsx',
     Embed: './src/extensions/embed/index.tsx',
-    Extensions: './src/extensions/base.tsx',
+    Extensions: './src/extensions/index.tsx',
     Image: './src/extensions/image/index.tsx',
     Link: './src/extensions/link/index.tsx',
     Table: './src/extensions/table/index.tsx',
