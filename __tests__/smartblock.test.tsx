@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as showdown from 'showdown';
 import * as TestRenderer from 'react-test-renderer'
 import Extensions from '../src/extensions/';
 import SmartBlock from '../src/components/smartblock';
@@ -103,5 +104,31 @@ describe('smartblock', () => {
     expect(stripHTML(html)).toEqual('localstorage');
     // the tag is paragraph
     expect(json.content[0].type).toEqual('paragraph');
-  })
+  });
+
+  it('should output markdown when having the exact properties', () => {
+    const f = jest.fn();
+    const smartblock = TestRenderer.create(<SmartBlock
+      showTitle={true}
+      extensions={Extensions}
+      markdown="## test"
+      outputMarkdown
+      showdown={showdown}
+      onChange={f}
+    />);
+    TestRenderer.act(() => {
+      smartblock.update(<SmartBlock
+        showTitle={true}
+        extensions={Extensions}
+        markdown="## test"
+        outputMarkdown
+        showdown={showdown}
+        onChange={f}
+      />);
+    });
+    const [call] = f.mock.calls;
+    const { json, markdown } = call[0];
+    expect(markdown).toBeTruthy();
+    expect(json.content[0].type).toEqual('heading2');
+  });
 });
