@@ -76,4 +76,32 @@ describe('smartblock', () => {
     // the tag is paragraph
     expect(json.content[0].type).toEqual('paragraph');
   });
+
+  it('should get data from localstorage', () => {
+    //mock localstorage
+    jest.spyOn(window.localStorage.__proto__, 'getItem').mockReturnValue('localstorage');
+    const f = jest.fn();
+    const smartblock = TestRenderer.create(<SmartBlock
+      showTitle={true}
+      extensions={Extensions}
+      html="test"
+      autoSave
+      onChange={f}
+    />);
+    TestRenderer.act(() => {
+      smartblock.update(<SmartBlock
+        showTitle={true}
+        extensions={Extensions}
+        html="test"
+        autoSave
+        onChange={f}
+      />);
+    });
+    const [call] = f.mock.calls;
+    const { html, json } = call[0];
+    // content is test
+    expect(stripHTML(html)).toEqual('localstorage');
+    // the tag is paragraph
+    expect(json.content[0].type).toEqual('paragraph');
+  })
 });
