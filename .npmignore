@@ -1,6 +1,5 @@
 .__tests__/*
 assets/*
-dist/*
 node_modules/*
 tools/*
 .eslintrc
@@ -12,3 +11,8 @@ jest.config.js
 tsconfig.json
 webpack.dev.js
 webpack.prod.js
+sample.ts
+screenshots
+docs
+__tests__
+__mocks__
