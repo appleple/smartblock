@@ -98,3 +98,5 @@ export const getEditorViewFromExtensions = (extensions: Extension[]) => {
     nodeViews: {}
   });
 }
+
+export const stripHTML = (html: string) => html.replace(/<[^>]*>?/gm, '')

@@ -28,7 +28,9 @@ export default (props: EditorProps) => {
   // Object.keys(props.options).forEach((key) => console.log(key, {...props.options[key]}))
 
   useEffect(() => {
-    editorRef.current.appendChild(view.dom);
+    if (editorRef.current) {
+      editorRef.current.appendChild(view.dom);
+    }
     if (props.autoFocus) {
       view.focus();
     }

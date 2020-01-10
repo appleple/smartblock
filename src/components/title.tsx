@@ -82,7 +82,9 @@ export default (props: TitleProps) => {
 
   const view = useView(config);
   useEffect(() => {
-    titleRef.current.appendChild(view.dom)
+    if (titleRef.current) {
+      titleRef.current.appendChild(view.dom)
+    }
   }, []);
   
   return <div ref={titleRef} className="smartblock-title" />

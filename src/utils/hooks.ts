@@ -71,6 +71,9 @@ export const useScrolling = (
   useEffect(() => {
     let debounceTimer: number = null;
     let count = 0;
+    if (!element.current) {
+      return;
+    }
     let { top } = element.current.getBoundingClientRect();
     const eventHandler = () => {
       const localTop = element.current.getBoundingClientRect().top;
