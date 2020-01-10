@@ -1,11 +1,10 @@
 import { selectionCell, TableMap, CellSelection } from 'prosemirror-tables';
-import { setBlockType } from 'prosemirror-commands'
 import { EditorState } from 'prosemirror-state';
 import { Schema } from 'prosemirror-model';
 import { Dispatch } from '../..';
 
 function isInTable(state: EditorState) {
-  let $head = state.selection.$head
+  const $head = state.selection.$head
   for (let d = $head.depth; d > 0; d--) {
     // @ts-ignore
     if ($head.node(d).type.spec.tableRole == "row") {
@@ -16,11 +15,11 @@ function isInTable(state: EditorState) {
 }
 
 function selectedRect(state: EditorState) {
-  let sel = state.selection;
-  let $pos = selectionCell(state);
-  let table = $pos.node(-1);
-  let tableStart = $pos.start(-1);
-  let map = TableMap.get(table);
+  const sel = state.selection;
+  const $pos = selectionCell(state);
+  const table = $pos.node(-1);
+  const tableStart = $pos.start(-1);
+  const map = TableMap.get(table);
   let rect;
   if (sel instanceof CellSelection) {
     // @ts-ignore
