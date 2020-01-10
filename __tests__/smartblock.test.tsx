@@ -2,8 +2,6 @@ import * as React from 'react';
 import * as TestRenderer from 'react-test-renderer'
 import Extensions from '../src/extensions/';
 import SmartBlock from '../src/components/smartblock';
-import { getEditorViewFromExtensions } from './util';
-import { setTextSelection } from 'prosemirror-utils';
 import { EditorView } from 'prosemirror-view';
 import { stripHTML } from './util';
 
@@ -18,6 +16,35 @@ describe('smartblock', () => {
       className: 'smartblock-title'
     });
     expect(title).toBeTruthy();
+  });
+
+  it('should return exact title', () => {
+    EditorView.prototype.coordsAtPos = () => ({
+      top: 100,
+      left: 0,
+      right: 0,
+      bottom: 0
+    });
+    const f = jest.fn();
+    const smartblock = TestRenderer.create(<SmartBlock
+      showTitle={true}
+      extensions={Extensions}
+      titleText="title"
+      html="test"
+      onTitleChange={f}
+    />);
+    TestRenderer.act(() => {
+      smartblock.update(<SmartBlock
+        showTitle={true}
+        extensions={Extensions}
+        titleText="title"
+        html="test"
+        onTitleChange={f}
+      />);
+    });
+    const [call] = f.mock.calls;
+    const [title] = call;
+    expect(title).toEqual('title');
   });
 
   it('should return exact html', () => {
