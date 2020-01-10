@@ -5,6 +5,12 @@
 .button.is-round .fa {
   margin-right: 0;
 }
+.app-frame {
+  background: #1D2A38 0% 0% no-repeat padding-box;
+  box-shadow: 0px 15px 45px #00000033;
+  border-radius: 50px;
+  padding: 50px 40px;
+}
 .button {
   background-color: #2196F3;
   border-color: #2196F3;
@@ -16,9 +22,21 @@
 a {
   color: #2196F3;
 }
+.header.is-sticky {
+  background: transparent;
+}
 .header .menu {
   margin-left: auto;
   margin-right: 2.5rem;
+}
+.header .logo a {
+  color: #FFF;
+}
+.header-menu .pulldown > a {
+  color: #FFF;
+} 
+.header .nav {
+  color: #FFF;
 }
 .right {
   text-align: right;
@@ -55,4 +73,26 @@ pre::before {
   background-color: #FFF;
   border-radius: 2px;
   box-shadow: 0 24px 24px -18px rgba(69,104,129,.33), 0 9px 45px 0 rgba(114,119,160,.12);
+}
+
+.firstview {
+  background: transparent linear-gradient(180deg, #0C1858 0%, #09B5AD 100%) 0% 0% no-repeat padding-box;
+}
+
+.lead {
+  text-align: center;
+  font-family: Arial;
+  color: #FFFFFF;
+  font-size: 38px;
+  line-height: 1.2;
+}
+
+.hero-inner {
+  padding-top: 20px;
+}
+
+.hero-inner .button {
+  background: #D01240;
+  box-shadow: 0px 3px 6px #00000029;
+  border: none;
 }

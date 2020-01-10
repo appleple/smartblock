@@ -23,7 +23,7 @@
   <script src="https://unpkg.com/SmartBlock@1.6.39/js/SmartBlock.min.js"></script>
 </head>
 <body>
-  <header class="header is-sticky">
+  <header class="header is-sticky is-ghost">
     <h1 class="logo is-small"><a href="./">SmartBlock</a></h1>
     <nav class="header-menu">
       <!--<div class="pulldown">
@@ -46,25 +46,25 @@
     </button>
   </header>
 
+  <section class="hero is-center firstview">
+    <div class="inner is-small">
+      <div class="box" style="text-align:center;">
+        <p class="margin-top-medium lead">Modern block styled editor <br/>powered with React<br/> Easier to edit on touchscreen.</p>
+      </div>
+    </div>
+    <div class="inner hero-inner" style="text-align: center;">
+      <a href="#" class="button">Get Started</a>
+    </div>
+  </section>
+
   <main class="main">
     <div class="content">
 
-      <section class="section firstview">
-        <div class="inner is-small">
-          <div class="box" style="text-align:center;">
-            <div class="type-xxlarge" style="line-height:1">SmartBlock</div>
-            <p class="margin-top-medium">SmartBlock.js is a JavaScript editor with block style<br/> which enables you to write contents easily on websites even with SmartPhone</p>
-          </div>
-        </div>
-        <div class="inner">
-          
-        </div>
-      </section>
-
       <section class="section is-gray">
         <div class="inner is-small">
-			<div id="app"></div>
-          <!-- <p>This alone displays the editor that everyone wants 🎉</p> -->
+          <div class="app-frame">
+            <div id="app"></div>
+          </div>
         </div>
       </section>
 
@@ -122,5 +122,16 @@
 
   <script src="https://unpkg.com/uny@0.2.9/dist/js/uny.min.js"></script>
   <script src="./main.js"></script>
+  <script>
+  SmartBlock('#app', {
+    showTitle: true,
+    titleText: 'What is SmartBlock?',
+    titlePlaceholder: 'ここにタイトルを入力',
+    html:"<p>SmartBlock is a block styled editor created by JavaScript. Which gives you nice experience of editing contents at touchscreen. On this page you can see it in action. Try to edit this text ! :)</p>",
+    onChange: ({ markdown }) => {
+      console.log(markdown)
+    }
+  });
+  </script>
 </body>
 </html>
