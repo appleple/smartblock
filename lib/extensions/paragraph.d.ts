@@ -12,6 +12,7 @@ export default class Paragraph extends Extension {
             tag: string;
             getAttrs(dom: any): {
                 id: any;
+                align: any;
             };
         }[];
         attrs: {
