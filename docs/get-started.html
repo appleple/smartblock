@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SmartBlock.js is a JavaScript block based editor which enables you to write contents easily on websites even with SmartPhone</title>
+  <meta name="description" content="SmartBlock.js is a JavaScript block based editor which enables you to write contents easily on websites even with SmartPhone">
+  <meta name="author" content="appleplecom">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unpkg.com/uny@0.2.9/dist/css/uny.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <style>
+	  input[type="checkbox"] {
+		  -webkit-appearance: checkbox;
+		  appearance: checkbox;
+      margin-right: 5px;
+	  }
+  </style>
+  <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+  <header class="header is-sticky is-ghost is-colored">
+    <h1 class="logo is-small"><a href="./"><img src="./logo.svg" /></a></h1>
+    <nav class="header-menu">
+      <div class="pulldown">
+        <a href="./about.html">Document</a>
+      </div>
+      <a href="https://github.com/appleple/SmartBlock" class="button is-white is-small"><i class="fa fa-github"></i> GitHub</a>
+    </nav>
+    <button class="button is-burger hide-on-medium hide-on-large offcanvas-open">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <main class="main docs">
+    <div class="sidebar hide-on-small">
+      <div class="sidebar-inner">
+        <div style="margin-bottom: 2rem;">
+
+          <div class="type-h3">
+            <span>Getting Started</span>
+          </div>
+          <div class="tree">
+            <ul>
+
+
+              <li class="is-current">
+                <a href="#">Installation</a>
+              </li>
+
+              <li>
+                <a href="./usage.html">Usage</a>  
+              </li>
+
+
+            </ul>
+          </div>
+
+          <div class="type-h3">
+            <span>API</span>
+          </div>
+          <div class="tree">
+            <ul>
+
+
+              <li>
+                <a href="options.html">Options</a>
+              </li>
+
+
+
+              <li>
+                <a href="custom-buttons.html">Custom Buttons</a>
+              </li>
+
+
+
+              <li>
+                <a href="events.html">Events</a>
+              </li>
+
+
+
+              <li>
+                <a href="methods.html">Methods</a>
+              </li>
+
+
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <section class="section">
+        <div class="inner is-small">
+<h2 id="installation">Installation</h2>
+<h3>Use CDN</h3>
+<pre><code class="html language-html">&lt;script src="https://unpkg.com/smartblock@1.2.2/dist/smartblock.js"&gt;&lt;/script&gt;
+</code></pre>
+<h3>Install From npm</h3>
+<p>via npm</p>
+<pre><code class="sh">$ npm install smartblock --save
+</code></pre>
+<p>or yarn</p>
+<pre><code class="sh language-sh">yarn add smartblock
+</code></pre>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div class="section-devider">
+    <section class="section">
+      <div class="inner is-small">
+        <h2><i class="fa fa-book"></i> Document</h2>
+        <p>Usage, introduction of other functions, component introduction etc. <br>are described in detail in the document. </p>
+        <p><a href="#" class="button is-ghost-disabled"><i class="fa fa-book"></i> Coming soon ;)</a></p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="inner is-small">
+        <h2><i class="fa fa-github"></i> View on GitHub</h2>
+        <p>SmartBlock was developed by <a href="https://twitter.com/appleplecom">@appleplecom</a> and is open source (MIT license) on GitHub.<br>Please send us feedback, requests, bug reports and pull requests!</p>
+        <p>If you like it, please press Star ;)</p>
+        <p style="margin-top: 10px;"><a href="https://github.com/appleple/SmartBlock" class="button is-white"><i class="fa fa-github"></i> GitHub page</a></p>
+      </div>
+    </section>
+  </div>
+
+  <section class="section github-section">
+    <div class="inner is-small">
+      <p>If you like our project, we glad to have star! :)</p>
+      <!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/appleple/smartblock" data-icon="octicon-star" aria-label="Star appleple/smartblock on GitHub">Star</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div>
+      <img src="./footer_logo.svg" />
+      <p>A modern block styled editor built with React.<br/> SmartBlock is provided with MIT license. Made by @appleple ♥ OSS</p>
+    </div>
+  </footer>
+
+  <div class="offcanvas">
+    <div class="offcanvas-overlay offcanvas-close"></div>
+    <div class="offcanvas-content">
+      <button class="button is-close offcanvas-close">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="inner">
+        <div class="offcanvas-menu">
+          <a class="is-current" href="./">English</a>
+          <a href="./index_ja.html">日本語</a>
+          <hr>
+          <a href="https://github.com/appleple/SmartBlock" class="button is-white is-small"><i class="fa fa-github"></i> GitHub</a>
+          <hr>
+          <p>version 1.0.3</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/uny@0.2.9/dist/js/uny.min.js"></script>
+  <script src="./smartblock.js"></script>
+  <!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
+</html>

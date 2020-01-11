@@ -49,7 +49,10 @@ a {
   background: transparent;
 }
 .header.active {
-  background-color: #0B1B59;
+  background: transparent linear-gradient(180deg, #0C1858 0%, #085D83 100%) 0% 0% no-repeat padding-box;
+}
+.header.is-colored {
+  background: transparent linear-gradient(180deg, #0C1858 0%, #085D83 100%) 0% 0% no-repeat padding-box;
 }
 .header .menu {
   margin-left: auto;
@@ -194,11 +197,22 @@ pre {
   padding-bottom: 0;
 }
 
+.tree ul>li.is-current>a {
+  background-color: transparent !important;
+  color: #D01240;
+  border-left: 2px solid #002398;
+  border-radius: 0;
+}
+
 @media (min-width: 769px) {
 
   .is-sticky+.hero {
       padding-top: 9.25rem;
       padding-bottom: 15rem;
+  }
+
+  .sidebar:first-child {
+    border-right: none;
   }
 }
 
