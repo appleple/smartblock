@@ -92,7 +92,7 @@
     "@types/styled-components": "^4.1.15",
     "codemirror": "^5.48.0",
     "imagesloaded": "^4.1.4",
-    "is-mobile": "^2.0.1",
+    "is-mobile": "^2.1.0",
     "lowlight": "^1.13.0",
     "prosemirror": "^0.11.1",
     "prosemirror-commands": "^1.0.7",

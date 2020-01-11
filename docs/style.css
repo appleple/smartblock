@@ -11,6 +11,7 @@
   border-radius: 50px;
   padding: 50px 40px 80px 40px;
   position: relative;
+  transform: translateY(-180px);
 }
 .app-frame::after {
   position: absolute;
@@ -28,6 +29,7 @@
 .button {
   background-color: #2196F3;
   border-color: #2196F3;
+  line-height: 1;
 }
 .tree ol>li.is-current>a, 
 .tree ul>li.is-current>a {
@@ -36,8 +38,14 @@
 a {
   color: #2196F3;
 }
+.header {
+  transition: background-color .3;
+}
 .header.is-sticky {
   background: transparent;
+}
+.header.active {
+  background-color: #0B1B59;
 }
 .header .menu {
   margin-left: auto;
@@ -61,9 +69,9 @@ a {
 .center {
   text-align: center;
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   .uny-logo:before {
-  font-size: 12.5rem;
+    font-size: 12.5rem;
   }
 }
 .firstview {
@@ -144,6 +152,13 @@ pre {
   color: #FFF;
   justify-content: center; 
   text-align: center;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.footer p:not(:first-child) {
+  margin-top: 10px;
+  font-size: 16px;
 }
 
 .section-devider {
@@ -168,6 +183,16 @@ pre {
 
   .is-sticky+.hero {
       padding-top: 9.25rem;
-      padding-bottom: 9.25rem;
+      padding-bottom: 15rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .section-devider {
+    display: block;
+  }
+  .section-devider .section+.section {
+    border-left: none;
+    border-top: 1px solid #eee;
   }
 }

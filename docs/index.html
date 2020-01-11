@@ -29,7 +29,6 @@
         <a href="./about.html">Document</a>
       </div>
       <a href="https://github.com/appleple/SmartBlock" class="button is-white is-small"><i class="fa fa-github"></i> GitHub</a>
-      <a href="https://github.com/appleple/SmartBlock/archive/master.zip" class="button is-small"><i class="fa fa-download"></i> Download</a>
     </nav>
     <button class="button is-burger hide-on-medium hide-on-large offcanvas-open">
       <span></span>
@@ -54,7 +53,7 @@
 
       <section class="section" style="padding-top: 0;">
         <div class="inner is-small">
-          <div class="app-frame" style="transform: translateY(-100px);">
+          <div class="app-frame">
             <div id="app"></div>
           </div>
           <h2 style="margin-top: 0;">Installation</h2>
@@ -104,7 +103,7 @@ SmartBlock('#editor', {
             <h2><i class="fa fa-github"></i> View on GitHub</h2>
             <p>SmartBlock was developed by <a href="https://twitter.com/appleplecom">@appleplecom</a> and is open source (MIT license) on GitHub.<br>Please send us feedback, requests, bug reports and pull requests!</p>
             <p>If you like it, please press Star ;)</p>
-            <p><a href="https://github.com/appleple/SmartBlock" class="button"><i class="fa fa-github"></i> GitHub page</a></p>
+            <p><a href="https://github.com/appleple/SmartBlock" class="button is-white"><i class="fa fa-github"></i> GitHub page</a></p>
           </div>
         </section>
       </div>
@@ -113,6 +112,7 @@ SmartBlock('#editor', {
 
   <footer class="footer">
     <div>
+      <img src="./footer_logo.svg" />
       <p>A modern block styled editor built with React.<br/> SmartBlock is provided with MIT license. Made by @appleple ♥ OSS</p>
     </div>
   </footer>
@@ -131,7 +131,6 @@ SmartBlock('#editor', {
           <a href="./index_ja.html">日本語</a>
           <hr>
           <a href="https://github.com/appleple/SmartBlock" class="button is-white is-small"><i class="fa fa-github"></i> GitHub</a>
-          <a href="https://github.com/appleple/SmartBlock/archive/master.zip" class="button is-small"><i class="fa fa-download"></i> Download</a>
           <hr>
           <p>version 1.0.3</p>
         </div>
@@ -155,7 +154,7 @@ SmartBlock('#editor', {
 <p style="text-align:center;">SmartBlock is provided with MIT license. <br/>Made by : @appleple ♥ OSS</p>
 </script>
   <script>
-  const template = document.getElementById('template');
+  var template = document.getElementById('template');
   SmartBlock('#app', {
     showTitle: true,
     titleText: 'What is SmartBlock?',
@@ -165,6 +164,14 @@ SmartBlock('#editor', {
       console.log(changed.html)
     }
   });
+  window.addEventListener('scroll', function() {
+    var header = document.querySelector('.header');
+    if (window.pageYOffset > 50) {
+      header.classList.add('active');
+    } else {
+      header.classList.remove('active');
+    }
+  })
   </script>
 </body>
 </html>

@@ -48,7 +48,11 @@ export default class Trash implements Extension {
       firstIndex,
       firstIndex + firstNode.node.content.size + 2
     );
-    if (isMobile() && confirm('このブロックを削除してもいいですか？')) {
+    if (!isMobile()) {
+      dispatch(removeTransaction);
+      return;
+    }
+    if (confirm('このブロックを削除してもいいですか？')) {
       dispatch(removeTransaction);
     }
   }
