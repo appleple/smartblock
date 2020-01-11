@@ -179,6 +179,12 @@ pre {
   flex: 1;
 }
 
+.github-section {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  text-align: center;
+}
+
 @media (min-width: 769px) {
 
   .is-sticky+.hero {
