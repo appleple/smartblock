@@ -1,6 +1,6 @@
 node_modules/*
 .DS_Store
 src/extensions/test.tsx
-gatsby/node_modules/*
 gatsby/.cache/*
+gatsby/node_modules/*
 gatsby/public/*
