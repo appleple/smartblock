@@ -5,7 +5,6 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Top from '../components/top';
-// import './layout.css'
 
 class BlogIndex extends React.Component {
   render() {
