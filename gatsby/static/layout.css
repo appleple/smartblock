@@ -46,7 +46,7 @@ a {
   transition: background-color .3;
 }
 .header.is-sticky {
-  background: transparent;
+  background-color: transparent;
 }
 .header.active {
   background: transparent linear-gradient(180deg, #0C1858 0%, #085D83 100%) 0% 0% no-repeat padding-box;
