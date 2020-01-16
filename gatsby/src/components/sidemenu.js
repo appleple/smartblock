@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, withPrefix } from 'gatsby';
 
 export default (props) => {
 
@@ -12,10 +13,10 @@ export default (props) => {
       <div className="tree">
         <ul>
           <li className={props.active.indexOf('get-started') !== -1 ? 'is-current' : '' }>
-            <a href="/get-started">Installation</a>
+            <Link to={withPrefix("/get-started")}>Installation</Link>
           </li>
           <li className={props.active.indexOf('usage') !== -1 ? 'is-current' : '' }>
-            <a href="/usage">Usage</a>  
+            <Link to={withPrefix("/usage")}>Usage</Link>  
           </li>
         </ul>
       </div>

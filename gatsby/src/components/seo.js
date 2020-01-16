@@ -8,7 +8,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql, withPrefix } from "gatsby"
 
 function SEO({ description, lang, meta, title }) {
   const { site } = useStaticQuery(
@@ -71,7 +71,7 @@ function SEO({ description, lang, meta, title }) {
     >
       <link rel="stylesheet" href="https://unpkg.com/uny@0.2.9/dist/css/uny.min.css" />
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-      <link rel="stylesheet" href="/layout.css" />
+      <link rel="stylesheet" href={withPrefix('/layout.css')} />
     </Helmet>
   )
 }

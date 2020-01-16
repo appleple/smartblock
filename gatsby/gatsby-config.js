@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: "/smartblock",
   siteMetadata: {
     title: `SmartBlock`,
     author: `steelydylan`,
