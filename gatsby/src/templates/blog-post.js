@@ -3,7 +3,7 @@ import { Link, graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-
+import SideMenu from '../components/sidemenu'
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -17,56 +17,43 @@ class BlogPostTemplate extends React.Component {
           title={post.frontmatter.title}
           description={post.frontmatter.description || post.excerpt}
         />
-        <article>
-          <header>
-            <h1
-              style={{
-                marginBottom: 0,
-              }}
-            >
-              {post.frontmatter.title}
-            </h1>
-            <p
-              style={{
-                display: `block`,
-              }}
-            >
-              {post.frontmatter.date}
-            </p>
-          </header>
-          <section dangerouslySetInnerHTML={{ __html: post.html }} />
-          <hr
-            style={{
-            }}
-          />
-        </article>
-
-        <nav>
-          <ul
-            style={{
-              display: `flex`,
-              flexWrap: `wrap`,
-              justifyContent: `space-between`,
-              listStyle: `none`,
-              padding: 0,
-            }}
-          >
-            <li>
-              {previous && (
-                <Link to={previous.fields.slug} rel="prev">
-                  ← {previous.frontmatter.title}
-                </Link>
-              )}
-            </li>
-            <li>
-              {next && (
-                <Link to={next.fields.slug} rel="next">
-                  {next.frontmatter.title} →
-                </Link>
-              )}
-            </li>
-          </ul>
-        </nav>
+        <main class="main docs">
+          <SideMenu />
+          <div class="content">
+            <section class="section">
+              <div class="inner is-small">
+                <h2>{post.frontmatter.title}</h2>
+                <section dangerouslySetInnerHTML={{ __html: post.html }} />
+                <nav>
+                  <ul
+                    style={{
+                      display: `flex`,
+                      flexWrap: `wrap`,
+                      justifyContent: `space-between`,
+                      listStyle: `none`,
+                      padding: 0,
+                    }}
+                  >
+                    <li>
+                      {previous && (
+                        <Link to={previous.fields.slug} rel="prev">
+                          ← {previous.frontmatter.title}
+                        </Link>
+                      )}
+                    </li>
+                    <li>
+                      {next && (
+                        <Link to={next.fields.slug} rel="next">
+                          {next.frontmatter.title} →
+                        </Link>
+                      )}
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </section>
+          </div>
+        </main>
       </Layout>
     )
   }
@@ -76,17 +63,17 @@ export default BlogPostTemplate
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      id
+          site {
+          siteMetadata {
+          title
+        }
+        }
+    markdownRemark(fields: {slug: {eq: $slug } }) {
+          id
       excerpt(pruneLength: 160)
-      html
+        html
       frontmatter {
-        title
+          title
         date(formatString: "MMMM DD, YYYY")
         description
       }

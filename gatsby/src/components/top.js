@@ -4,11 +4,24 @@ const SmartBlock = React.lazy(() => import('smartblock/lib/components/smartblock
 const GlobalStyle = React.lazy(() => import('smartblock/lib/utils/style'));
 
 
+const html = `<p>SmartBlock is a block styled editor created by JavaScript. Which gives you nice experience of editing contents at touchscreen. On this page you can see it in action. Try to edit this text ! :)</p>
+<h2>Features</h2>
+<ul>
+  <li>Easy to use with touchscreen device (e.g. smartphone, tablet)</li>  
+  <li>Fully customizable</li>
+  <li>Block styled editor</li>
+  <li>Keep clean HTML and wipe out unnecessary tags</li>
+  <li>Get the result as HTML or JSON</li>
+  <li>Keep style when copy and paste contents</li>
+</ul>
+<p style="text-align:center;">SmartBlock is provided with MIT license. <br/>Made by : @appleple ♥ OSS</p>`;
+
+
 export default (props) => {
 
   const isSSR = typeof window === "undefined"
   const { data } = props;
-  const posts = data.allMarkdownRemark.edges
+  const { markdownRemark } = data;
   
   return (<>
     <section className="hero is-center firstview">
@@ -41,11 +54,9 @@ export default (props) => {
               </React.Suspense>
             )}
             </div>
-            {posts.map(({ node }) => {
-              return(<div dangerouslySetInnerHTML={{
-                __html: node.frontmatter.description || node.excerpt,
-              }}>{node.html}</div>);
-            })}
+            <div dangerouslySetInnerHTML={{
+                __html: markdownRemark.html
+              }} />
           </div>
         </section>
         </div>
