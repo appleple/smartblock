@@ -13,10 +13,10 @@ export default (props) => {
       <div className="tree">
         <ul>
           <li className={props.active.indexOf('get-started') !== -1 ? 'is-current' : '' }>
-            <Link to={withPrefix("/get-started")}>Installation</Link>
+            <Link to="/get-started">Installation</Link>
           </li>
           <li className={props.active.indexOf('usage') !== -1 ? 'is-current' : '' }>
-            <Link to={withPrefix("/usage")}>Usage</Link>  
+            <Link to="/usage">Usage</Link>  
           </li>
         </ul>
       </div>

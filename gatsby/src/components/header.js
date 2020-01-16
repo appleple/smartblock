@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, withPrefix } from 'gatsby';
+import { Link } from 'gatsby';
 
 import Logo from './logo.svg';
 
@@ -24,7 +24,7 @@ export default (props) => {
   <h1 className="logo is-small"><a href="./"><img src={Logo} /></a></h1>
   <nav className="header-menu">
     <div className="pulldown">
-      <Link to={withPrefix('/get-started')}>Document</Link>
+      <Link to="/get-started">Document</Link>
     </div>
     <a href="https://github.com/appleple/SmartBlock" className="button is-white is-small"><i className="fa fa-github"></i> GitHub</a>
   </nav>
