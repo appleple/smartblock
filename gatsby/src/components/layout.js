@@ -6,12 +6,13 @@ import Footer from './footer';
 
 class Layout extends React.Component {
   render() {
-    const { location, title, children } = this.props
+    const { location, title, children, post } = this.props
     const rootPath = `${__PATH_PREFIX__}/`
+    const className = post ? 'header is-sticky is-ghost is-colored' : ''
 
     return (
       <>
-        <Header />
+        <Header className={className} />
         {children}
         <Footer />
       </>

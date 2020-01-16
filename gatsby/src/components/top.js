@@ -1,6 +1,6 @@
 import React from 'react';
 import Extensions from 'smartblock/lib/extensions';
-const SmartBlock = React.lazy(() => import('smartblock/lib/components/smartblock'));
+const SmartBlock = typeof window === "undefined" ? <div/> : React.lazy(() => import('smartblock/lib/components/smartblock'));
 const GlobalStyle = React.lazy(() => import('smartblock/lib/utils/style'));
 
 

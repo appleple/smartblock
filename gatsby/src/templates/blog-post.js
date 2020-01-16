@@ -12,19 +12,19 @@ class BlogPostTemplate extends React.Component {
     const { previous, next } = this.props.pageContext
 
     return (
-      <Layout location={this.props.location} title={siteTitle}>
+      <Layout location={this.props.location} title={siteTitle} post={true}>
         <SEO
           title={post.frontmatter.title}
           description={post.frontmatter.description || post.excerpt}
         />
         <main class="main docs">
-          <SideMenu />
+          <SideMenu active={post.fields.slug} />
           <div class="content">
             <section class="section">
               <div class="inner is-small">
                 <h2>{post.frontmatter.title}</h2>
                 <section dangerouslySetInnerHTML={{ __html: post.html }} />
-                <nav>
+                {/* <nav>
                   <ul
                     style={{
                       display: `flex`,
@@ -49,7 +49,7 @@ class BlogPostTemplate extends React.Component {
                       )}
                     </li>
                   </ul>
-                </nav>
+                </nav> */}
               </div>
             </section>
           </div>
@@ -77,6 +77,12 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         description
       }
+
+      fields {
+        slug
+      }
+      
+
     }
   }
 `

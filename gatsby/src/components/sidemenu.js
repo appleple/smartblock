@@ -1,6 +1,8 @@
 import React from 'react';
 
-export default () => {
+export default (props) => {
+
+  
   return (<div className="sidebar hide-on-small">
   <div className="sidebar-inner">
     <div style={{ marginBottom: '2rem'}}>
@@ -9,11 +11,11 @@ export default () => {
       </div>
       <div className="tree">
         <ul>
-          <li className="is-current">
-            <a href="#">Installation</a>
+          <li className={props.active.indexOf('get-started') !== -1 ? 'is-current' : '' }>
+            <a href="/get-started">Installation</a>
           </li>
-          <li>
-            <a href="./usage.html">Usage</a>  
+          <li className={props.active.indexOf('usage') !== -1 ? 'is-current' : '' }>
+            <a href="/usage">Usage</a>  
           </li>
         </ul>
       </div>
@@ -23,17 +25,17 @@ export default () => {
       </div>
       <div className="tree">
         <ul>
-          <li>
-            <a href="options.html">Options</a>
+          <li className={props.active.indexOf('options') !== -1 ? 'is-current' : '' }>
+            <a href="#">Options</a>
           </li>
-          <li>
-            <a href="custom-buttons.html">Custom Buttons</a>
+          <li className={props.active.indexOf('custom' ) !== -1 ? 'is-current' : '' }>
+            <a href="#">Custom Buttons</a>
           </li>
-          <li>
-            <a href="events.html">Events</a>
+          <li className={props.active.indexOf('events' ) !== -1 ? 'is-current' : '' }>
+            <a href="#">Events</a>
           </li>
-          <li>
-            <a href="methods.html">Methods</a>
+          <li className={props.active.indexOf('methods') !== -1 ? 'is-current' : '' }>
+            <a href="#">Methods</a>
           </li>
         </ul>
       </div>
