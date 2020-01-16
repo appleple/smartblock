@@ -1,3 +1,9 @@
 node_modules/*
 .DS_Store
 src/extensions/test.tsx
+gatsby/.cache/*
+gatsby/node_modules/*
+gatsby/public/*
+gatsby2/.cache/*
+gatsby2/node_modules/*
+gatsby2/public/*
