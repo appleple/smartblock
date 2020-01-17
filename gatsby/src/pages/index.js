@@ -13,7 +13,10 @@ class BlogIndex extends React.Component {
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
-        <SEO title="All posts" />
+        <SEO 
+          title="SmartBlock - A Modern Block Based Wysiwyg Editor using React and ProseMirror" 
+          description="SmartBlock - A Modern Block Based Wysiwyg Editor using React and ProseMirror"
+        />
         <Top data={data}/>
       </Layout>
     )

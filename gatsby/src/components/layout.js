@@ -12,7 +12,7 @@ class Layout extends React.Component {
 
     return (
       <>
-        <Header className={className} />
+        <Header className={className} post={post} />
         {children}
         <Footer />
       </>

@@ -23,3 +23,7 @@ or yarn
 ```sh
 $ yarn add smartblock
 ```
+
+### Try it on CodeSandbox
+
+[![Edit hardcore-kalam-tghp9](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/hardcore-kalam-tghp9?fontsize=14&hidenavigation=1&theme=dark)

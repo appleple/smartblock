@@ -1,7 +1,10 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import SideMenuInner from './sidemenu-inner';
 
 export default (props) => {
+
+  const { post } = props;
 
   return (<div className={props.isOpen ? 'offcanvas is-active' : 'offcanvas'}>
     <div className="offcanvas-overlay offcanvas-close"></div>
@@ -15,8 +18,7 @@ export default (props) => {
       </button>
       <div className="inner">
         <div class="offcanvas-menu">
-          <Link to="/">Home</Link>
-          <Link to="/get-started">Document</Link>
+          <SideMenuInner active={(post && post.fields) ? post.fields.slug : ''} />
         </div>
         <hr />
         <div className="offcanvas-menu">
