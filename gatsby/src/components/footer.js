@@ -25,8 +25,14 @@ export default () => {
     <section className="section github-section">
       <div className="inner is-small">
         <p>If you like our project, we glad to have star! :)</p>
-        <a className="github-button" href="https://github.com/appleple/smartblock" data-icon="octicon-star" aria-label="Star appleple/smartblock on GitHub">Star</a>
+        <a href="https://github.com/appleple/smartblock/stargazers" className="button is-white is-small"><i className="fa fa-github"></i> GitHub Star</a>
       </div>
     </section>
+    <footer className="footer">
+      <div>
+        <img src="./footer_logo.svg" />
+        <p>A modern block styled editor built with React.<br /> SmartBlock is provided with MIT license. Made by @appleple ♥ OSS</p>
+      </div>
+    </footer>
   </>);
 }

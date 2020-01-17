@@ -48,12 +48,20 @@ function SEO({ description, lang, meta, title }) {
           content: metaDescription,
         },
         {
+          name: 'og:image',
+          conent: 'https://appleple.github.io'+withPrefix('/ogp.png')
+        },
+        {
           property: `og:type`,
           content: `website`,
         },
         {
           name: `twitter:card`,
           content: `summary`,
+        },
+        {
+          name: 'twitter:image',
+          conent: 'https://appleple.github.io'+withPrefix('/ogp.png')
         },
         {
           name: `twitter:creator`,

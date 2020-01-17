@@ -147,7 +147,7 @@ ul {
 }
 
 h3:not(:first-child) {
-  margin-top: 0;
+  margin-top: 20px;
   margin-bottom: 10px;
 }
 p:not(:first-child) {

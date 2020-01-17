@@ -3,10 +3,10 @@ module.exports = {
   siteMetadata: {
     title: `SmartBlock`,
     author: `steelydylan`,
-    description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
+    description: `SmartBlock - A Modern Block Based Wysiwyg Editor using React and ProseMirror`,
+    siteUrl: `https://appleple.github.io/smartblock/`,
     social: {
-      twitter: `kylemathews`,
+      twitter: `appleplecom`,
     },
   },
   plugins: [
