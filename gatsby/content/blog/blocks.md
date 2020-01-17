@@ -241,6 +241,35 @@ render(<>
 </>, document.getElementById("app"));
 ```
 
+### Image
+
+```jsx
+import * as React from 'react';
+import { render } from 'react-dom';
+import Base from 'smartblock/lib/extensions/base';
+import { 
+  SmartBlock, 
+  GlobalStyle, 
+  Image
+} from 'smartblock';
+
+const extensions = [
+  ...Base,
+  new Image({})
+];
+
+const codeHTML = `<img src="/path" />`;
+
+render(<>
+  <GlobalStyle />
+  <SmartBlock 
+    extensions={extensions}
+    html={codeHtml}
+    onChange={({ json, html }) => { console.log(json, html);}}  
+  />
+</>, document.getElementById("app"));
+```
+
 ### Code
 
 ![](./code.png)
