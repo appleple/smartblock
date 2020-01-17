@@ -69,6 +69,7 @@ export default agnosticStyled<ButtonProps>`
   
   svg {
     fill: currentColor;
+    vertical-align: middle;
   }
   &:last-child {
     margin-right: 0;

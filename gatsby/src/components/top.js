@@ -48,7 +48,7 @@ export default (props) => {
                 <SmartBlock 
                   showTitle
                   titleText="What is SmartBlock?"
-                  extensions={[...Extensions, new Code()]} 
+                  extensions={[...Extensions, new Code() ]} 
                   html={html}
                 />
                 <GlobalStyle />
