@@ -21,13 +21,26 @@ export default (props) => {
         </div>
 
         <div className="type-h3">
+          <span>Extensions</span>
+        </div>
+        <div className="tree">
+          <ul>
+            <li className={props.active.indexOf('blocks') !== -1 ? 'is-current' : ''}>
+              <Link to="/blocks">Blocks</Link>
+            </li>
+            <li className={props.active.indexOf('marks') !== -1 ? 'is-current' : ''}>
+              <Link to="/marks">Marks</Link>
+            </li>
+            <li className={props.active.indexOf('utils') !== -1 ? 'is-current' : ''}>
+              <Link to="/utils">Utils</Link>
+            </li>
+          </ul>
+        </div>
+        <div className="type-h3">
           <span>API</span>
         </div>
         <div className="tree">
           <ul>
-            <li className={props.active.indexOf('extensions') !== -1 ? 'is-current' : ''}>
-              <Link to="/extensions">Extensions</Link>
-            </li>
             <li className={props.active.indexOf('props') !== -1 ? 'is-current' : ''}>
               <Link to="/props">Props</Link>
             </li>

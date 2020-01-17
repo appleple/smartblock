@@ -1,5 +1,6 @@
 import React from 'react';
 import Extensions from 'smartblock/lib/extensions';
+import Code from 'smartblock/lib/extensions/code';
 const SmartBlock = typeof window === "undefined" ? <div/> : React.lazy(() => import('smartblock/lib/components/smartblock'));
 const GlobalStyle = React.lazy(() => import('smartblock/lib/utils/style'));
 
@@ -47,7 +48,7 @@ export default (props) => {
                 <SmartBlock 
                   showTitle
                   titleText="What is SmartBlock?"
-                  extensions={Extensions} 
+                  extensions={[...Extensions, new Code()]} 
                   html={html}
                 />
                 <GlobalStyle />
