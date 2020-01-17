@@ -138,6 +138,7 @@ h3 {
   color: #7C7C7C;
   border-bottom: 1px solid #7C7C7C;
   padding-bottom: 5px;
+  margin-bottom: 20px;
 }
 
 ul {
@@ -156,6 +157,13 @@ p:not(:first-child) {
 
 pre {
   margin-bottom: 25px;
+}
+
+.docs .gatsby-resp-image-wrapper {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: block;
+  border: 5px solid #EEEEEE;
 }
 
 .footer {

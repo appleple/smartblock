@@ -18,7 +18,7 @@ class BlogPostTemplate extends React.Component {
           description={post.frontmatter.description || post.excerpt}
         />
         <main class="main docs">
-          <SideMenu active={post.fields.slug} />
+          <SideMenu active={post.fields ? post.fields.slug : ''} />
           <div class="content">
             <section class="section">
               <div class="inner is-small">

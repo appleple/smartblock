@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'gatsby';
 
 
 export default () => {
@@ -9,7 +10,7 @@ export default () => {
         <div className="inner is-small">
           <h2><i className="fa fa-book"></i> Document</h2>
           <p>Usage, introduction of other functions, component introduction etc. <br />are described in detail in the document. </p>
-          <p><a href="#" className="button is-ghost-disabled"><i className="fa fa-book"></i> Coming soon ;)</a></p>
+          <p><Link to="/get-started" className="button"><i className="fa fa-book"></i>Get Started</Link></p>
         </div>
       </section>
       <section className="section">

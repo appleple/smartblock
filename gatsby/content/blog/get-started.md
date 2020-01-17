@@ -21,5 +21,5 @@ $ npm install smartblock --save
 or yarn
 
 ```sh
-yarn add smartblock
+$ yarn add smartblock
 ```

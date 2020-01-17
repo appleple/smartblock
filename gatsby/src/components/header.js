@@ -21,7 +21,7 @@ export default (props) => {
   }
 
   return (<header className={className}>
-  <h1 className="logo is-small"><a href="./"><img src={Logo} /></a></h1>
+  <h1 className="logo is-small"><Link to="/"><img src={Logo} /></Link></h1>
   <nav className="header-menu">
     <div className="pulldown">
       <Link to="/get-started">Document</Link>
