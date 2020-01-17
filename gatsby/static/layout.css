@@ -140,6 +140,10 @@ h3 {
   padding-bottom: 5px;
 }
 
+ul {
+  margin-bottom: 20px;
+}
+
 h3:not(:first-child) {
   margin-top: 0;
   margin-bottom: 10px;

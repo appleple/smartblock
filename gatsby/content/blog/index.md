@@ -6,102 +6,59 @@ toppage: "true"
 ---
 
 
-## Features
+## Installation
 
-*   Easy to use with SmartPhone
-*   Fully customizable
-*   Block based
-*   Keep clean HTML and wipe out unnecessary tags
-*   Get the result as **HTML** or **JSON**
-*   copy and paste contents
+### Node.js package
 
-## Install
+Install the package via npm
 
 ```sh
 $ npm install smartblock --save
 ```
 
+### Load JavaScript from CDN
+
+```html
+<script src="https://unpkg.com/smartblock@1.2.2/dist/smartblock.js"></script>
+```
+
 ## Usage
 
+### As an React
+
+In your JavaScript file:
+
 ```js
-import * as React from 'react';
-import { render } from 'react-dom';
-import { SmartBlock, GlobalStyle, Extensions } from 'smartblock';
+import * as React from 'react'; 
+import { render } from 'react-dom'; 
+import { SmartBlock, GlobalStyle } from 'smartblock'; 
 
 render(<>
   <GlobalStyle />
   <SmartBlock 
-    extensions={Extensions}
-    html={'<h2>Hello World</h2><p>hello</p>'}
-    onChange={({ json, html }) => { console.log(json, html);}}  
-  />
-</>, document.getElementById("app"));
+    html={'<h2>Hello World</h2><p>hello</p>'} 
+    onChange={({ json, html }) => { console.log(json, html);}} 
+  /> 
+  </>, document.getElementById("app")
+);
 ```
 
-## Extensions
+### As an Native JavaScript
 
-### Blocks
-
-- Pragraph
-- Heading1
-- Heading2
-- Heading3
-- Heading4
-- Heading5
-- Heading6
-- OrderdList
-- BulletList
-- ListItem
-- Blockquoe
-- Table
-- Code
-- Image
-
-### Marks
-
-- Emphasis
-- Strike
-- Strong
-- Underline
-
-### Utils
-
-- MoveDown
-- MoveUp
-- Trash
-- DefaultKeys
-- DefaultPlugins
-
-## Customize
-
-You can add custom block like this
-
-```js
-import { Extensions, CustomBlock, CustomMark } from 'smartblock';
-Extensions.push(new CustomBlock({  tagName: 'div',  className: '.alert',  icon: <SomeIconComponent />});
-
-render(<>
-  <GlobalStyle />
-  <SmartBlock 
-    extensions={Extensions}
-    html={'<h2>Hello World</h2><p>hello</p>'}
-    onChange={({ json, html }) => { console.log(json, html);}}  
-  />
-</>, document.getElementById("app"));
+```html
+<script src="https://unpkg.com/smartblock@1.2.2/dist/smartblock.js"></script>
+<!-- You can use smartblock without using JSX -->
+<!-- bundle size is much smaller than the package build with react !-->
+<script>
+SmartBlock('#app', {
+  html: '<h2>Hello World</h2><p>hello</p>',
+  onChange: function(result) {
+    console.log(result.json, result.html);
+  }
+});
+</script>
 ```
 
-You can also add custom inline element like this
+### Compatibility
 
-```js
-import { Extension, CustomBlock, CustomMark } from 'smartblock';
-Extension.push(new CustomMark({  tagName: 'span',  className: '.small',  icon: <SomeIconComponent />});
-
-render(<>
-  <GlobalStyle />
-  <SmartBlock 
-    extensions={Extensions}
-    html={'<h2>Hello World</h2><p><small>hello</small></p>'}
-    onChange={({ json, html }) => { console.log(json, html);}}  
-  />
-</>, document.getElementById("app"));
-```
+IE11, and Edge, iOS Safari, Firefox, Chrome, Safari
