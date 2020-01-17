@@ -104,7 +104,7 @@ render(<>
 You can use markdown library `showdown` to import and export markdown
 
 ```jsx
-import showdown from 'showdown';
+import * as showdown from 'showdown';
 import * as React from 'react';
 import { render } from 'react-dom';
 import { SmartBlock, GlobalStyle, Extensions } from 'smartblock';
@@ -115,6 +115,7 @@ render(<>
     extensions={Extensions}
     showdown={showdown}
     markdown={`# Hello World`}
+    outputMarkdown
     onChange={({ markdown }) => { console.log(markdown);}}  
   />
 </>, document.getElementById("app"));

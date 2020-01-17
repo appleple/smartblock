@@ -18,6 +18,7 @@ export default (props) => {
           <Link to="/">Home</Link>
           <Link to="/get-started">Document</Link>
         </div>
+        <hr />
         <div className="offcanvas-menu">
           <a href="https://github.com/appleple/smartblock" className="button is-white is-small"><i className="fa fa-github"></i> GitHub</a>
           <a href="https://github.com/appleple/smartblock/archive/master.zip" className="button is-small"><i className="fa fa-download"></i> Download</a>

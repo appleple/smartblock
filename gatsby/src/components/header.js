@@ -23,6 +23,9 @@ export default (props) => {
   }
 
   return (<>
+    <Offcanvas isOpen={isOpen} onClose={() => {
+      setIsOpen(false);
+    }}/>
     <header className={className}>
       <h1 className="logo is-small"><Link to="/"><img src={Logo} /></Link></h1>
       <nav className="header-menu">
@@ -42,8 +45,5 @@ export default (props) => {
         <span></span>
       </button>
     </header>
-    <Offcanvas isOpen={isOpen} onClose={() => {
-      setIsOpen(false);
-    }}/>
   </>);
 }
