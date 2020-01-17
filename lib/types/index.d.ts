@@ -93,7 +93,6 @@ export declare type AppProps = {
     markdown?: string;
     showdown?: showdown;
     extensions?: Extension[];
-    offsetTop?: number;
     showBackBtn?: boolean;
     autoSave?: boolean;
     showTitle?: boolean;
