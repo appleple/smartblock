@@ -16,3 +16,4 @@ screenshots
 docs
 __tests__
 __mocks__
+gatsby/*
