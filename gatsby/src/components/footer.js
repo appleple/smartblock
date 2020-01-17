@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'gatsby';
 
+import Logo from './footer_logo.svg';
+
 
 export default () => {
 
@@ -30,7 +32,7 @@ export default () => {
     </section>
     <footer className="footer">
       <div>
-        <img src="./footer_logo.svg" />
+        <img src={Logo} />
         <p>A modern block styled editor built with React.<br /> SmartBlock is provided with MIT license. Made by @appleple ♥ OSS</p>
       </div>
     </footer>
