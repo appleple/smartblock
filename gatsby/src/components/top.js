@@ -1,6 +1,7 @@
 import React from 'react';
 import Extensions from 'smartblock/lib/extensions';
 import Code from 'smartblock/lib/extensions/code';
+import { Link, withPrefix } from 'gatsby';
 const SmartBlock = typeof window === "undefined" ? <div/> : React.lazy(() => import('smartblock/lib/components/smartblock'));
 const GlobalStyle = React.lazy(() => import('smartblock/lib/utils/style'));
 
@@ -32,7 +33,7 @@ export default (props) => {
         </div>
       </div>
       <div className="inner hero-inner" style={{ textAlign: 'center'}}>
-        <a href="#" className="button">Get Started</a>
+        <Link to="/get-started" className="button">Get Started</Link>
         <p className="small">Current Version : Ver.1.2.2</p>
       </div>
     </section>
