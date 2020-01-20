@@ -49,11 +49,11 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           property: 'og:image',
-          conent: 'http://appleple.github.io'+withPrefix('/ogp.png')
+          content: 'http://appleple.github.io'+withPrefix('/ogp.png')
         },
         {
           property: 'og:image:secure_url',
-          conent: 'https://appleple.github.io'+withPrefix('/ogp.png')
+          content: 'https://appleple.github.io'+withPrefix('/ogp.png')
         },
         {
           property: `og:type`,
@@ -65,7 +65,7 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           name: 'twitter:image',
-          conent: 'https://appleple.github.io'+withPrefix('/ogp.png')
+          content: 'https://appleple.github.io'+withPrefix('/ogp.png')
         },
         {
           name: `twitter:creator`,

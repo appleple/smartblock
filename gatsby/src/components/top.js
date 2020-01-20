@@ -44,6 +44,7 @@ export default (props) => {
         <section className="section" style={{paddingTop: '0'}}>
           <div className="inner is-small">
             <div className="app-frame">
+              <div className="app-frame-inner">
             {!isSSR && (
               <React.Suspense fallback={<div />}>
                 <SmartBlock 
@@ -55,6 +56,7 @@ export default (props) => {
                 <GlobalStyle />
               </React.Suspense>
             )}
+            </div>
             </div>
             <div dangerouslySetInnerHTML={{
                 __html: markdownRemark.html

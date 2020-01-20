@@ -30,6 +30,11 @@
   display: block;
 }
 
+.app-frame-inner {
+  background-color: #FFF;
+  min-height: 770px;
+}
+
 .button {
   background-color: #2196F3;
   border-color: #2196F3;
@@ -245,7 +250,7 @@ pre {
 @media screen and (max-width: 768px) {
   .app-frame {
     border-radius: 10px;
-    padding: 10px 20px 30px 20px;
+    padding: 30px 20px 80px 20px;
     transform: translateY(-100px);
   }
   .is-sticky+.hero {
