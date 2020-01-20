@@ -48,7 +48,11 @@ function SEO({ description, lang, meta, title }) {
           content: metaDescription,
         },
         {
-          name: 'og:image',
+          property: 'og:image',
+          conent: 'http://appleple.github.io'+withPrefix('/ogp.png')
+        },
+        {
+          property: 'og:image:secure_url',
           conent: 'https://appleple.github.io'+withPrefix('/ogp.png')
         },
         {
@@ -57,7 +61,7 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           name: `twitter:card`,
-          content: `summary`,
+          content: `summary_large_image`,
         },
         {
           name: 'twitter:image',
@@ -76,10 +80,21 @@ function SEO({ description, lang, meta, title }) {
           content: metaDescription,
         },
       ].concat(meta)}
+      link={[
+        {
+          rel: "stylesheet",
+          href: "https://unpkg.com/uny@0.2.9/dist/css/uny.min.css"
+        },
+        {
+          rel: "stylesheet",
+          href: "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        },
+        {
+          rel: "stylesheet",
+          href: withPrefix('/layout.css')
+        }
+      ]}
     >
-      <link rel="stylesheet" href="https://unpkg.com/uny@0.2.9/dist/css/uny.min.css" />
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-      <link rel="stylesheet" href={withPrefix('/layout.css')} />
     </Helmet>
   )
 }

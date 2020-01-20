@@ -5,9 +5,6 @@ import { Plugin } from 'prosemirror-state';
 import { Decoration, DecorationSet } from 'prosemirror-view';
 import { Extension } from '../types';
 
-import 'prosemirror-tables/style/tables.css';
-import 'prosemirror-gapcursor/style/gapcursor.css';
-
 const currentElementPlugin = () => {
   return new Plugin({
     props: {
