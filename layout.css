@@ -250,7 +250,7 @@ pre {
 @media screen and (max-width: 768px) {
   .app-frame {
     border-radius: 10px;
-    padding: 10px 20px 30px 20px;
+    padding: 30px 20px 80px 20px;
     transform: translateY(-100px);
   }
   .is-sticky+.hero {
