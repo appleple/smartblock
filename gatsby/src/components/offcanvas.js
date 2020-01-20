@@ -25,7 +25,7 @@ export default (props) => {
           <a href="https://github.com/appleple/smartblock" className="button is-white is-small"><i className="fa fa-github"></i> GitHub</a>
           <a href="https://github.com/appleple/smartblock/archive/master.zip" className="button is-small"><i className="fa fa-download"></i> Download</a>
           <hr />
-          <p>version 1.2.2</p>
+          <p>version 1.2.5</p>
         </div>
       </div>
     </div>
