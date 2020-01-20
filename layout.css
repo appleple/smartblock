@@ -154,6 +154,11 @@ h3:not(:first-child) {
   margin-top: 20px;
   margin-bottom: 10px;
 }
+
+h4:not(:first-child) {
+  margin-top: 10px;
+}
+
 p:not(:first-child) {
   margin-bottom: 10px;
   margin-top: 0;
