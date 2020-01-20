@@ -1,6 +1,15 @@
 /// <reference types="react" />
 import { Extension } from '../types';
+declare type Props = {
+    i18n?: {
+        remove_block: string;
+    };
+};
 export default class Trash implements Extension {
+    i18n: {
+        remove_block: string;
+    };
+    constructor(props?: Props);
     readonly name: string;
     readonly group: string;
     readonly showMenu: boolean;
@@ -8,3 +17,4 @@ export default class Trash implements Extension {
     readonly btnColor: 'black';
     onClick(state: any, dispatch: any): void;
 }
+export {};

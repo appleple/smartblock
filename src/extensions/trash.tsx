@@ -4,7 +4,28 @@ import { Extension } from '../types'
 import TrashIcon from '../components/icons/Trash'
 import isMobile from 'is-mobile';
 
+type I18n = {
+  remove_block: string;
+}
+
+type Props = {
+  i18n?: {
+    remove_block: string;
+  };
+}
+
 export default class Trash implements Extension {
+
+  i18n = {
+    remove_block: 'Are you sure you want to remove the block?'
+  };
+
+  constructor(props: Props = {}) {
+    if (props && props.i18n) {
+      this.i18n = props.i18n;
+    }
+  }
+
   get name() {
     return 'trash';
   }
@@ -52,7 +73,7 @@ export default class Trash implements Extension {
       dispatch(removeTransaction);
       return;
     }
-    if (confirm('このブロックを削除してもいいですか？')) {
+    if (confirm(this.i18n.remove_block)) {
       dispatch(removeTransaction);
     }
   }
