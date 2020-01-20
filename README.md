@@ -95,7 +95,7 @@ render(<>
 </>, document.getElementById("app"));
 ```
 
-You can also add custom inline element like this
+You can add custom inline element like this
 
 ```js
 import { Extension, CustomBlock, CustomMark } from 'smartblock';
