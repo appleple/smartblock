@@ -31,6 +31,10 @@
   display: block;
 }
 
+.app-frame-inner {
+  background-color: #FFF;
+}
+
 .button {
   background-color: #2196F3;
   border-color: #2196F3;
