@@ -232,7 +232,7 @@ new Strike({
 })
 ```
 
-### default schema
+#### default schema
 
 ```js
 {
@@ -286,7 +286,7 @@ render(<>
 ```
 
 
-### default schema
+#### default schema
 
 You can define how to parse html and output html like below by yourself
 

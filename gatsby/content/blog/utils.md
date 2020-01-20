@@ -106,3 +106,16 @@ render(<>
   />
 </>, document.getElementById("app"));
 ```
+
+#### Option
+
+You can change message when someone push the trash button with smartphone
+
+
+```js
+new Trash({
+  i18n: {
+    remove_block: 'Are you sure you want to remove the block?'
+  }
+})
+```
