@@ -1,10 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
-   html {
-    font-size: 16px;
-   }
-   
   .ProseMirror {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴシック", "メイリオ", Meiryo, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     padding: 10px 5px;
@@ -14,6 +10,69 @@ export default createGlobalStyle`
   .ProseMirror:focus {
     outline: none;
   }
+
+  .ProseMirror .tableWrapper {
+    overflow-x: auto;
+  }
+  .ProseMirror table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+    overflow: hidden;
+  }
+  .ProseMirror td, .ProseMirror th {
+    vertical-align: top;
+    box-sizing: border-box;
+    position: relative;
+  }
+  .ProseMirror .column-resize-handle {
+    position: absolute;
+    right: -2px; top: 0; bottom: 0;
+    width: 4px;
+    z-index: 20;
+    background-color: #adf;
+    pointer-events: none;
+  }
+  .ProseMirror.resize-cursor {
+    cursor: ew-resize;
+    cursor: col-resize;
+  }
+  /* Give selected cells a blue overlay */
+  .ProseMirror .selectedCell:after {
+    z-index: 2;
+    position: absolute;
+    content: "";
+    left: 0; right: 0; top: 0; bottom: 0;
+    background: rgba(200, 200, 255, 0.4);
+    pointer-events: none;
+  }
+
+  .ProseMirror-gapcursor {
+    display: none;
+    pointer-events: none;
+    position: absolute;
+  }
+  
+  .ProseMirror-gapcursor:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -2px;
+    width: 20px;
+    border-top: 1px solid black;
+    animation: ProseMirror-cursor-blink 1.1s steps(2, start) infinite;
+  }
+  
+  @keyframes ProseMirror-cursor-blink {
+    to {
+      visibility: hidden;
+    }
+  }
+  
+  .ProseMirror-focused .ProseMirror-gapcursor {
+    display: block;
+  }
+  
   
   @media screen and (min-width: 768px){
       .ProseMirror {
@@ -326,7 +385,7 @@ export default createGlobalStyle`
     color: #FFF;
   }
 
-  /* a11y-dark theme */
+/* a11y-dark theme */
 /* Based on the Tomorrow Night Eighties theme: https://github.com/isagalaev/highlight.js/blob/master/src/styles/tomorrow-night-eighties.css */
 /* @author: ericwbailey */
 

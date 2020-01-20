@@ -91,6 +91,10 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           rel: "stylesheet",
+          href: withPrefix('/prism.css')
+        },
+        {
+          rel: "stylesheet",
           href: withPrefix('/layout.css')
         }
       ]}
