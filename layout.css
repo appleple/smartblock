@@ -16,6 +16,7 @@
   padding: 50px 40px 80px 40px;
   position: relative;
   transform: translateY(-180px);
+  min-height: 900px;
 }
 .app-frame::after {
   position: absolute;
