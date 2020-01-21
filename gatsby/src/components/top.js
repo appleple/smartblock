@@ -61,7 +61,7 @@ export default (props) => {
                       withCaption: false,
                       imgFullClassName: 'full',
                       imgClassName: 'small'
-                    }) 
+                    })
                   ]} 
                   html={html}
                   onChange={({html, json}) => {

@@ -87,6 +87,15 @@ export default createGlobalStyle`
     &.empty-node figcaption:before {
       content: "Type Something..."
     }
+    figcaption {
+      font-size: 0;
+    }
+    figcaption.caption {
+      font-size: 14px;
+    }
+    &.empty-node figcaption.not-active:before {
+      content: ""
+    }
   }
   
   .ProseMirror .empty-node::before {
