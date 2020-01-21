@@ -249,6 +249,11 @@ pre {
   font-size: 0 !important;
 }
 
+.ProseMirror img {
+  width: 100%;
+  height: auto;
+}
+
 .ProseMirror img.small {
   width: 60%;
 }
