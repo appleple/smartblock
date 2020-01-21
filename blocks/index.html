@@ -410,6 +410,7 @@ You can add it like below</p>
   <span class="token punctuation">/></span></span><span class="token plain-text">
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span></span><span class="token punctuation">></span></span><span class="token punctuation">,</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"app"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
 <h3>Image</h3>
+<p><img src="./image.png"></p>
 <div class="gatsby-highlight" data-language="jsx"><pre class="language-jsx"><code class="language-jsx"><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> render <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react-dom'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> Base <span class="token keyword">from</span> <span class="token string">'smartblock/lib/extensions/base'</span><span class="token punctuation">;</span>
@@ -434,6 +435,21 @@ You can add it like below</p>
     <span class="token attr-name">onChange</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> json<span class="token punctuation">,</span> html <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>json<span class="token punctuation">,</span> html<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span></span>  
   <span class="token punctuation">/></span></span><span class="token plain-text">
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span></span><span class="token punctuation">></span></span><span class="token punctuation">,</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"app"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<h3>Customize How to upload image</h3>
+<p>You can decide what to do after the image is selected like below</p>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">new</span> <span class="token class-name">Image</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token function-variable function">onChange</span><span class="token operator">:</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">preview<span class="token operator">:</span> string<span class="token punctuation">,</span> file<span class="token operator">:</span> File</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> res <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">'/url/to/post'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+      method<span class="token operator">:</span> <span class="token string">'POST'</span><span class="token punctuation">,</span>
+      headers<span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token string">'Content-Type'</span><span class="token operator">:</span> <span class="token string">'application/json'</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      body<span class="token operator">:</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span><span class="token punctuation">{</span> preview <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token keyword">const</span> json <span class="token operator">=</span> <span class="token keyword">await</span> res<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> json<span class="token punctuation">.</span>url<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre></div>
 <h3>Code</h3>
 <p><span
       class="gatsby-resp-image-wrapper"
