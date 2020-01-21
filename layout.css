@@ -240,6 +240,19 @@ pre {
   background-color: #FFF;
 }
 
+.ProseMirror .picture img, figure img {
+  border: none;
+  padding: 0;
+}
+
+.ProseMirror figcaption {
+  font-size: 0;
+}
+
+.ProseMirror img.small {
+  width: 60%;
+}
+
 @media (min-width: 769px) {
 
   .sidebar:first-child {
