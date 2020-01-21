@@ -58,8 +58,9 @@ export default (props) => {
                     ...Extensions, 
                     new Code(), 
                     new Image({
-                      imgClassName: '',
-                      withCaption: false
+                      withCaption: false,
+                      imgFullClassName: 'full',
+                      imgClassName: 'small'
                     }) 
                   ]} 
                   html={html}

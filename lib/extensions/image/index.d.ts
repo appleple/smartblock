@@ -14,7 +14,7 @@ export default class Image extends Extension {
     captionClassName: string;
     withCaption: boolean;
     onChange: (preview: string, file: File) => Promise<string>;
-    constructor(props: Props);
+    constructor({ imgClassName, imgFullClassName, captionClassName, withCaption, onChange }: Props);
     readonly name: string;
     readonly showMenu: boolean;
     readonly group: string;
@@ -51,9 +51,6 @@ export default class Image extends Extension {
             };
         }[];
         toDOM: (node: any) => (string | {
-            src: any;
-            "class": string;
-        })[] | (string | {
             "class": string;
         } | (string | {
             src: any;

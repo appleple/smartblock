@@ -1,10 +1,16 @@
 import SmartBlock from './src/adapter';
 import extensions from './src/extensions/';
 import Code from './src/extensions/code';
+import Image from './src/extensions/image';
 import markdown from './sample';
 import * as showdown from 'showdown';
 
 extensions.push(new Code());
+extensions.push(new Image({
+  imgClassName: 'small',
+  withCaption: false,
+  imgFullClassName: 'full',
+}))
 
 SmartBlock('#app', {
   showTitle: true,
@@ -14,7 +20,6 @@ SmartBlock('#app', {
   outputMarkdown: true,
   extensions,
   onChange: ({ markdown }) => {
-    console.log(markdown)
   }
 });
 

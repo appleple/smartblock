@@ -24,19 +24,22 @@ export default class Image extends Extension {
   imgClassName: string;
   imgFullClassName: string;
   captionClassName: string;
-  withCaption: boolean = true;
-  onChange: (preview: string, file: File) => Promise<string> = (preview) => Promise.resolve(preview);
+  withCaption: boolean;
+  onChange: (preview: string, file: File) => Promise<string>;
 
-  constructor(props: Props) {
-    super(props);
-    if (!props) {
-      return;
-    }
-    this.imgClassName = props.imgClassName ? props.imgClassName : this.imgClassName;
-    this.imgFullClassName = props.imgFullClassName ? props.imgFullClassName : this.imgFullClassName;
-    this.captionClassName = props.captionClassName ? props.captionClassName : this.captionClassName;
-    this.withCaption = props.withCaption ? props.withCaption : this.withCaption;
-    this.onChange = props.onChange ? props.onChange : this.onChange;
+  constructor({
+    imgClassName = 'small',
+    imgFullClassName = 'full',
+    captionClassName = 'caption',
+    withCaption = true,
+    onChange = (preview) => Promise.resolve(preview)
+  }: Props) {
+    super({});
+    this.imgClassName = imgClassName;
+    this.imgFullClassName = imgFullClassName;
+    this.captionClassName = captionClassName
+    this.withCaption = withCaption;
+    this.onChange = onChange;
   }
   get name() {
     return "image";
@@ -90,12 +93,6 @@ export default class Image extends Extension {
         }
       ],
       toDOM: (node) => {
-        if (!this.withCaption) {
-          return ["img", {
-            src: node.attrs.src,
-            "class": node.attrs.size === "full" ? this.imgFullClassName : this.imgClassName,
-          }];
-        }
         return [
           "figure",
           {
@@ -104,7 +101,10 @@ export default class Image extends Extension {
             src: node.attrs.src,
             "class": node.attrs.size === "full" ? this.imgFullClassName : this.imgClassName,
           }],
-          ["figcaption", {"class": this.captionClassName}, 0],
+          (this.withCaption ? 
+            ["figcaption", {"class": this.captionClassName}, 0] : 
+            ["figcaption", 0]
+          ),
         ];
       }
     };
@@ -159,7 +159,7 @@ export default class Image extends Extension {
             const attr = Object.assign({}, node.attrs, {
               size: 'full'
             });
-            setBlockType(state.schema.nodes.media, attr)(state, dispatch);
+            setBlockType(state.schema.nodes.image, attr)(state, dispatch);
           }}
         >
           <FullIcon style={{ width: '24px', height: '24px' }} />
@@ -175,7 +175,7 @@ export default class Image extends Extension {
             const attr = Object.assign({}, node.attrs, {
               size: 'small'
             });
-            setBlockType(state.schema.nodes.media, attr)(state, dispatch);
+            setBlockType(state.schema.nodes.image, attr)(state, dispatch);
           }}
         ><CenterIcon style={{ width: '24px', height: '24px' }} /></Button>
         <Button tag="label">
