@@ -35,7 +35,7 @@ export default (props) => {
     <section className="hero is-center firstview">
       <div className="inner is-small">
         <div className="box" style={{ textAlign: 'center' }}>
-          <p className="margin-top-medium lead">Modern block styled editor <br />powered with React<br /> Easier to edit on touchscreen.</p>
+          <p className="margin-top-medium lead">Modern block styled editor <br />powered with React and ProseMirror<br /> Easier to edit on touchscreen.</p>
         </div>
       </div>
       <div className="inner hero-inner" style={{ textAlign: 'center'}}>
