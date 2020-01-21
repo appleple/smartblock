@@ -27,7 +27,7 @@ export default () => {
     <section className="section github-section">
       <div className="inner is-small">
         <p>If you like our project, we glad to have star! :)</p>
-        <a href="https://github.com/appleple/smartblock/stargazers" className="button is-white is-small"><i className="fa fa-github"></i> GitHub Star</a>
+        <a href="https://github.com/appleple/smartblock/" className="button is-white is-small"><i className="fa fa-github"></i> GitHub</a>
       </div>
     </section>
     <footer className="footer">
