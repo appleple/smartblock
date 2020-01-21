@@ -25,8 +25,10 @@ export default class Heading3 extends Extension {
         };
         toDOM(node: any): (string | number | {
             style: string;
-            id: any;
             class: any;
+        } | {
+            class: any;
+            style?: undefined;
         })[];
     };
     readonly icon: JSX.Element;

@@ -45,7 +45,7 @@ export default class Heading3 extends Extension {
         }
       ],
       attrs: {
-        align: { default: 'left' },
+        align: { default: '' },
         id: { default: '' }
       },
       toDOM(node) {

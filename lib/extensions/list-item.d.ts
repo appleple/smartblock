@@ -18,9 +18,7 @@ export default class ListItem extends Extension {
                 default: string;
             };
         };
-        toDOM(node: any): (string | number | {
-            id: any;
-        })[];
+        toDOM(node: any): (string | number)[];
         defining: boolean;
     };
     keys(schema: Schema): {

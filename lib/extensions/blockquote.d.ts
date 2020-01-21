@@ -23,7 +23,6 @@ export default class BlockQuote extends Extension {
             };
         };
         toDOM: (node: any) => (string | number | {
-            id: any;
             class: string;
         })[];
     };

@@ -25,8 +25,10 @@ export default class Paragraph extends Extension {
         };
         toDOM: (node: any) => (string | number | {
             style: string;
-            id: any;
             class: string;
+        } | {
+            class: string;
+            style?: undefined;
         })[];
     };
     readonly icon: JSX.Element;

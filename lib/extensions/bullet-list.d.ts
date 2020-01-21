@@ -20,7 +20,6 @@ export default class BulletList extends Extension {
             };
         };
         toDOM(node: any): (string | number | {
-            id: any;
             class: any;
         })[];
     };
