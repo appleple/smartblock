@@ -246,7 +246,12 @@ pre {
 }
 
 .ProseMirror figcaption {
-  font-size: 0;
+  font-size: 0 !important;
+}
+
+.ProseMirror img {
+  width: 100%;
+  height: auto;
 }
 
 .ProseMirror img.small {

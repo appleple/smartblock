@@ -243,6 +243,8 @@ render(<>
 
 ### Image
 
+![](./image.png)
+
 ```jsx
 import * as React from 'react';
 import { render } from 'react-dom';
@@ -268,6 +270,25 @@ render(<>
     onChange={({ json, html }) => { console.log(json, html);}}  
   />
 </>, document.getElementById("app"));
+```
+
+### Customize How to upload image
+You can decide what to do after the image is selected like below
+
+```js
+new Image({
+  onChange: async (preview: string, file: File) => {
+    const res = await fetch('/url/to/post', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ preview })
+    })
+    const json = await res.json();
+    return json.url;
+  }
+})
 ```
 
 ### Code
