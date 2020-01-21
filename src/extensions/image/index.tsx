@@ -12,20 +12,31 @@ import FullIcon from './full-icon';
 import CenterIcon from './center-icon';
 import ImagePlusIcon from './image-plus-icon';
 
+type Props = {
+  imgClassName?: string;
+  imgFullClassName?: string;
+  captionClassName?: string;
+  withCaption?: boolean;
+  onChange?: (preview: string, file: File) => Promise<string>;
+}
+
 export default class Image extends Extension {
   imgClassName: string;
   imgFullClassName: string;
   captionClassName: string;
+  withCaption: boolean = true;
   onChange: (preview: string, file: File) => Promise<string> = (preview) => Promise.resolve(preview);
 
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
-    this.imgClassName = props.imgClassName;
-    this.imgFullClassName = props.imgFullClassName;
-    this.captionClassName = props.captionClassName;
-    if (props.onChange) {
-      this.onChange = props.onChange;
+    if (!props) {
+      return;
     }
+    this.imgClassName = props.imgClassName ? props.imgClassName : this.imgClassName;
+    this.imgFullClassName = props.imgFullClassName ? props.imgFullClassName : this.imgFullClassName;
+    this.captionClassName = props.captionClassName ? props.captionClassName : this.captionClassName;
+    this.withCaption = props.withCaption ? props.withCaption : this.withCaption;
+    this.onChange = props.onChange ? props.onChange : this.onChange;
   }
   get name() {
     return "image";
@@ -79,6 +90,12 @@ export default class Image extends Extension {
         }
       ],
       toDOM: (node) => {
+        if (!this.withCaption) {
+          return ["img", {
+            src: node.attrs.src,
+            "class": node.attrs.size === "full" ? this.imgFullClassName : this.imgClassName,
+          }];
+        }
         return [
           "figure",
           {
@@ -86,7 +103,6 @@ export default class Image extends Extension {
           }, ["img", {
             src: node.attrs.src,
             "class": node.attrs.size === "full" ? this.imgFullClassName : this.imgClassName,
-            id: node.attrs.id || uuid(),
           }],
           ["figcaption", {"class": this.captionClassName}, 0],
         ];

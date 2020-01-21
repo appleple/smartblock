@@ -1,12 +1,20 @@
 /// <reference types="react" />
 import { Extension, Dispatch } from '../../types';
 import { EditorState } from 'prosemirror-state';
+declare type Props = {
+    imgClassName?: string;
+    imgFullClassName?: string;
+    captionClassName?: string;
+    withCaption?: boolean;
+    onChange?: (preview: string, file: File) => Promise<string>;
+};
 export default class Image extends Extension {
     imgClassName: string;
     imgFullClassName: string;
     captionClassName: string;
+    withCaption: boolean;
     onChange: (preview: string, file: File) => Promise<string>;
-    constructor(props: any);
+    constructor(props: Props);
     readonly name: string;
     readonly showMenu: boolean;
     readonly group: string;
@@ -43,11 +51,13 @@ export default class Image extends Extension {
             };
         }[];
         toDOM: (node: any) => (string | {
+            src: any;
+            "class": string;
+        })[] | (string | {
             "class": string;
         } | (string | {
             src: any;
             "class": string;
-            id: any;
         })[] | (string | number | {
             "class": string;
         })[])[];
@@ -66,3 +76,4 @@ export default class Image extends Extension {
     active(state: any): boolean;
     enable(state: any): boolean;
 }
+export {};

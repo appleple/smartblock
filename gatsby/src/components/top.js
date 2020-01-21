@@ -1,6 +1,7 @@
 import React from 'react';
 import Extensions from 'smartblock/lib/extensions';
 import Code from 'smartblock/lib/extensions/code';
+import Image from 'smartblock/lib/extensions/image';
 import { Link, withPrefix } from 'gatsby';
 const SmartBlock = typeof window === "undefined" ? <div/> : React.lazy(() => import('smartblock/lib/components/smartblock'));
 const GlobalStyle = React.lazy(() => import('smartblock/lib/utils/style'));
@@ -16,7 +17,9 @@ const html = `<p>SmartBlock is a block styled editor created by JavaScript. Whic
   <li>Get the result as HTML or JSON</li>
   <li>Keep style when copy and paste contents</li>
 </ul>
-<p style="text-align:center;">SmartBlock is provided with MIT license. <br/>Made by : @appleple ♥ OSS</p>`;
+<p style="text-align:center;">SmartBlock is provided with MIT license. <br/>Made by : @appleple ♥ OSS</p>
+<img src="${withPrefix('/footer.svg')}" />
+`;
 
 
 export default (props) => {
@@ -51,7 +54,14 @@ export default (props) => {
                 <SmartBlock 
                   showTitle
                   titleText="What is SmartBlock?"
-                  extensions={[...Extensions, new Code() ]} 
+                  extensions={[
+                    ...Extensions, 
+                    new Code(), 
+                    new Image({
+                      imgClassName: '',
+                      withCaption: false
+                    }) 
+                  ]} 
                   html={html}
                   onChange={({html, json}) => {
                     setOutputHTML(html);
