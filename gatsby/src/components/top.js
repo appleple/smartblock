@@ -28,6 +28,8 @@ export default (props) => {
   const { data } = props;
   const { markdownRemark } = data;
   const [outputHTML, setOutputHTML] = React.useState('');
+  const [outputJSON, setOutputJSON] = React.useState('');
+  const [tab, setTab] = React.useState('html');
   
   return (<>
     <section className="hero is-center firstview">
@@ -66,6 +68,7 @@ export default (props) => {
                   html={html}
                   onChange={({html, json}) => {
                     setOutputHTML(html);
+                    setOutputJSON(json);
                   }}
                 />
                 <GlobalStyle />
@@ -73,7 +76,28 @@ export default (props) => {
             )}
             </div>
             </div>
-            <pre className="language-html"><code>{outputHTML}</code></pre>
+            <h2>Output Result</h2>
+            <div className="tab" style={{marginBottom: '50px'}}>
+              <div className="tab-list">
+                <a 
+                  className={tab === 'html' ? 'is-current' : ''} 
+                  onClick={() => {
+                    setTab('html');
+                  }}>HTML</a>
+                <a 
+                  className={tab === 'json' ? 'is-current' : ''}
+                  onClick={() => {
+                    setTab('json');
+                  }}
+                >JSON</a>
+              </div>
+              <div className="tab-content">
+                <div className="is-active">
+                  {tab === 'html' && <pre className="language-html"><code>{outputHTML}</code></pre>}
+                  {tab === 'json' && <pre className="language-html"><code>{JSON.stringify(outputJSON)}</code></pre>}
+                </div>
+              </div>
+            </div>
             <div dangerouslySetInnerHTML={{
                 __html: markdownRemark.html
               }} />
