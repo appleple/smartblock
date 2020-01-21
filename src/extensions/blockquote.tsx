@@ -47,7 +47,6 @@ export default class BlockQuote extends Extension {
         return [
           'blockquote',
           {
-            id: node.attrs.id || uuid(),
             class: this.className
           },
           0

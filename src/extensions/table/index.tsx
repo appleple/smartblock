@@ -91,7 +91,6 @@ export default class Table extends Extension {
       return [
         'table',
         {
-          id: node.attrs.id || uuid(),
           class: this.className
         },
         ['tbody', 0]

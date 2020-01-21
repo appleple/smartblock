@@ -51,11 +51,12 @@ export default class Heading5 extends Extension {
       toDOM(node) {
         return [
           'h5',
-          {
+          (node.attrs.align ? {
             style: `text-align: ${node.attrs.align}`,
-            id: node.attrs.id || uuid(),
             class: this.className
-          },
+          } : {
+            class: this.className
+          }),
           0
         ]
       }

@@ -24,6 +24,7 @@ export default (props) => {
   const isSSR = typeof window === "undefined"
   const { data } = props;
   const { markdownRemark } = data;
+  const [outputHTML, setOutputHTML] = React.useState('');
   
   return (<>
     <section className="hero is-center firstview">
@@ -52,12 +53,16 @@ export default (props) => {
                   titleText="What is SmartBlock?"
                   extensions={[...Extensions, new Code() ]} 
                   html={html}
+                  onChange={({html, json}) => {
+                    setOutputHTML(html);
+                  }}
                 />
                 <GlobalStyle />
               </React.Suspense>
             )}
             </div>
             </div>
+            <pre className="language-html"><code>{outputHTML}</code></pre>
             <div dangerouslySetInnerHTML={{
                 __html: markdownRemark.html
               }} />

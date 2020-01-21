@@ -39,13 +39,7 @@ export default class ListItem extends Extension {
         id: { default: '' }
       },
       toDOM(node) {
-        return [
-          'li',
-          {
-            id: node.attrs.id || uuid()
-          },
-          0
-        ]
+        return ['li', 0]
       },
       defining: true
     }
