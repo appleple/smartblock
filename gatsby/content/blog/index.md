@@ -47,7 +47,7 @@ render(<>
 ### As an Native JavaScript
 
 ```html
-<script src="https://unpkg.com/smartblock@1.2.5/dist/smartblock.js"></script>
+<script src="https://unpkg.com/smartblock@1.2.8/dist/smartblock.js"></script>
 <!-- You can use smartblock without using JSX -->
 <!-- bundle size is much smaller than the package build with react !-->
 <script>

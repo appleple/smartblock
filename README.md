@@ -1,6 +1,11 @@
 # SmartBlock
 
 ![](https://github.com/appleple/smartblock/workflows/Node%20CI/badge.svg)
+[![npm version](https://badge.fury.io/js/smartblock.svg)](https://badge.fury.io/js/smartblock)
+[![npm download](http://img.shields.io/npm/dm/smartblock.svg)](https://www.npmjs.com/package/smartblock)
+[![GitHub license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://raw.githubusercontent.com/appleple/smartblock/master/LICENSE)
+
+
 
 SmartBlock.js is a JavaScript block based editor which enables you to write contents easily on websites even with **SmartPhone**.
 
