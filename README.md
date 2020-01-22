@@ -129,3 +129,14 @@ render(<>
 | showBackBtn  | Btn to support history back will be shown                                                                   | Boolean            | false                                                                                                                                                                                                                                                                                                                                                                   |
 | autoSave     | The HTML will be stored to the localstorage every time the content is changed                               | Boolean            | false                                                                                                                                                                                                                                                                                                                                                                   |
 | getEditorRef | Get the editor ref object                                                                                   | Function           |                                                                                                                                                                                                                                                                                                                                                                         |
+## Download
+[Download ZIP](https://github.com/appleple/smartblock/archive/master.zip)
+
+## Github
+[https://github.com/appleple/smartblock](https://github.com/appleple/smartblock)
+
+## Contributor
+[@steelydylan](https://github.com/steelydylan)
+
+## License
+Code and documentation copyright 2020 by appleple, Inc. Code released under the [MIT License](https://github.com/appleple/smartblock/blob/master/LICENSE).
