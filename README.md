@@ -4,7 +4,7 @@
 [![npm version](https://badge.fury.io/js/smartblock.svg)](https://badge.fury.io/js/smartblock)
 [![npm download](http://img.shields.io/npm/dm/smartblock.svg)](https://www.npmjs.com/package/smartblock)
 [![GitHub license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://raw.githubusercontent.com/appleple/smartblock/master/LICENSE)
-[![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Awesome%20block%20based%20%20mobile%20friendly%20JavaScript%20%Editor&url=https://github.com/appleple/smartblock&via=appleplecom&hashtags=blocks,smartblock)
+[![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Awesome%20block-based%20JavaScript%20%Editor&url=https://github.com/appleple/smartblock&via=appleplecom&hashtags=blocks,smartblock)
 
 
 
