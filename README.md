@@ -48,39 +48,11 @@ render(<>
 </>, document.getElementById("app"));
 ```
 
-## Extensions
 
-### Blocks
+## Try it on CodeSandbox
 
-- Pragraph
-- Heading1
-- Heading2
-- Heading3
-- Heading4
-- Heading5
-- Heading6
-- OrderdList
-- BulletList
-- ListItem
-- Blockquoe
-- Table
-- Code
-- Image
+[![Edit hardcore-kalam-tghp9](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/hardcore-kalam-tghp9?fontsize=14&hidenavigation=1&theme=dark)
 
-### Marks
-
-- Emphasis
-- Strike
-- Strong
-- Underline
-
-### Utils
-
-- MoveDown
-- MoveUp
-- Trash
-- DefaultKeys
-- DefaultPlugins
 
 ## Customize
 
