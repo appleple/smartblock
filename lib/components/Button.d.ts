@@ -6,6 +6,7 @@ declare type ButtonProps = {
     style?: React.CSSProperties;
     children: React.ReactNode;
     type?: 'submit' | 'button';
+    tag?: 'label';
     className?: string;
     onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
