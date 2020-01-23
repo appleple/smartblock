@@ -47,12 +47,14 @@ render(<>
 ### As an Native JavaScript
 
 ```html
-<script src="https://unpkg.com/smartblock@1.3.0/dist/smartblock.js"></script>
+<script src="https://unpkg.com/smartblock@1.3.1/dist/editor.js"></script>
+<script src="https://unpkg.com/smartblock@1.3.1/dist/extensions.js"></script>
 <!-- You can use smartblock without using JSX -->
 <!-- bundle size is much smaller than the package build with react !-->
 <script>
-SmartBlock('#app', {
+SmartBlock.Editor('#app', {
   html: '<h2>Hello World</h2><p>hello</p>',
+  extensions: SmartBlock.Extensions,
   onChange: function(result) {
     console.log(result.json, result.html);
   }

@@ -5,7 +5,7 @@ const { CheckerPlugin } = require('awesome-typescript-loader');
 module.exports = {
   mode: "production",
   entry: {
-    SmartBlock: './src/adapter/index.tsx',
+    Editor: './src/adapter/index.tsx',
     Code: './src/extensions/code/index.tsx',
     Embed: './src/extensions/embed/index.tsx',
     Extensions: './src/extensions/index.tsx',
@@ -39,7 +39,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     publicPath: "bundle",
     filename: (data) => `${data.chunk.name.toLowerCase()}.js`,
-    library: '[name]',
+    library: ["SmartBlock", '[name]'],
     libraryExport: "default",
     libraryTarget: 'umd'
   },
