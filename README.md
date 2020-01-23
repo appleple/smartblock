@@ -62,7 +62,11 @@ You can add custom block like this
 ```js
 import * as React from 'react';
 import { Extensions, CustomBlock, CustomMark } from 'smartblock';
-Extensions.push(new CustomBlock({  tagName: 'div',  className: '.alert',  icon: <SomeIconComponent />});
+Extensions.push(new CustomBlock({  
+  tagName: 'div',
+  className: '.alert',
+  icon: <SomeIconComponent />
+});
 
 render(<>
   <SmartBlock 
@@ -79,7 +83,11 @@ You can add custom inline element like this
 import * as React from 'react';
 import { Extension, CustomBlock, CustomMark } from 'smartblock';
 import 'smartblock/css/smartblock.css';
-Extension.push(new CustomMark({  tagName: 'span',  className: '.small',  icon: <SomeIconComponent />});
+Extension.push(new CustomMark({  
+  tagName: 'span',
+  className: '.small',
+  icon: <SomeIconComponent />
+});
 
 render(<>
   <SmartBlock 
