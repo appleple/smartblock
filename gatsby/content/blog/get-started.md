@@ -7,7 +7,7 @@ description: "Installation"
 ### Use CDN
 
 ```html
-<script src="https://unpkg.com/smartblock@1.3.0/dist/smartblock.js"></script>
+<script src="https://unpkg.com/smartblock@1.3.1/dist/smartblock.js"></script>
 ```
 
 ### Install From npm
