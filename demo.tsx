@@ -4,6 +4,7 @@ import Code from './src/extensions/code';
 import Image from './src/extensions/image';
 import markdown from './sample';
 import * as showdown from 'showdown';
+import './css/smartblock.css';
 
 extensions.push(new Code());
 extensions.push(new Image({
@@ -27,11 +28,9 @@ SmartBlock('#app', {
 // import * as React from 'react';
 // import { render } from 'react-dom';
 // import SmartBlock from './src/components/smartblock';
-// import GlobalStyle from './src/utils/style';
 // import extensions from './src/extensions';
 // ​
 // render(<>
-//   <GlobalStyle />
 //   <SmartBlock 
 // 	extensions={extensions} 
 // 	html="html" 

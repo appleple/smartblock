@@ -31,10 +31,10 @@ In your JavaScript file:
 ```jsx
 import * as React from 'react'; 
 import { render } from 'react-dom'; 
-import { SmartBlock, GlobalStyle, Extensions } from 'smartblock'; 
+import 'smartblock/css/smartblock.css';
+import { SmartBlock, Extensions } from 'smartblock'; 
 
 render(<>
-  <GlobalStyle />
   <SmartBlock
     extensions={Extensions}
     html={'<h2>Hello World</h2><p>hello</p>'} 

@@ -1,55 +1,14 @@
 import * as React from 'react';
-import styled, { keyframes } from 'styled-components';
 import { EditorView } from 'prosemirror-view';
 import { getOffset, getScrollTop } from '../utils';
-import ButtonStyle from './button';
+import Button from './button';
 
 interface PositionProps {
   view: EditorView;
   blockMenu: any;
 }
 
-const { useState, useRef } = React;
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
-
-const FloaterStyle = styled.div<{
-  pos: number;
-}>`
-  position: absolute;
-  z-index: 12;
-  animation: ${fadeIn} 0.3s;
-  margin-top: 8px;
-  border-radius: 5px;
-  background-color: #fff;
-  color: #fff;
-  box-shadow: 0 3px 40px 8px rgba(116, 116, 116, 0.2);
-  &:before {
-    position: absolute;
-    ${props => `
-    left: ${props.pos}px;
-    `}
-    top: -12px;
-    content: '';
-    display: block;
-    border-style: solid;
-    border-width: 0 12px 12px 12px;
-    border-color: transparent transparent #ffffff transparent;
-  }
-`
-
-const Bar = styled.div`
-  padding: 5px;
-  display: flex;
-  align-items: baseline;
-`
+const { useRef } = React;
 
 const ARROWOFFSET = 50;
 const ARROWTOPOFFSET = 25;
@@ -140,16 +99,21 @@ const MenuBar = ({
   }
 
   return (
-    <FloaterStyle style={style} ref={container} pos={pos} className="smartblock-inline-menu">
-      <Bar>
+    <div style={style} ref={container} className="smartblock-inline-menu">
+      <div 
+        className="smartblock-inline-menu-arrow" 
+        style={{left: `${pos}px`}}
+      >
+      </div>
+      <div className="smartblock-inline-menu-inner">
         {children}
         {menu.map((item, key) => {
           return (
-            <ButtonStyle
+            <Button
               key={`inline-${key}`}
               type="button"
               active={item.active && item.active(state)}
-              title={item.title}
+              // title={item.title}
               disabled={item.enable && !item.enable(state)}
               onClick={e => {
                 e.preventDefault()
@@ -161,14 +125,14 @@ const MenuBar = ({
               ) : (
                 <span dangerouslySetInnerHTML={{ __html: item.icon }} />
               )}
-            </ButtonStyle>
+            </Button>
           )
         })}
         {inlineMenu && inlineMenu.props && inlineMenu.props.children && (
           <>{inlineMenu}</>
         )}
-      </Bar>
-    </FloaterStyle>
+      </div>
+    </div>
   )
 }
 

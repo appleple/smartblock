@@ -1,11 +1,10 @@
 import React from 'react';
+import 'smartblock/css/smartblock.css';
 import Extensions from 'smartblock/lib/extensions';
 import Code from 'smartblock/lib/extensions/code';
 import Image from 'smartblock/lib/extensions/image';
 import { Link, withPrefix } from 'gatsby';
 const SmartBlock = typeof window === "undefined" ? <div/> : React.lazy(() => import('smartblock/lib/components/smartblock'));
-const GlobalStyle = React.lazy(() => import('smartblock/lib/utils/style'));
-
 
 const html = `<p>SmartBlock is a block styled editor created by JavaScript. Which gives you nice experience of editing contents at touchscreen. On this page you can see it in action. Try to edit this text ! :)</p>
 <h2>Features</h2>
@@ -71,7 +70,6 @@ export default (props) => {
                     setOutputJSON(json);
                   }}
                 />
-                <GlobalStyle />
               </React.Suspense>
             )}
             </div>

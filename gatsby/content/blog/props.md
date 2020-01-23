@@ -36,13 +36,12 @@ Sometimes, You may want to edit the title and the content separetelly.
 ```jsx
 import * as React from 'react';
 import { render } from 'react-dom';
+import 'smartblock/css/smartblock.css';
 import { 
   SmartBlock, 
-  GlobalStyle, 
 } from 'smartblock';
 
 render(<>
-  <GlobalStyle />
   <SmartBlock 
     showTitle
     titleText="Title Here"
@@ -62,10 +61,10 @@ You can use markdown library `showdown` to import and export markdown
 import showdown from 'showdown';
 import * as React from 'react';
 import { render } from 'react-dom';
-import { SmartBlock, GlobalStyle, Extensions } from 'smartblock';
+import 'smartblock/css/smartblock.css';
+import { SmartBlock, Extensions } from 'smartblock';
 
 render(<>
-  <GlobalStyle />
   <SmartBlock 
     extensions={Extensions}
     showdown={showdown}
@@ -86,10 +85,10 @@ Once stored, Regardless of the `html` props, the content will be loaded from loc
 import * as showdown from 'showdown';
 import * as React from 'react';
 import { render } from 'react-dom';
-import { SmartBlock, GlobalStyle, Extensions } from 'smartblock';
+import 'smartblock/css/smartblock.css';
+import { SmartBlock, Extensions } from 'smartblock';
 
 render(<>
-  <GlobalStyle />
   <SmartBlock 
     extensions={Extensions}
     autoSave

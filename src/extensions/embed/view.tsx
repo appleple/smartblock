@@ -1,15 +1,6 @@
 import * as React from 'react'
-import styled from 'styled-components'
 import Popup from './popup'
 import ExternalLink from '../../components/icons/ExternalLink'
-
-const Button = styled.button`
-  background-color: #fff;
-  border: none;
-  color: #adadad;
-  margin-left: 5px;
-  vertical-align: middle;
-`
 
 const { useState } = React;
 
@@ -48,13 +39,14 @@ export default props => {
         <div className="embed">
           <div className="embed-inner">
             {node.attrs.src}
-            <Button
+            <button
+              className="smartblock-popup-view-btn"
               onClick={() => {
                 setShowPopup(true);
               }}
             >
               <ExternalLink style={{ width: '16px', height: '16px' }} />
-            </Button>
+            </button>
           </div>
         </div>
       </div>

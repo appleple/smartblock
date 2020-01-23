@@ -3,7 +3,6 @@ import ImageIcon from './image-icon';
 import { blockActive, findSelectedNodeWithType } from '../../utils';
 import { Extension, Dispatch } from '../../types'
 import { setBlockType } from 'prosemirror-commands';
-import * as uuid from 'uuid/v4'
 import { EditorState } from 'prosemirror-state';
 import { MediaPlugin } from './plugins';
 import { hasClass, readFiles } from './util';
@@ -133,7 +132,6 @@ export default class Image extends Extension {
   customButton({ state, dispatch }) {
     const disabled = (this.enable && !this.enable(state)) || this.hideMenuOnFocus;
     return (<Button 
-      tag="label"
       active={this.active && this.active(state)}
       disabled={disabled}
     >
@@ -153,7 +151,7 @@ export default class Image extends Extension {
             marginRight: '1px',
             borderTopRightRadius: '0',
             borderBottomRightRadius: '0',
-            opacity: node.attrs.size !== 'small' ? '.6' : '1'
+            opacity: node.attrs.size !== 'small' ? .6 : 1
           }}
           onClick={() => {
             const attr = Object.assign({}, node.attrs, {
@@ -169,7 +167,7 @@ export default class Image extends Extension {
           style={{
             borderTopLeftRadius: '0',
             borderBottomLeftRadius: '0',
-            opacity: node.attrs.size === 'small' ? '.6' : '1',
+            opacity: node.attrs.size === 'small' ? .6 : 1,
           }}
           onClick={() => {
             const attr = Object.assign({}, node.attrs, {
@@ -178,7 +176,7 @@ export default class Image extends Extension {
             setBlockType(state.schema.nodes.image, attr)(state, dispatch);
           }}
         ><CenterIcon style={{ width: '24px', height: '24px' }} /></Button>
-        <Button tag="label">
+        <Button>
           <ImagePlusIcon style={{ width: '24px', height: '24px' }} />
           <input type="file" style={{ display: 'none' }} onChange={(e) => {
             this.changeImage(state, dispatch, e.target.files);

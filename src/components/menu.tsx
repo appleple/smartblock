@@ -1,51 +1,11 @@
 import * as React from 'react';
-import styled, { keyframes } from 'styled-components';
 import { findChildren } from 'prosemirror-utils';
 import { EditorView } from 'prosemirror-view';
 import { getOffset, getParentNodeFromState } from '../utils';
-import ButtonStyle from './button';
+import Button from './button';
 import { Extension } from '..';
 
 const { useState, useEffect } = React;
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`
-
-const PositionBtnGroup = styled.div`
-  position: absolute;
-  z-index: 11;
-  animation: ${fadeIn} 0.3s;
-  border-radius: 5px;
-  box-shadow: 0 3px 40px 8px rgba(116, 116, 116, 0.2);
-  padding: 5px 0;
-  color: #767676;
-  background-color: #fff;
-  &:before {
-    position: absolute;
-    left: 20px;
-    top: -12px;
-    content: '';
-    display: block;
-    border-style: solid;
-    border-width: 0 12px 12px 12px;
-    border-color: transparent transparent #ffffff transparent;
-  }
-`
-
-const PositionBtnGroupTop = styled.div`
-  padding: 0 5px 0 5px;
-`
-const PositionBtnGroupBottom = styled.div`
-  border-top: 1px solid #ccc;
-  margin: 5px 0 0 0;
-  padding: 5px 5px 0 5px;
-`
 
 interface PositionProps {
   view: EditorView;
@@ -187,14 +147,14 @@ export default (props: PositionProps) => {
   }
 
   return (
-    <PositionBtnGroup style={style} className="smartblock-menu">
-      <PositionBtnGroupTop>
+    <div style={style} className="smartblock-menu">
+      <div className="smartblock-menu-top">
         {menu.map((item, key) => {
           if (item.customButton) {
             return item.customButton({ state, dispatch });
           }
           return (
-            <ButtonStyle
+            <Button
               key={key}
               type="button"
               active={item.active && item.active(state)}
@@ -209,13 +169,13 @@ export default (props: PositionProps) => {
               ) : (
                 <span dangerouslySetInnerHTML={{ __html: item.icon }} />
               )}
-            </ButtonStyle>
+            </Button>
           )
         })}
-      </PositionBtnGroupTop>
+      </div>
       {CustomMenu && CustomMenu.props && CustomMenu.props.children && (
-        <PositionBtnGroupBottom className="smartblock-custom-menu">{CustomMenu}</PositionBtnGroupBottom>
+        <div className="smartblock-custom-menu">{CustomMenu}</div>
       )}
-    </PositionBtnGroup>
+    </div>
   )
 }

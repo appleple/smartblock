@@ -17,7 +17,6 @@ import {
   liftListItem,
   findSelectedNodeWithType
 } from './utils'
-import GlobalStyle from './utils/style'
 import { Dispatch, Extension } from './types'
 
 // extensions
@@ -66,7 +65,6 @@ export {
   Editor,
   InlineMenu,
   Menu,
-  GlobalStyle,
   /* 
     extensions 
   */

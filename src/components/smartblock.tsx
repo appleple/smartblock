@@ -1,11 +1,11 @@
 import * as React from 'react';
-import styled from 'styled-components';
-import { EditorView, EditorProps } from 'prosemirror-view';
-import { Schema, Node, DOMParser, DOMSerializer } from 'prosemirror-model';
+import { EditorView } from 'prosemirror-view';
+import { Schema, Node, DOMParser } from 'prosemirror-model';
 import { keymap } from 'prosemirror-keymap';
 import { chainCommands } from 'prosemirror-commands';
 import scrollTo from 'scroll-to';
 import { EditorState } from 'prosemirror-state';
+import classNames from 'classnames';
 import * as uuid from 'uuid/v4'
 
 import Editor from './editor';
@@ -21,28 +21,6 @@ import { Extension, AppProps, Output } from '../types'
 
 
 const { useState, useEffect, useRef } = React;
-
-const Input = styled('div')`
-  width: 100%;
-  overflow-y: auto;
-`
-
-const Container = styled.div<{
-  full: boolean;
-}>`
-  ${props => {
-    if (!props.full) {
-      return `max-width: 780px;`
-    }
-    return '';
-  }}
-  margin: 0 auto;
-  padding: 10px 0 80px 0;
-`
-
-const Inner = styled.div`
-  position: relative;
-`
 
 interface ProseRender {
   editor: React.ReactChild;
@@ -378,7 +356,9 @@ export default (props: AppProps) => {
     }}
     ref={app}
   >
-    <Container full={props.full}>
+    <div className={classNames('smartblock-container', {
+      'is-full': props.full
+    })}>
       {props.showTitle && 
         <Title 
           onChange={(title) => {
@@ -388,12 +368,12 @@ export default (props: AppProps) => {
           placeholder={props.titlePlaceholder}
         />
       }
-      <Inner>
+      <div className="smartblock-inner">
       <div
         className={showMenus ? '' : 'ProseMirrorHideSelection'}
         ref={container}
       >
-        <Input>
+        <div className="smartblock-input-area">
           {options && <Editor
             options={options}
             nodeViews={nodeViews}
@@ -423,9 +403,9 @@ export default (props: AppProps) => {
               }
             }
           />}
-        </Input>
+        </div>
       </div>
-      </Inner>
-    </Container>
+      </div>
+    </div>
   </div>)
 }

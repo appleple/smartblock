@@ -15,13 +15,12 @@ You can add it like below
 ```jsx
 import * as React from 'react';
 import { render } from 'react-dom';
+import 'smartblock/css/smartblock.css';
 import { 
   SmartBlock, 
-  GlobalStyle, 
 } from 'smartblock';
 
 render(<>
-  <GlobalStyle />
   <SmartBlock 
     extensions={extensions}
     html={'<h2>Hello World</h2><p>hello</p>'}
@@ -40,10 +39,10 @@ You can add it like below
 ```jsx
 import * as React from 'react';
 import { render } from 'react-dom';
+import 'smartblock/css/smartblock.css';
 import Base from 'smartblock/lib/extensions/base';
 import { 
   SmartBlock, 
-  GlobalStyle, 
   Heading1
 } from 'smartblock';
 
@@ -53,7 +52,6 @@ const extensions = [
 ];
 
 render(<>
-  <GlobalStyle />
   <SmartBlock 
     extensions={extensions}
     html={'<h1>Hello World</h1><p>hello</p>'}
@@ -72,10 +70,10 @@ You can add it like below
 ```jsx
 import * as React from 'react';
 import { render } from 'react-dom';
+import 'smartblock/css/smartblock.css';
 import Base from 'smartblock/lib/extensions/base';
 import { 
   SmartBlock, 
-  GlobalStyle, 
   BulletList,
   ListItem
 } from 'smartblock';
@@ -87,7 +85,6 @@ const extensions = [
 ];
 
 render(<>
-  <GlobalStyle />
   <SmartBlock 
     extensions={extensions}
     html={`<ul>
@@ -110,10 +107,10 @@ You can add it like below
 ```jsx
 import * as React from 'react';
 import { render } from 'react-dom';
+import 'smartblock/css/smartblock.css';
 import Base from 'smartblock/lib/extensions/base';
 import { 
   SmartBlock, 
-  GlobalStyle, 
   OrderedList,
   ListItem
 } from 'smartblock';
@@ -125,7 +122,6 @@ const extensions = [
 ];
 
 render(<>
-  <GlobalStyle />
   <SmartBlock 
     extensions={extensions}
     html={`<ol>
@@ -145,11 +141,11 @@ render(<>
 ```jsx
 import * as React from 'react';
 import { render } from 'react-dom';
+import 'smartblock/css/smartblock.css';
 import Base from 'smartblock/lib/extensions/base';
 import { 
   ...Base,
   SmartBlock, 
-  GlobalStyle, 
   Blockquote
 } from 'smartblock';
 
@@ -158,7 +154,6 @@ const extensions = [
 ];
 
 render(<>
-  <GlobalStyle />
   <SmartBlock 
     extensions={extensions}
     html={'<blockquote>quote here!</blockquote>'}
@@ -175,11 +170,11 @@ render(<>
 ```jsx
 import * as React from 'react';
 import { render } from 'react-dom';
+import 'smartblock/css/smartblock.css';
 import Base from 'smartblock/lib/extensions/base';
 import { 
   ...Base,
   SmartBlock, 
-  GlobalStyle, 
   Embed
 } from 'smartblock';
 
@@ -192,7 +187,6 @@ const embedHtml = `<div class="embed-wrap">
 </div>`;
 
 render(<>
-  <GlobalStyle />
   <SmartBlock 
     extensions={extensions}
     html={embedHtml}
@@ -208,10 +202,10 @@ render(<>
 ```jsx
 import * as React from 'react';
 import { render } from 'react-dom';
+import 'smartblock/css/smartblock.css';
 import Base from 'smartblock/lib/extensions/base';
 import { 
   SmartBlock, 
-  GlobalStyle, 
   Table
 } from 'smartblock';
 
@@ -232,7 +226,6 @@ const tableHtml = `<table>
 </table>`;
 
 render(<>
-  <GlobalStyle />
   <SmartBlock 
     extensions={extensions}
     html={tableHtml}
@@ -248,10 +241,10 @@ render(<>
 ```jsx
 import * as React from 'react';
 import { render } from 'react-dom';
+import 'smartblock/css/smartblock.css';
 import Base from 'smartblock/lib/extensions/base';
 import { 
   SmartBlock, 
-  GlobalStyle, 
   Image
 } from 'smartblock';
 
@@ -263,7 +256,6 @@ const extensions = [
 const codeHTML = `<img src="/path" />`;
 
 render(<>
-  <GlobalStyle />
   <SmartBlock 
     extensions={extensions}
     html={codeHtml}
@@ -298,10 +290,10 @@ new Image({
 ```jsx
 import * as React from 'react';
 import { render } from 'react-dom';
+import 'smartblock/css/smartblock.css';
 import Base from 'smartblock/lib/extensions/base';
 import { 
-  SmartBlock, 
-  GlobalStyle, 
+  SmartBlock,
   Code
 } from 'smartblock';
 
@@ -314,7 +306,6 @@ const codeHTML = `<code class="js">import * as React from 'react';
 import {render} from 'react-dom';</code>`;
 
 render(<>
-  <GlobalStyle />
   <SmartBlock 
     extensions={extensions}
     html={codeHtml}

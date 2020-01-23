@@ -15,9 +15,9 @@ but if you don't need it you can import what you really need and pass it to the 
 ```jsx
 import * as React from 'react';
 import { render } from 'react-dom';
+import 'smartblock/css/smartblock.css';
 import { 
   SmartBlock, 
-  GlobalStyle, 
   Paragraph,
   DefaultKeys, // Util Extension
   DefaultPlugins, // Util Extension
@@ -32,7 +32,6 @@ const extensions = [
 ];
 
 render(<>
-  <GlobalStyle />
   <SmartBlock 
     extensions={extensions}
     html={'<p>Hello world</p>'}
@@ -48,9 +47,9 @@ render(<>
 ```jsx
 import * as React from 'react';
 import { render } from 'react-dom';
+import 'smartblock/css/smartblock.css';
 import { 
   SmartBlock, 
-  GlobalStyle, 
   Paragraph,
   DefaultKeys, // Util Extension
   DefaultPlugins, // Util Extension
@@ -65,7 +64,6 @@ const extensions = [
 ];
 
 render(<>
-  <GlobalStyle />
   <SmartBlock 
     extensions={extensions}
     html={'<p>Hello world</p>'}
@@ -81,9 +79,9 @@ render(<>
 ```jsx
 import * as React from 'react';
 import { render } from 'react-dom';
+import 'smartblock/css/smartblock.css';
 import { 
   SmartBlock, 
-  GlobalStyle, 
   Paragraph,
   DefaultKeys, // Util Extension
   DefaultPlugins, // Util Extension
@@ -98,7 +96,6 @@ const extensions = [
 ];
 
 render(<>
-  <GlobalStyle />
   <SmartBlock 
     extensions={extensions}
     html={'<p>Hello world</p>'}

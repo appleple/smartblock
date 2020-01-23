@@ -1,65 +1,11 @@
 import * as React from 'react';
-import styled, { keyframes } from 'styled-components';
 import { findChildren } from 'prosemirror-utils';
 import { EditorView } from 'prosemirror-view';
 import { getOffset } from '../utils';
-import ButtonStyle from './button';
+import Button from './button';
 import { Extension } from '..';
 
 const { useState, useEffect } = React;
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`
-
-const PositionBtnGroup = styled.div`
-  display: flex;
-  position: absolute;
-  right: 0;
-  z-index: 10;
-  max-width: 280px;
-  animation: ${fadeIn} 0.3s;
-  border-radius: 5px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-  padding: 4px;
-  background-color: #f2f2f4;
-`
-
-const Button = styled(ButtonStyle)`
-  margin: 3px;
-  width: 36px;
-  height: 36px;
-  ${props => {
-    if (props.color === 'black') {
-      return `
-        background-color: #444 !important;
-        color: #FFF;
-        
-        &:hover {
-          background-color: #111111 !important;
-          color: #FFF!important;
-        }
-      `
-    }
-    return `
-        background-color: transparent;
-        color: #666;
-        
-        &:hover {
-          color: #111;
-        }
-      `
-  }}
-  &:last-child {
-    margin-right: 2px;
-  }
-`
 
 interface PositionProps {
   view: EditorView;
@@ -140,10 +86,11 @@ export default (props: PositionProps) => {
   }, [props]);
 
   return (
-    <PositionBtnGroup style={style} className="smartblock-edit-menu">
+    <div style={style} className="smartblock-edit-menu">
       {menu.map((item, key) => {
         return (
           <Button
+            className="smartblock-edit-btn"
             key={`edit-${key}`}
             type="button"
             color={item.btnColor}
@@ -158,6 +105,6 @@ export default (props: PositionProps) => {
           </Button>
         )
       })}
-    </PositionBtnGroup>
+    </div>
   )
 }

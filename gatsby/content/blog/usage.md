@@ -11,10 +11,10 @@ By default, SmartEditor will look like this
 ```jsx
 import * as React from 'react';
 import { render } from 'react-dom';
-import { SmartBlock, GlobalStyle, Extensions } from 'smartblock';
+import 'smartblock/css/smartblock.css';
+import { SmartBlock, Extensions } from 'smartblock';
 
 render(<>
-  <GlobalStyle />
   <SmartBlock 
     extensions={Extensions}
     html={'<h2>Hello World</h2><p>hello</p>'}
@@ -49,13 +49,13 @@ You can add extra blocks like below
 ```jsx
 import * as React from 'react';
 import { render } from 'react-dom';
-import { SmartBlock, GlobalStyle, Extensions, Image, Heading1 } from 'smartblock';
+import 'smartblock/css/smartblock.css';
+import { SmartBlock, Extensions, Image, Heading1 } from 'smartblock';
 
 Extensions.push(new Image());
 Extensions.push(new Heading1());
 
 render(<>
-  <GlobalStyle />
   <SmartBlock 
     extensions={Extensions}
     html={'<h2>Hello World</h2><p>hello</p>'}
@@ -69,9 +69,9 @@ If you want to choose blocks from scratch you can code like this
 ```jsx
 import * as React from 'react';
 import { render } from 'react-dom';
+import 'smartblock/css/smartblock.css';
 import { 
   SmartBlock, 
-  GlobalStyle, 
   Paragraph, 
   Heading1, 
   Heading2, 
@@ -90,7 +90,6 @@ const extensions = [
 ];
 
 render(<>
-  <GlobalStyle />
   <SmartBlock 
     extensions={extensions}
     html={'<h2>Hello World</h2><p>hello</p>'}
@@ -107,10 +106,10 @@ You can use markdown library `showdown` to import and export markdown
 import * as showdown from 'showdown';
 import * as React from 'react';
 import { render } from 'react-dom';
-import { SmartBlock, GlobalStyle, Extensions } from 'smartblock';
+import 'smartblock/css/smartblock.css';
+import { SmartBlock, Extensions } from 'smartblock';
 
 render(<>
-  <GlobalStyle />
   <SmartBlock 
     extensions={Extensions}
     showdown={showdown}
@@ -129,8 +128,8 @@ If you have to reduce the bundle size, you can code like below.
 ```jsx
 import * as React from 'react';
 import { render } from 'react-dom';
+import 'smartblock/css/smartblock.css';
 import SmartBlock from 'smartblock/lib/components/smartblock';
-import GlobalStyle from 'smartblock/lib/utils/style';
 import Paragraph from 'smartblock/lib/extensions/paragraph';
 import Heading1 from 'smartblock/lib/extensions/heading1';
 import Heading2 from 'smartblock/lib/extensions/heading2';
@@ -147,12 +146,12 @@ const extensions = [
   new MoveDown()
 ];
 
-render(<>
-  <GlobalStyle />
+render(
   <SmartBlock 
     extensions={Extensions}
     html={'<h2>Hello World</h2><p>hello</p>'}
-    onChange={({ json, html }) => { console.log(json, html);}}  
-  />
-</>, document.getElementById("app"));
+    onChange={({ json, html }) => { 
+      console.log(json, html);
+    }}  
+  />, document.getElementById("app"));
 ```

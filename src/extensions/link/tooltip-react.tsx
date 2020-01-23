@@ -1,43 +1,5 @@
 import * as React from 'react'
-import styled from 'styled-components'
 import CheckIcon from '../../components/icons/Check'
-
-const Tooltip = styled.div`
-  color: #777;
-  font-size: 16px;
-  box-shadow: 0 3px 40px 8px rgba(116, 116, 116, 0.2);
-  border-radius: 3px;
-  width: 320px;
-  line-height: 46px;
-  display: block;
-`
-
-const TooltipInner = styled.div`
-  display: flex;
-  height: 46px;
-  border-radius: 3px;
-  overflow: hidden;
-`
-
-const Input = styled.input`
-  border: none;
-  display: block;
-  padding: 0 10px;
-  font-size: 16px;
-  flex: 1;
-  &:focus {
-    outline: none;
-  }
-`
-
-const Button = styled.button`
-  border: none;
-  background-color: #014cc5;
-  width: 46px;
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
-`
 
 type TooltipReactProps = {
   url: string;
@@ -58,9 +20,10 @@ export default (props: TooltipReactProps) => {
   }
 
   return (
-    <Tooltip>
-      <TooltipInner>
-        <Input
+    <div className="smartblock-tooltip">
+      <div className="smartblock-tooltip-inner">
+        <input
+          className="smartblock-tooltip-input"
           type="text"
           value={url}
           placeholder="https://~"
@@ -73,15 +36,18 @@ export default (props: TooltipReactProps) => {
             setUrl(e.target.value);
           }}
         />
-        <Button onClick={() => {
-          props.onClick(url);
-        }} style={{ paddingLeft: '7px' }}>
+        <button 
+          className="smartblock-tooltip-btn"
+          onClick={() => {
+            props.onClick(url);
+          }} 
+          style={{ paddingLeft: '7px' }}>
           <CheckIcon
             style={{ width: '24px', height: '24px', overflow: 'hidden' }}
           />
-        </Button>
-      </TooltipInner>
-    </Tooltip>
+        </button>
+      </div>
+    </div>
   )
 }
 

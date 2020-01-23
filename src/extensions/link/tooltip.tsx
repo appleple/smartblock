@@ -1,31 +1,9 @@
-import * as React from 'react'
-import { EditorView } from 'prosemirror-view'
-import { EditorState, Plugin } from 'prosemirror-state'
-import { render, unmountComponentAtNode } from 'react-dom'
-import styled from 'styled-components'
-import TooltipReact from './tooltip-react'
-import { getScrollTop } from '../../utils'
-
-const TooltipWrap = styled.div<{
-  pos: number;
-}>`
-  position: absolute;
-  display: inline-block;
-  z-index: 1000;
-  background-color: #fff;
-  &:before {
-    position: absolute;
-    ${props => `
-      left: ${props.pos}px;
-    `}
-    top: -12px;
-    content: '';
-    display: block;
-    border-style: solid;
-    border-width: 0 12px 12px 12px;
-    border-color: transparent transparent #ffffff transparent;
-  }
-`
+import * as React from 'react';
+import { EditorView } from 'prosemirror-view';
+import { Plugin } from 'prosemirror-state';
+import { render, unmountComponentAtNode } from 'react-dom';
+import TooltipReact from './tooltip-react';
+import { getScrollTop } from '../../utils';
 
 const { useRef } = React
 const ARROWOFFSET = 50
@@ -138,12 +116,15 @@ const TooltipComponent = (props: { view: EditorView }) => {
   const arrowPos = calculatePos(view);
 
   return (
-    <TooltipWrap
-      className="smartblock-tooltip"
+    <div
+      className="smartblock-tooltip-wrap"
       ref={container}
       style={style}
-      pos={arrowPos}
     >
+      <div 
+        className="smartblock-tooltip-arrow"
+        style={{ left: `${arrowPos}px` }}
+      ></div>
       <TooltipReact
         url={url}
         editing={editing}
@@ -162,7 +143,7 @@ const TooltipComponent = (props: { view: EditorView }) => {
           view.dispatch(tr);
         }}
       />
-    </TooltipWrap>
+    </div>
   )
 }
 

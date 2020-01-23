@@ -20,10 +20,10 @@ $ npm install smartblock --save
 \`\`\`
 import * as React from 'react';
 import { render } from 'react-dom';
-import { SmartBlock, GlobalStyle } from 'smartblock';
+import 'smartblock/css/smartblock.css';
+import { SmartBlock } from 'smartblock';
 
 render(<>
-  <GlobalStyle />
   <SmartBlock 
     html={'<h2>Hello World</h2><p>hello</p>'}
     onChange={({ json, html }) => { console.log(json, html);}}  
@@ -71,6 +71,7 @@ You can add custom block like this
 
 \`\`\`
 import { Extensions, CustomBlock, CustomMark } from 'smartblock';
+import 'smartblock/css/smartblock.css';
 Extensions.push(new CustomBlock({  
   tagName: 'div',
   className: '.alert',
@@ -78,7 +79,6 @@ Extensions.push(new CustomBlock({
 });
 
 render(<>
-  <GlobalStyle />
   <SmartBlock 
     extensions={Extensions}
     html={'<h2>Hello World</h2><p>hello</p>'}
@@ -91,10 +91,10 @@ You can also add custom inline element like this
 
 \`\`\`
 import { Extension, CustomBlock, CustomMark } from 'smartblock';
+import 'smartblock/css/smartblock.css';
 Extension.push(new CustomMark({  tagName: 'span',  className: '.small',  icon: <SomeIconComponent />});
 
 render(<>
-  <GlobalStyle />
   <SmartBlock 
     extensions={Extensions}
     html={'<h2>Hello World</h2><p><small>hello</small></p>'}

@@ -17,9 +17,9 @@ Same as Block Extensions, You can just import and use.
 import * as React from 'react';
 import { render } from 'react-dom';
 import Base from 'smartblock/lib/extensions/base';
+import 'smartblock/css/smartblock.css';
 import { 
   SmartBlock, 
-  GlobalStyle, 
   Strong
 } from 'smartblock';
 
@@ -29,7 +29,6 @@ const extensions = [
 ];
 
 render(<>
-  <GlobalStyle />
   <SmartBlock 
     extensions={extensions}
     html={'<p>hello <strong>world</strong></p>'}
@@ -75,9 +74,9 @@ new Strong({
 import * as React from 'react';
 import { render } from 'react-dom';
 import Base from 'smartblock/lib/extensions/base';
+import 'smartblock/css/smartblock.css';
 import { 
   SmartBlock, 
-  GlobalStyle, 
   Emphasis
 } from 'smartblock';
 
@@ -87,7 +86,6 @@ const extensions = [
 ];
 
 render(<>
-  <GlobalStyle />
   <SmartBlock 
     extensions={extensions}
     html={'<p>hello <em>world</em></p>'}
@@ -135,9 +133,9 @@ new Emphasis({
 import * as React from 'react';
 import { render } from 'react-dom';
 import Base from 'smartblock/lib/extensions/base';
+import 'smartblock/css/smartblock.css';
 import { 
   SmartBlock, 
-  GlobalStyle, 
   Paragraph,
   Underline
 } from 'smartblock';
@@ -148,7 +146,6 @@ const extensions = [
 ];
 
 render(<>
-  <GlobalStyle />
   <SmartBlock 
     extensions={extensions}
     html={'<p>hello <strong>world</strong></p>'}
@@ -196,9 +193,9 @@ new Underline({
 import * as React from 'react';
 import { render } from 'react-dom';
 import Base from 'smartblock/lib/extensions/base';
+import 'smartblock/css/smartblock.css';
 import { 
   SmartBlock, 
-  GlobalStyle, 
   Strike
 } from 'smartblock';
 
@@ -208,7 +205,6 @@ const extensions = [
 ];
 
 render(<>
-  <GlobalStyle />
   <SmartBlock 
     extensions={extensions}
     html={'<p>hello <strong>world</strong></p>'}
@@ -264,9 +260,9 @@ When you click the button below, input field will appear to enter the URL
 import * as React from 'react';
 import { render } from 'react-dom';
 import Base from 'smartblock/lib/extensions/base';
+import 'smartblock/css/smartblock.css';
 import { 
   SmartBlock, 
-  GlobalStyle, 
   Link
 } from 'smartblock';
 
@@ -276,7 +272,6 @@ const extensions = [
 ];
 
 render(<>
-  <GlobalStyle />
   <SmartBlock 
     extensions={extensions}
     html={'<p>hello <a href="#">world</a></p>'}

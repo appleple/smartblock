@@ -3,7 +3,6 @@ import { render } from 'react-dom';
 
 import SmartBlock from '../components/smartblock';
 import Extensions from '../extensions/';
-import GlobalStyle from '../utils/style';
 
 export default (item: string | HTMLElement, option) => {
   const dom = typeof item === 'string' ? document.querySelector(item) : item;
@@ -11,7 +10,6 @@ export default (item: string | HTMLElement, option) => {
     option.extensions = Extensions;
   }
   render(<>
-  <GlobalStyle />
   <SmartBlock 
     {...option}
   />

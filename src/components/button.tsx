@@ -1,84 +1,25 @@
 import * as React from 'react';
-import styled from 'styled-components';
-
-const agnosticStyled = styled(
-  ({tag = 'button', children, ...props}) =>
-    React.createElement(tag, props, children)
-)
+import classNames from 'classnames';
 
 type ButtonProps = {
   active?: boolean;
   color?: 'black' | 'white';
+  disabled?: boolean;
+  style?: React.CSSProperties;
+  children: React.ReactNode;
+  type?: 'submit' | 'button';
+  className?: string;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-export default agnosticStyled<ButtonProps>`
-  ${props => {
-    if (props.disabled) {
-      return `
-        opacity: .4;
-      `
-    }
-  }}
-  ${props => {
-    if (props.active) {
-      return `
-        color: #005CEE;
-        opacity: 1;
-        background-color: #F2F2F4;
-        
-        &:focus {
-          outline: 0;
-          color: #005CEE;
-          background-color: #F2F2F4;
-        }
-        
-      `
-    }
-    return `
-        color: #777;
-        background: #fff;
-        
-        &:focus {
-          outline: 0;
-          color: #777;
-          background: #fff;
-        }
-      `
-  }}
-  ${props => {
-    if (props.color === 'black') {
-      return `
-        background-color: #333333 !important;
-        color: #FFF;
-      `
-    }
-  }}
-
-  width: 36px;
-  height: 36px;
-  border: none;
-  margin-right: 5px;
-  padding: 5px;
-  border-radius: 3px;
-  appearance: none;
-  -webkit-appearance: none;
-  font-size: 20px;
-  cursor: pointer;
-  text-align: center;
-  border: 1px solid transparent;
-  
-  svg {
-    fill: currentColor;
-    vertical-align: middle;
-  }
-  &:last-child {
-    margin-right: 0;
-  }
-  &:not([disabled]):hover {
-    color: #005CEE;
-  }
-  
-  &[disabled]:hover {
-    cursor: not-allowed;
-  }
-`
+export default (props: ButtonProps) => {
+  return <button 
+    type={props.type} 
+    style={props.style}
+    onClick={props.onClick}
+    className={classNames(props.className, 'smartblock-btn', {
+    'is-active': props.active,
+    'is-black': props.color === 'black',
+    'is-disabled': props.disabled
+  })}>{props.children}</button>
+}

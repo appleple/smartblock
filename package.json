@@ -16,6 +16,7 @@
     "np": "np --no-cleanup",
     "lint": "eslint ./src/ --fix --ext .ts,.tsx",
     "deploy": "npm-run-all -s build build:lib test np",
+    "build:css": "node-sass ./scss/smartblock.scss ./css/smartblock.css",
     "build:svg": "npx @svgr/cli -d ./src/components/icons ./assets/images/icons --template ./tools/template.js --ext tsx --no-svgo"
   },
   "repository": {
@@ -61,6 +62,7 @@
     "jest": "^23.6.0",
     "jest-css-modules": "^2.1.0",
     "jest-prosemirror": "^0.7.2",
+    "node-sass": "^4.13.1",
     "np": "^3.1.0",
     "npm-run-all": "^4.1.5",
     "preact": "^10.1.1",
@@ -90,6 +92,7 @@
     "@types/prosemirror-schema-list": "^1.0.1",
     "@types/prosemirror-transform": "^1.1.0",
     "@types/styled-components": "^4.1.15",
+    "classnames": "^2.2.6",
     "codemirror": "^5.48.0",
     "imagesloaded": "^4.1.4",
     "is-mobile": "^2.1.0",
