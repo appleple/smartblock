@@ -1,18 +1,8 @@
 import * as React from "react";
 
 const SvgOrderedList = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg
-    width={1792}
-    height={1792}
-    viewBox="0 0 1792 1792"
-    aria-labelledby={titleId}
-    {...props}
-  >
-    {title === undefined ? (
-      <title id={titleId}>{"\u756A\u53F7\u4ED8\u304D\u30EA\u30B9\u30C8"}</title>
-    ) : title ? (
-      <title id={titleId}>{title}</title>
-    ) : null}
+  <svg width={1792} height={1792} viewBox="0 0 1792 1792" {...props}>
+    <title>{"orderedlist"}</title>
     <g id="b3b81f28-1e36-4bd8-9f72-6ca2ae0e4ff1" data-name="\u30E9\u30D9\u30EB">
       <rect x={552} y={216.49} width={1240} height={256} />
       <rect x={552} y={757.63} width={1240} height={256} />

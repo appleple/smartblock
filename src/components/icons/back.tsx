@@ -1,14 +1,7 @@
 import * as React from "react";
 
 const SvgBack = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg
-    width={62}
-    height={62}
-    viewBox="0 0 62 62"
-    aria-labelledby={titleId}
-    {...props}
-  >
-    {title ? <title id={titleId}>{title}</title> : null}
+  <svg width={62} height={62} viewBox="0 0 62 62" {...props}>
     <defs>
       <filter
         id="\u9577\u65B9\u5F62_361"

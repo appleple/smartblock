@@ -1,20 +1,8 @@
 import * as React from "react";
 
 const SvgExternalLink = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg
-    width={1792}
-    height={1792}
-    viewBox="0 0 1792 1792"
-    aria-labelledby={titleId}
-    {...props}
-  >
-    {title === undefined ? (
-      <title id={titleId}>
-        {"\u5225\u30A6\u30A3\u30F3\u30C9\u30A6\u3067\u958B\u304F"}
-      </title>
-    ) : title ? (
-      <title id={titleId}>{title}</title>
-    ) : null}
+  <svg width={1792} height={1792} viewBox="0 0 1792 1792" {...props}>
+    <title>{"open with new window"}</title>
     <g id="a624a659-e47a-4162-aa30-ebff851e8a95" data-name="\u30E9\u30D9\u30EB">
       <polygon
         points="127.64 1666.06 1384.2 1666.06 1384.2 1512.16 275.66 1512.16 275.66 409.55 127.64 409.55 127.64 1666.06"

@@ -7,10 +7,8 @@ const SvgCode = (props: React.SVGProps<SVGSVGElement>) => (
     y="0px"
     viewBox="12 10 70 70"
     xmlSpace="preserve"
-    aria-labelledby={titleId}
     {...props}
   >
-    {title ? <title id={titleId}>{title}</title> : null}
     <g id="XMLID_1_">
       <path
         id="XMLID_5_"

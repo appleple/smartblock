@@ -1,14 +1,7 @@
 import * as React from "react";
 
 const SvgCheck = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg
-    width={21.722}
-    height={21.722}
-    viewBox="0 0 21.722 21.722"
-    aria-labelledby={titleId}
-    {...props}
-  >
-    {title ? <title id={titleId}>{title}</title> : null}
+  <svg width={21.722} height={21.722} viewBox="0 0 21.722 21.722" {...props}>
     <path
       id="\u30D1\u30B9_52"
       data-name="\u30D1\u30B9 52"

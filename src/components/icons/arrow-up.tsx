@@ -1,14 +1,7 @@
 import * as React from "react";
 
 const SvgArrowUp = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg
-    width={20.495}
-    height={20.496}
-    viewBox="0 0 20.495 20.496"
-    aria-labelledby={titleId}
-    {...props}
-  >
-    {title ? <title id={titleId}>{title}</title> : null}
+  <svg width={20.495} height={20.496} viewBox="0 0 20.495 20.496" {...props}>
     <path
       id="\u30D1\u30B9_1352"
       data-name="\u30D1\u30B9 1352"

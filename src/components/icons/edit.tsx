@@ -1,14 +1,7 @@
 import * as React from "react";
 
 const SvgEdit = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg
-    width={20}
-    height={19.999}
-    viewBox="0 0 20 19.999"
-    aria-labelledby={titleId}
-    {...props}
-  >
-    {title ? <title id={titleId}>{title}</title> : null}
+  <svg width={20} height={19.999} viewBox="0 0 20 19.999" {...props}>
     <g
       id="\u30B0\u30EB\u30FC\u30D7\u5316_180"
       data-name="\u30B0\u30EB\u30FC\u30D7\u5316 180"

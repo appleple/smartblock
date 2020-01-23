@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { toggleMark } from 'prosemirror-commands'
-import LinkIcon from '../../components/icons/Link'
+import LinkIcon from '../../components/icons/link'
 import { Extension, ExtensionProps } from '../../types'
 import { markActive, getMarkInSelection } from '../../utils'
 import tooltip from './tooltip'

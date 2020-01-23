@@ -9,10 +9,8 @@ const SvgTrash = (props: React.SVGProps<SVGSVGElement>) => (
     viewBox="0 0 1792 1792"
     enableBackground="new 0 0 1792 1792"
     xmlSpace="preserve"
-    aria-labelledby={titleId}
     {...props}
   >
-    {title ? <title id={titleId}>{title}</title> : null}
     <g id="Guide" />
     <g id="Font" display="none" />
     <g id="\u5185\u5BB9">

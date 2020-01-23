@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { setBlockType } from 'prosemirror-commands'
 import * as uuid from 'uuid/v4'
-import ParagraphIcon from '../components/icons/Paragraph'
+import ParagraphIcon from '../components/icons/paragraph'
 import AlignLeftIcon from '../components/icons/align-left'
 import AlignCenterIcon from '../components/icons/align-center'
 import AlignRightIcon from '../components/icons/align-right'

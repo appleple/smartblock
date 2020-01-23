@@ -7,10 +7,8 @@ const SvgBlockquote = (props: React.SVGProps<SVGSVGElement>) => (
     width={24}
     height={16.446}
     viewBox="0 0 24 16.446"
-    aria-labelledby={titleId}
     {...props}
   >
-    {title ? <title id={titleId}>{title}</title> : null}
     <path
       id="\u30D1\u30B9_1329"
       data-name="\u30D1\u30B9 1329"

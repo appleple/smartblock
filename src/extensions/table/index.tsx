@@ -15,7 +15,7 @@ import {
 import { setBlockType } from 'prosemirror-commands'
 import * as uuid from 'uuid/v4'
 import { toggleCell } from './util';
-import TableIcon from '../../components/icons/Table'
+import TableIcon from '../../components/icons/table'
 import LeftInsertIcon from '../../components/icons/left-insert'
 import RightInsertIcon from '../../components/icons/right-insert'
 import TopInsertIcon from '../../components/icons/top-insert'
