@@ -39,7 +39,7 @@ export default (props) => {
       </div>
       <div className="inner hero-inner" style={{ textAlign: 'center'}}>
         <Link to="/get-started" className="button">Get Started</Link>
-        <p className="small">Current Version : Ver.1.3.0</p>
+        <p className="small">Current Version : Ver.1.3.2</p>
       </div>
     </section>
 
