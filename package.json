@@ -17,7 +17,7 @@
     "lint": "eslint ./src/ --fix --ext .ts,.tsx",
     "deploy": "npm-run-all -s build build:lib test np",
     "build:css": "node-sass ./scss/smartblock.scss ./css/smartblock.css",
-    "build:svg": "npx @svgr/cli -d ./src/components/icons ./assets/images/icons --template ./tools/template.js --ext tsx --no-svgo"
+    "build:svg": "npx @svgr/cli -d ./src/components/icons ./assets/images/icons --template ./tools/template.js --ext tsx --no-svgo --title-prop --filename-case kebab"
   },
   "repository": {
     "type": "git",

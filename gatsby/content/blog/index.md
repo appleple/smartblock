@@ -47,6 +47,7 @@ render(<>
 ### As an Native JavaScript
 
 ```html
+<link rel="stylesheet" href="https://unpkg.com/smartblock@1.3.2/css/smartblock.css" />
 <script src="https://unpkg.com/smartblock@1.3.2/dist/editor.js"></script>
 <script src="https://unpkg.com/smartblock@1.3.2/dist/extensions.js"></script>
 <!-- You can use smartblock without using JSX -->
@@ -61,6 +62,8 @@ SmartBlock.Editor('#app', {
 });
 </script>
 ```
+
+[https://codepen.io/](https://codepen.io/appleple/pen/povGeQq#html-box)
 
 ### Compatibility
 
