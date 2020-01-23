@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { setBlockType } from 'prosemirror-commands';
 import * as uuid from 'uuid/v4'
-import HeadingIcon from '../components/icons/Heading2';
-import AlignLeftIcon from '../components/icons/AlignLeft';
-import AlignCenterIcon from '../components/icons/AlignCenter';
-import AlignRightIcon from '../components/icons/AlignRight';
+import HeadingIcon from '../components/icons/heading2';
+import AlignLeftIcon from '../components/icons/align-left';
+import AlignCenterIcon from '../components/icons/align-center';
+import AlignRightIcon from '../components/icons/align-right';
 import { Extension, ExtensionProps } from '../types';
 import { blockActive, getParentNodeFromState } from '../utils';
 import Button from '../components/button';

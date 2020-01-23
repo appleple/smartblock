@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { EditorView } from 'prosemirror-view';
 import { undo, undoDepth } from 'prosemirror-history';
-import UndoIcon from './icons/Undo';
+import UndoIcon from './icons/undo';
 
 interface Props {
   view: EditorView;

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { toggleMark } from 'prosemirror-commands'
-import EmIcon from '../components/icons/Em'
+import EmIcon from '../components/icons/em'
 import { Extension, ExtensionProps } from '../types'
 import { markActive } from '../utils'
 

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { findChildren } from 'prosemirror-utils'
 import { Extension } from '../types'
-import TrashIcon from '../components/icons/Trash'
+import TrashIcon from '../components/icons/trash'
 import isMobile from 'is-mobile';
 
 type I18n = {

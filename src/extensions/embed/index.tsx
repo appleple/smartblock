@@ -5,7 +5,7 @@ import { Fragment } from 'prosemirror-model'
 import { EditorState } from 'prosemirror-state'
 import { Extension, ExtensionProps } from '../../types'
 import { blockActive } from '../../utils'
-import LinkIcon from '../../components/icons/Link'
+import LinkIcon from '../../components/icons/link'
 import Popup from './popup'
 import Plugin from './plugin'
 

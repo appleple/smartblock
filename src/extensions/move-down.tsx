@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { setTextSelection } from 'prosemirror-utils';
-import MoveDownIcon from '../components/icons/GoDown';
+import MoveDownIcon from '../components/icons/go-down';
 import { Extension } from '../types';
 import {
   findNodePosition,

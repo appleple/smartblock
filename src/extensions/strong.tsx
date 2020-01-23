@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { toggleMark } from 'prosemirror-commands'
-import StrongIcon from '../components/icons/Bold'
+import StrongIcon from '../components/icons/bold'
 import { Extension, ExtensionProps } from '../types'
 import { markActive } from '../utils'
 

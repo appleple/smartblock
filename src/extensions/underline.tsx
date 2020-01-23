@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { toggleMark } from 'prosemirror-commands'
-import UnderlineIcon from '../components/icons/Underline'
+import UnderlineIcon from '../components/icons/underline'
 import { Extension, ExtensionProps } from '../types'
 import { markActive } from '../utils'
 

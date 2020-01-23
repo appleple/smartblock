@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { toggleMark } from 'prosemirror-commands'
-import StrikeIcon from '../components/icons/Strike'
+import StrikeIcon from '../components/icons/strike'
 import { Extension, ExtensionProps } from '../types'
 import { markActive } from '../utils'
 

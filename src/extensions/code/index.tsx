@@ -6,7 +6,7 @@ import { Extension, ExtensionProps } from '../../types';
 import { blockActive } from '../../utils';
 import Plugin from './plugin';
 import Button from '../../components/button';
-import CodeIcon from '../../components/icons/Code';
+import CodeIcon from '../../components/icons/code';
 
 type Lang = {
   label: React.ReactNode;

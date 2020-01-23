@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { wrapInList, sinkListItem } from 'prosemirror-schema-list';
 import * as uuid from 'uuid/v4'
-import Undent from '../components/icons/Undent';
-import Indent from '../components/icons/Indent';
-import List from '../components/icons/List';
+import Undent from '../components/icons/undent';
+import Indent from '../components/icons/indent';
+import List from '../components/icons/list';
 import { liftListItem, blockActive, getParentNodeFromState } from '../utils';
 import { Extension, ExtensionProps } from '../types';
 import Button from '../components/button';

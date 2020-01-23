@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Popup from './popup'
-import ExternalLink from '../../components/icons/ExternalLink'
+import ExternalLink from '../../components/icons/external-link'
 
 const { useState } = React;
 

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import CheckIcon from '../../components/icons/Check'
+import CheckIcon from '../../components/icons/check'
 
 type TooltipReactProps = {
   url: string;

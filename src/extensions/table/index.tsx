@@ -16,14 +16,14 @@ import { setBlockType } from 'prosemirror-commands'
 import * as uuid from 'uuid/v4'
 import { toggleCell } from './util';
 import TableIcon from '../../components/icons/Table'
-import LeftInsertIcon from '../../components/icons/LeftInsert'
-import RightInsertIcon from '../../components/icons/RightInsert'
-import TopInsertIcon from '../../components/icons/TopInsert'
-import BottomInsertIcon from '../../components/icons/BottomInsert'
-import SplitIcon from '../../components/icons/Split'
-import MergeIcon from '../../components/icons/Merge'
-import RemoveRowIcon from '../../components/icons/RemoveRow';
-import RemoveColIcon from '../../components/icons/RemoveCol';
+import LeftInsertIcon from '../../components/icons/left-insert'
+import RightInsertIcon from '../../components/icons/right-insert'
+import TopInsertIcon from '../../components/icons/top-insert'
+import BottomInsertIcon from '../../components/icons/bottom-insert'
+import SplitIcon from '../../components/icons/split'
+import MergeIcon from '../../components/icons/merge'
+import RemoveRowIcon from '../../components/icons/remove-row';
+import RemoveColIcon from '../../components/icons/remove-col';
 
 import { createTable, blockActive } from '../../utils'
 import { Extension, ExtensionProps } from '../../types'

@@ -1,7 +1,6 @@
 import { splitListItem, sinkListItem } from 'prosemirror-schema-list';
 import { Schema } from 'prosemirror-model';
 import { chainCommands } from 'prosemirror-commands';
-import * as uuid from 'uuid/v4'
 import { Extension, ExtensionProps } from '../types';
 import { liftListItem } from '../utils';
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { wrapInList, sinkListItem } from 'prosemirror-schema-list';
 import * as uuid from 'uuid/v4'
-import OrderedListIcon from '../components/icons/OrderedList';
+import OrderedListIcon from '../components/icons/ordered-list';
 import IndentIcon from '../components/icons/Indent';
 import UndentIcon from '../components/icons/Undent';
 import { liftListItem, blockActive, getParentNodeFromState } from '../utils';

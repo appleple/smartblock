@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { createPortal } from 'react-dom'
-import CheckIcon from '../../components/icons/Check'
+import CheckIcon from '../../components/icons/check'
 
 const { useState, useEffect, useRef } = React
 
