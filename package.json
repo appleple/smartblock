@@ -21,9 +21,9 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/appleple/smartblock"
   },
-  "homepage": "info@appleple.com",
+  "homepage": "https://appleple.github.io/smartblock/",
   "author": {
     "name": "steelydylan",
     "email": "hori@appleple.com"
