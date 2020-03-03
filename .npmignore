@@ -17,3 +17,5 @@ docs
 __tests__
 __mocks__
 gatsby/*
+src/*
+.github/*
