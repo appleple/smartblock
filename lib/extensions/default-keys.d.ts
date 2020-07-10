@@ -1,3 +1,4 @@
+import { undoInputRule } from 'prosemirror-inputrules';
 import { EditorState } from 'prosemirror-state';
 import { joinUp, joinDown, lift, selectParentNode } from 'prosemirror-commands';
 import { Extension } from '../types';
@@ -8,7 +9,7 @@ export default class DefaultKeys implements Extension {
         Enter: (state: EditorState<any>, dispatch: any, view: any) => boolean;
         'Mod-z': any;
         'Shift-Mod-z': any;
-        Backspace: any;
+        Backspace: typeof undoInputRule;
         'Mod-y': any;
         'Alt-ArrowUp': typeof joinUp;
         'Alt-ArrowDown': typeof joinDown;
