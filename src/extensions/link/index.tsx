@@ -67,12 +67,15 @@ export default class Link extends Extension {
 
   onClick(state, dispatch) {
     if (markActive(state.schema.marks.link)(state)) {
-      const link = getMarkInSelection('link', state)
-      const { selection } = state
-      const { $anchor } = selection
-      const { nodeBefore, nodeAfter, pos } = $anchor
-      let beforePos = selection.from
-      let afterPos = selection.to
+      const link = getMarkInSelection('link', state);
+      const { selection } = state;
+      const { $anchor } = selection;
+      const { nodeBefore, nodeAfter, pos } = $anchor;
+      let beforePos = selection.from;
+      let afterPos = selection.to;
+      if (!link) {
+        return true;
+      }
       if (beforePos === afterPos && nodeBefore && nodeAfter) {
         beforePos = pos - nodeBefore.nodeSize
         afterPos = pos + nodeAfter.nodeSize
