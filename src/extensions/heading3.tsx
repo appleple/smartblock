@@ -38,9 +38,13 @@ export default class Heading3 extends Extension {
         {
           tag: 'h3',
           getAttrs(dom) {
-            return {
+            const attr = {
               id: dom.getAttribute('id') || uuid()
+            };
+            if (dom.style.textAlign) {
+              attr['align'] = dom.style.textAlign;
             }
+            return attr;
           }
         }
       ],
