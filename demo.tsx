@@ -13,6 +13,28 @@ extensions.push(new Image({
   imgFullClassName: 'full',
 }))
 
+// import CustomBlock from './src/extensions/custom-block';
+// import Heading3 from './src/extensions/heading3';
+// custom block
+// extensions.push(new CustomBlock({
+//   tagName: 'h3',
+//   className: 'foofoo',
+//   icon: `
+//     <svg height="24" width="24">
+//       <circle cx="12" cy="12" r="12" fill="blue" />
+//     </svg>`
+// }))
+
+// extensions.push(new CustomBlock({
+//   tagName: 'p',
+//   className: 'hogehoge',
+//   icon: `
+//     <svg height="24" width="24">
+//       <circle cx="12" cy="12" r="12" fill="red" />
+//     </svg>`
+// }))
+
+
 SmartBlock('#app', {
   showTitle: true,
   titlePlaceholder: 'ここにタイトルを入力',
@@ -28,12 +50,14 @@ SmartBlock('#app', {
 // import * as React from 'react';
 // import { render } from 'react-dom';
 // import SmartBlock from './src/components/smartblock';
-// import extensions from './src/extensions';
-// ​
+
 // render(<>
 //   <SmartBlock 
 // 	extensions={extensions} 
-// 	html="html" 
+// 	html='
+//     <h3 class="foofoo">Hello, World!</h3>
+//     <p class="hogehoge">hoge</p>
+//     <p>html</p>'
 // 	showTitle={true} 
 // 	onChange={({html}) => console.log(html)}
 //   />
