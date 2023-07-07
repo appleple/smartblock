@@ -24,6 +24,9 @@ export default class ListItem extends Extension {
     return {
       content: 'paragraph block*',
       group: 'block',
+      attrs: {
+        id: { default: '' }
+      },
       parseDOM: [
         {
           tag: 'li',
@@ -34,9 +37,6 @@ export default class ListItem extends Extension {
           }
         }
       ],
-      attrs: {
-        id: { default: '' }
-      },
       toDOM(node) {
         return ['li', 0]
       },

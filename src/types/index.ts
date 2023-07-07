@@ -22,7 +22,7 @@ type CustomLayoutProps = {
 }
 
 export type ExtensionProps =
-  | {
+  {
       schema?: ExtensionSchema;
       className?: string;
       tagName?: string;
@@ -61,6 +61,7 @@ export abstract class Extension {
   tagName?: string
 
   className?: string
+
 
   customMenu?({ state: EditorState, dispatch: Dispatch }): JSX.Element
 

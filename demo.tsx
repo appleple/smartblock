@@ -2,6 +2,7 @@ import SmartBlock from './src/adapter';
 import extensions from './src/extensions/';
 import Code from './src/extensions/code';
 import Image from './src/extensions/image';
+import CustomBlock from './src/extensions/custom-block';
 import markdown from './sample';
 import * as showdown from 'showdown';
 import './css/smartblock.css';
@@ -13,27 +14,15 @@ extensions.push(new Image({
   imgFullClassName: 'full',
 }))
 
-// import CustomBlock from './src/extensions/custom-block';
-// import Heading3 from './src/extensions/heading3';
-// custom block
-// extensions.push(new CustomBlock({
-//   tagName: 'h3',
-//   className: 'foofoo',
-//   icon: `
-//     <svg height="24" width="24">
-//       <circle cx="12" cy="12" r="12" fill="blue" />
-//     </svg>`
-// }))
-
-// extensions.push(new CustomBlock({
-//   tagName: 'p',
-//   className: 'hogehoge',
-//   icon: `
-//     <svg height="24" width="24">
-//       <circle cx="12" cy="12" r="12" fill="red" />
-//     </svg>`
-// }))
-
+extensions.push(new CustomBlock({
+  tagName: 'p',
+  customName: 's-paragraph',
+  className: 's-paragraph',
+  icon: `
+    <svg height="24" width="24">
+      <circle cx="12" cy="12" r="12" fill="red" />
+    </svg>`
+}))
 
 SmartBlock('#app', {
   showTitle: true,

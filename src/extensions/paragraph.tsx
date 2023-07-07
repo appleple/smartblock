@@ -30,34 +30,38 @@ export default class Paragraph extends Extension {
     if (this.customSchema) {
       return this.customSchema;
     }
+
     return {
+      type: this.name,
       content: 'inline*',
       group: 'block',
+      attrs: {
+        align: { default: '' },
+        id: { default: '' },
+      },
       parseDOM: [
         {
-          tag: 'p',
+          tag: 'p:not([data-smartblock-id])',
           getAttrs(dom) {
             return {
               id: dom.getAttribute('id') || uuid(),
-              align: dom.style.textAlign
+              align: dom.style.textAlign,
             }
           }
         }
       ],
-      attrs: {
-        align: { default: '' },
-        id: { default: '' }
-      },
       toDOM: node => {
         return [
           'p',
           (node.attrs.align ? {
             style: `text-align: ${node.attrs.align}`,
-            class: this.className
+            id: node.attrs.id || uuid(),
+            class: this.className,
           } : {
-            class: this.className
+            id: node.attrs.id || uuid(),
+            class: this.className,
           }),
-          0
+          0,
         ]
       }
     }

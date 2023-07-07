@@ -27,10 +27,7 @@ export default class CustomMark extends Extension {
       return this.customSchema;
     }
     const { className, tagName } = this;
-    let tag = tagName;
-    if (className) {
-      tag += `.${className.replace(/\s/g, '.')}`;
-    }
+    const tag = tagName + `[data-smartblock-id="${this.name}"]`
     return {
       group: 'mark',
       parseDOM: [

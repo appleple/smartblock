@@ -30,13 +30,18 @@ export default class Heading6 extends Extension {
     if (this.customSchema) {
       return this.customSchema;
     }
+    
     return {
       content: 'inline*',
       group: 'block',
       defining: true,
+      attrs: {
+        align: { default: '' },
+        id: { default: '' }
+      },
       parseDOM: [
         {
-          tag: 'h6',
+          tag: 'h6:not([data-smartblock-id])',
           getAttrs(dom) {
             return {
               id: dom.getAttribute('id') || uuid()
@@ -44,17 +49,15 @@ export default class Heading6 extends Extension {
           }
         }
       ],
-      attrs: {
-        align: { default: '' },
-        id: { default: '' }
-      },
       toDOM(node) {
         return [
           'h6',
           (node.attrs.align ? {
             style: `text-align: ${node.attrs.align}`,
+            id: node.attrs.id || uuid(),
             class: this.className
           } : {
+            id: node.attrs.id || uuid(),
             class: this.className
           }),
           0

@@ -32,6 +32,9 @@ export default class BulletList extends Extension {
     return {
       content: 'list_item+',
       group: 'block',
+      attrs: {
+        id: { default: '' }
+      },
       parseDOM: [
         {
           tag: 'ul',
@@ -42,9 +45,6 @@ export default class BulletList extends Extension {
           }
         }
       ],
-      attrs: {
-        id: { default: '' }
-      },
       toDOM(node) {
         return [
           'ul',

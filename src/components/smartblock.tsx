@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { EditorView } from 'prosemirror-view';
-import { Schema, Node, DOMParser } from 'prosemirror-model';
+import { Schema, Node, DOMParser, ContentMatch, Fragment, Mark, MarkType, NodeType, ResolvedPos, Slice } from 'prosemirror-model';
 import { keymap } from 'prosemirror-keymap';
 import { chainCommands } from 'prosemirror-commands';
 import scrollTo from 'scroll-to';
+import 'deepmerge';
 import { EditorState } from 'prosemirror-state';
 import classNames from 'classnames';
 import * as uuid from 'uuid/v4'
@@ -38,7 +39,10 @@ const EDITMENUHEIGHT = 80;
 
 const getBlockSchemas = (extensions: Extension[]) => {
   const nodesSchema = extensions.filter(extension => {
-    if (extension.schema && extension.schema.group === 'block') {
+    if (
+      extension.schema &&
+      extension.schema.group === 'block'
+      ) {
       return true
     }
     return false
@@ -117,10 +121,11 @@ const getSchemaFromExtensions = (extensions: Extension[]) => {
       toDOM() {
         return ['br']
       }
-    }
+    },
   }
   nodes = { ...nodes, ...base, ...nodeDependencies }
   const marks = getMarkSchemas(extensions)
+
   return new Schema({ nodes, marks })
 }
 
@@ -318,7 +323,7 @@ export default (props: AppProps) => {
     const div = document.createElement('div')
     div.innerHTML = realHtml
     const doc = DOMParser.fromSchema(schema).parse(div, {
-      preserveWhitespace: true
+      preserveWhitespace: true,
     });
 
     if (props.onInit) {
@@ -409,3 +414,7 @@ export default (props: AppProps) => {
     </div>
   </div>)
 }
+function deepmarge(schema: {}, schemaDependencies: { [key: string]: import("../types").ExtensionSchema; }): any {
+  throw new Error('Function not implemented.');
+}
+

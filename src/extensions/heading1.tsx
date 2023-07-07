@@ -34,9 +34,13 @@ export default class Heading1 extends Extension {
       content: 'inline*',
       group: 'block',
       defining: true,
+      attrs: {
+        align: { default: '' },
+        id: { default: '' },
+      },
       parseDOM: [
         {
-          tag: 'h1',
+          tag: 'h1:not([data-smartblock-id])',
           getAttrs(dom) {
             return {
               id: dom.getAttribute('id') || uuid()
@@ -44,18 +48,16 @@ export default class Heading1 extends Extension {
           }
         }
       ],
-      attrs: {
-        align: { default: '' },
-        id: { default: '' }
-      },
-      toDOM(node) {
+      toDOM: node => {
         return [
           'h1',
           (node.attrs.align ? {
             style: `text-align: ${node.attrs.align}`,
-            class: this.className
+            id: node.attrs.id || uuid(),
+            class: this.className,
           } : {
-            class: this.className
+            id: node.attrs.id || uuid(),
+            class: this.className,
           }),
           0
         ]

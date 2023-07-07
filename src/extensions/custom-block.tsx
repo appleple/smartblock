@@ -33,35 +33,36 @@ export default class CustomBlock extends Extension {
       return this.customSchema
     }
     const { tagName, className } = this
-    let tag = tagName
-    if (className) {
-      tag += `.${className.replace(/\s/g, '.')}`
-    }
+    const tag = tagName + `[data-smartblock-id="${this.name}"]`
+
     return {
+      type: this.name,
       content: 'inline*',
       group: 'block',
       defining: true,
       attrs: {
         align: { default: 'left' },
-        id: { default: '' }
+        id: { default: '' },
+        'data-smartblock-id': { default: '' },
       },
       parseDOM: [
         {
           tag,
           getAttrs(dom) {
             return {
-              id: dom.getAttribute('id') || uuid()
+              id: dom.getAttribute('id') || uuid(),
             }
           }
         }
       ],
-      toDOM(node) {
+      toDOM: node => {
         return [
           tagName,
           {
             style: `text-align: ${node.attrs.align}`,
             id: node.attrs.id || uuid(),
-            class: className
+            class: className,
+            'data-smartblock-id': this.name,
           },
           0
         ]
