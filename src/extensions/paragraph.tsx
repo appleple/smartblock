@@ -8,6 +8,7 @@ import AlignRightIcon from '../components/icons/align-right'
 import { Extension, ExtensionProps } from '../types'
 import { blockActive, getParentNodeFromState } from '../utils'
 import Button from '../components/button'
+import { BASE_PRIORITY } from '../priority.config'
 
 export default class Paragraph extends Extension {
   constructor(props?: ExtensionProps) {
@@ -41,7 +42,8 @@ export default class Paragraph extends Extension {
       },
       parseDOM: [
         {
-          tag: 'p:not([data-smartblock-id])',
+          tag: 'p',
+          priority: BASE_PRIORITY,
           getAttrs(dom) {
             return {
               id: dom.getAttribute('id') || uuid(),

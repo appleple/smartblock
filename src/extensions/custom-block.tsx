@@ -7,6 +7,8 @@ import AlignRightIcon from '../components/icons/align-right';
 import { Extension, ExtensionProps } from '../types';
 import { blockActive, getParentNodeFromState, getUniqId } from '../utils';
 import Button from '../components/button';
+import { CUSTOM_BLOCK_PRIORITY } from '../priority.config'
+
 
 export default class CustomBlock extends Extension {
   constructor(props?: ExtensionProps) {
@@ -33,7 +35,10 @@ export default class CustomBlock extends Extension {
       return this.customSchema
     }
     const { tagName, className } = this
-    const tag = tagName + `[data-smartblock-id="${this.name}"]`
+    let tag = tagName
+    if (className) {
+      tag += `.${className.replace(/\s/g, '.')}`
+    }
 
     return {
       type: this.name,
@@ -43,11 +48,11 @@ export default class CustomBlock extends Extension {
       attrs: {
         align: { default: 'left' },
         id: { default: '' },
-        'data-smartblock-id': { default: '' },
       },
       parseDOM: [
         {
           tag,
+          priority: CUSTOM_BLOCK_PRIORITY,
           getAttrs(dom) {
             return {
               id: dom.getAttribute('id') || uuid(),
@@ -62,7 +67,6 @@ export default class CustomBlock extends Extension {
             style: `text-align: ${node.attrs.align}`,
             id: node.attrs.id || uuid(),
             class: className,
-            'data-smartblock-id': this.name,
           },
           0
         ]

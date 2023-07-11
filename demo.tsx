@@ -24,6 +24,12 @@ extensions.push(new CustomBlock({
     </svg>`
 }))
 
+extensions.push(new CustomBlock({
+  tagName: 'h2',
+  customName: 's-heading2',
+  className: 's-heading2'
+}))
+
 SmartBlock('#app', {
   showTitle: true,
   titlePlaceholder: 'ここにタイトルを入力',

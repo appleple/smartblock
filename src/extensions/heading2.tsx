@@ -8,6 +8,7 @@ import AlignRightIcon from '../components/icons/align-right';
 import { Extension, ExtensionProps } from '../types';
 import { blockActive, getParentNodeFromState } from '../utils';
 import Button from '../components/button';
+import { BASE_PRIORITY } from '../priority.config'
 
 export default class Heading2 extends Extension {
   constructor(props?: ExtensionProps) {
@@ -41,7 +42,8 @@ export default class Heading2 extends Extension {
       },
       parseDOM: [
         {
-          tag: 'h2:not([data-smartblock-id])',
+          tag: 'h2',
+          priority: BASE_PRIORITY,
           getAttrs(dom) {
             return {
               id: dom.getAttribute('id') || uuid()

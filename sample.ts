@@ -1,8 +1,8 @@
 export default `SmartBlock.js is a JavaScript block based editor which enables you to write contents easily on websites even with **SmartPhone**.
 
-<p class="s-paragraph" data-smartblock-id="s-paragraph">s-paragraph</p>
+<p class="s-paragraph">s-paragraph</p>
 <p class="paragraph">paragraph</p>
-<h2 class="s-heading2" data-smartblock-id="s-heading2">s-heading2</h2>
+<h2 class="s-heading2">s-heading2</h2>
 <h2 class="heading2">heading2</h2>
 
 ## Features

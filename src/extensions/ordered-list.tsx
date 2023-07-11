@@ -6,8 +6,8 @@ import IndentIcon from '../components/icons/indent';
 import UndentIcon from '../components/icons/undent';
 import { liftListItem, blockActive, getParentNodeFromState } from '../utils';
 import { Extension, ExtensionProps } from '../types';
-
 import Button from '../components/button';
+import { BASE_PRIORITY } from '../priority.config'
 
 export default class OrderedList extends Extension {
   constructor(props?: ExtensionProps) {
@@ -36,6 +36,7 @@ export default class OrderedList extends Extension {
       parseDOM: [
         {
           tag: 'ol',
+          priority: BASE_PRIORITY,
           getAttrs(dom) {
             return {
               id: dom.getAttribute('id')

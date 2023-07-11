@@ -3,6 +3,7 @@ import { toggleMark } from 'prosemirror-commands'
 import StrongIcon from '../components/icons/bold'
 import { Extension, ExtensionProps } from '../types'
 import { markActive } from '../utils'
+import { BASE_PRIORITY } from '../priority.config'
 
 export default class Strong extends Extension {
   constructor(props?: ExtensionProps) {
@@ -27,7 +28,13 @@ export default class Strong extends Extension {
     }
     return {
       group: 'mark',
-      parseDOM: [{ tag: 'strong' }, { style: 'font-weight=bold' }],
+      parseDOM: [
+        {
+          tag: 'strong',
+          priority: BASE_PRIORITY,
+          style: 'font-weight=bold'
+        }
+      ],
       toDOM: () => [
         'strong',
         {

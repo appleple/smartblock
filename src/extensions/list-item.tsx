@@ -3,6 +3,7 @@ import { Schema } from 'prosemirror-model';
 import { chainCommands } from 'prosemirror-commands';
 import { Extension, ExtensionProps } from '../types';
 import { liftListItem } from '../utils';
+import { BASE_PRIORITY } from '../priority.config'
 
 export default class ListItem extends Extension {
   constructor(props?: ExtensionProps) {
@@ -30,6 +31,7 @@ export default class ListItem extends Extension {
       parseDOM: [
         {
           tag: 'li',
+          priority: BASE_PRIORITY,
           getAttrs(dom) {
             return {
               id: dom.getAttribute('id')

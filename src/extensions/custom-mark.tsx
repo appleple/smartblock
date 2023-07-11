@@ -1,6 +1,7 @@
 import { toggleMark } from 'prosemirror-commands'
 import { Extension, ExtensionProps } from '../types'
 import { markActive, getUniqId } from '../utils'
+import { CUSTOM_MARK_PRIORITY } from '../priority.config'
 
 export default class CustomMark extends Extension {
   constructor(props?: ExtensionProps) {
@@ -27,12 +28,17 @@ export default class CustomMark extends Extension {
       return this.customSchema;
     }
     const { className, tagName } = this;
-    const tag = tagName + `[data-smartblock-id="${this.name}"]`
+    let tag = tagName
+    if (className) {
+      tag += `.${className.replace(/\s/g, '.')}`
+    }
+    
     return {
       group: 'mark',
       parseDOM: [
         {
-          tag
+          tag,
+          priority: CUSTOM_MARK_PRIORITY
         }
       ],
       toDOM: () => [
