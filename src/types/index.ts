@@ -14,7 +14,7 @@ export interface ExtensionSchema {
   toDOM?(node: Node): (string | { [key: string]: any } | number)[];
 }
 
-export type Dispatch = (tr: Transaction<any>) => void
+export type Dispatch = (tr: Transaction) => void
 
 type CustomLayoutProps = {
   dispatch: Dispatch;
@@ -75,7 +75,7 @@ export abstract class Extension {
 
   icon?: JSX.Element | string
 
-  plugins?: Plugin<any, any>[]
+  plugins?: Plugin<any>[]
 
   showMenu: boolean
 
