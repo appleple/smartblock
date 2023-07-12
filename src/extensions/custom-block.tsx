@@ -41,7 +41,6 @@ export default class CustomBlock extends Extension {
     }
 
     return {
-      type: this.name,
       content: 'inline*',
       group: 'block',
       defining: true,
