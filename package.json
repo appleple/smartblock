@@ -4,9 +4,9 @@
   "description": "intuitive block based wysiwyg editor",
   "main": "lib/index.js",
   "exports": {
-    "./": "./lib"
+    ".": "./lib"
   },
-  "type": "lib/index.d.ts",
+  "types": "lib/index.d.ts",
   "scripts": {
     "test": "jest **/*.test.tsx",
     "dev": "webpack-dev-server --config webpack.dev.js --host 0.0.0.0 --port 3031",
@@ -94,7 +94,6 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "codemirror": "^5.48.0",
-    "deepmerge": "^4.3.1",
     "imagesloaded": "^4.1.4",
     "is-mobile": "^2.1.0",
     "lowlight": "^1.13.0",
