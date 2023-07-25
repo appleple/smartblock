@@ -85,7 +85,7 @@ export default (props) => {
             <h2 style={{ marginTop: '-50px' }}>Output Result</h2>
             <div className="tab" style={{marginBottom: '50px'}}>
               <div className="tab-list">
-                <a 
+                <a
                   className={tab === 'html' ? 'is-current' : ''} 
                   onClick={() => {
                     setTab('html');

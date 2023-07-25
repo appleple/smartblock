@@ -32,7 +32,7 @@ export default () => {
     </section>
     <footer className="footer">
       <div>
-        <img src={Logo} />
+        <img src={Logo} alt="SmartBlock" />
         <p>A modern block styled editor built with React.<br /> SmartBlock is provided with MIT license. Made by @appleple ♥ OSS</p>
       </div>
     </footer>

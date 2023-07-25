@@ -7,6 +7,7 @@ import List from '../components/icons/list';
 import { liftListItem, blockActive, getParentNodeFromState } from '../utils';
 import { Extension, ExtensionProps } from '../types';
 import Button from '../components/button';
+import { BASE_PRIORITY } from '../priority.config'
 
 export default class BulletList extends Extension {
   constructor(props?: ExtensionProps) {
@@ -32,23 +33,25 @@ export default class BulletList extends Extension {
     return {
       content: 'list_item+',
       group: 'block',
+      attrs: {
+        id: { default: '' }
+      },
       parseDOM: [
         {
           tag: 'ul',
+          priority: BASE_PRIORITY,
           getAttrs(dom) {
             return {
-              id: dom.getAttribute('id')
+              id: dom.getAttribute('id') || uuid()
             }
           }
         }
       ],
-      attrs: {
-        id: { default: '' }
-      },
       toDOM(node) {
         return [
           'ul',
           {
+            id: node.attrs.id || uuid(),
             class: this.className
           },
           0

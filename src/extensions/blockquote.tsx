@@ -4,6 +4,7 @@ import * as uuid from 'uuid/v4'
 import BlockQuoteIcon from '../components/icons/blockquote'
 import { Extension, ExtensionProps } from '../types'
 import { blockActive } from '../utils'
+import { BASE_PRIORITY } from '../priority.config'
 
 export default class BlockQuote extends Extension {
   constructor(props?: ExtensionProps) {
@@ -32,6 +33,7 @@ export default class BlockQuote extends Extension {
       parseDOM: [
         {
           tag: 'blockquote',
+          priority: BASE_PRIORITY,
           getAttrs(dom) {
             return {
               id: dom.getAttribute('id') || uuid()

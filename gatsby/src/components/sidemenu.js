@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link, withPrefix } from 'gatsby';
 import SideMenuInner from './sidemenu-inner';
 
 export default (props) => {

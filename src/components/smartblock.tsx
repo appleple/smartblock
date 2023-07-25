@@ -38,7 +38,10 @@ const EDITMENUHEIGHT = 80;
 
 const getBlockSchemas = (extensions: Extension[]) => {
   const nodesSchema = extensions.filter(extension => {
-    if (extension.schema && extension.schema.group === 'block') {
+    if (
+      extension.schema &&
+      extension.schema.group === 'block'
+      ) {
       return true
     }
     return false
@@ -117,10 +120,11 @@ const getSchemaFromExtensions = (extensions: Extension[]) => {
       toDOM() {
         return ['br']
       }
-    }
+    },
   }
   nodes = { ...nodes, ...base, ...nodeDependencies }
   const marks = getMarkSchemas(extensions)
+
   return new Schema({ nodes, marks })
 }
 
@@ -318,7 +322,7 @@ export default (props: AppProps) => {
     const div = document.createElement('div')
     div.innerHTML = realHtml
     const doc = DOMParser.fromSchema(schema).parse(div, {
-      preserveWhitespace: true
+      preserveWhitespace: true,
     });
 
     if (props.onInit) {
@@ -409,3 +413,7 @@ export default (props: AppProps) => {
     </div>
   </div>)
 }
+function deepmarge(schema: {}, schemaDependencies: { [key: string]: import("../types").ExtensionSchema; }): any {
+  throw new Error('Function not implemented.');
+}
+

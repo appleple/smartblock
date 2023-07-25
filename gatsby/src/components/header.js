@@ -31,7 +31,7 @@ export default (props) => {
       }}
     />
     <header className={className}>
-      <h1 className="logo is-small"><Link to="/"><img src={Logo} /></Link></h1>
+      <h1 className="logo is-small"><Link to="/"><img src={Logo} alt="SmartBlock" /></Link></h1>
       <nav className="header-menu">
         <div className="pulldown">
           <Link to="/get-started">Document</Link>

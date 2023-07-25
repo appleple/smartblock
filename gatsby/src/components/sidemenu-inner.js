@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, withPrefix } from 'gatsby';
+import { Link } from 'gatsby';
 
 export default (props) => {
 
@@ -45,6 +45,16 @@ export default (props) => {
           </li>
           <li className={props.active.indexOf('customize') !== -1 ? 'is-current' : ''}>
             <Link to="/customize">Customize</Link>
+          </li>
+        </ul>
+      </div>
+      <div className="type-h3">
+        <span>Community</span>
+      </div>
+      <div className="tree">
+        <ul>
+          <li className={props.active.indexOf('qa') !== -1 ? 'is-current' : ''}>
+            <Link to="/qa">Q&A</Link>
           </li>
         </ul>
       </div>

@@ -3,6 +3,7 @@ import { toggleMark } from 'prosemirror-commands'
 import UnderlineIcon from '../components/icons/underline'
 import { Extension, ExtensionProps } from '../types'
 import { markActive } from '../utils'
+import { BASE_PRIORITY } from '../priority.config'
 
 export default class Underline extends Extension {
   constructor(props?: ExtensionProps) {
@@ -27,7 +28,13 @@ export default class Underline extends Extension {
     }
     return {
       group: 'mark',
-      parseDOM: [{ tag: 'u' }, { style: 'text-decoration=underline' }],
+      parseDOM: [
+        {
+          tag: 'u',
+          priority: BASE_PRIORITY,
+          style: 'text-decoration=underline'
+        }
+      ],
       toDOM: () => [
         'span',
         {
