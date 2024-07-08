@@ -4,7 +4,7 @@ module.exports = {
     '^.+\\.tsx?$': 'ts-jest'
   },
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',
-  setupTestFrameworkScriptFile: 'jest-prosemirror/environment',
+  setupFilesAfterEnv: ['jest-prosemirror/environment'],
   testEnvironment: 'jsdom', // Required for dom manipulation
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   globals: {
