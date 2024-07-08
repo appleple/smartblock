@@ -1,5 +1,5 @@
 import * as React from 'react';
-declare type ButtonProps = {
+type ButtonProps = {
     active?: boolean;
     color?: 'black' | 'white';
     disabled?: boolean;

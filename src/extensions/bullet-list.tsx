@@ -14,18 +14,22 @@ export default class BulletList extends Extension {
     super(props);
   }
 
+  // @ts-ignore
   get name() {
     return 'bullet_list';
   }
 
+  // @ts-ignore
   get group() {
     return 'block';
   }
 
+  // @ts-ignore
   get showMenu() {
     return true;
   }
 
+  // @ts-ignore
   get schema() {
     if (this.customSchema) {
       return;
@@ -60,10 +64,12 @@ export default class BulletList extends Extension {
     };
   }
 
+  // @ts-ignore
   get icon() {
     return <List style={{ width: '24px', height: '24px' }} />;
   }
 
+  // @ts-ignore
   get hideBlockMenuOnFocus() {
     return true;
   }

@@ -6,20 +6,21 @@ import { useView, useScrolling } from '../utils/hooks';
 const { useRef, useEffect } = React;
 
 type EditorProps = {
-  onChange(
-    state: EditorState,
-    dispatch: typeof EditorView.prototype.dispatch
-  ): any;
+  onChange(state: EditorState, dispatch: typeof EditorView.prototype.dispatch): any;
   attributes?: any; //todo
   nodeViews?: any; // todo
   autoFocus?: boolean;
   options: any; // todo
   render?({
-    editor: EditorState,
-    view: EditorView,
-    scrolling: boolean
+    editor,
+    view,
+    scrolling,
+  }: {
+    editor: React.ReactNode;
+    view: EditorView;
+    scrolling: boolean;
   }): React.ReactElement;
-}
+};
 
 export default (props: EditorProps) => {
   const editorRef = useRef<HTMLDivElement>(null);
@@ -34,14 +35,14 @@ export default (props: EditorProps) => {
     if (props.autoFocus) {
       view.focus();
     }
-  }, [])
+  }, []);
 
   const scrolling = useScrolling(editorRef, 300);
 
-  const editor = <div ref={editorRef} />
+  const editor = <div ref={editorRef} />;
   return props.render({
     editor,
     view,
-    scrolling
+    scrolling,
   });
-}
+};

@@ -14,18 +14,22 @@ export default class OrderedList extends Extension {
     super(props);
   }
 
+  // @ts-ignore
   get name() {
     return 'ordered_list';
   }
 
+  // @ts-ignore
   get group() {
     return 'block';
   }
 
+  // @ts-ignore
   get showMenu() {
     return true;
   }
 
+  // @ts-ignore
   get schema() {
     if (this.customSchema) {
       return this.customSchema;
@@ -59,10 +63,12 @@ export default class OrderedList extends Extension {
     };
   }
 
+  // @ts-ignore
   get icon() {
     return <OrderedListIcon style={{ width: '24px', height: '24px' }} />;
   }
 
+  // @ts-ignore
   get hideBlockMenuOnFocus() {
     return true;
   }

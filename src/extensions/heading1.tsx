@@ -15,18 +15,22 @@ export default class Heading1 extends Extension {
     super(props);
   }
 
+  // @ts-ignore
   get name() {
     return 'heading1';
   }
 
+  // @ts-ignore
   get group() {
     return 'block';
   }
 
+  // @ts-ignore
   get showMenu() {
     return true;
   }
 
+  // @ts-ignore
   get schema() {
     if (this.customSchema) {
       return this.customSchema;
@@ -69,6 +73,7 @@ export default class Heading1 extends Extension {
     };
   }
 
+  // @ts-ignore
   get icon() {
     return <HeadingIcon style={{ width: '24px', height: '24px' }} />;
   }

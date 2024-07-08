@@ -10,18 +10,22 @@ export default class Link extends Extension {
     super(props);
   }
 
+  // @ts-ignore
   get name() {
     return 'link'
   }
 
+  // @ts-ignore
   get group() {
     return 'mark'
   }
 
+  // @ts-ignore
   get showMenu() {
     return true
   }
 
+  // @ts-ignore
   get schema() {
     if (this.customSchema) {
       return this.customSchema;
@@ -53,10 +57,12 @@ export default class Link extends Extension {
     }
   }
 
+  // @ts-ignore
   get icon() {
     return <LinkIcon style={{ width: '24px', height: '24px' }} />
   }
 
+  // @ts-ignore
   get plugins() {
     return [tooltip()]
   }

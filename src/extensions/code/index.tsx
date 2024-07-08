@@ -41,22 +41,27 @@ export default class Code extends Extension {
     }
   }
 
+  // @ts-ignore
   get name() {
     return 'code';
   }
 
+  // @ts-ignore
   get group() {
     return 'block';
   }
 
+  // @ts-ignore
   get showMenu() {
     return true;
   }
 
+  // @ts-ignore
   get hideInlineMenuOnFocus() {
     return true;
   }
 
+  // @ts-ignore
   get schema() {
     if (this.customSchema) {
       return this.customSchema;
@@ -100,6 +105,7 @@ export default class Code extends Extension {
     }
   }
 
+  // @ts-ignore
   get icon() {
     return <CodeIcon style={{ width: '24px', height: '24px' }} />
   }
@@ -141,6 +147,7 @@ export default class Code extends Extension {
     )
   }
 
+  // @ts-ignore
   get plugins() {
     return [
       Plugin({

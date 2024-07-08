@@ -1,5 +1,5 @@
 /// <reference types="react" />
-declare type TooltipReactProps = {
+type TooltipReactProps = {
     url: string;
     onClick(url: string): void;
     editing: boolean;

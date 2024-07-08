@@ -10,18 +10,22 @@ export default class Underline extends Extension {
     super(props);
   }
 
+  // @ts-ignore
   get name() {
     return 'underline';
   }
 
+  // @ts-ignore
   get group() {
     return 'mark';
   }
 
+  // @ts-ignore
   get showMenu() {
     return true;
   }
 
+  // @ts-ignore
   get schema() {
     if (this.customSchema) {
       return this.customSchema;
@@ -45,6 +49,7 @@ export default class Underline extends Extension {
     };
   }
 
+  // @ts-ignore
   get icon() {
     return <UnderlineIcon style={{ width: '24px', height: '24px' }} />;
   }

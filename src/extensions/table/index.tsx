@@ -53,18 +53,22 @@ export default class Table extends Extension {
     super(props);
   }
 
+  // @ts-ignore
   get name() {
     return 'table';
   }
 
+  // @ts-ignore
   get group() {
     return 'block';
   }
 
+  // @ts-ignore
   get showMenu() {
     return true;
   }
 
+  // @ts-ignore
   get schema() {
     if (this.customSchema) {
       return this.customSchema;
@@ -94,19 +98,23 @@ export default class Table extends Extension {
     return schemas.table;
   }
 
+  // @ts-ignore
   get schemaDependencies() {
     const { table, ...noTable } = schemas;
     return noTable;
   }
 
+  // @ts-ignore
   get icon() {
     return <TableIcon style={{ width: '24px', height: '24px' }} />
   }
 
+  // @ts-ignore
   get hideBlockMenuOnFocus() {
     return true;
   }
 
+  // @ts-ignore
   get plugins() {
     return [
       // columnResizing(),

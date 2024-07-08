@@ -1,7 +1,7 @@
 /// <reference types="react" />
 import { Extension, Dispatch } from '../../types';
 import { EditorState } from 'prosemirror-state';
-declare type Props = {
+type Props = {
     imgClassName?: string;
     imgFullClassName?: string;
     captionClassName?: string;
@@ -15,11 +15,11 @@ export default class Image extends Extension {
     withCaption: boolean;
     onChange: (preview: string, file: File) => Promise<string>;
     constructor({ imgClassName, imgFullClassName, captionClassName, withCaption, onChange }: Props);
-    readonly name: string;
-    readonly showMenu: boolean;
-    readonly group: string;
-    readonly hideBlockMenuOnFocus: boolean;
-    readonly schema: {
+    get name(): string;
+    get showMenu(): boolean;
+    get group(): string;
+    get hideBlockMenuOnFocus(): boolean;
+    get schema(): {
         content: string;
         isolating: boolean;
         group: string;
@@ -51,16 +51,16 @@ export default class Image extends Extension {
             };
         }[];
         toDOM: (node: any) => (string | {
-            "class": string;
+            class: string;
         } | (string | {
             src: any;
-            "class": string;
+            class: string;
         })[] | (string | number | {
-            "class": string;
+            class: string;
         })[])[];
     };
-    readonly icon: JSX.Element;
-    readonly plugins: import("prosemirror-state").Plugin<any, any>[];
+    get icon(): JSX.Element;
+    get plugins(): import("prosemirror-state").Plugin<any, any>[];
     changeImage(state: EditorState, dispatch: Dispatch, files: FileList): Promise<void>;
     customButton({ state, dispatch }: {
         state: any;

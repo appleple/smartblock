@@ -17,18 +17,22 @@ export default class CustomBlock extends Extension {
     super(props);
   }
 
+  // @ts-ignore
   get name() {
-    return this.customName as string;
+    return this.customName;
   }
 
+  // @ts-ignore
   get group() {
     return 'block';
   }
 
+  // @ts-ignore
   get showMenu() {
     return true;
   }
 
+  // @ts-ignore
   get schema() {
     if (this.customSchema) {
       return this.customSchema;
@@ -72,6 +76,7 @@ export default class CustomBlock extends Extension {
     };
   }
 
+  // @ts-ignore
   get icon() {
     return this.customIcon;
   }

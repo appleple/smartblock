@@ -15,12 +15,12 @@ export interface ExtensionSchema {
         [key: string]: any;
     } | number)[];
 }
-export declare type Dispatch = (tr: Transaction<any>) => void;
-declare type CustomLayoutProps = {
+export type Dispatch = (tr: Transaction) => void;
+type CustomLayoutProps = {
     dispatch: Dispatch;
     state: EditorState;
 };
-export declare type ExtensionProps = ({
+export type ExtensionProps = ({
     schema?: ExtensionSchema;
     className?: string;
     tagName?: string;
@@ -58,7 +58,7 @@ export declare abstract class Extension {
     }): JSX.Element;
     customIcon?: JSX.Element | string;
     icon?: JSX.Element | string;
-    plugins?: Plugin<any, any>[];
+    plugins?: Plugin<any>[];
     showMenu: boolean;
     hideMenuOnFocus?: boolean;
     hideBlockMenuOnFocus?: boolean;
@@ -73,16 +73,16 @@ export declare abstract class Extension {
     };
     btnColor?: 'black' | 'white';
 }
-declare type OutputJson = {
+type OutputJson = {
     [key: string]: any;
 };
-export declare type Output = {
+export type Output = {
     json: OutputJson;
     html: string;
     schema: Schema;
     markdown?: string;
 };
-export declare type AppProps = {
+export type AppProps = {
     onChange?(output: Output): void;
     onTitleChange?(title: string): void;
     onInit?(json: {
@@ -97,7 +97,6 @@ export declare type AppProps = {
     autoSave?: boolean;
     showTitle?: boolean;
     titleText?: string;
-    titlePlaceholder?: string;
     outputMarkdown?: boolean;
     full?: boolean;
     getEditorRef?(div: React.MutableRefObject<HTMLDivElement>): void;

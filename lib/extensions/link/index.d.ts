@@ -2,10 +2,10 @@
 import { Extension, ExtensionProps } from '../../types';
 export default class Link extends Extension {
     constructor(props?: ExtensionProps);
-    readonly name: string;
-    readonly group: string;
-    readonly showMenu: boolean;
-    readonly schema: import("../../types").ExtensionSchema | {
+    get name(): string;
+    get group(): string;
+    get showMenu(): boolean;
+    get schema(): import("../../types").ExtensionSchema | {
         group: string;
         attrs: {
             href: {};
@@ -30,8 +30,8 @@ export default class Link extends Extension {
             class: string;
         })[];
     };
-    readonly icon: JSX.Element;
-    readonly plugins: import("prosemirror-state").Plugin<any, any>[];
+    get icon(): JSX.Element;
+    get plugins(): import("prosemirror-state").Plugin<any, any>[];
     active(state: any): any;
     onClick(state: any, dispatch: any): boolean;
 }

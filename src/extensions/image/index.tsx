@@ -41,18 +41,28 @@ export default class Image extends Extension {
     this.withCaption = withCaption;
     this.onChange = onChange;
   }
+
+  // @ts-ignore
   get name() {
     return "image";
   }
+
+  // @ts-ignore
   get showMenu() {
     return true;
   }
+
+  // @ts-ignore
   get group() {
     return "block";
   }
+
+  // @ts-ignore
   get hideBlockMenuOnFocus() {
     return true;
   }
+
+  // @ts-ignore
   get schema() {
     const imgClassName = this.imgClassName;
     return {
@@ -101,17 +111,21 @@ export default class Image extends Extension {
             src: node.attrs.src,
             "class": node.attrs.size === "full" ? this.imgFullClassName : this.imgClassName,
           }],
-          (this.withCaption ? 
-            ["figcaption", {"class": this.captionClassName}, 0] : 
+          (this.withCaption ?
+            ["figcaption", {"class": this.captionClassName}, 0] :
             ["figcaption", 0]
           ),
         ];
       }
     };
   }
+
+  // @ts-ignore
   get icon() {
     return <ImageIcon style={{ width: "24px", height: "24px" }} />;
   }
+
+  // @ts-ignore
   get plugins() {
     return [MediaPlugin()]
   }
@@ -132,7 +146,7 @@ export default class Image extends Extension {
   }
   customButton({ state, dispatch }) {
     const disabled = (this.enable && !this.enable(state)) || this.hideMenuOnFocus;
-    return (<Button 
+    return (<Button
       tag="label"
       active={this.active && this.active(state)}
       disabled={disabled}
@@ -147,8 +161,8 @@ export default class Image extends Extension {
     const node = findSelectedNodeWithType(state.schema.nodes.image, state);
     return (
       <>
-        <Button 
-          type="button" 
+        <Button
+          type="button"
           style={{
             marginRight: '1px',
             borderTopRightRadius: '0',
@@ -164,8 +178,8 @@ export default class Image extends Extension {
         >
           <FullIcon style={{ width: '24px', height: '24px' }} />
         </Button>
-        <Button 
-          type="button" 
+        <Button
+          type="button"
           style={{
             borderTopLeftRadius: '0',
             borderBottomLeftRadius: '0',

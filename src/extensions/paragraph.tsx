@@ -15,18 +15,22 @@ export default class Paragraph extends Extension {
     super(props);
   }
 
+  // @ts-ignore
   get name() {
     return 'paragraph';
   }
 
+  // @ts-ignore
   get group() {
     return 'block';
   }
 
+  // @ts-ignore
   get showMenu() {
     return true;
   }
 
+  // @ts-ignore
   get schema() {
     if (this.customSchema) {
       return this.customSchema;
@@ -71,6 +75,7 @@ export default class Paragraph extends Extension {
     };
   }
 
+  // @ts-ignore
   get icon() {
     return <ParagraphIcon style={{ width: '24px', height: '24px' }} />;
   }

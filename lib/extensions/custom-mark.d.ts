@@ -2,11 +2,20 @@
 import { Extension, ExtensionProps } from '../types';
 export default class CustomMark extends Extension {
     constructor(props?: ExtensionProps);
-    readonly name: string;
-    readonly group: string;
-    readonly showMenu: boolean;
-    readonly schema: import("../types").ExtensionSchema;
-    readonly icon: string | JSX.Element;
+    get name(): string;
+    get group(): string;
+    get showMenu(): boolean;
+    get schema(): import("../types").ExtensionSchema | {
+        group: string;
+        parseDOM: {
+            tag: string;
+            priority: string;
+        }[];
+        toDOM: () => (string | number | {
+            class: string;
+        })[];
+    };
+    get icon(): string | JSX.Element;
     active(state: any): any;
     onClick(state: any, dispatch: any): void;
 }

@@ -14,22 +14,27 @@ export default class Embed extends Extension {
     super(props)
   }
 
+  // @ts-ignore
   get name() {
     return 'embed'
   }
 
+  // @ts-ignore
   get group() {
     return 'block'
   }
 
+  // @ts-ignore
   get showMenu() {
     return true
   }
 
+  // @ts-ignore
   get hideInlineMenuOnFocus() {
     return true
   }
 
+  // @ts-ignore
   get schema() {
     if (this.customSchema) {
       return this.customSchema
@@ -121,6 +126,7 @@ export default class Embed extends Extension {
     }
   }
 
+  // @ts-ignore
   get icon() {
     return <LinkIcon style={{ width: '24px', height: '24px' }} />
   }
@@ -158,6 +164,7 @@ export default class Embed extends Extension {
     )
   }
 
+  // @ts-ignore
   get plugins() {
     return [Plugin()]
   }

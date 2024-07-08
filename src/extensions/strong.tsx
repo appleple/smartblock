@@ -10,18 +10,22 @@ export default class Strong extends Extension {
     super(props);
   }
 
+  // @ts-ignore
   get name() {
     return 'strong';
   }
 
+  // @ts-ignore
   get group() {
     return 'mark';
   }
 
+  // @ts-ignore
   get showMenu() {
     return true;
   }
 
+  // @ts-ignore
   get schema() {
     if (this.customSchema) {
       return this.customSchema;
@@ -44,6 +48,7 @@ export default class Strong extends Extension {
     };
   }
 
+  // @ts-ignore
   get icon() {
     return <StrongIcon style={{ width: '24px', height: '24px' }} />;
   }

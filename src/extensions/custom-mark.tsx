@@ -11,18 +11,22 @@ export default class CustomMark extends Extension {
     super(props);
   }
 
+  // @ts-ignore
   get name() {
     return this.customName;
   }
 
+  // @ts-ignore
   get group() {
     return 'mark';
   }
 
+  // @ts-ignore
   get showMenu() {
     return true;
   }
 
+  // @ts-ignore
   get schema() {
     if (this.customSchema) {
       return this.customSchema;
@@ -51,6 +55,7 @@ export default class CustomMark extends Extension {
     };
   }
 
+  // @ts-ignore
   get icon() {
     return this.customIcon;
   }

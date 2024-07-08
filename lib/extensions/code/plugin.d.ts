@@ -1,4 +1,5 @@
 import { Plugin } from 'prosemirror-state';
+import { DecorationSet } from 'prosemirror-view';
 export default function HighlightPlugin({ name }: {
     name: any;
-}): Plugin<any, any>;
+}): Plugin<DecorationSet, any>;

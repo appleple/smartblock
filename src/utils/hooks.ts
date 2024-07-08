@@ -8,16 +8,21 @@ import { EditorView } from 'prosemirror-view'
 import { getScrollTop } from '.'
 
 type EditorProps = {
-  onChange(
-    state: EditorState,
-    dispatch: typeof EditorView.prototype.dispatch
-  ): void;
-  attributes?: { [index: string]: any };
-  nodeViews?: { [index: string]: any };
+  onChange(state: EditorState, dispatch: typeof EditorView.prototype.dispatch): any;
+  attributes?: any; //todo
+  nodeViews?: any; // todo
   autoFocus?: boolean;
-  options: { [index: string]: any };
-  render?({ editor: EditorState, view: EditorView }): React.ReactElement;
-}
+  options: any; // todo
+  render?({
+    editor,
+    view,
+    scrolling,
+  }: {
+    editor: React.ReactNode;
+    view: EditorView;
+    scrolling: boolean;
+  }): React.ReactElement;
+};
 
 export const useForceUpdate = () => {
   const [, setTick] = useState(0)

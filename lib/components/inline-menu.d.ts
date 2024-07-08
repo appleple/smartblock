@@ -4,6 +4,6 @@ declare const MenuBar: ({ menu, blockMenu, children, view }: {
     menu: any;
     blockMenu: any;
     children?: React.ReactChildren;
-    view: EditorView<any>;
+    view: EditorView;
 }) => JSX.Element;
 export default MenuBar;

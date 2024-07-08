@@ -1,6 +1,5 @@
 /// <reference types="react" />
-declare type TitleProps = {
-    placeholder: string;
+type TitleProps = {
     defaultValue: string;
     onChange(text: string): void;
 };

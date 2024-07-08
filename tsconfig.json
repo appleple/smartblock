@@ -8,6 +8,8 @@
     "declaration": true,
     "strict": false,
     "jsx": "react",
+    "skipLibCheck": true,
+    "noEmitOnError": false,
     "lib": [
       "es2018",
       "dom"

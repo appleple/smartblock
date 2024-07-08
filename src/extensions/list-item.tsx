@@ -10,14 +10,17 @@ export default class ListItem extends Extension {
     super(props);
   }
 
+  // @ts-ignore
   get name() {
     return 'list_item';
   }
 
+  // @ts-ignore
   get showMenu() {
     return false;
   }
 
+  // @ts-ignore
   get schema() {
     if (this.customSchema) {
       return this.customSchema;

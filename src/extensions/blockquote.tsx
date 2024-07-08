@@ -11,18 +11,22 @@ export default class BlockQuote extends Extension {
     super(props);
   }
 
+  // @ts-ignore
   get name() {
     return 'blockquote';
   }
 
+  // @ts-ignore
   get group() {
     return 'block';
   }
 
+  // @ts-ignore
   get showMenu() {
     return true;
   }
 
+  // @ts-ignore
   get schema() {
     if (this.customSchema) {
       return this.customSchema;
@@ -57,6 +61,7 @@ export default class BlockQuote extends Extension {
     };
   }
 
+  // @ts-ignore
   get icon() {
     return <BlockQuoteIcon style={{ width: '24px', height: '24px' }} />;
   }

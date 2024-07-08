@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Extension, ExtensionProps } from '../../types';
-declare type Lang = {
+type Lang = {
     label: React.ReactNode;
     lang: string;
 };
@@ -8,11 +8,11 @@ export default class Code extends Extension {
     defaultLang: string;
     langs: Lang[];
     constructor(props?: ExtensionProps);
-    readonly name: string;
-    readonly group: string;
-    readonly showMenu: boolean;
-    readonly hideInlineMenuOnFocus: boolean;
-    readonly schema: import("../../types").ExtensionSchema | {
+    get name(): string;
+    get group(): string;
+    get showMenu(): boolean;
+    get hideInlineMenuOnFocus(): boolean;
+    get schema(): import("../../types").ExtensionSchema | {
         content: string;
         group: string;
         parseDOM: {
@@ -37,7 +37,7 @@ export default class Code extends Extension {
             };
         };
     };
-    readonly icon: JSX.Element;
+    get icon(): JSX.Element;
     active(state: any): boolean;
     enable(state: any): boolean;
     onClick(state: any, dispatch: any): void;
@@ -45,6 +45,6 @@ export default class Code extends Extension {
         state: any;
         dispatch: any;
     }): JSX.Element;
-    readonly plugins: import("prosemirror-state").Plugin<any, any>[];
+    get plugins(): import("prosemirror-state").Plugin<import("prosemirror-view").DecorationSet, any>[];
 }
 export {};
