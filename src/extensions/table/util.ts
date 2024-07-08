@@ -38,9 +38,9 @@ function tableNodeTypes(schema: Schema) {
   let result = schema.cached.tableNodeTypes;
   if (!result) {
     result = schema.cached.tableNodeTypes = {};
-    for (let name in schema.nodes) {
+    for (const name in schema.nodes) {
       // @ts-ignore
-      let type = schema.nodes[name], role = type.spec.tableRole;
+      const type = schema.nodes[name], role = type.spec.tableRole;
       if (role) {
         result[role] = type;
       }
@@ -55,9 +55,9 @@ export function toggleCell(cellType: 'th' | 'td') {
       return false;
     }
     if (dispatch) {
-      let types = tableNodeTypes(state.schema);
-      let rect = selectedRect(state), tr = state.tr;
-      let cellsRect = rect;
+      const types = tableNodeTypes(state.schema);
+      const rect = selectedRect(state), tr = state.tr;
+      const cellsRect = rect;
       let type = types.cell;
       if (cellType === 'th') {
         type = types.header_cell;

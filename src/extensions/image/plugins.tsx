@@ -6,7 +6,7 @@ export const MediaPlugin = () => {
   return new Plugin({
     props: {
       decorations(state) {
-        let doc = state.doc
+        const doc = state.doc
         const images = findChildren(doc, (node) => {
           if (node.type.name === 'image') {
             return true;

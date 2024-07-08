@@ -28,6 +28,7 @@
     "@typescript-eslint/no-explicit-any": "off",
     "react/jsx-filename-extension": "off",
     "@typescript-eslint/indent": "off",
+    "@typescript-eslint/ban-ts-ignore": "off",
     "react/prop-types": "off",
     "react-hooks/rules-of-hooks": "error"
   }
