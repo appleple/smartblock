@@ -48,14 +48,12 @@ const placeholderPlugin = () => {
 }
 
 type TitleProps = {
-  placeholder: string;
   defaultValue: string;
   onChange(text: string): void;
 }
 
 export default (props: TitleProps) => {
   const defaultProps = {
-    placeholder: 'Title here...',
     defaultValue: ''
   }
   props = Object.assign({}, defaultProps, props);
@@ -86,6 +84,6 @@ export default (props: TitleProps) => {
       titleRef.current.appendChild(view.dom)
     }
   }, []);
-  
+
   return <div ref={titleRef} className="smartblock-title" />
 }

@@ -18,7 +18,7 @@ export default class CustomBlock extends Extension {
   }
 
   get name() {
-    return this.customName;
+    return this.customName as string;
   }
 
   get group() {

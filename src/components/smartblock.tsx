@@ -31,7 +31,7 @@ interface ProseRender {
 type EditorOptions = {
   schema: Schema<any, any>;
   plugins: any[];
-  doc: Node<Schema<any, any>>;
+  doc: Node;
 }
 
 const EDITMENUHEIGHT = 80;
@@ -348,8 +348,8 @@ export default (props: AppProps) => {
   const edits = getEdits(extensions)
   const nodeViews = getNodeViews(extensions)
 
-  return (<div 
-    id={containerId} 
+  return (<div
+    id={containerId}
     onClick={(e) => {
       const target = e.target as HTMLDivElement;
       if (target.getAttribute('id') === containerId) {
@@ -363,13 +363,12 @@ export default (props: AppProps) => {
     <div className={classNames('smartblock-container', {
       'is-full': props.full
     })}>
-      {props.showTitle && 
-        <Title 
+      {props.showTitle &&
+        <Title
           onChange={(title) => {
             titleChanged(title, props);
-          }} 
+          }}
           defaultValue={titleText}
-          placeholder={props.titlePlaceholder}
         />
       }
       <div className="smartblock-inner">
@@ -413,7 +412,6 @@ export default (props: AppProps) => {
     </div>
   </div>)
 }
-function deepmarge(schema: {}, schemaDependencies: { [key: string]: import("../types").ExtensionSchema; }): any {
+function deepmarge(schema: {}, schemaDependencies: { [key: string]: import("../types").ExtensionSchema }): any {
   throw new Error('Function not implemented.');
 }
-

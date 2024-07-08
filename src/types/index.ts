@@ -125,7 +125,6 @@ export type AppProps = {
   autoSave?: boolean;
   showTitle?: boolean;
   titleText?: string;
-  titlePlaceholder?: string;
   outputMarkdown?: boolean;
   full?: boolean;
   getEditorRef?(div: React.MutableRefObject<HTMLDivElement>): void;

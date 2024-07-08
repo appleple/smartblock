@@ -14,6 +14,7 @@ extensions.push(new Image({
   imgFullClassName: 'full',
 }))
 
+// @ts-ignore
 extensions.push(new CustomBlock({
   tagName: 'p',
   customName: 's-paragraph',
@@ -24,6 +25,7 @@ extensions.push(new CustomBlock({
     </svg>`
 }))
 
+// @ts-ignore
 extensions.push(new CustomBlock({
   tagName: 'h2',
   customName: 's-heading2',
@@ -32,7 +34,6 @@ extensions.push(new CustomBlock({
 
 SmartBlock('#app', {
   showTitle: true,
-  titlePlaceholder: 'ここにタイトルを入力',
   markdown,
   showdown,
   outputMarkdown: true,
@@ -47,13 +48,13 @@ SmartBlock('#app', {
 // import SmartBlock from './src/components/smartblock';
 
 // render(<>
-//   <SmartBlock 
-// 	extensions={extensions} 
+//   <SmartBlock
+// 	extensions={extensions}
 // 	html='
 //     <h3 class="foofoo">Hello, World!</h3>
 //     <p class="hogehoge">hoge</p>
 //     <p>html</p>'
-// 	showTitle={true} 
+// 	showTitle={true}
 // 	onChange={({html}) => console.log(html)}
 //   />
 // </>,

@@ -20,14 +20,13 @@ export type AppProps = {
   autoSave?: boolean;
   showTitle?: boolean;
   titleText?: string;
-  titlePlaceholder?: string;
   outputMarkdown?: boolean;
   full?: boolean;
   getEditorRef?(div: React.MutableRefObject<HTMLDivElement>): void;
 }
 ```
 
-### Props to Render title 
+### Props to Render title
 
 Sometimes, You may want to edit the title and the content separetelly.
 
@@ -37,18 +36,18 @@ Sometimes, You may want to edit the title and the content separetelly.
 import * as React from 'react';
 import { render } from 'react-dom';
 import 'smartblock/css/smartblock.css';
-import { 
-  SmartBlock, 
+import {
+  SmartBlock,
 } from 'smartblock';
 
 render(<>
-  <SmartBlock 
+  <SmartBlock
     showTitle
     titleText="Title Here"
     html={'<h2>Hello World</h2><p>hello</p>'}
-    onChange={({ json, html }) => { 
+    onChange={({ json, html }) => {
       console.log(json, html);
-    }}  
+    }}
   />
 </>, document.getElementById("app"));
 ```
@@ -65,12 +64,12 @@ import 'smartblock/css/smartblock.css';
 import { SmartBlock, Extensions } from 'smartblock';
 
 render(<>
-  <SmartBlock 
+  <SmartBlock
     extensions={Extensions}
     showdown={showdown}
     markdown={`# Hello World`}
     outputMarkdown
-    onChange={({ markdown }) => { console.log(markdown);}}  
+    onChange={({ markdown }) => { console.log(markdown);}}
   />
 </>, document.getElementById("app"));
 ```
@@ -89,11 +88,11 @@ import 'smartblock/css/smartblock.css';
 import { SmartBlock, Extensions } from 'smartblock';
 
 render(<>
-  <SmartBlock 
+  <SmartBlock
     extensions={Extensions}
     autoSave
     html={"Hello World"}
-    onChange={({ html }) => { console.log(html);}}  
+    onChange={({ html }) => { console.log(html);}}
   />
 </>, document.getElementById("app"));
 ```
