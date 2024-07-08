@@ -7,6 +7,8 @@ import AlignRightIcon from '../components/icons/align-right';
 import { Extension, ExtensionProps } from '../types';
 import { blockActive, getParentNodeFromState, getUniqId } from '../utils';
 import Button from '../components/button';
+import { CUSTOM_BLOCK_PRIORITY } from '../priority.config'
+
 
 export default class CustomBlock extends Extension {
   constructor(props?: ExtensionProps) {
@@ -37,31 +39,33 @@ export default class CustomBlock extends Extension {
     if (className) {
       tag += `.${className.replace(/\s/g, '.')}`
     }
+
     return {
       content: 'inline*',
       group: 'block',
       defining: true,
       attrs: {
         align: { default: 'left' },
-        id: { default: '' }
+        id: { default: '' },
       },
       parseDOM: [
         {
           tag,
+          priority: CUSTOM_BLOCK_PRIORITY,
           getAttrs(dom) {
             return {
-              id: dom.getAttribute('id') || uuid()
+              id: dom.getAttribute('id') || uuid(),
             }
           }
         }
       ],
-      toDOM(node) {
+      toDOM: node => {
         return [
           tagName,
           {
             style: `text-align: ${node.attrs.align}`,
             id: node.attrs.id || uuid(),
-            class: className
+            class: className,
           },
           0
         ]

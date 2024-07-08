@@ -3,6 +3,7 @@ import { toggleMark } from 'prosemirror-commands'
 import EmIcon from '../components/icons/em'
 import { Extension, ExtensionProps } from '../types'
 import { markActive } from '../utils'
+import { BASE_PRIORITY } from '../priority.config'
 
 export default class Emphasis extends Extension {
   constructor(props?: ExtensionProps) {
@@ -27,7 +28,13 @@ export default class Emphasis extends Extension {
     }
     return {
       group: 'mark',
-      parseDOM: [{ tag: 'em' }, { style: 'font-style=italic' }],
+      parseDOM: [
+        {
+          tag: 'em',
+          priority: BASE_PRIORITY,
+          style: 'font-style=italic'
+        }
+      ],
       toDOM: () => [
         'span',
         {

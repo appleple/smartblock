@@ -3,6 +3,7 @@ import { toggleMark } from 'prosemirror-commands'
 import StrikeIcon from '../components/icons/strike'
 import { Extension, ExtensionProps } from '../types'
 import { markActive } from '../utils'
+import { BASE_PRIORITY } from '../priority.config'
 
 export default class StrikeThrough extends Extension {
   constructor(props?: ExtensionProps) {
@@ -28,9 +29,11 @@ export default class StrikeThrough extends Extension {
     return {
       group: 'mark',
       parseDOM: [
-        { tag: 'strike' },
-        { style: 'text-decoration=line-through' },
-        { style: 'text-decoration-line=line-through' }
+        { 
+          tag: 'strike',
+          priority: BASE_PRIORITY,
+          style: 'text-decoration=line-through' || 'text-decoration-line=line-through'
+        },
       ],
       toDOM: () => [
         'span',

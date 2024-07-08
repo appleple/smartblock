@@ -8,6 +8,7 @@ import AlignRightIcon from '../components/icons/align-right';
 import { Extension, ExtensionProps } from '../types';
 import { blockActive, getParentNodeFromState } from '../utils';
 import Button from '../components/button';
+import { BASE_PRIORITY } from '../priority.config'
 
 export default class Heading3 extends Extension {
   constructor(props?: ExtensionProps) {
@@ -34,9 +35,14 @@ export default class Heading3 extends Extension {
       content: 'inline*',
       group: 'block',
       defining: true,
+      attrs: {
+        align: { default: '' },
+        id: { default: '' }
+      },
       parseDOM: [
         {
           tag: 'h3',
+          priority: BASE_PRIORITY,
           getAttrs(dom) {
             return {
               id: dom.getAttribute('id') || uuid()
@@ -44,17 +50,15 @@ export default class Heading3 extends Extension {
           }
         }
       ],
-      attrs: {
-        align: { default: '' },
-        id: { default: '' }
-      },
       toDOM(node) {
         return [
           'h3',
           (node.attrs.align ? {
             style: `text-align: ${node.attrs.align}`,
+            id: node.attrs.id || uuid(),
             class: this.className
           } : {
+            id: node.attrs.id || uuid(),
             class: this.className
           }),
           0
