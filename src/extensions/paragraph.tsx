@@ -88,7 +88,7 @@ export default class Paragraph extends Extension {
     return setBlockType(state.schema.nodes.paragraph)(state);
   }
 
-  customMenu({ state, dispatch }) {
+  customMenu({ state, dispatch }): JSX.Element | null {
     const node = getParentNodeFromState(state);
     return (
       <>

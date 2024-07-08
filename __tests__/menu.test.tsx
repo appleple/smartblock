@@ -39,6 +39,7 @@ describe('menu', () => {
 
   it('should not render when the extension does not allow to show menu', () => {
     class TestParagraph extends Paragraph {
+      // @ts-ignore
       get hideMenuOnFocus() {
         return true;
       }

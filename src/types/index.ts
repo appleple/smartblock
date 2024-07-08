@@ -62,17 +62,17 @@ export abstract class Extension {
 
   className?: string
 
-  customMenu?({ state, dispatch }: { state: EditorState; dispatch: Dispatch }): JSX.Element
+  customMenu?({ state, dispatch }: { state: EditorState; dispatch: Dispatch }): JSX.Element | null
 
-  customInlineMenu?({ state, dispatch }: { state: EditorState; dispatch: Dispatch }): JSX.Element
+  customInlineMenu?({ state, dispatch }: { state: EditorState; dispatch: Dispatch }): JSX.Element | null
 
-  customLayout?(props: CustomLayoutProps, dom: HTMLElement): JSX.Element
+  customLayout?(props: CustomLayoutProps, dom: HTMLElement): JSX.Element | null
 
-  customButton?({ state, dispatch }: { state: EditorState; dispatch: Dispatch }): JSX.Element
+  customButton?({ state, dispatch }: { state: EditorState; dispatch: Dispatch }): JSX.Element | null
 
-  customIcon?: JSX.Element | string
+  customIcon?: JSX.Element | string | null
 
-  icon?: JSX.Element | string
+  icon?: JSX.Element | string | null
 
   plugins?: Plugin<any>[]
 
