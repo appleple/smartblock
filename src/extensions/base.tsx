@@ -15,7 +15,5 @@ export default [
   new MoveUp(),
   new Trash(),
   new DefaultKeys(),
-  new DefaultPlugins({
-    placeholder: 'Content here...'
-  })
+  new DefaultPlugins()
 ] as Extension[]

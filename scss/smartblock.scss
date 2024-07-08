@@ -11,7 +11,7 @@
   cursor: pointer;
   text-align: center;
   border: 1px solid transparent;
-  
+
   svg {
     fill: currentColor;
     vertical-align: middle;
@@ -22,7 +22,7 @@
   &:not([disabled]):hover {
     color: #005CEE;
   }
-  
+
   &[disabled]:hover {
     cursor: not-allowed;
   }
@@ -37,7 +37,7 @@
     color: #005CEE;
     opacity: 1;
     background-color: #F2F2F4;
-    
+
     &:focus {
       outline: 0;
       color: #005CEE;
@@ -46,7 +46,7 @@
   }
   &:not(.is-active) {
     color: #777;
-    
+
     &:focus {
       outline: 0;
       color: #777;
@@ -120,7 +120,7 @@
   }
   background-color: transparent;
   color: #666;
-  
+
   &:hover {
     color: #111;
   }
@@ -359,35 +359,35 @@
   cursor: pointer;
 }
 
-.ProseMirror {
+.smartblock-container .ProseMirror {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴシック", "メイリオ", Meiryo, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   padding: 10px 5px;
   background: #fff;
 }
 
-.ProseMirror:focus {
+.smartblock-container .ProseMirror:focus {
   outline: none;
 }
 
-.ProseMirror .tableWrapper {
+.smartblock-container .ProseMirror .tableWrapper {
   overflow-x: auto;
 }
 
-.ProseMirror table {
+.smartblock-container .ProseMirror table {
   border-collapse: collapse;
   table-layout: fixed;
   width: 100%;
   overflow: hidden;
 }
 
-.ProseMirror td,
-.ProseMirror th {
+.smartblock-container .ProseMirror td,
+.smartblock-container .ProseMirror th {
   vertical-align: top;
   box-sizing: border-box;
   position: relative;
 }
 
-.ProseMirror .column-resize-handle {
+.smartblock-container .ProseMirror .column-resize-handle {
   position: absolute;
   right: -2px;
   top: 0;
@@ -398,13 +398,13 @@
   pointer-events: none;
 }
 
-.ProseMirror.resize-cursor {
+.smartblock-container .ProseMirror.resize-cursor {
   cursor: ew-resize;
   cursor: col-resize;
 }
 
 /* Give selected cells a blue overlay */
-.ProseMirror .selectedCell:after {
+.smartblock-container .ProseMirror .selectedCell:after {
   z-index: 2;
   position: absolute;
   content: "";
@@ -416,13 +416,13 @@
   pointer-events: none;
 }
 
-.ProseMirror-gapcursor {
+.smartblock-container .ProseMirror-gapcursor {
   display: none;
   pointer-events: none;
   position: absolute;
 }
 
-.ProseMirror-gapcursor:after {
+.smartblock-container .ProseMirror-gapcursor:after {
   content: "";
   display: block;
   position: absolute;
@@ -438,18 +438,18 @@
   }
 }
 
-.ProseMirror-focused .ProseMirror-gapcursor {
+.smartblock-container .ProseMirror-focused .ProseMirror-gapcursor {
   display: block;
 }
 
 
 @media screen and (min-width: 768px) {
-  .ProseMirror {
+  .smartblock-container .ProseMirror {
     padding: 10px;
   }
 }
 
-.ProseMirror figure {
+.smartblock-container .ProseMirror figure {
   text-align: center;
   padding: 10px 5px;
   margin: 0;
@@ -471,7 +471,7 @@
   }
 }
 
-.ProseMirror .empty-node::before {
+.smartblock-container .ProseMirror .empty-node::before {
   float: left;
   color: #aaa;
   pointer-events: none;
@@ -479,30 +479,30 @@
   font-style: italic;
 }
 
-.ProseMirror p.empty-node:first-child::before {
+.smartblock-container .ProseMirror p.empty-node:first-child::before {
   content: 'Start typing…';
 }
 
-.ProseMirror figcaption {
+.smartblock-container .ProseMirror figcaption {
   color: #333;
   font-size: 12px;
 }
 
-.ProseMirror img {
+.smartblock-container .ProseMirror img {
   max-width: 100%;
 }
 
-.ProseMirror a {
+.smartblock-container .ProseMirror a {
   color: #014CC5;
 }
 
-.ProseMirror hr {
+.smartblock-container .ProseMirror hr {
   padding: 2px 10px;
   border: none;
   margin: 1em 0;
 }
 
-.ProseMirror hr:after {
+.smartblock-container .ProseMirror hr:after {
   content: "";
   display: block;
   height: 1px;
@@ -510,11 +510,11 @@
   line-height: 2px;
 }
 
-.ProseMirror *:first-child {
+.smartblock-container .ProseMirror *:first-child {
   margin-top: 0;
 }
 
-.ProseMirror p {
+.smartblock-container .ProseMirror p {
   margin: 0 0 30px 0;
   padding: 5px;
   line-height: 1.6;
@@ -524,18 +524,18 @@
   box-sizing: border-box;
 }
 
-.ProseMirror table p {
+.smartblock-container .ProseMirror table p {
   margin: 0;
   line-height: 1;
 }
 
 @media screen and (min-width: 768px) {
-  .ProseMirror p {
+.smartblock-container   .ProseMirror p {
     padding: 5px 10px;
   }
 }
 
-.ProseMirror h1 {
+.smartblock-container .ProseMirror h1 {
   margin: 0 0 30px 0;
   padding: 0 5px;
   font-size: 1.875rem;
@@ -543,15 +543,15 @@
 }
 
 @media screen and (min-width: 768px) {
-  .ProseMirror h1 {
+.smartblock-container   .ProseMirror h1 {
     padding: 0 10px;
     font-size: 2.125rem;
   }
 }
 
 
-.ProseMirror h2,
-.ProseMirror h3 {
+.smartblock-container .ProseMirror h2,
+.smartblock-container .ProseMirror h3 {
   margin: 20px 0 10px 0;
   padding: 5px;
   line-height: 1.4;
@@ -560,25 +560,25 @@
   box-sizing: border-box;
 }
 
-.ProseMirror h2 {
+.smartblock-container .ProseMirror h2 {
   font-size: 1.625rem;
 }
 
-.ProseMirror h3 {
+.smartblock-container .ProseMirror h3 {
   font-size: 1.375rem;
 }
 
 @media screen and (min-width: 768px) {
 
-  .ProseMirror h2,
-  .ProseMirror h3 {
+.smartblock-container   .ProseMirror h2,
+.smartblock-container   .ProseMirror h3 {
     padding: 5px 10px;
   }
 }
 
 
-.ProseMirror ul,
-.ProseMirror ol {
+.smartblock-container .ProseMirror ul,
+.smartblock-container .ProseMirror ol {
   margin: 0 0 30px 0;
   padding: 5px 5px 5px 30px;
   font-size: 1rem;
@@ -586,18 +586,18 @@
   box-sizing: border-box;
 }
 
-.ProseMirror li>p {
+.smartblock-container .ProseMirror li>p {
   margin: 0;
   padding: 0;
   min-height: auto;
 }
 
-.ProseMirror li ul,
-.ProseMirror li ol {
+.smartblock-container .ProseMirror li ul,
+.smartblock-container .ProseMirror li ol {
   margin: 0;
 }
 
-.ProseMirror blockquote {
+.smartblock-container .ProseMirror blockquote {
   position: relative;
   margin: 0 0 30px 0;
   padding: 10px 5px 10px 25px;
@@ -606,7 +606,7 @@
   box-sizing: border-box;
 }
 
-.ProseMirror blockquote:before {
+.smartblock-container .ProseMirror blockquote:before {
   content: "";
   position: absolute;
   top: 5px;
@@ -616,62 +616,60 @@
 }
 
 @media screen and (min-width: 768px) {
-  .ProseMirror blockquote {
+.smartblock-container   .ProseMirror blockquote {
     padding: 10px 10px 10px 30px;
   }
 }
 
-.ProseMirror th,
-.ProseMirror td {
+.smartblock-container .ProseMirror th,
+.smartblock-container .ProseMirror td {
   border: 1px solid #eee;
   padding: 2px 5px;
 }
 
-.ProseMirror sup,
-.ProseMirror sub {
+.smartblock-container .ProseMirror sup,
+.smartblock-container .ProseMirror sub {
   line-height: 0;
 }
 
-.ProseMirror a {}
-
-.ProseMirror .selected {
+.smartblock-container .ProseMirror .selected {
   background-color: #F2F2F4;
   border-radius: 3px;
 }
 
-.ProseMirrorHideSelection .selected {
+.smartblock-container .ProseMirrorHideSelection .selected {
   background-color: transparent;
 }
 
-.ProseMirror .ProseMirror-widget {
+.smartblock-container .ProseMirror .ProseMirror-widget {
   color: #ADADAD;
 }
 
-.ProseMirror td,
-.ProseMirror th {
+.smartblock-container .ProseMirror td,
+.smartblock-container .ProseMirror th {
   border-color: #767676;
 }
 
-.ProseMirror table {
+.smartblock-container .ProseMirror table {
   margin-bottom: 15px;
   border-color: #767676;
 }
 
-.ProseMirror table p.empty-node:first-child::before {
+.smartblock-container .ProseMirror table p.empty-node:first-child::before {
   display: none;
 }
 
-.ProseMirror h1.empty-node::before {
+.smartblock-container .ProseMirror h1.empty-node::before {
   content: "Type Title here";
   font-style: normal;
 }
 
-.ProseMirror p.empty-node:first-child::before {
+.smartblock-container .ProseMirror p.empty-node:first-child::before {
   content: "Type Something.." !important;
   font-style: normal;
 }
 
-.ProseMirror ::selection {
+.smartblock-container .ProseMirror ::selection {
   color: #014CC5;
   background: #D1DDF0;
   border-right: 1px solid #014CC5;
@@ -679,60 +677,60 @@
   caret-color: red;
 }
 
-.ProseMirror figure {
+.smartblock-container .ProseMirror figure {
   pointer-events: none;
   color: transparent;
 }
 
-.ProseMirror .caption {
+.smartblock-container .ProseMirror .caption {
   color: #909090;
   display: block;
   text-align: center;
 }
 
-.ProseMirror .media {
+.smartblock-container .ProseMirror .media {
   padding: 10px;
   margin: 0;
   display: block;
 }
 
-.ProseMirror .media.selected {
+.smartblock-container .ProseMirror .media.selected {
   position: relative;
   background-color: #F2F2F4;
 }
 
-.ProseMirror .media img.small {
+.smartblock-container .ProseMirror .media img.small {
   width: 320px;
   height: auto;
   display: block;
   margin: 0 auto;
 }
 
-.ProseMirror .media img {
+.smartblock-container .ProseMirror .media img {
   max-width: 100%;
   height: auto;
   cursor: default;
 }
 
-.ProseMirror .media .caption {
+.smartblock-container .ProseMirror .media .caption {
   color: #333;
   margin-top: 0;
   margin-bottom: 5px;
 }
 
-.ProseMirror .youtube-frame-wrap {
+.smartblock-container .ProseMirror .youtube-frame-wrap {
   margin-bottom: 30px;
   padding: 10px 40px;
 }
 
-.ProseMirror .embed-wrap {
+.smartblock-container .ProseMirror .embed-wrap {
   margin: 0 5px 30px 5px;
   position: relative;
   z-index: 10;
   padding: 5px;
 }
 
-.ProseMirror .embed {
+.smartblock-container .ProseMirror .embed {
   position: relative;
   display: block;
   padding: 20px;
@@ -750,7 +748,7 @@
   }
 }
 
-.ProseMirror .youtube-frame {
+.smartblock-container .ProseMirror .youtube-frame {
   position: relative;
   width: 100%;
   height: 0;
@@ -766,8 +764,8 @@
   }
 }
 
-.ProseMirror pre,
-.ProseMirror pre.selected {
+.smartblock-container .ProseMirror pre,
+.smartblock-container .ProseMirror pre.selected {
   background-color: #333;
   padding: 10px;
   border-radius: 5px;
@@ -778,7 +776,7 @@
 /* Based on the Tomorrow Night Eighties theme: https://github.com/isagalaev/highlight.js/blob/master/src/styles/tomorrow-night-eighties.css */
 /* @author: ericwbailey */
 
-.ProseMirror {
+.smartblock-container .ProseMirror {
 
   /* Comment */
   .hljs-comment,

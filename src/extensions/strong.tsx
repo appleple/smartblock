@@ -1,9 +1,9 @@
-import * as React from 'react'
-import { toggleMark } from 'prosemirror-commands'
-import StrongIcon from '../components/icons/bold'
-import { Extension, ExtensionProps } from '../types'
-import { markActive } from '../utils'
-import { BASE_PRIORITY } from '../priority.config'
+import * as React from 'react';
+import { toggleMark } from 'prosemirror-commands';
+import StrongIcon from '../components/icons/bold';
+import { Extension, ExtensionProps } from '../types';
+import { markActive } from '../utils';
+import { BASE_PRIORITY } from '../constants';
 
 export default class Strong extends Extension {
   constructor(props?: ExtensionProps) {
@@ -32,20 +32,20 @@ export default class Strong extends Extension {
         {
           tag: 'strong',
           priority: BASE_PRIORITY,
-          style: 'font-weight=bold'
-        }
+          style: 'font-weight=bold',
+        },
       ],
       toDOM: () => [
         'strong',
         {
-          style: 'font-weight:bold'
-        }
-      ]
-    }
+          style: 'font-weight:bold',
+        },
+      ],
+    };
   }
 
   get icon() {
-    return <StrongIcon style={{ width: '24px', height: '24px' }} />
+    return <StrongIcon style={{ width: '24px', height: '24px' }} />;
   }
 
   active(state) {

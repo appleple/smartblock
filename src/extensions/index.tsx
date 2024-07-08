@@ -45,7 +45,5 @@ export default [
   new Trash(),
   // default
   new DefaultKeys(),
-  new DefaultPlugins({
-    placeholder: 'Content here...'
-  })
+  new DefaultPlugins()
 ] as Extension[]

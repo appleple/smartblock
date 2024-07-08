@@ -1,9 +1,9 @@
-import * as React from 'react'
-import { toggleMark } from 'prosemirror-commands'
-import UnderlineIcon from '../components/icons/underline'
-import { Extension, ExtensionProps } from '../types'
-import { markActive } from '../utils'
-import { BASE_PRIORITY } from '../priority.config'
+import * as React from 'react';
+import { toggleMark } from 'prosemirror-commands';
+import UnderlineIcon from '../components/icons/underline';
+import { Extension, ExtensionProps } from '../types';
+import { markActive } from '../utils';
+import { BASE_PRIORITY } from '../constants';
 
 export default class Underline extends Extension {
   constructor(props?: ExtensionProps) {
@@ -32,21 +32,21 @@ export default class Underline extends Extension {
         {
           tag: 'u',
           priority: BASE_PRIORITY,
-          style: 'text-decoration=underline'
-        }
+          style: 'text-decoration=underline',
+        },
       ],
       toDOM: () => [
         'span',
         {
           style: 'text-decoration:underline',
-          class: this.className
-        }
-      ]
-    }
+          class: this.className,
+        },
+      ],
+    };
   }
 
   get icon() {
-    return <UnderlineIcon style={{ width: '24px', height: '24px' }} />
+    return <UnderlineIcon style={{ width: '24px', height: '24px' }} />;
   }
 
   active(state) {

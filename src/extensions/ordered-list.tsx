@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { wrapInList, sinkListItem } from 'prosemirror-schema-list';
-import * as uuid from 'uuid/v4'
+import * as uuid from 'uuid/v4';
 import OrderedListIcon from '../components/icons/ordered-list';
 import IndentIcon from '../components/icons/indent';
 import UndentIcon from '../components/icons/undent';
 import { liftListItem, blockActive, getParentNodeFromState } from '../utils';
 import { Extension, ExtensionProps } from '../types';
 import Button from '../components/button';
-import { BASE_PRIORITY } from '../priority.config'
+import { BASE_PRIORITY } from '../constants';
 
 export default class OrderedList extends Extension {
   constructor(props?: ExtensionProps) {
@@ -39,28 +39,28 @@ export default class OrderedList extends Extension {
           priority: BASE_PRIORITY,
           getAttrs(dom) {
             return {
-              id: dom.getAttribute('id')
-            }
-          }
-        }
+              id: dom.getAttribute('id'),
+            };
+          },
+        },
       ],
       attrs: {
-        id: { default: '' }
+        id: { default: '' },
       },
       toDOM(node) {
         return [
           'ol',
           {
-            class: this.className
+            class: this.className,
           },
-          0
-        ]
-      }
-    }
+          0,
+        ];
+      },
+    };
   }
 
   get icon() {
-    return <OrderedListIcon style={{ width: '24px', height: '24px' }} />
+    return <OrderedListIcon style={{ width: '24px', height: '24px' }} />;
   }
 
   get hideBlockMenuOnFocus() {
@@ -93,7 +93,7 @@ export default class OrderedList extends Extension {
         <Button
           type="button"
           onClick={() => {
-            liftListItem(state.schema.nodes.list_item)(state, dispatch)
+            liftListItem(state.schema.nodes.list_item)(state, dispatch);
           }}
         >
           <UndentIcon style={{ width: '24px', height: '24px' }} />
@@ -101,12 +101,12 @@ export default class OrderedList extends Extension {
         <Button
           type="button"
           onClick={() => {
-            sinkListItem(state.schema.nodes.list_item)(state, dispatch)
+            sinkListItem(state.schema.nodes.list_item)(state, dispatch);
           }}
         >
           <IndentIcon style={{ width: '24px', height: '24px' }} />
         </Button>
       </>
-    )
+    );
   }
 }

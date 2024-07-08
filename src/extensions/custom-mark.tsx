@@ -1,7 +1,7 @@
-import { toggleMark } from 'prosemirror-commands'
-import { Extension, ExtensionProps } from '../types'
-import { markActive, getUniqId } from '../utils'
-import { CUSTOM_MARK_PRIORITY } from '../priority.config'
+import { toggleMark } from 'prosemirror-commands';
+import { Extension, ExtensionProps } from '../types';
+import { markActive, getUniqId } from '../utils';
+import { CUSTOM_MARK_PRIORITY } from '../constants';
 
 export default class CustomMark extends Extension {
   constructor(props?: ExtensionProps) {
@@ -28,27 +28,27 @@ export default class CustomMark extends Extension {
       return this.customSchema;
     }
     const { className, tagName } = this;
-    let tag = tagName
+    let tag = tagName;
     if (className) {
-      tag += `.${className.replace(/\s/g, '.')}`
+      tag += `.${className.replace(/\s/g, '.')}`;
     }
-    
+
     return {
       group: 'mark',
       parseDOM: [
         {
           tag,
-          priority: CUSTOM_MARK_PRIORITY
-        }
+          priority: CUSTOM_MARK_PRIORITY,
+        },
       ],
       toDOM: () => [
         tagName,
         {
-          class: className
+          class: className,
         },
-        0
-      ]
-    }
+        0,
+      ],
+    };
   }
 
   get icon() {

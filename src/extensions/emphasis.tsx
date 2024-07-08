@@ -1,13 +1,13 @@
-import * as React from 'react'
-import { toggleMark } from 'prosemirror-commands'
-import EmIcon from '../components/icons/em'
-import { Extension, ExtensionProps } from '../types'
-import { markActive } from '../utils'
-import { BASE_PRIORITY } from '../priority.config'
+import * as React from 'react';
+import { toggleMark } from 'prosemirror-commands';
+import EmIcon from '../components/icons/em';
+import { Extension, ExtensionProps } from '../types';
+import { markActive } from '../utils';
+import { BASE_PRIORITY } from '../constants';
 
 export default class Emphasis extends Extension {
   constructor(props?: ExtensionProps) {
-    super(props)
+    super(props);
   }
 
   get name() {
@@ -32,21 +32,21 @@ export default class Emphasis extends Extension {
         {
           tag: 'em',
           priority: BASE_PRIORITY,
-          style: 'font-style=italic'
-        }
+          style: 'font-style=italic',
+        },
       ],
       toDOM: () => [
         'span',
         {
           class: this.className,
-          style: 'font-style:italic'
-        }
-      ]
-    }
+          style: 'font-style:italic',
+        },
+      ],
+    };
   }
 
   get icon() {
-    return <EmIcon style={{ width: '24px', height: '24px' }} />
+    return <EmIcon style={{ width: '24px', height: '24px' }} />;
   }
 
   active(state) {

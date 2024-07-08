@@ -1,9 +1,9 @@
-import * as React from 'react'
-import { toggleMark } from 'prosemirror-commands'
-import StrikeIcon from '../components/icons/strike'
-import { Extension, ExtensionProps } from '../types'
-import { markActive } from '../utils'
-import { BASE_PRIORITY } from '../priority.config'
+import * as React from 'react';
+import { toggleMark } from 'prosemirror-commands';
+import StrikeIcon from '../components/icons/strike';
+import { Extension, ExtensionProps } from '../types';
+import { markActive } from '../utils';
+import { BASE_PRIORITY } from '../constants';
 
 export default class StrikeThrough extends Extension {
   constructor(props?: ExtensionProps) {
@@ -24,29 +24,29 @@ export default class StrikeThrough extends Extension {
 
   get schema() {
     if (this.customSchema) {
-      return this.customSchema
+      return this.customSchema;
     }
     return {
       group: 'mark',
       parseDOM: [
-        { 
+        {
           tag: 'strike',
           priority: BASE_PRIORITY,
-          style: 'text-decoration=line-through' || 'text-decoration-line=line-through'
+          style: 'text-decoration=line-through' || 'text-decoration-line=line-through',
         },
       ],
       toDOM: () => [
         'span',
         {
           style: 'text-decoration-line:line-through',
-          class: this.className
-        }
-      ]
-    }
+          class: this.className,
+        },
+      ],
+    };
   }
 
   get icon() {
-    return <StrikeIcon style={{ width: '24px', height: '24px' }} />
+    return <StrikeIcon style={{ width: '24px', height: '24px' }} />;
   }
 
   active(state) {

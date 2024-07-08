@@ -3,7 +3,7 @@ import { Schema } from 'prosemirror-model';
 import { chainCommands } from 'prosemirror-commands';
 import { Extension, ExtensionProps } from '../types';
 import { liftListItem } from '../utils';
-import { BASE_PRIORITY } from '../priority.config'
+import { BASE_PRIORITY } from '../constants';
 
 export default class ListItem extends Extension {
   constructor(props?: ExtensionProps) {
@@ -26,7 +26,7 @@ export default class ListItem extends Extension {
       content: 'paragraph block*',
       group: 'block',
       attrs: {
-        id: { default: '' }
+        id: { default: '' },
       },
       parseDOM: [
         {
@@ -34,23 +34,23 @@ export default class ListItem extends Extension {
           priority: BASE_PRIORITY,
           getAttrs(dom) {
             return {
-              id: dom.getAttribute('id')
-            }
-          }
-        }
+              id: dom.getAttribute('id'),
+            };
+          },
+        },
       ],
       toDOM(node) {
-        return ['li', 0]
+        return ['li', 0];
       },
-      defining: true
-    }
+      defining: true,
+    };
   }
 
   keys(schema: Schema) {
     return {
       Enter: splitListItem(schema.nodes.list_item),
       Tab: sinkListItem(schema.nodes.list_item),
-      'Shift-Tab': chainCommands(liftListItem(schema.nodes.list_item))
-    }
+      'Shift-Tab': chainCommands(liftListItem(schema.nodes.list_item)),
+    };
   }
 }

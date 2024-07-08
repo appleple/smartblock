@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { wrapInList, sinkListItem } from 'prosemirror-schema-list';
-import * as uuid from 'uuid/v4'
+import * as uuid from 'uuid/v4';
 import Undent from '../components/icons/undent';
 import Indent from '../components/icons/indent';
 import List from '../components/icons/list';
 import { liftListItem, blockActive, getParentNodeFromState } from '../utils';
 import { Extension, ExtensionProps } from '../types';
 import Button from '../components/button';
-import { BASE_PRIORITY } from '../priority.config'
+import { BASE_PRIORITY } from '../constants';
 
 export default class BulletList extends Extension {
   constructor(props?: ExtensionProps) {
@@ -28,13 +28,13 @@ export default class BulletList extends Extension {
 
   get schema() {
     if (this.customSchema) {
-      return
+      return;
     }
     return {
       content: 'list_item+',
       group: 'block',
       attrs: {
-        id: { default: '' }
+        id: { default: '' },
       },
       parseDOM: [
         {
@@ -42,26 +42,26 @@ export default class BulletList extends Extension {
           priority: BASE_PRIORITY,
           getAttrs(dom) {
             return {
-              id: dom.getAttribute('id') || uuid()
-            }
-          }
-        }
+              id: dom.getAttribute('id') || uuid(),
+            };
+          },
+        },
       ],
       toDOM(node) {
         return [
           'ul',
           {
             id: node.attrs.id || uuid(),
-            class: this.className
+            class: this.className,
           },
-          0
-        ]
-      }
-    }
+          0,
+        ];
+      },
+    };
   }
 
   get icon() {
-    return <List style={{ width: '24px', height: '24px' }} />
+    return <List style={{ width: '24px', height: '24px' }} />;
   }
 
   get hideBlockMenuOnFocus() {
@@ -73,7 +73,7 @@ export default class BulletList extends Extension {
   }
 
   enable(state) {
-    const node = getParentNodeFromState(state)
+    const node = getParentNodeFromState(state);
     if (node.type.name !== 'paragraph') {
       return false;
     }
@@ -104,12 +104,12 @@ export default class BulletList extends Extension {
           type="button"
           disabled={!sinkListItem(state.schema.nodes.list_item)(state)}
           onClick={() => {
-            sinkListItem(state.schema.nodes.list_item)(state, dispatch)
+            sinkListItem(state.schema.nodes.list_item)(state, dispatch);
           }}
         >
           <Indent style={{ width: '24px', height: '24px' }} />
         </Button>
       </>
-    )
+    );
   }
 }

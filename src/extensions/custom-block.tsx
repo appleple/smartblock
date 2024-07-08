@@ -1,43 +1,42 @@
 import * as React from 'react';
 import { setBlockType } from 'prosemirror-commands';
-import * as uuid from 'uuid/v4'
+import * as uuid from 'uuid/v4';
 import AlignLeftIcon from '../components/icons/align-left';
 import AlignCenterIcon from '../components/icons/align-center';
 import AlignRightIcon from '../components/icons/align-right';
 import { Extension, ExtensionProps } from '../types';
 import { blockActive, getParentNodeFromState, getUniqId } from '../utils';
 import Button from '../components/button';
-import { CUSTOM_BLOCK_PRIORITY } from '../priority.config'
-
+import { CUSTOM_BLOCK_PRIORITY } from '../constants';
 
 export default class CustomBlock extends Extension {
   constructor(props?: ExtensionProps) {
     if (!props.customName) {
-      props.customName = getUniqId()
+      props.customName = getUniqId();
     }
-    super(props)
+    super(props);
   }
 
   get name() {
-    return this.customName
+    return this.customName;
   }
 
   get group() {
-    return 'block'
+    return 'block';
   }
 
   get showMenu() {
-    return true
+    return true;
   }
 
   get schema() {
     if (this.customSchema) {
-      return this.customSchema
+      return this.customSchema;
     }
-    const { tagName, className } = this
-    let tag = tagName
+    const { tagName, className } = this;
+    let tag = tagName;
     if (className) {
-      tag += `.${className.replace(/\s/g, '.')}`
+      tag += `.${className.replace(/\s/g, '.')}`;
     }
 
     return {
@@ -55,11 +54,11 @@ export default class CustomBlock extends Extension {
           getAttrs(dom) {
             return {
               id: dom.getAttribute('id') || uuid(),
-            }
-          }
-        }
+            };
+          },
+        },
       ],
-      toDOM: node => {
+      toDOM: (node) => {
         return [
           tagName,
           {
@@ -67,26 +66,26 @@ export default class CustomBlock extends Extension {
             id: node.attrs.id || uuid(),
             class: className,
           },
-          0
-        ]
-      }
-    }
+          0,
+        ];
+      },
+    };
   }
 
   get icon() {
-    return this.customIcon
+    return this.customIcon;
   }
 
   active(state) {
-    return blockActive(state.schema.nodes[this.name])(state)
+    return blockActive(state.schema.nodes[this.name])(state);
   }
 
   enable(state) {
-    return setBlockType(state.schema.nodes[this.name])(state)
+    return setBlockType(state.schema.nodes[this.name])(state);
   }
 
   customMenu({ state, dispatch }) {
-    const node = getParentNodeFromState(state)
+    const node = getParentNodeFromState(state);
     return (
       <>
         <Button
@@ -94,8 +93,8 @@ export default class CustomBlock extends Extension {
           active={node && node.attrs.align === 'left'}
           onClick={() => {
             setBlockType(state.schema.nodes[this.name], {
-              align: 'left'
-            })(state, dispatch)
+              align: 'left',
+            })(state, dispatch);
           }}
         >
           <AlignLeftIcon style={{ width: '24px', height: '24px' }} />
@@ -105,8 +104,8 @@ export default class CustomBlock extends Extension {
           active={node && node.attrs.align === 'center'}
           onClick={() => {
             setBlockType(state.schema.nodes[this.name], {
-              align: 'center'
-            })(state, dispatch)
+              align: 'center',
+            })(state, dispatch);
           }}
         >
           <AlignCenterIcon style={{ width: '24px', height: '24px' }} />
@@ -116,17 +115,17 @@ export default class CustomBlock extends Extension {
           active={node && node.attrs.align === 'right'}
           onClick={() => {
             setBlockType(state.schema.nodes[this.name], {
-              align: 'right'
-            })(state, dispatch)
+              align: 'right',
+            })(state, dispatch);
           }}
         >
           <AlignRightIcon style={{ width: '24px', height: '24px' }} />
         </Button>
       </>
-    )
+    );
   }
 
   onClick(state, dispatch) {
-    setBlockType(state.schema.nodes[this.name])(state, dispatch)
+    setBlockType(state.schema.nodes[this.name])(state, dispatch);
   }
 }

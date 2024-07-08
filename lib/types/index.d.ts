@@ -43,18 +43,18 @@ export declare abstract class Extension {
     };
     tagName?: string;
     className?: string;
-    customMenu?({ state: EditorState, dispatch: Dispatch }: {
-        state: any;
-        dispatch: any;
+    customMenu?({ state, dispatch }: {
+        state: EditorState;
+        dispatch: Dispatch;
     }): JSX.Element;
-    customInlineMenu?({ state: EditorState, dispatch: Dispatch }: {
-        state: any;
-        dispatch: any;
+    customInlineMenu?({ state, dispatch }: {
+        state: EditorState;
+        dispatch: Dispatch;
     }): JSX.Element;
     customLayout?(props: CustomLayoutProps, dom: HTMLElement): JSX.Element;
-    customButton?({ state: EditorState, dispatch: Dispatch }: {
-        state: any;
-        dispatch: any;
+    customButton?({ state, dispatch }: {
+        state: EditorState;
+        dispatch: Dispatch;
     }): JSX.Element;
     customIcon?: JSX.Element | string;
     icon?: JSX.Element | string;

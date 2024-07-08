@@ -1,14 +1,14 @@
-import * as React from 'react'
-import { setBlockType } from 'prosemirror-commands'
-import * as uuid from 'uuid/v4'
-import ParagraphIcon from '../components/icons/paragraph'
-import AlignLeftIcon from '../components/icons/align-left'
-import AlignCenterIcon from '../components/icons/align-center'
-import AlignRightIcon from '../components/icons/align-right'
-import { Extension, ExtensionProps } from '../types'
-import { blockActive, getParentNodeFromState } from '../utils'
-import Button from '../components/button'
-import { BASE_PRIORITY } from '../priority.config'
+import * as React from 'react';
+import { setBlockType } from 'prosemirror-commands';
+import * as uuid from 'uuid/v4';
+import ParagraphIcon from '../components/icons/paragraph';
+import AlignLeftIcon from '../components/icons/align-left';
+import AlignCenterIcon from '../components/icons/align-center';
+import AlignRightIcon from '../components/icons/align-right';
+import { Extension, ExtensionProps } from '../types';
+import { blockActive, getParentNodeFromState } from '../utils';
+import Button from '../components/button';
+import { BASE_PRIORITY } from '../constants';
 
 export default class Paragraph extends Extension {
   constructor(props?: ExtensionProps) {
@@ -48,29 +48,31 @@ export default class Paragraph extends Extension {
             return {
               id: dom.getAttribute('id') || uuid(),
               align: dom.style.textAlign,
-            }
-          }
-        }
+            };
+          },
+        },
       ],
-      toDOM: node => {
+      toDOM: (node) => {
         return [
           'p',
-          (node.attrs.align ? {
-            style: `text-align: ${node.attrs.align}`,
-            id: node.attrs.id || uuid(),
-            class: this.className,
-          } : {
-            id: node.attrs.id || uuid(),
-            class: this.className,
-          }),
+          node.attrs.align
+            ? {
+                style: `text-align: ${node.attrs.align}`,
+                id: node.attrs.id || uuid(),
+                class: this.className,
+              }
+            : {
+                id: node.attrs.id || uuid(),
+                class: this.className,
+              },
           0,
-        ]
-      }
-    }
+        ];
+      },
+    };
   }
 
   get icon() {
-    return <ParagraphIcon style={{ width: '24px', height: '24px' }} />
+    return <ParagraphIcon style={{ width: '24px', height: '24px' }} />;
   }
 
   active(state) {
@@ -90,7 +92,7 @@ export default class Paragraph extends Extension {
           active={node && node.attrs.align === 'left'}
           onClick={() => {
             setBlockType(state.schema.nodes.paragraph, {
-              align: 'left'
+              align: 'left',
             })(state, dispatch);
           }}
         >
@@ -101,7 +103,7 @@ export default class Paragraph extends Extension {
           active={node && node.attrs.align === 'center'}
           onClick={() => {
             setBlockType(state.schema.nodes.paragraph, {
-              align: 'center'
+              align: 'center',
             })(state, dispatch);
           }}
         >
@@ -112,14 +114,14 @@ export default class Paragraph extends Extension {
           active={node && node.attrs.align === 'right'}
           onClick={() => {
             setBlockType(state.schema.nodes.paragraph, {
-              align: 'right'
+              align: 'right',
             })(state, dispatch);
           }}
         >
           <AlignRightIcon style={{ width: '24px', height: '24px' }} />
         </Button>
       </>
-    )
+    );
   }
 
   onClick(state, dispatch) {

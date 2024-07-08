@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { setBlockType } from 'prosemirror-commands';
-import * as uuid from 'uuid/v4'
+import * as uuid from 'uuid/v4';
 import HeadingIcon from '../components/icons/heading3';
 import AlignLeftIcon from '../components/icons/align-left';
 import AlignCenterIcon from '../components/icons/align-center';
@@ -8,7 +8,7 @@ import AlignRightIcon from '../components/icons/align-right';
 import { Extension, ExtensionProps } from '../types';
 import { blockActive, getParentNodeFromState } from '../utils';
 import Button from '../components/button';
-import { BASE_PRIORITY } from '../priority.config'
+import { BASE_PRIORITY } from '../constants';
 
 export default class Heading3 extends Extension {
   constructor(props?: ExtensionProps) {
@@ -37,7 +37,7 @@ export default class Heading3 extends Extension {
       defining: true,
       attrs: {
         align: { default: '' },
-        id: { default: '' }
+        id: { default: '' },
       },
       parseDOM: [
         {
@@ -45,30 +45,32 @@ export default class Heading3 extends Extension {
           priority: BASE_PRIORITY,
           getAttrs(dom) {
             return {
-              id: dom.getAttribute('id') || uuid()
-            }
-          }
-        }
+              id: dom.getAttribute('id') || uuid(),
+            };
+          },
+        },
       ],
       toDOM(node) {
         return [
           'h3',
-          (node.attrs.align ? {
-            style: `text-align: ${node.attrs.align}`,
-            id: node.attrs.id || uuid(),
-            class: this.className
-          } : {
-            id: node.attrs.id || uuid(),
-            class: this.className
-          }),
-          0
-        ]
-      }
-    }
+          node.attrs.align
+            ? {
+                style: `text-align: ${node.attrs.align}`,
+                id: node.attrs.id || uuid(),
+                class: this.className,
+              }
+            : {
+                id: node.attrs.id || uuid(),
+                class: this.className,
+              },
+          0,
+        ];
+      },
+    };
   }
 
   get icon() {
-    return <HeadingIcon style={{ width: '24px', height: '24px' }} />
+    return <HeadingIcon style={{ width: '24px', height: '24px' }} />;
   }
 
   active(state) {
@@ -88,7 +90,7 @@ export default class Heading3 extends Extension {
           type="button"
           onClick={() => {
             setBlockType(state.schema.nodes.heading3, {
-              align: 'left'
+              align: 'left',
             })(state, dispatch);
           }}
         >
@@ -99,7 +101,7 @@ export default class Heading3 extends Extension {
           active={node && node.attrs.align === 'center'}
           onClick={() => {
             setBlockType(state.schema.nodes.heading3, {
-              align: 'center'
+              align: 'center',
             })(state, dispatch);
           }}
         >
@@ -110,14 +112,14 @@ export default class Heading3 extends Extension {
           active={node && node.attrs.align === 'right'}
           onClick={() => {
             setBlockType(state.schema.nodes.heading3, {
-              align: 'right'
+              align: 'right',
             })(state, dispatch);
           }}
         >
           <AlignRightIcon style={{ width: '24px', height: '24px' }} />
         </Button>
       </>
-    )
+    );
   }
 
   onClick(state, dispatch) {

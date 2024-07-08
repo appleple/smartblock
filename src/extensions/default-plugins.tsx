@@ -55,16 +55,8 @@ const placeholderPlugin = () => {
   })
 }
 
-type Config = {
-  placeholder: string;
-}
-
 export default class DefaultPlugins implements Extension {
   placeholder: string;
-
-  constructor(config: Config) {
-    this.placeholder = config.placeholder;
-  }
 
   get name() {
     return 'default-plugins'

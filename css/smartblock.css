@@ -11,42 +11,55 @@
   font-size: 20px;
   cursor: pointer;
   text-align: center;
-  border: 1px solid transparent; }
-  .smartblock-btn svg {
-    fill: currentColor;
-    vertical-align: middle; }
-  .smartblock-btn:last-child {
-    margin-right: 0; }
-  .smartblock-btn:not([disabled]):hover {
-    color: #005CEE; }
-  .smartblock-btn[disabled]:hover {
-    cursor: not-allowed; }
-  .smartblock-btn.is-black {
-    background-color: #333333 !important;
-    color: #FFF; }
-  .smartblock-btn.is-disabled {
-    opacity: .4; }
-  .smartblock-btn.is-active {
-    color: #005CEE;
-    opacity: 1;
-    background-color: #F2F2F4; }
-    .smartblock-btn.is-active:focus {
-      outline: 0;
-      color: #005CEE;
-      background-color: #F2F2F4; }
-  .smartblock-btn:not(.is-active) {
-    color: #777; }
-    .smartblock-btn:not(.is-active):focus {
-      outline: 0;
-      color: #777;
-      background: #fff; }
+  border: 1px solid transparent;
+}
+.smartblock-btn svg {
+  fill: currentColor;
+  vertical-align: middle;
+}
+.smartblock-btn:last-child {
+  margin-right: 0;
+}
+.smartblock-btn:not([disabled]):hover {
+  color: #005CEE;
+}
+.smartblock-btn[disabled]:hover {
+  cursor: not-allowed;
+}
+.smartblock-btn.is-black {
+  background-color: #333333 !important;
+  color: #FFF;
+}
+.smartblock-btn.is-disabled {
+  opacity: 0.4;
+}
+.smartblock-btn.is-active {
+  color: #005CEE;
+  opacity: 1;
+  background-color: #F2F2F4;
+}
+.smartblock-btn.is-active:focus {
+  outline: 0;
+  color: #005CEE;
+  background-color: #F2F2F4;
+}
+.smartblock-btn:not(.is-active) {
+  color: #777;
+}
+.smartblock-btn:not(.is-active):focus {
+  outline: 0;
+  color: #777;
+  background: #fff;
+}
 
 @keyframes smartblock-backbtn-appear {
   from {
-    opacity: 0; }
+    opacity: 0;
+  }
   to {
-    opacity: 1; } }
-
+    opacity: 1;
+  }
+}
 .smartblock-backbtn {
   background: #f2f2f4;
   width: 44px;
@@ -60,16 +73,20 @@
   border: none;
   cursor: pointer;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-  animation: smartblock-backbtn-appear 0.3s; }
-  .smartblock-backbtn svg {
-    fill: currentColor; }
+  animation: smartblock-backbtn-appear 0.3s;
+}
+.smartblock-backbtn svg {
+  fill: currentColor;
+}
 
 @keyframes smartblock-edit-menu-fadein {
   from {
-    opacity: 0; }
+    opacity: 0;
+  }
   to {
-    opacity: 1; } }
-
+    opacity: 1;
+  }
+}
 .smartblock-edit-menu {
   display: flex;
   position: absolute;
@@ -81,34 +98,43 @@
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
   padding: 4px;
-  background-color: #f2f2f4; }
+  background-color: #f2f2f4;
+}
 
 .smartblock-edit-btn {
   margin: 3px;
   width: 36px;
   height: 36px;
   background-color: transparent;
-  color: #666; }
-  .smartblock-edit-btn.is-black {
-    background-color: #444 !important;
-    color: #FFF; }
-    .smartblock-edit-btn.is-black:hover {
-      background-color: #111111 !important;
-      color: #FFF !important; }
-  .smartblock-edit-btn:hover {
-    color: #111; }
-  .smartblock-edit-btn:last-child {
-    margin-right: 2px; }
+  color: #666;
+}
+.smartblock-edit-btn.is-black {
+  background-color: #444 !important;
+  color: #FFF;
+}
+.smartblock-edit-btn.is-black:hover {
+  background-color: #111111 !important;
+  color: #FFF !important;
+}
+.smartblock-edit-btn:hover {
+  color: #111;
+}
+.smartblock-edit-btn:last-child {
+  margin-right: 2px;
+}
 
 .smartblock-cell-btn .icon {
-  font-size: 30px; }
+  font-size: 30px;
+}
 
 @keyframes smartblock-inline-menu-appear {
   from {
-    opacity: 0; }
+    opacity: 0;
+  }
   to {
-    opacity: 1; } }
-
+    opacity: 1;
+  }
+}
 .smartblock-inline-menu {
   position: absolute;
   z-index: 12;
@@ -117,28 +143,33 @@
   border-radius: 5px;
   background-color: #fff;
   color: #fff;
-  box-shadow: 0 3px 40px 8px rgba(116, 116, 116, 0.2); }
+  box-shadow: 0 3px 40px 8px rgba(116, 116, 116, 0.2);
+}
 
 .smartblock-inline-menu-arrow {
   position: absolute;
   top: -12px;
-  content: '';
+  content: "";
   display: block;
   border-style: solid;
   border-width: 0 12px 12px 12px;
-  border-color: transparent transparent #ffffff transparent; }
+  border-color: transparent transparent #ffffff transparent;
+}
 
 .smartblock-inline-menu-inner {
   padding: 5px;
   display: flex;
-  align-items: baseline; }
+  align-items: baseline;
+}
 
 @keyframes smartblock-menu-appear {
   from {
-    opacity: 0; }
+    opacity: 0;
+  }
   to {
-    opacity: 1; } }
-
+    opacity: 1;
+  }
+}
 .smartblock-menu {
   position: absolute;
   z-index: 11;
@@ -147,37 +178,45 @@
   box-shadow: 0 3px 40px 8px rgba(116, 116, 116, 0.2);
   padding: 5px 0;
   color: #767676;
-  background-color: #fff; }
-  .smartblock-menu:before {
-    position: absolute;
-    left: 20px;
-    top: -12px;
-    content: '';
-    display: block;
-    border-style: solid;
-    border-width: 0 12px 12px 12px;
-    border-color: transparent transparent #ffffff transparent; }
+  background-color: #fff;
+}
+.smartblock-menu:before {
+  position: absolute;
+  left: 20px;
+  top: -12px;
+  content: "";
+  display: block;
+  border-style: solid;
+  border-width: 0 12px 12px 12px;
+  border-color: transparent transparent #ffffff transparent;
+}
 
 .smartblock-menu-top {
-  padding: 0 5px 0 5px; }
+  padding: 0 5px 0 5px;
+}
 
 .smartblock-custom-menu {
   border-top: 1px solid #ccc;
   margin: 5px 0 0 0;
-  padding: 5px 5px 0 5px; }
+  padding: 5px 5px 0 5px;
+}
 
 .smartblock-container {
   margin: 0 auto;
-  padding: 10px 0 80px 0; }
-  .smartblock-container.is-full {
-    max-width: 780px; }
+  padding: 10px 0 80px 0;
+}
+.smartblock-container.is-full {
+  max-width: 780px;
+}
 
 .smartblock-input-area {
   width: 100%;
-  overflow-y: auto; }
+  overflow-y: auto;
+}
 
 .smartblock-inner {
-  position: relative; }
+  position: relative;
+}
 
 .smartblock-popup {
   position: fixed;
@@ -190,7 +229,8 @@
   align-items: center;
   justify-content: center;
   z-index: 101;
-  background: rgba(0, 0, 0, 0.2); }
+  background: rgba(0, 0, 0, 0.2);
+}
 
 .smartblock-popup-inner {
   flex-basis: 380px;
@@ -198,26 +238,30 @@
   border-radius: 3px;
   box-shadow: 0 3px 10px 4px rgba(116, 116, 116, 0.2);
   padding: 15px;
-  box-sizing: border-box; }
-  .smartblock-popup-inner input {
-    display: block;
-    flex: 1;
-    width: 100%;
-    padding: 0 5px;
-    font-size: 16px;
-    line-height: 30px;
-    box-sizing: border-box;
-    border-radius: 3px 0 0 3px;
-    border: 1px solid #eee; }
-  .smartblock-popup-inner input:focus {
-    outline: 0;
-    border: 1px solid #137af3;
-    box-shadow: 0 0 0 2px rgba(19, 122, 243, 0.4), inset 0 1px 1px rgba(0, 0, 0, 0.1); }
+  box-sizing: border-box;
+}
+.smartblock-popup-inner input {
+  display: block;
+  flex: 1;
+  width: 100%;
+  padding: 0 5px;
+  font-size: 16px;
+  line-height: 30px;
+  box-sizing: border-box;
+  border-radius: 3px 0 0 3px;
+  border: 1px solid #eee;
+}
+.smartblock-popup-inner input:focus {
+  outline: 0;
+  border: 1px solid #137af3;
+  box-shadow: 0 0 0 2px rgba(19, 122, 243, 0.4), inset 0 1px 1px rgba(0, 0, 0, 0.1);
+}
 
 .smartblock-popup-text {
   margin: 0 0 15px 0;
   color: #333;
-  font-size: 16px; }
+  font-size: 16px;
+}
 
 .smartblock-popup-btn {
   width: 38px;
@@ -227,36 +271,42 @@
   cursor: pointer;
   border-radius: 0 3px 3px 0;
   border: 1px solid transparent;
-  background-color: #014cc5; }
-  .smartblock-popup-btn:focus {
-    outline: 0;
-    border: 1px solid #137af3;
-    box-shadow: 0 0 0 2px rgba(19, 122, 243, 0.4), inset 0 1px 1px rgba(0, 0, 0, 0.1); }
+  background-color: #014cc5;
+}
+.smartblock-popup-btn:focus {
+  outline: 0;
+  border: 1px solid #137af3;
+  box-shadow: 0 0 0 2px rgba(19, 122, 243, 0.4), inset 0 1px 1px rgba(0, 0, 0, 0.1);
+}
 
 .smartblock-popup-field {
-  display: flex; }
+  display: flex;
+}
 
 .smartblock-popup-view-btn {
   background-color: #fff;
   border: none;
   color: #adadad;
   margin-left: 5px;
-  vertical-align: middle; }
+  vertical-align: middle;
+}
 
 .smartblock-tooltip-wrap {
   position: absolute;
   display: inline-block;
   z-index: 1000;
-  background-color: #fff; }
+  background-color: #fff;
+}
 
 .smartblock-tooltip-wrap-arrow {
   position: absolute;
   top: -12px;
-  content: '';
+  content: "";
   display: block;
   border-style: solid;
   border-width: 0 12px 12px 12px;
-  border-color: transparent transparent #ffffff transparent; }
+  border-color: transparent transparent #ffffff transparent;
+}
 
 .smartblock-tooltip {
   color: #777;
@@ -265,22 +315,26 @@
   border-radius: 3px;
   width: 320px;
   line-height: 46px;
-  display: block; }
+  display: block;
+}
 
 .smartblock-tooltip-inner {
   display: flex;
   height: 46px;
   border-radius: 3px;
-  overflow: hidden; }
+  overflow: hidden;
+}
 
 .smartblock-tooltip-input {
   border: none;
   display: block;
   padding: 0 10px;
   font-size: 16px;
-  flex: 1; }
-  .smartblock-tooltip-input:focus {
-    outline: none; }
+  flex: 1;
+}
+.smartblock-tooltip-input:focus {
+  outline: none;
+}
 
 .smartblock-tooltip-btn {
   border: none;
@@ -288,32 +342,38 @@
   width: 46px;
   color: #fff;
   font-size: 16px;
-  cursor: pointer; }
+  cursor: pointer;
+}
 
-.ProseMirror {
+.smartblock-container .ProseMirror {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴシック", "メイリオ", Meiryo, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   padding: 10px 5px;
-  background: #fff; }
+  background: #fff;
+}
 
-.ProseMirror:focus {
-  outline: none; }
+.smartblock-container .ProseMirror:focus {
+  outline: none;
+}
 
-.ProseMirror .tableWrapper {
-  overflow-x: auto; }
+.smartblock-container .ProseMirror .tableWrapper {
+  overflow-x: auto;
+}
 
-.ProseMirror table {
+.smartblock-container .ProseMirror table {
   border-collapse: collapse;
   table-layout: fixed;
   width: 100%;
-  overflow: hidden; }
+  overflow: hidden;
+}
 
-.ProseMirror td,
-.ProseMirror th {
+.smartblock-container .ProseMirror td,
+.smartblock-container .ProseMirror th {
   vertical-align: top;
   box-sizing: border-box;
-  position: relative; }
+  position: relative;
+}
 
-.ProseMirror .column-resize-handle {
+.smartblock-container .ProseMirror .column-resize-handle {
   position: absolute;
   right: -2px;
   top: 0;
@@ -321,14 +381,16 @@
   width: 4px;
   z-index: 20;
   background-color: #adf;
-  pointer-events: none; }
+  pointer-events: none;
+}
 
-.ProseMirror.resize-cursor {
+.smartblock-container .ProseMirror.resize-cursor {
   cursor: ew-resize;
-  cursor: col-resize; }
+  cursor: col-resize;
+}
 
 /* Give selected cells a blue overlay */
-.ProseMirror .selectedCell:after {
+.smartblock-container .ProseMirror .selectedCell:after {
   z-index: 2;
   position: absolute;
   content: "";
@@ -337,256 +399,310 @@
   top: 0;
   bottom: 0;
   background: rgba(200, 200, 255, 0.4);
-  pointer-events: none; }
+  pointer-events: none;
+}
 
-.ProseMirror-gapcursor {
+.smartblock-container .ProseMirror-gapcursor {
   display: none;
   pointer-events: none;
-  position: absolute; }
+  position: absolute;
+}
 
-.ProseMirror-gapcursor:after {
+.smartblock-container .ProseMirror-gapcursor:after {
   content: "";
   display: block;
   position: absolute;
   top: -2px;
   width: 20px;
   border-top: 1px solid black;
-  animation: ProseMirror-cursor-blink 1.1s steps(2, start) infinite; }
+  animation: ProseMirror-cursor-blink 1.1s steps(2, start) infinite;
+}
 
 @keyframes ProseMirror-cursor-blink {
   to {
-    visibility: hidden; } }
-
-.ProseMirror-focused .ProseMirror-gapcursor {
-  display: block; }
+    visibility: hidden;
+  }
+}
+.smartblock-container .ProseMirror-focused .ProseMirror-gapcursor {
+  display: block;
+}
 
 @media screen and (min-width: 768px) {
-  .ProseMirror {
-    padding: 10px; } }
-
-.ProseMirror figure {
+  .smartblock-container .ProseMirror {
+    padding: 10px;
+  }
+}
+.smartblock-container .ProseMirror figure {
   text-align: center;
   padding: 10px 5px;
-  margin: 0; }
-  .ProseMirror figure.empty-node figcaption:before {
-    content: "Type Something..."; }
-  .ProseMirror figure figcaption {
-    font-size: 0; }
-  .ProseMirror figure figcaption.caption {
-    font-size: 14px; }
-  .ProseMirror figure.empty-node figcaption.not-active:before {
-    content: ""; }
+  margin: 0;
+}
+.smartblock-container .ProseMirror figure.empty-node figcaption:before {
+  content: "Type Something...";
+}
+.smartblock-container .ProseMirror figure figcaption {
+  font-size: 0;
+}
+.smartblock-container .ProseMirror figure figcaption.caption {
+  font-size: 14px;
+}
+.smartblock-container .ProseMirror figure.empty-node figcaption.not-active:before {
+  content: "";
+}
 
-.ProseMirror .empty-node::before {
+.smartblock-container .ProseMirror .empty-node::before {
   float: left;
   color: #aaa;
   pointer-events: none;
   height: 0;
-  font-style: italic; }
+  font-style: italic;
+}
 
-.ProseMirror p.empty-node:first-child::before {
-  content: 'Start typing…'; }
+.smartblock-container .ProseMirror p.empty-node:first-child::before {
+  content: "Start typing…";
+}
 
-.ProseMirror figcaption {
+.smartblock-container .ProseMirror figcaption {
   color: #333;
-  font-size: 12px; }
+  font-size: 12px;
+}
 
-.ProseMirror img {
-  max-width: 100%; }
+.smartblock-container .ProseMirror img {
+  max-width: 100%;
+}
 
-.ProseMirror a {
-  color: #014CC5; }
+.smartblock-container .ProseMirror a {
+  color: #014CC5;
+}
 
-.ProseMirror hr {
+.smartblock-container .ProseMirror hr {
   padding: 2px 10px;
   border: none;
-  margin: 1em 0; }
+  margin: 1em 0;
+}
 
-.ProseMirror hr:after {
+.smartblock-container .ProseMirror hr:after {
   content: "";
   display: block;
   height: 1px;
   background-color: silver;
-  line-height: 2px; }
+  line-height: 2px;
+}
 
-.ProseMirror *:first-child {
-  margin-top: 0; }
+.smartblock-container .ProseMirror *:first-child {
+  margin-top: 0;
+}
 
-.ProseMirror p {
+.smartblock-container .ProseMirror p {
   margin: 0 0 30px 0;
   padding: 5px;
   line-height: 1.6;
   font-size: 1rem;
   border-radius: 3px;
-  transition: background-color .3s;
-  box-sizing: border-box; }
+  transition: background-color 0.3s;
+  box-sizing: border-box;
+}
 
-.ProseMirror table p {
+.smartblock-container .ProseMirror table p {
   margin: 0;
-  line-height: 1; }
+  line-height: 1;
+}
 
 @media screen and (min-width: 768px) {
-  .ProseMirror p {
-    padding: 5px 10px; } }
-
-.ProseMirror h1 {
+  .smartblock-container .ProseMirror p {
+    padding: 5px 10px;
+  }
+}
+.smartblock-container .ProseMirror h1 {
   margin: 0 0 30px 0;
   padding: 0 5px;
   font-size: 1.875rem;
-  line-height: 1.3; }
+  line-height: 1.3;
+}
 
 @media screen and (min-width: 768px) {
-  .ProseMirror h1 {
+  .smartblock-container .ProseMirror h1 {
     padding: 0 10px;
-    font-size: 2.125rem; } }
-
-.ProseMirror h2,
-.ProseMirror h3 {
+    font-size: 2.125rem;
+  }
+}
+.smartblock-container .ProseMirror h2,
+.smartblock-container .ProseMirror h3 {
   margin: 20px 0 10px 0;
   padding: 5px;
   line-height: 1.4;
   border-radius: 3px;
-  transition: background-color .3s;
-  box-sizing: border-box; }
+  transition: background-color 0.3s;
+  box-sizing: border-box;
+}
 
-.ProseMirror h2 {
-  font-size: 1.625rem; }
+.smartblock-container .ProseMirror h2 {
+  font-size: 1.625rem;
+}
 
-.ProseMirror h3 {
-  font-size: 1.375rem; }
+.smartblock-container .ProseMirror h3 {
+  font-size: 1.375rem;
+}
 
 @media screen and (min-width: 768px) {
-  .ProseMirror h2,
-  .ProseMirror h3 {
-    padding: 5px 10px; } }
-
-.ProseMirror ul,
-.ProseMirror ol {
+  .smartblock-container .ProseMirror h2,
+  .smartblock-container .ProseMirror h3 {
+    padding: 5px 10px;
+  }
+}
+.smartblock-container .ProseMirror ul,
+.smartblock-container .ProseMirror ol {
   margin: 0 0 30px 0;
   padding: 5px 5px 5px 30px;
   font-size: 1rem;
   line-height: 1.4;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+}
 
-.ProseMirror li > p {
+.smartblock-container .ProseMirror li > p {
   margin: 0;
   padding: 0;
-  min-height: auto; }
+  min-height: auto;
+}
 
-.ProseMirror li ul,
-.ProseMirror li ol {
-  margin: 0; }
+.smartblock-container .ProseMirror li ul,
+.smartblock-container .ProseMirror li ol {
+  margin: 0;
+}
 
-.ProseMirror blockquote {
+.smartblock-container .ProseMirror blockquote {
   position: relative;
   margin: 0 0 30px 0;
   padding: 10px 5px 10px 25px;
-  font-size: .875rem;
+  font-size: 0.875rem;
   line-height: 1.5;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+}
 
-.ProseMirror blockquote:before {
+.smartblock-container .ProseMirror blockquote:before {
   content: "";
   position: absolute;
   top: 5px;
   bottom: 5px;
   left: 10px;
-  border-left: 5px solid #D3D3D3; }
+  border-left: 5px solid #D3D3D3;
+}
 
 @media screen and (min-width: 768px) {
-  .ProseMirror blockquote {
-    padding: 10px 10px 10px 30px; } }
-
-.ProseMirror th,
-.ProseMirror td {
+  .smartblock-container .ProseMirror blockquote {
+    padding: 10px 10px 10px 30px;
+  }
+}
+.smartblock-container .ProseMirror th,
+.smartblock-container .ProseMirror td {
   border: 1px solid #eee;
-  padding: 2px 5px; }
+  padding: 2px 5px;
+}
 
-.ProseMirror sup,
-.ProseMirror sub {
-  line-height: 0; }
+.smartblock-container .ProseMirror sup,
+.smartblock-container .ProseMirror sub {
+  line-height: 0;
+}
 
-.ProseMirror .selected {
+.smartblock-container .ProseMirror .selected {
   background-color: #F2F2F4;
-  border-radius: 3px; }
+  border-radius: 3px;
+}
 
-.ProseMirrorHideSelection .selected {
-  background-color: transparent; }
+.smartblock-container .ProseMirrorHideSelection .selected {
+  background-color: transparent;
+}
 
-.ProseMirror .ProseMirror-widget {
-  color: #ADADAD; }
+.smartblock-container .ProseMirror .ProseMirror-widget {
+  color: #ADADAD;
+}
 
-.ProseMirror td,
-.ProseMirror th {
-  border-color: #767676; }
+.smartblock-container .ProseMirror td,
+.smartblock-container .ProseMirror th {
+  border-color: #767676;
+}
 
-.ProseMirror table {
+.smartblock-container .ProseMirror table {
   margin-bottom: 15px;
-  border-color: #767676; }
+  border-color: #767676;
+}
 
-.ProseMirror table p.empty-node:first-child::before {
-  display: none; }
+.smartblock-container .ProseMirror table p.empty-node:first-child::before {
+  display: none;
+}
 
-.ProseMirror h1.empty-node::before {
+.smartblock-container .ProseMirror h1.empty-node::before {
   content: "Type Title here";
-  font-style: normal; }
+  font-style: normal;
+}
 
-.ProseMirror p.empty-node:first-child::before {
+.smartblock-container .ProseMirror p.empty-node:first-child::before {
   content: "Type Something.." !important;
-  font-style: normal; }
+  font-style: normal;
+}
 
-.ProseMirror ::selection {
+.smartblock-container .ProseMirror ::selection {
   color: #014CC5;
   background: #D1DDF0;
   border-right: 1px solid #014CC5;
   border-left: 1px solid #014CC5;
-  caret-color: red; }
+  caret-color: red;
+}
 
-.ProseMirror figure {
+.smartblock-container .ProseMirror figure {
   pointer-events: none;
-  color: transparent; }
+  color: transparent;
+}
 
-.ProseMirror .caption {
+.smartblock-container .ProseMirror .caption {
   color: #909090;
   display: block;
-  text-align: center; }
+  text-align: center;
+}
 
-.ProseMirror .media {
+.smartblock-container .ProseMirror .media {
   padding: 10px;
   margin: 0;
-  display: block; }
+  display: block;
+}
 
-.ProseMirror .media.selected {
+.smartblock-container .ProseMirror .media.selected {
   position: relative;
-  background-color: #F2F2F4; }
+  background-color: #F2F2F4;
+}
 
-.ProseMirror .media img.small {
+.smartblock-container .ProseMirror .media img.small {
   width: 320px;
   height: auto;
   display: block;
-  margin: 0 auto; }
+  margin: 0 auto;
+}
 
-.ProseMirror .media img {
+.smartblock-container .ProseMirror .media img {
   max-width: 100%;
   height: auto;
-  cursor: default; }
+  cursor: default;
+}
 
-.ProseMirror .media .caption {
+.smartblock-container .ProseMirror .media .caption {
   color: #333;
   margin-top: 0;
-  margin-bottom: 5px; }
+  margin-bottom: 5px;
+}
 
-.ProseMirror .youtube-frame-wrap {
+.smartblock-container .ProseMirror .youtube-frame-wrap {
   margin-bottom: 30px;
-  padding: 10px 40px; }
+  padding: 10px 40px;
+}
 
-.ProseMirror .embed-wrap {
+.smartblock-container .ProseMirror .embed-wrap {
   margin: 0 5px 30px 5px;
   position: relative;
   z-index: 10;
-  padding: 5px; }
+  padding: 5px;
+}
 
-.ProseMirror .embed {
+.smartblock-container .ProseMirror .embed {
   position: relative;
   display: block;
   padding: 20px;
@@ -594,103 +710,122 @@
   font-size: 14px;
   background: #FFF;
   border: 1px solid rgba(201, 201, 204, 0.48);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); }
-  .ProseMirror .embed:link, .ProseMirror .embed:hover, .ProseMirror .embed:visited {
-    color: #666;
-    text-decoration: none; }
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.smartblock-container .ProseMirror .embed:link, .smartblock-container .ProseMirror .embed:hover, .smartblock-container .ProseMirror .embed:visited {
+  color: #666;
+  text-decoration: none;
+}
 
-.ProseMirror .youtube-frame {
+.smartblock-container .ProseMirror .youtube-frame {
   position: relative;
   width: 100%;
   height: 0;
-  padding-bottom: 56.25%; }
-  .ProseMirror .youtube-frame iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none; }
+  padding-bottom: 56.25%;
+}
+.smartblock-container .ProseMirror .youtube-frame iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
 
-.ProseMirror pre,
-.ProseMirror pre.selected {
+.smartblock-container .ProseMirror pre,
+.smartblock-container .ProseMirror pre.selected {
   background-color: #333;
   padding: 10px;
   border-radius: 5px;
-  color: #FFF; }
+  color: #FFF;
+}
 
 /* a11y-dark theme */
 /* Based on the Tomorrow Night Eighties theme: https://github.com/isagalaev/highlight.js/blob/master/src/styles/tomorrow-night-eighties.css */
 /* @author: ericwbailey */
-.ProseMirror {
+.smartblock-container .ProseMirror {
   /* Comment */
   /* Red */
   /* Orange */
   /* Yellow */
   /* Green */
   /* Blue */
-  /* Purple */ }
-  .ProseMirror .hljs-comment,
-  .ProseMirror .hljs-quote {
-    color: #d4d0ab; }
-  .ProseMirror .hljs-variable,
-  .ProseMirror .hljs-template-variable,
-  .ProseMirror .hljs-tag,
-  .ProseMirror .hljs-name,
-  .ProseMirror .hljs-selector-id,
-  .ProseMirror .hljs-selector-class,
-  .ProseMirror .hljs-regexp,
-  .ProseMirror .hljs-deletion {
-    color: #ffa07a; }
-  .ProseMirror .hljs-number,
-  .ProseMirror .hljs-built_in,
-  .ProseMirror .hljs-builtin-name,
-  .ProseMirror .hljs-literal,
-  .ProseMirror .hljs-type,
-  .ProseMirror .hljs-params,
-  .ProseMirror .hljs-meta,
-  .ProseMirror .hljs-link {
-    color: #f5ab35; }
-  .ProseMirror .hljs-attribute {
-    color: #ffd700; }
-  .ProseMirror .hljs-string,
-  .ProseMirror .hljs-symbol,
-  .ProseMirror .hljs-bullet,
-  .ProseMirror .hljs-addition {
-    color: #abe338; }
-  .ProseMirror .hljs-title,
-  .ProseMirror .hljs-section {
-    color: #00e0e0; }
-  .ProseMirror .hljs-keyword,
-  .ProseMirror .hljs-selector-tag {
-    color: #dcc6e0; }
-  .ProseMirror .hljs {
-    display: block;
-    overflow-x: auto;
-    background: #2b2b2b;
-    color: #f8f8f2;
-    padding: 0.5em; }
-  .ProseMirror .hljs-emphasis {
-    font-style: italic; }
-  .ProseMirror .hljs-strong {
-    font-weight: bold; }
-  @media screen and (-ms-high-contrast: active) {
-    .ProseMirror .hljs-addition,
-    .ProseMirror .hljs-attribute,
-    .ProseMirror .hljs-built_in,
-    .ProseMirror .hljs-builtin-name,
-    .ProseMirror .hljs-bullet,
-    .ProseMirror .hljs-comment,
-    .ProseMirror .hljs-link,
-    .ProseMirror .hljs-literal,
-    .ProseMirror .hljs-meta,
-    .ProseMirror .hljs-number,
-    .ProseMirror .hljs-params,
-    .ProseMirror .hljs-string,
-    .ProseMirror .hljs-symbol,
-    .ProseMirror .hljs-type,
-    .ProseMirror .hljs-quote {
-      color: highlight; }
-    .ProseMirror .hljs-keyword,
-    .ProseMirror .hljs-selector-tag {
-      font-weight: bold; } }
+  /* Purple */
+}
+.smartblock-container .ProseMirror .hljs-comment,
+.smartblock-container .ProseMirror .hljs-quote {
+  color: #d4d0ab;
+}
+.smartblock-container .ProseMirror .hljs-variable,
+.smartblock-container .ProseMirror .hljs-template-variable,
+.smartblock-container .ProseMirror .hljs-tag,
+.smartblock-container .ProseMirror .hljs-name,
+.smartblock-container .ProseMirror .hljs-selector-id,
+.smartblock-container .ProseMirror .hljs-selector-class,
+.smartblock-container .ProseMirror .hljs-regexp,
+.smartblock-container .ProseMirror .hljs-deletion {
+  color: #ffa07a;
+}
+.smartblock-container .ProseMirror .hljs-number,
+.smartblock-container .ProseMirror .hljs-built_in,
+.smartblock-container .ProseMirror .hljs-builtin-name,
+.smartblock-container .ProseMirror .hljs-literal,
+.smartblock-container .ProseMirror .hljs-type,
+.smartblock-container .ProseMirror .hljs-params,
+.smartblock-container .ProseMirror .hljs-meta,
+.smartblock-container .ProseMirror .hljs-link {
+  color: #f5ab35;
+}
+.smartblock-container .ProseMirror .hljs-attribute {
+  color: #ffd700;
+}
+.smartblock-container .ProseMirror .hljs-string,
+.smartblock-container .ProseMirror .hljs-symbol,
+.smartblock-container .ProseMirror .hljs-bullet,
+.smartblock-container .ProseMirror .hljs-addition {
+  color: #abe338;
+}
+.smartblock-container .ProseMirror .hljs-title,
+.smartblock-container .ProseMirror .hljs-section {
+  color: #00e0e0;
+}
+.smartblock-container .ProseMirror .hljs-keyword,
+.smartblock-container .ProseMirror .hljs-selector-tag {
+  color: #dcc6e0;
+}
+.smartblock-container .ProseMirror .hljs {
+  display: block;
+  overflow-x: auto;
+  background: #2b2b2b;
+  color: #f8f8f2;
+  padding: 0.5em;
+}
+.smartblock-container .ProseMirror .hljs-emphasis {
+  font-style: italic;
+}
+.smartblock-container .ProseMirror .hljs-strong {
+  font-weight: bold;
+}
+@media screen and (-ms-high-contrast: active) {
+  .smartblock-container .ProseMirror .hljs-addition,
+  .smartblock-container .ProseMirror .hljs-attribute,
+  .smartblock-container .ProseMirror .hljs-built_in,
+  .smartblock-container .ProseMirror .hljs-builtin-name,
+  .smartblock-container .ProseMirror .hljs-bullet,
+  .smartblock-container .ProseMirror .hljs-comment,
+  .smartblock-container .ProseMirror .hljs-link,
+  .smartblock-container .ProseMirror .hljs-literal,
+  .smartblock-container .ProseMirror .hljs-meta,
+  .smartblock-container .ProseMirror .hljs-number,
+  .smartblock-container .ProseMirror .hljs-params,
+  .smartblock-container .ProseMirror .hljs-string,
+  .smartblock-container .ProseMirror .hljs-symbol,
+  .smartblock-container .ProseMirror .hljs-type,
+  .smartblock-container .ProseMirror .hljs-quote {
+    color: highlight;
+  }
+  .smartblock-container .ProseMirror .hljs-keyword,
+  .smartblock-container .ProseMirror .hljs-selector-tag {
+    font-weight: bold;
+  }
+}
