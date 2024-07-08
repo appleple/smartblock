@@ -41,6 +41,6 @@ export default class Paragraph extends Extension {
     customMenu({ state, dispatch }: {
         state: any;
         dispatch: any;
-    }): JSX.Element;
+    }): JSX.Element | null;
     onClick(state: any, dispatch: any): void;
 }
