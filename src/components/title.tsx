@@ -1,18 +1,17 @@
 import * as React from 'react';
 import { Schema, DOMParser } from 'prosemirror-model';
-import { Plugin } from 'prosemirror-state';
-import { Decoration, DecorationSet } from 'prosemirror-view';
 import { getHtmlFromNode } from '../utils';
 import { useView } from '../utils/hooks';
+import { placeholderPlugin } from '../extensions/default-plugins';
 
 const { useRef, useEffect } = React;
 const schemaDef = {
   nodes: {
     doc: {
-      content: 'block'
+      content: 'block',
     },
     text: {
-      group: 'inline'
+      group: 'inline',
     },
     title: {
       group: 'block',
@@ -20,42 +19,21 @@ const schemaDef = {
       selectable: false,
       parseDOM: [{ tag: 'h1' }],
       toDOM() {
-        return ['h1', 0]
-      }
-    }
-  }
-}
-
-const placeholderPlugin = () => {
-  return new Plugin({
-    props: {
-      decorations: state => {
-        const decorations = [];
-        const decorate = (node, pos) => {
-          if (node.type.isBlock && node.childCount === 0) {
-            decorations.push(
-              Decoration.node(pos, pos + node.nodeSize, {
-                class: 'empty-node',
-              })
-            )
-          }
-        }
-        state.doc.descendants(decorate);
-        return DecorationSet.create(state.doc, decorations);
+        return ['h1', 0];
       },
     },
-  })
-}
+  },
+};
 
 type TitleProps = {
   defaultValue: string;
   onChange(text: string): void;
-}
+};
 
 export default (props: TitleProps) => {
   const defaultProps = {
-    defaultValue: ''
-  }
+    defaultValue: '',
+  };
   props = Object.assign({}, defaultProps, props);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const schema = new Schema({ ...schemaDef } as any);
@@ -74,16 +52,20 @@ export default (props: TitleProps) => {
     options: {
       schema,
       doc,
-      plugins: [placeholderPlugin()]
-    }
-  }
+      plugins: [
+        placeholderPlugin({
+          placeholder: 'Type Title here',
+        }),
+      ],
+    },
+  };
 
   const view = useView(config);
   useEffect(() => {
     if (titleRef.current) {
-      titleRef.current.appendChild(view.dom)
+      titleRef.current.appendChild(view.dom);
     }
   }, []);
 
-  return <div ref={titleRef} className="smartblock-title" />
-}
+  return <div ref={titleRef} className="smartblock-title" />;
+};

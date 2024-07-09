@@ -121,7 +121,7 @@ const TooltipComponent = (props: { view: EditorView }) => {
       ref={container}
       style={style}
     >
-      <div 
+      <div
         className="smartblock-tooltip-arrow"
         style={{ left: `${arrowPos}px` }}
       ></div>
@@ -172,7 +172,9 @@ class Tooltip {
 
 export default () => {
   return new Plugin({
+    // @ts-ignore
     view(view) {
+      // @ts-ignore
       return new Tooltip(view);
     }
   });

@@ -5,6 +5,7 @@ import { Plugin } from 'prosemirror-state';
 export const MediaPlugin = () => {
   return new Plugin({
     props: {
+      // @ts-ignore
       decorations(state) {
         const doc = state.doc
         const images = findChildren(doc, (node) => {

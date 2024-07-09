@@ -5,9 +5,10 @@ import { Decoration, DecorationSet } from 'prosemirror-view';
 import { Extension } from '../types';
 import { Node } from 'prosemirror-model';
 
-const currentElementPlugin = () => {
+export const currentElementPlugin = () => {
   return new Plugin({
     props: {
+      // @ts-ignore
       decorations(state) {
         const { selection } = state;
         const decorations = [];
@@ -46,10 +47,11 @@ const defaultPlaceholderOptions = {
   emptyEditorClass: 'empty-editor',
 };
 
-const placeholderPlugin = (options: PlaceholderPluginOptions = {}) => {
+export const placeholderPlugin = (options: PlaceholderPluginOptions = {}) => {
   const config = { ...defaultPlaceholderOptions, ...options } as PlaceholderPluginConfig;
   return new Plugin({
     props: {
+      // @ts-ignore
       decorations: (state) => {
         const decorations = [];
         const { doc, selection } = state;

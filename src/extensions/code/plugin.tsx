@@ -87,6 +87,7 @@ export default function HighlightPlugin({ name }) {
       }
     },
     props: {
+      // @ts-ignore
       decorations(state) {
         return this.getState(state)
       }
