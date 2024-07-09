@@ -14,6 +14,66 @@
       "require": "./lib/index.js",
       "types": "./lib/index.d.ts"
     },
+    "./pm/commands": {
+      "import": "./lib/pm/commands/index.js",
+      "require": "./lib/pm/commands/index.js",
+      "types": "./lib/pm/commands/index.d.ts"
+    },
+    "./pm/gapcursor": {
+      "import": "./lib/pm/gapcursor/index.js",
+      "require": "./lib/pm/gapcursor/index.js",
+      "types": "./lib/pm/gapcursor/index.d.ts"
+    },
+    "./pm/history": {
+      "import": "./lib/pm/history/index.js",
+      "require": "./lib/pm/history/index.js",
+      "types": "./lib/pm/history/index.d.ts"
+    },
+    "./pm/inputrules": {
+      "import": "./lib/pm/inputrules/index.js",
+      "require": "./lib/pm/inputrules/index.js",
+      "types": "./lib/pm/inputrules/index.d.ts"
+    },
+    "./pm/keymap": {
+      "import": "./lib/pm/keymap/index.js",
+      "require": "./lib/pm/keymap/index.js",
+      "types": "./lib/pm/keymap/index.d.ts"
+    },
+    "./pm/model": {
+      "import": "./lib/pm/model/index.js",
+      "require": "./lib/pm/model/index.js",
+      "types": "./lib/pm/model/index.d.ts"
+    },
+    "./pm/schema-list": {
+      "import": "./lib/pm/schema-list/index.js",
+      "require": "./lib/pm/schema-list/index.js",
+      "types": "./lib/pm/schema-list/index.d.ts"
+    },
+    "./pm/state": {
+      "import": "./lib/pm/state/index.js",
+      "require": "./lib/pm/state/index.js",
+      "types": "./lib/pm/state/index.d.ts"
+    },
+    "./pm/tables": {
+      "import": "./lib/pm/tables/index.js",
+      "require": "./lib/pm/tables/index.js",
+      "types": "./lib/pm/tables/index.d.ts"
+    },
+    "./pm/transform": {
+      "import": "./lib/pm/transform/index.js",
+      "require": "./lib/pm/transform/index.js",
+      "types": "./lib/pm/transform/index.d.ts"
+    },
+    "./pm/utils": {
+      "import": "./lib/pm/utils/index.js",
+      "require": "./lib/pm/utils/index.js",
+      "types": "./lib/pm/utils/index.d.ts"
+    },
+    "./pm/view": {
+      "import": "./lib/pm/view/index.js",
+      "require": "./lib/pm/view/index.js",
+      "types": "./lib/pm/view/index.d.ts"
+    },
     "./css/smartblock.css": "./css/smartblock.css"
   },
   "types": "lib/index.d.ts",
@@ -21,7 +81,6 @@
     "test": "jest **/*.test.tsx",
     "dev": "webpack-dev-server --config webpack.dev.js --host 0.0.0.0 --port 3031",
     "build": "webpack --config webpack.prod.js",
-    "cp": "cp ./dist/smartblock.js ./docs/ && cp ./dist/extensions.js ./docs/ ",
     "build:lib": "rm -rf ./lib && tsc",
     "np": "np --no-cleanup",
     "lint": "eslint ./src/ --fix --ext .ts,.tsx",
@@ -41,7 +100,6 @@
   "license": "MIT",
   "devDependencies": {
     "@svgr/cli": "^4.3.0",
-    "@types/codemirror": "0.0.80",
     "@types/jest": "^24.0.23",
     "@types/prosemirror-commands": "^1.0.1",
     "@types/prosemirror-keymap": "^1.0.1",
@@ -75,7 +133,6 @@
     "file-loader": "^3.0.1",
     "jest": "^26.6.3",
     "jest-css-modules": "^2.1.0",
-    "jest-prosemirror": "^0.7.2",
     "np": "^3.1.0",
     "npm-run-all": "^4.1.5",
     "preact": "^10.1.1",
