@@ -81,6 +81,7 @@
     "test": "jest **/*.test.tsx",
     "dev": "webpack-dev-server --config webpack.dev.js --host 0.0.0.0 --port 3031",
     "build": "webpack --config webpack.prod.js",
+    "build:dev": "webpack --config webpack.prod.js",
     "build:lib": "rm -rf ./lib && tsc",
     "np": "np --no-cleanup",
     "lint": "eslint ./src/ --fix --ext .ts,.tsx",
@@ -172,7 +173,7 @@
     "prosemirror-tables": "^0.7.11",
     "prosemirror-transform": "^1.1.3",
     "prosemirror-utils": "^0.7.7",
-    "prosemirror-view": "^1.8.9",
+    "prosemirror-view": "1.20.3",
     "scroll-to": "0.0.2",
     "uuid": "^3.3.2"
   }

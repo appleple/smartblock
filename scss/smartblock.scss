@@ -455,7 +455,7 @@
   margin: 0;
 
   &.empty-node figcaption:before {
-    content: "Type Something..."
+    content: attr(data-placeholder);
   }
 
   figcaption {
@@ -471,16 +471,13 @@
   }
 }
 
-.smartblock-container .ProseMirror .empty-node::before {
+.smartblock-container .ProseMirror .empty-node::before,
+.smartblock-container .ProseMirror .empty-editor::before{
   float: left;
   color: #aaa;
   pointer-events: none;
   height: 0;
   font-style: italic;
-}
-
-.smartblock-container .ProseMirror p.empty-node:first-child::before {
-  content: 'Start typing…';
 }
 
 .smartblock-container .ProseMirror figcaption {
@@ -664,8 +661,8 @@
   font-style: normal;
 }
 
-.smartblock-container .ProseMirror p.empty-node:first-child::before {
-  content: "Type Something.." !important;
+.smartblock-container .ProseMirror p.editor-empty:first-child::before {
+  content: attr(data-placeholder) !important;
   font-style: normal;
 }
 

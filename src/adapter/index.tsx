@@ -9,9 +9,10 @@ export default (item: string | HTMLElement, option: React.ComponentPropsWithoutR
   if (!option.extensions) {
     option.extensions = Extensions;
   }
-  render(<>
-  <SmartBlock
-    {...option}
-  />
-  </>, dom);
-}
+  render(
+    <>
+      <SmartBlock {...option} />
+    </>,
+    dom
+  );
+};

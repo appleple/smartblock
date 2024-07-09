@@ -438,7 +438,7 @@
   margin: 0;
 }
 .smartblock-container .ProseMirror figure.empty-node figcaption:before {
-  content: "Type Something...";
+  content: attr(data-placeholder);
 }
 .smartblock-container .ProseMirror figure figcaption {
   font-size: 0;
@@ -450,7 +450,8 @@
   content: "";
 }
 
-.smartblock-container .ProseMirror .empty-node::before {
+.smartblock-container .ProseMirror .empty-node::before,
+.smartblock-container .ProseMirror .empty-editor::before {
   float: left;
   color: #aaa;
   pointer-events: none;
@@ -458,8 +459,8 @@
   font-style: italic;
 }
 
-.smartblock-container .ProseMirror p.empty-node:first-child::before {
-  content: "Start typing…";
+.smartblock-container .ProseMirror p.editor-empty:first-child::before {
+  content: attr(data-placeholder);
 }
 
 .smartblock-container .ProseMirror figcaption {
@@ -637,7 +638,7 @@
 }
 
 .smartblock-container .ProseMirror p.empty-node:first-child::before {
-  content: "Type Something.." !important;
+  content: attr(data-placeholder) !important;
   font-style: normal;
 }
 
