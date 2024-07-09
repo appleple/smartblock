@@ -3,8 +3,8 @@ module.exports = {
   transform: {
     '^.+\\.tsx?$': 'ts-jest'
   },
+  moduleDirectories: ['node_modules', 'src'],
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',
-  setupFilesAfterEnv: ['jest-prosemirror/environment'],
   testEnvironment: 'jsdom', // Required for dom manipulation
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   globals: {

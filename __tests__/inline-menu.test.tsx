@@ -50,7 +50,7 @@ describe('inline-menu', () => {
     });
     const editMenu = TestRenderer.create(<InlineMenu view={view} menu={[strong]} blockMenu={[paragraph]} />);
     const { tr } = view.state;
-    tr.setSelection(TextSelection.create(tr.doc, 0, 3));
+    tr.setSelection(TextSelection.create(tr.doc, 1, 4)); // select 'test'
     view.dispatch(tr);
     TestRenderer.act(() => {
       editMenu.update(<InlineMenu view={view} menu={[strong]} blockMenu={[paragraph]} />);
@@ -71,7 +71,7 @@ describe('inline-menu', () => {
     });
     const editMenu = TestRenderer.create(<InlineMenu view={view} menu={[strong]} blockMenu={[paragraph]} />);
     const { tr } = view.state;
-    tr.setSelection(TextSelection.create(tr.doc, 0, 3));
+    tr.setSelection(TextSelection.create(tr.doc, 1, 4)); // select 'test'
     view.dispatch(tr);
     TestRenderer.act(() => {
       editMenu.update(<InlineMenu view={view} menu={[strong]} blockMenu={[paragraph]} />);

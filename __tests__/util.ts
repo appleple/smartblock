@@ -75,9 +75,9 @@ export const getSchemaFromExtensions = (extensions: Extension[]) => {
 export const getNodeViews = (extensions: Extension[]) => {
   const views = {}
   extensions.forEach(extension => {
-    if (extension.view) {
+    if (extension.view !== undefined) {
       views[extension.name] = (node: Node, view: EditorView, getPos) => {
-        return extension.view(node, view, getPos);
+        return extension.view && extension.view(node, view, getPos);
       }
     }
   })
@@ -94,7 +94,7 @@ export const getEditorViewFromExtensions = (extensions: Extension[]) => {
   const options = { schema, plugins: [], doc };
   return new EditorView(null, {
     state: EditorState.create(options),
-    attributes: null,
+    attributes: {},
     nodeViews: {}
   });
 }
