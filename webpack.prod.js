@@ -2,8 +2,7 @@ const path = require('path');
 
 // for not jsx users
 module.exports = {
-  mode: "development",
-  devtool: 'inline-source-map',
+  mode: "production",
   entry: {
     Editor: './src/adapter/index.tsx',
     Code: './src/extensions/code/index.tsx',
