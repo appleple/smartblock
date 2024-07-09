@@ -202,11 +202,12 @@
 }
 
 .smartblock-container {
+  max-width: 780px;
   margin: 0 auto;
   padding: 10px 0 80px 0;
 }
 .smartblock-container.is-full {
-  max-width: 780px;
+  max-width: none;
 }
 
 .smartblock-input-area {
