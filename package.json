@@ -40,6 +40,7 @@
   "license": "MIT",
   "devDependencies": {
     "@svgr/cli": "^4.3.0",
+    "@types/imagesloaded": "^4.1.6",
     "@types/jest": "^24.0.23",
     "@types/prosemirror-commands": "^1.0.1",
     "@types/prosemirror-keymap": "^1.0.1",

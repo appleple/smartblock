@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { EditorView } from 'prosemirror-view';
-import imagesLoaded from 'imagesloaded';
+import * as imagesLoaded from 'imagesloaded';
 import {
   getParentNodeFromState,
   findNodePosition,
