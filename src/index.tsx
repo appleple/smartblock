@@ -17,7 +17,6 @@ import {
   liftListItem,
   findSelectedNodeWithType
 } from './utils'
-import { Dispatch, Extension } from './types'
 
 // extensions
 import Link from './extensions/link'
@@ -66,8 +65,8 @@ export {
   Editor,
   InlineMenu,
   Menu,
-  /* 
-    extensions 
+  /*
+    extensions
   */
   /* blocks */
   Extensions,
@@ -108,9 +107,7 @@ export {
   getParentNodePosFromState,
   createTable,
   liftListItem,
-  /* types */
-  Dispatch,
-  Extension,
+
   /* defaults */
   DefaultKeys,
   DefaultPlugins,
@@ -124,3 +121,5 @@ export {
   Heading5Icon,
   Heading6Icon
 }
+
+export * from './types'
