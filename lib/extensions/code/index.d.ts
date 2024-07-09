@@ -45,6 +45,6 @@ export default class Code extends Extension {
         state: any;
         dispatch: any;
     }): JSX.Element;
-    get plugins(): import("prosemirror-state").Plugin<import("prosemirror-view").DecorationSet, any>[];
+    get plugins(): import("prosemirror-state").Plugin<any>[];
 }
 export {};

@@ -23,12 +23,12 @@ export declare const getViewport: () => {
     keyboardHeight: number;
 };
 export declare const markActive: (type: any) => (state: any) => any;
-export declare const getMarkInSelection: (markName: string, state: EditorState) => any;
+export declare const getMarkInSelection: (markName: string, state: EditorState) => import("prosemirror-model").Mark;
 export declare const blockActive: (type: any) => (state: any) => boolean;
 export declare const canInsert: (type: any) => (state: any) => boolean;
 export declare const findNodePosition: (doc: Node, target: Node) => number;
 export declare const getRootNodeWithPosByIndex: (state: EditorState, index: number) => import("prosemirror-utils").NodeWithPos;
-export declare const getRootNodeCountFromState: (state: EditorState) => any;
+export declare const getRootNodeCountFromState: (state: EditorState) => number;
 export declare const getParentNodeWithPosFromState: (state: EditorState) => import("prosemirror-utils").NodeWithPos;
 export declare const getParentNodeIndexFromState: (state: EditorState) => number;
 export declare const getParentNodeFromState: (state: EditorState) => Node;

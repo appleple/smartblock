@@ -46,5 +46,5 @@ export default class Embed extends Extension {
     active(state: any): boolean;
     enable(state: any): boolean;
     onClick(state: EditorState, dispatch: any): void;
-    get plugins(): import("prosemirror-state").Plugin<any, any>[];
+    get plugins(): import("prosemirror-state").Plugin<any>[];
 }

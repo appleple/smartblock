@@ -23,8 +23,8 @@ export default class ListItem extends Extension {
         defining: boolean;
     };
     keys(schema: Schema): {
-        Enter: (state: import("prosemirror-state").EditorState<any>, dispatch?: (tr: import("prosemirror-state").Transaction<any>) => void) => boolean;
-        Tab: (state: import("prosemirror-state").EditorState<any>, dispatch?: (tr: import("prosemirror-state").Transaction<any>) => void) => boolean;
-        'Shift-Tab': (p1: import("prosemirror-state").EditorState<any>, p2?: (tr: import("prosemirror-state").Transaction<any>) => void, p3?: any) => boolean;
+        Enter: import("prosemirror-state").Command;
+        Tab: import("prosemirror-state").Command;
+        'Shift-Tab': import("prosemirror-state").Command;
     };
 }

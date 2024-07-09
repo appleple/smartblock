@@ -60,7 +60,7 @@ export default class Image extends Extension {
         })[])[];
     };
     get icon(): JSX.Element;
-    get plugins(): import("prosemirror-state").Plugin<any, any>[];
+    get plugins(): import("prosemirror-state").Plugin<any>[];
     changeImage(state: EditorState, dispatch: Dispatch, files: FileList): Promise<void>;
     customButton({ state, dispatch }: {
         state: any;

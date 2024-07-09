@@ -31,7 +31,7 @@ export default class Link extends Extension {
         })[];
     };
     get icon(): JSX.Element;
-    get plugins(): import("prosemirror-state").Plugin<any, any>[];
+    get plugins(): import("prosemirror-state").Plugin<any>[];
     active(state: any): any;
     onClick(state: any, dispatch: any): boolean;
 }
