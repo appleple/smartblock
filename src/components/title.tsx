@@ -27,12 +27,14 @@ const schemaDef = {
 
 type TitleProps = {
   defaultValue: string;
+  placeholder?: string;
   onChange(text: string): void;
 };
 
 export default (props: TitleProps) => {
   const defaultProps = {
     defaultValue: '',
+    placeholder: 'Type Title here',
   };
   props = Object.assign({}, defaultProps, props);
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -54,7 +56,7 @@ export default (props: TitleProps) => {
       doc,
       plugins: [
         placeholderPlugin({
-          placeholder: 'Type Title here',
+          placeholder: props.placeholder || defaultProps.placeholder,
         }),
       ],
     },

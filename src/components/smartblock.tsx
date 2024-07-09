@@ -365,6 +365,7 @@ export default (props: AppProps) => {
     })}>
       {props.showTitle &&
         <Title
+          placeholder={props.titlePlaceholder}
           onChange={(title) => {
             titleChanged(title, props);
           }}
