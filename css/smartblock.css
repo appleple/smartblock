@@ -459,10 +459,6 @@
   font-style: italic;
 }
 
-.smartblock-container .ProseMirror p.editor-empty:first-child::before {
-  content: attr(data-placeholder);
-}
-
 .smartblock-container .ProseMirror figcaption {
   color: #333;
   font-size: 12px;
@@ -633,11 +629,11 @@
 }
 
 .smartblock-container .ProseMirror h1.empty-node::before {
-  content: "Type Title here";
+  content: attr(data-placeholder);
   font-style: normal;
 }
 
-.smartblock-container .ProseMirror p.empty-node:first-child::before {
+.smartblock-container .ProseMirror p.empty-editor:first-child::before {
   content: attr(data-placeholder) !important;
   font-style: normal;
 }

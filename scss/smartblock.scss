@@ -657,11 +657,11 @@
 }
 
 .smartblock-container .ProseMirror h1.empty-node::before {
-  content: "Type Title here";
+  content: attr(data-placeholder);
   font-style: normal;
 }
 
-.smartblock-container .ProseMirror p.editor-empty:first-child::before {
+.smartblock-container .ProseMirror p.empty-editor:first-child::before {
   content: attr(data-placeholder) !important;
   font-style: normal;
 }
