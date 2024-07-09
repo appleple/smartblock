@@ -16,7 +16,7 @@ export default (props) => {
         <span></span>
       </button>
       <div className="inner">
-        <div class="offcanvas-menu">
+        <div className="offcanvas-menu">
           <SideMenuInner active={(post && post.fields) ? post.fields.slug : ''} />
         </div>
         <hr />
