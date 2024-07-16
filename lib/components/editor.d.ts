@@ -7,11 +7,11 @@ type EditorProps = {
     nodeViews?: any;
     autoFocus?: boolean;
     options: any;
-    render?({ editor, view, scrolling, }: {
+    render?({ editor, view, }: {
         editor: React.ReactNode;
         view: EditorView;
-        scrolling: boolean;
     }): React.ReactElement;
+    editorRef: React.MutableRefObject<HTMLDivElement | null>;
 };
 declare const _default: (props: EditorProps) => React.ReactElement<any, string | React.JSXElementConstructor<any>>;
 export default _default;

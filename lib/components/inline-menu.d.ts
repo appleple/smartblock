@@ -3,7 +3,7 @@ import { EditorView } from 'prosemirror-view';
 declare const MenuBar: ({ menu, blockMenu, children, view }: {
     menu: any;
     blockMenu: any;
-    children?: React.ReactChildren;
+    children?: React.ReactNode;
     view: EditorView;
-}) => JSX.Element;
+}) => React.JSX.Element;
 export default MenuBar;

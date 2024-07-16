@@ -37,14 +37,14 @@ export default class Code extends Extension {
             };
         };
     };
-    get icon(): JSX.Element;
+    get icon(): React.JSX.Element;
     active(state: any): boolean;
     enable(state: any): boolean;
     onClick(state: any, dispatch: any): void;
     customMenu({ state, dispatch }: {
         state: any;
         dispatch: any;
-    }): JSX.Element;
+    }): React.JSX.Element;
     get plugins(): import("prosemirror-state").Plugin<any>[];
 }
 export {};

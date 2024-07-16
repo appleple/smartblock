@@ -1,12 +1,12 @@
 import { EditorState } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
-import { Node, Schema } from 'prosemirror-model';
+import { Node, Schema, Mark, MarkType, NodeType } from 'prosemirror-model';
 import { Dispatch } from '../types';
 export declare const getScrollTop: () => number;
 export declare const getScrollLeft: () => number;
-export declare const getOffset: (el: any) => {
-    top: any;
-    left: any;
+export declare const getOffset: (el: HTMLElement) => {
+    top: number;
+    left: number;
 };
 export declare const isInput: (el: HTMLElement) => boolean;
 export declare const getViewport: () => {
@@ -22,10 +22,10 @@ export declare const getViewport: () => {
     height: number;
     keyboardHeight: number;
 };
-export declare const markActive: (type: any) => (state: any) => any;
-export declare const getMarkInSelection: (markName: string, state: EditorState) => import("prosemirror-model").Mark;
-export declare const blockActive: (type: any) => (state: any) => boolean;
-export declare const canInsert: (type: any) => (state: any) => boolean;
+export declare const markActive: (type: MarkType) => (state: EditorState) => boolean;
+export declare const getMarkInSelection: (markName: string, state: EditorState) => Mark;
+export declare const blockActive: (type: MarkType) => (state: EditorState) => boolean;
+export declare const canInsert: (type: NodeType) => (state: EditorState) => boolean;
 export declare const findNodePosition: (doc: Node, target: Node) => number;
 export declare const getRootNodeWithPosByIndex: (state: EditorState, index: number) => import("prosemirror-utils").NodeWithPos;
 export declare const getRootNodeCountFromState: (state: EditorState) => number;
@@ -33,8 +33,8 @@ export declare const getParentNodeWithPosFromState: (state: EditorState) => impo
 export declare const getParentNodeIndexFromState: (state: EditorState) => number;
 export declare const getParentNodeFromState: (state: EditorState) => Node;
 export declare const getParentNodePosFromState: (state: EditorState) => number;
-export declare const findSelectedNodeWithType: (nodeType: any, state: any) => any;
-export declare const liftListItem: (itemType: any) => (state: EditorState, dispatch?: Dispatch) => boolean;
+export declare const findSelectedNodeWithType: (nodeType: NodeType, state: EditorState) => any;
+export declare const liftListItem: (itemType: NodeType) => (state: EditorState, dispatch?: Dispatch) => boolean;
 export declare const createTable: (schema: any, attrs: any, rowsCount?: number, colsCount?: number, withHeaderRow?: boolean, cellContent?: any) => any;
 export declare const calculateStyle: (view: EditorView, offset?: {
     top: number;

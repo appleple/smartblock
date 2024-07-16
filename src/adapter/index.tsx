@@ -1,18 +1,18 @@
 import * as React from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import SmartBlock from '../components/smartblock';
 import Extensions from '../extensions/';
 
 export default (item: string | HTMLElement, option: React.ComponentPropsWithoutRef<typeof SmartBlock>) => {
-  const dom = typeof item === 'string' ? document.querySelector(item) : item;
+  const dom = typeof item === 'string' ? document.querySelector<HTMLElement>(item) : item;
   if (!option.extensions) {
     option.extensions = Extensions;
   }
-  render(
+  const root = createRoot(dom);
+  root.render(
     <>
       <SmartBlock {...option} />
-    </>,
-    dom
+    </>
   );
 };

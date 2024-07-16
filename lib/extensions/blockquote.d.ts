@@ -1,4 +1,4 @@
-/// <reference types="react" />
+import * as React from 'react';
 import { Extension, ExtensionProps } from '../types';
 export default class BlockQuote extends Extension {
     constructor(props?: ExtensionProps);
@@ -27,7 +27,7 @@ export default class BlockQuote extends Extension {
             class: string;
         })[];
     };
-    get icon(): JSX.Element;
+    get icon(): React.JSX.Element;
     active(state: any): boolean;
     enable(state: any): boolean;
     onClick(state: any, dispatch: any): void;

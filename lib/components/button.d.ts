@@ -10,5 +10,5 @@ type ButtonProps = {
     className?: string;
     onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
-declare const _default: (props: ButtonProps) => JSX.Element;
+declare const _default: (props: ButtonProps) => React.JSX.Element;
 export default _default;

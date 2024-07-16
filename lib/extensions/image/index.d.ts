@@ -1,4 +1,4 @@
-/// <reference types="react" />
+import * as React from 'react';
 import { Extension, Dispatch } from '../../types';
 import { EditorState } from 'prosemirror-state';
 type Props = {
@@ -59,17 +59,17 @@ export default class Image extends Extension {
             class: string;
         })[])[];
     };
-    get icon(): JSX.Element;
+    get icon(): React.JSX.Element;
     get plugins(): import("prosemirror-state").Plugin<any>[];
     changeImage(state: EditorState, dispatch: Dispatch, files: FileList): Promise<void>;
     customButton({ state, dispatch }: {
         state: any;
         dispatch: any;
-    }): JSX.Element;
+    }): React.JSX.Element;
     customMenu({ state, dispatch }: {
         state: any;
         dispatch: any;
-    }): JSX.Element;
+    }): React.JSX.Element;
     active(state: any): boolean;
     enable(state: any): boolean;
 }

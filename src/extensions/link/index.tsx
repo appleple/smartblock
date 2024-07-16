@@ -1,9 +1,10 @@
 import * as React from 'react'
 import { toggleMark } from 'prosemirror-commands'
 import LinkIcon from '../../components/icons/link'
-import { Extension, ExtensionProps } from '../../types'
+import { Dispatch, Extension, ExtensionProps } from '../../types'
 import { markActive, getMarkInSelection } from '../../utils'
 import tooltip from './tooltip'
+import { EditorState } from 'prosemirror-state'
 
 export default class Link extends Extension {
   constructor(props?: ExtensionProps) {
@@ -67,11 +68,11 @@ export default class Link extends Extension {
     return [tooltip()]
   }
 
-  active(state) {
+  active(state: EditorState) {
     return markActive(state.schema.marks.link)(state)
   }
 
-  onClick(state, dispatch) {
+  onClick(state: EditorState, dispatch: Dispatch) {
     if (markActive(state.schema.marks.link)(state)) {
       const link = getMarkInSelection('link', state);
       const { selection } = state;
@@ -88,11 +89,11 @@ export default class Link extends Extension {
       tr.addMark(
         beforePos,
         afterPos,
-        state.schema.marks.link.create({ href: link.attrs.href, editing: true })
+        state.schema.marks.link.create({ href: link?.attrs?.href, editing: true })
       )
       // dispatch
       dispatch(tr.scrollIntoView());
-      return true;
+      return;
     }
 
     toggleMark(state.schema.marks.link, { href: '', editing: true })(

@@ -1,7 +1,8 @@
 import { toggleMark } from 'prosemirror-commands';
-import { Extension, ExtensionProps } from '../types';
+import { Dispatch, Extension, ExtensionProps } from '../types';
 import { markActive, getUniqId } from '../utils';
 import { CUSTOM_MARK_PRIORITY } from '../constants';
+import { EditorState } from 'prosemirror-state';
 
 export default class CustomMark extends Extension {
   constructor(props?: ExtensionProps) {
@@ -60,11 +61,11 @@ export default class CustomMark extends Extension {
     return this.customIcon;
   }
 
-  active(state) {
+  active(state: EditorState) {
     return markActive(state.schema.marks[this.name])(state);
   }
 
-  onClick(state, dispatch) {
+  onClick(state: EditorState, dispatch: Dispatch) {
     toggleMark(state.schema.marks[this.name])(state, dispatch);
   }
 }

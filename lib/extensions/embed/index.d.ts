@@ -1,4 +1,4 @@
-/// <reference types="react" />
+import * as React from 'react';
 import { EditorState } from 'prosemirror-state';
 import { Extension, ExtensionProps } from '../../types';
 export default class Embed extends Extension {
@@ -42,7 +42,7 @@ export default class Embed extends Extension {
             class: string;
         })[])[])[];
     };
-    get icon(): JSX.Element;
+    get icon(): React.JSX.Element;
     active(state: any): boolean;
     enable(state: any): boolean;
     onClick(state: EditorState, dispatch: any): void;

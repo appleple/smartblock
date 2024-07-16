@@ -10,10 +10,7 @@
     "jsx": "react",
     "skipLibCheck": true,
     "noEmitOnError": false,
-    "lib": [
-      "es2018",
-      "dom"
-    ],
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "types": ["react", "jest"]
   },
   "include": ["src"],

@@ -1,4 +1,4 @@
-/// <reference types="react" />
+import * as React from 'react';
 import { Extension, ExtensionProps } from '../../types';
 export default class Table extends Extension {
     constructor(props?: ExtensionProps);
@@ -7,7 +7,7 @@ export default class Table extends Extension {
     get showMenu(): boolean;
     get schema(): any;
     get schemaDependencies(): any;
-    get icon(): JSX.Element;
+    get icon(): React.JSX.Element;
     get hideBlockMenuOnFocus(): boolean;
     get plugins(): any[];
     active(state: any): boolean;
@@ -16,11 +16,11 @@ export default class Table extends Extension {
     customInlineMenu({ state, dispatch }: {
         state: any;
         dispatch: any;
-    }): JSX.Element;
+    }): React.JSX.Element;
     customMenu({ state, dispatch }: {
         state: any;
         dispatch: any;
-    }): JSX.Element;
+    }): React.JSX.Element;
     keys(): {
         Tab: any;
         'Shift-Tab': any;

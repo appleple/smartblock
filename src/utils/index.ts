@@ -7,7 +7,10 @@ import {
   Fragment,
   NodeRange,
   DOMSerializer,
-  Schema
+  Schema,
+  Mark,
+  MarkType,
+  NodeType
 } from 'prosemirror-model';
 import { liftTarget, ReplaceAroundStep } from 'prosemirror-transform';
 import { Dispatch } from '../types';
@@ -30,7 +33,7 @@ export const getScrollLeft = () => {
   );
 }
 
-export const getOffset = el => {
+export const getOffset = (el: HTMLElement) => {
   const rect = el.getBoundingClientRect();
   return {
     top: rect.top + getScrollTop(),
@@ -76,29 +79,60 @@ export const getViewport = () => {
   return viewport;
 }
 
-export const markActive = type => state => {
+export const markActive = (type: MarkType) => (state: EditorState) => {
   const { from, $from, to, empty } = state.selection;
 
   return empty
-    ? type.isInSet(state.storedMarks || $from.marks())
+    ? type.isInSet(state.storedMarks || $from.marks()) !== undefined
     : state.doc.rangeHasMark(from, to, type);
 }
 
 export const getMarkInSelection = (markName: string, state: EditorState) => {
   const { selection } = state;
-  const { $anchor } = selection;
-  const { nodeAfter } = $anchor;
-  if (nodeAfter) {
-    return nodeAfter.marks.find(mark => {
-      if (mark.type.name === markName) {
-        return true;
-      }
-    })
-  }
-  return null;
-}
+  const { $anchor, $head } = selection;
 
-export const blockActive = type => state => {
+  // Helper function to find the mark in the node
+  const findMark = (node: Node): Mark | null => {
+    if (node && node.marks) {
+      return node.marks.find(mark => mark.type.name === markName);
+    }
+    return null;
+  };
+
+  // Check the mark at the $anchor position
+  let mark = findMark($anchor.nodeAfter);
+  if (mark) {
+    return mark;
+  }
+
+  // Check the mark at the $head position
+  mark = findMark($head.nodeAfter);
+  if (mark) {
+    return mark;
+  }
+
+  // Check for marks within the selection range
+  if (selection.empty) {
+    return null;
+  }
+  let from = Math.min(selection.from, selection.to);
+  let to = Math.max(selection.from, selection.to);
+  let rangeHasMark = false;
+
+  state.doc.nodesBetween(from, to, node => {
+    if (node.marks.some(mark => mark.type.name === markName)) {
+      rangeHasMark = true;
+    }
+  });
+
+  if (rangeHasMark) {
+    return state.schema.marks[markName].create();
+  }
+
+  return null;
+};
+
+export const blockActive = (type: MarkType) => (state: EditorState) => {
   const { selection } = state;
   const { $from, to } = state.selection;
   const { $anchor } = selection;
@@ -124,7 +158,7 @@ export const blockActive = type => state => {
   return to <= $from.end() && firstNode.node.type.name === type.name;
 }
 
-export const canInsert = type => state => {
+export const canInsert = (type: NodeType) => (state: EditorState) => {
   const { $from } = state.selection;
   for (let d = $from.depth; d >= 0; d--) {
     const index = $from.index(d);
@@ -211,7 +245,7 @@ export const getParentNodePosFromState = (state: EditorState) => {
   return pos + node.nodeSize;
 }
 
-export const findSelectedNodeWithType = (nodeType, state) => {
+export const findSelectedNodeWithType = (nodeType: NodeType, state: EditorState) => {
   const { from, to } = state.selection;
   const applicable = false;
   let applicableNode = null;
@@ -226,7 +260,7 @@ export const findSelectedNodeWithType = (nodeType, state) => {
   return applicableNode;
 }
 
-function liftToOuterList(state, dispatch, itemType, range) {
+function liftToOuterList(state: EditorState, dispatch: Dispatch, itemType: NodeType, range: NodeRange) {
   const { tr } = state;
   const { end } = range;
   const endOfList = range.$to.end(range.depth);
@@ -256,7 +290,7 @@ function liftToOuterList(state, dispatch, itemType, range) {
   return true;
 }
 
-function liftOutOfList(state, dispatch, range) {
+function liftOutOfList(state: EditorState, dispatch: Dispatch, range: NodeRange) {
   const { tr } = state;
   const list = range.parent;
   // Merge the list items into a single big item
@@ -308,7 +342,7 @@ function liftOutOfList(state, dispatch, range) {
   return true;
 }
 
-export const liftListItem = itemType => {
+export const liftListItem = (itemType: NodeType) => {
   return function(state: EditorState, dispatch?: Dispatch) {
     const { $from, $to } = state.selection;
     const range = $from.blockRange(
@@ -328,7 +362,7 @@ export const liftListItem = itemType => {
   }
 }
 
-const tableNodeTypes = schema => {
+const tableNodeTypes = (schema: Schema) => {
   if (schema.cached.tableNodeTypes) {
     return schema.cached.tableNodeTypes;
   }

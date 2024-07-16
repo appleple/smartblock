@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { toggleMark } from 'prosemirror-commands';
 import StrikeIcon from '../components/icons/strike';
-import { Extension, ExtensionProps } from '../types';
+import { Dispatch, Extension, ExtensionProps } from '../types';
 import { markActive } from '../utils';
 import { BASE_PRIORITY } from '../constants';
+import { EditorState } from 'prosemirror-state';
 
 export default class StrikeThrough extends Extension {
   constructor(props?: ExtensionProps) {
@@ -54,11 +55,11 @@ export default class StrikeThrough extends Extension {
     return <StrikeIcon style={{ width: '24px', height: '24px' }} />;
   }
 
-  active(state) {
+  active(state: EditorState) {
     return markActive(state.schema.marks.strike)(state);
   }
 
-  onClick(state, dispatch) {
+  onClick(state: EditorState, dispatch: Dispatch) {
     toggleMark(state.schema.marks.strike)(state, dispatch);
   }
 }

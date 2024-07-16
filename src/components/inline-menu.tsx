@@ -80,7 +80,7 @@ const MenuBar = ({
 }: {
   menu: any;
   blockMenu: any;
-  children?: React.ReactChildren;
+  children?: React.ReactNode;
   view: EditorView;
 }) => {
   const { state, dispatch } = view
@@ -100,8 +100,8 @@ const MenuBar = ({
 
   return (
     <div style={style} ref={container} className="smartblock-inline-menu">
-      <div 
-        className="smartblock-inline-menu-arrow" 
+      <div
+        className="smartblock-inline-menu-arrow"
         style={{left: `${pos}px`}}
       >
       </div>

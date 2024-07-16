@@ -1,4 +1,4 @@
-/// <reference types="react" />
+import * as React from 'react';
 import { Extension, ExtensionProps } from '../types';
 export default class OrderedList extends Extension {
     constructor(props?: ExtensionProps);
@@ -24,7 +24,7 @@ export default class OrderedList extends Extension {
             class: any;
         })[];
     };
-    get icon(): JSX.Element;
+    get icon(): React.JSX.Element;
     get hideBlockMenuOnFocus(): boolean;
     active(state: any): boolean;
     enable(state: any): boolean;
@@ -32,5 +32,5 @@ export default class OrderedList extends Extension {
     customMenu({ state, dispatch }: {
         state: any;
         dispatch: any;
-    }): JSX.Element;
+    }): React.JSX.Element;
 }

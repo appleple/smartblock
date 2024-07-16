@@ -1,6 +1,7 @@
 // for not jsx users
 module.exports = {
-  mode: "production",
+  mode: "development",
+  devtool: "inline-source-map",
   entry: {
     main: './demo.tsx'
   },

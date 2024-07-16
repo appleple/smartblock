@@ -1,4 +1,4 @@
-/// <reference types="react" />
+import * as React from 'react';
 import { Extension } from '../types';
 type Props = {
     i18n?: {
@@ -13,7 +13,7 @@ export default class Trash implements Extension {
     get name(): string;
     get group(): string;
     get showMenu(): boolean;
-    get icon(): JSX.Element;
+    get icon(): React.JSX.Element;
     get btnColor(): 'black';
     onClick(state: any, dispatch: any): void;
 }

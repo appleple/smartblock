@@ -1,4 +1,4 @@
-/// <reference types="react" />
+import * as React from 'react';
 import { Extension, ExtensionProps } from '../types';
 export default class Strong extends Extension {
     constructor(props?: ExtensionProps);
@@ -16,7 +16,7 @@ export default class Strong extends Extension {
             style: string;
         })[];
     };
-    get icon(): JSX.Element;
-    active(state: any): any;
+    get icon(): React.JSX.Element;
+    active(state: any): boolean;
     onClick(state: any, dispatch: any): void;
 }

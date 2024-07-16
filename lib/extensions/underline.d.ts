@@ -1,5 +1,6 @@
-/// <reference types="react" />
-import { Extension, ExtensionProps } from '../types';
+import * as React from 'react';
+import { Dispatch, Extension, ExtensionProps } from '../types';
+import { EditorState } from 'prosemirror-state';
 export default class Underline extends Extension {
     constructor(props?: ExtensionProps);
     get name(): string;
@@ -17,7 +18,7 @@ export default class Underline extends Extension {
             class: string;
         })[];
     };
-    get icon(): JSX.Element;
-    active(state: any): any;
-    onClick(state: any, dispatch: any): void;
+    get icon(): React.JSX.Element;
+    active(state: EditorState): boolean;
+    onClick(state: EditorState, dispatch: Dispatch): void;
 }

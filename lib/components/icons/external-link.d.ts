@@ -1,3 +1,3 @@
 import * as React from "react";
-declare const SvgExternalLink: (props: React.SVGProps<SVGSVGElement>) => JSX.Element;
+declare const SvgExternalLink: (props: React.SVGProps<SVGSVGElement>) => React.JSX.Element;
 export default SvgExternalLink;

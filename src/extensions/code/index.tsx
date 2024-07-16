@@ -129,6 +129,7 @@ export default class Code extends Extension {
       <>
         {langs.map(lang => (
           <Button
+            key={lang.lang}
             active={node && node.attrs.lang === lang.lang}
             type="button"
             onClick={() => {

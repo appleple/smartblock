@@ -1,5 +1,6 @@
 /// <reference types="react" />
-import { Extension, ExtensionProps } from '../types';
+import { Dispatch, Extension, ExtensionProps } from '../types';
+import { EditorState } from 'prosemirror-state';
 export default class CustomMark extends Extension {
     constructor(props?: ExtensionProps);
     get name(): string;
@@ -16,6 +17,6 @@ export default class CustomMark extends Extension {
         })[];
     };
     get icon(): string | JSX.Element;
-    active(state: any): any;
-    onClick(state: any, dispatch: any): void;
+    active(state: EditorState): boolean;
+    onClick(state: EditorState, dispatch: Dispatch): void;
 }

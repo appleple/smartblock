@@ -14,35 +14,28 @@ type EditorProps = {
   render?({
     editor,
     view,
-    scrolling,
   }: {
     editor: React.ReactNode;
     view: EditorView;
-    scrolling: boolean;
   }): React.ReactElement;
+  editorRef: React.MutableRefObject<HTMLDivElement | null>;
 };
 
 export default (props: EditorProps) => {
-  const editorRef = useRef<HTMLDivElement>(null);
   const view = useView(props);
 
-  // Object.keys(props.options).forEach((key) => console.log(key, {...props.options[key]}))
-
   useEffect(() => {
-    if (editorRef.current) {
-      editorRef.current.appendChild(view.dom);
+    if (props.editorRef.current) {
+      props.editorRef.current.appendChild(view.dom);
     }
     if (props.autoFocus) {
       view.focus();
     }
   }, []);
 
-  const scrolling = useScrolling(editorRef, 300);
-
-  const editor = <div ref={editorRef} />;
+  const editor = <div ref={props.editorRef} />;
   return props.render({
     editor,
     view,
-    scrolling,
   });
 };

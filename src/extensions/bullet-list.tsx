@@ -5,9 +5,10 @@ import Undent from '../components/icons/undent';
 import Indent from '../components/icons/indent';
 import List from '../components/icons/list';
 import { liftListItem, blockActive, getParentNodeFromState } from '../utils';
-import { Extension, ExtensionProps } from '../types';
+import { Dispatch, Extension, ExtensionProps } from '../types';
 import Button from '../components/button';
 import { BASE_PRIORITY } from '../constants';
+import { EditorState } from 'prosemirror-state';
 
 export default class BulletList extends Extension {
   constructor(props?: ExtensionProps) {
@@ -94,7 +95,7 @@ export default class BulletList extends Extension {
     wrapInList(state.schema.nodes.bullet_list)(state, dispatch);
   }
 
-  customMenu({ state, dispatch }) {
+  customMenu({ state, dispatch }: { state: EditorState; dispatch: Dispatch }) {
     return (
       <>
         <Button

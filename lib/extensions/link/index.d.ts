@@ -1,5 +1,6 @@
-/// <reference types="react" />
-import { Extension, ExtensionProps } from '../../types';
+import * as React from 'react';
+import { Dispatch, Extension, ExtensionProps } from '../../types';
+import { EditorState } from 'prosemirror-state';
 export default class Link extends Extension {
     constructor(props?: ExtensionProps);
     get name(): string;
@@ -30,8 +31,8 @@ export default class Link extends Extension {
             class: string;
         })[];
     };
-    get icon(): JSX.Element;
+    get icon(): React.JSX.Element;
     get plugins(): import("prosemirror-state").Plugin<any>[];
-    active(state: any): any;
-    onClick(state: any, dispatch: any): boolean;
+    active(state: EditorState): boolean;
+    onClick(state: EditorState, dispatch: Dispatch): void;
 }

@@ -1,10 +1,10 @@
-/// <reference types="react" />
+import * as React from 'react';
 import { Extension } from '../types';
 export default class MoveUp implements Extension {
     get name(): string;
     get group(): string;
     get showMenu(): boolean;
-    get icon(): JSX.Element;
+    get icon(): React.JSX.Element;
     enable(state: any): boolean;
     onClick(_state: any, _dispatch: any, view: any): void;
 }

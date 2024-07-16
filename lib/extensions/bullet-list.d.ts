@@ -1,5 +1,6 @@
-/// <reference types="react" />
-import { Extension, ExtensionProps } from '../types';
+import * as React from 'react';
+import { Dispatch, Extension, ExtensionProps } from '../types';
+import { EditorState } from 'prosemirror-state';
 export default class BulletList extends Extension {
     constructor(props?: ExtensionProps);
     get name(): string;
@@ -25,13 +26,13 @@ export default class BulletList extends Extension {
             class: any;
         })[];
     };
-    get icon(): JSX.Element;
+    get icon(): React.JSX.Element;
     get hideBlockMenuOnFocus(): boolean;
     active(state: any): boolean;
     enable(state: any): boolean;
     onClick(state: any, dispatch: any): boolean;
     customMenu({ state, dispatch }: {
-        state: any;
-        dispatch: any;
-    }): JSX.Element;
+        state: EditorState;
+        dispatch: Dispatch;
+    }): React.JSX.Element;
 }

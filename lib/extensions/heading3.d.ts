@@ -1,4 +1,4 @@
-/// <reference types="react" />
+import * as React from 'react';
 import { Extension, ExtensionProps } from '../types';
 export default class Heading3 extends Extension {
     constructor(props?: ExtensionProps);
@@ -34,12 +34,12 @@ export default class Heading3 extends Extension {
             style?: undefined;
         })[];
     };
-    get icon(): JSX.Element;
+    get icon(): React.JSX.Element;
     active(state: any): boolean;
     enable(state: any): boolean;
     customMenu({ state, dispatch }: {
         state: any;
         dispatch: any;
-    }): JSX.Element;
+    }): React.JSX.Element;
     onClick(state: any, dispatch: any): void;
 }

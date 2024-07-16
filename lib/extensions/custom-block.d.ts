@@ -1,4 +1,4 @@
-/// <reference types="react" />
+import * as React from 'react';
 import { Extension, ExtensionProps } from '../types';
 export default class CustomBlock extends Extension {
     constructor(props?: ExtensionProps);
@@ -36,6 +36,6 @@ export default class CustomBlock extends Extension {
     customMenu({ state, dispatch }: {
         state: any;
         dispatch: any;
-    }): JSX.Element;
+    }): React.JSX.Element;
     onClick(state: any, dispatch: any): void;
 }

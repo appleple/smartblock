@@ -1,4 +1,4 @@
-/// <reference types="react" />
+import * as React from 'react';
 import { Extension, ExtensionProps } from '../types';
 export default class Paragraph extends Extension {
     constructor(props?: ExtensionProps);
@@ -35,7 +35,7 @@ export default class Paragraph extends Extension {
             style?: undefined;
         })[];
     };
-    get icon(): JSX.Element;
+    get icon(): React.JSX.Element;
     active(state: any): boolean;
     enable(state: any): boolean;
     customMenu({ state, dispatch }: {

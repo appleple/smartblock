@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { EditorView } from 'prosemirror-view';
-import { Plugin } from 'prosemirror-state';
-import { render, unmountComponentAtNode } from 'react-dom';
+import { Plugin, PluginView, EditorState } from 'prosemirror-state';
+// import { render, unmountComponentAtNode } from 'react-dom';
 import TooltipReact from './tooltip-react';
-import { getScrollTop } from '../../utils';
+import { render, unmount } from '../../utils/react';
+import { getMarkInSelection, getScrollTop } from '../../utils';
 
 const { useRef } = React
 const ARROWOFFSET = 50
@@ -14,17 +15,7 @@ const calculateStyle = (
 ) => {
   const { selection } = view.state;
   const app = view.dom;
-  const { $anchor } = view.state.selection;
-  const { nodeAfter } = $anchor;
-  let link = null;
-
-  if (nodeAfter) {
-    link = nodeAfter.marks.find(mark => {
-      if (mark.type.name === 'link') {
-        return true;
-      }
-    })
-  }
+  const link = getMarkInSelection('link', view.state);
 
   if (!selection || selection.empty || !app || !link) {
     return {
@@ -56,18 +47,7 @@ const calculatePos = (
 ) => {
   const { selection } = view.state;
   const app = view.dom;
-  const { $anchor } = view.state.selection;
-  const { nodeAfter } = $anchor;
-  let link = null;
-
-  if (nodeAfter) {
-    link = nodeAfter.marks.find(mark => {
-      if (mark.type.name === 'link') {
-        return true;
-      }
-      return false;
-    })
-  }
+  const link = getMarkInSelection('link', view.state);
 
   if (!selection || selection.empty || !app || !link) {
     return 20;
@@ -91,20 +71,11 @@ const TooltipComponent = (props: { view: EditorView }) => {
   const { selection } = view.state;
   const { $anchor } = selection;
   const { nodeBefore, nodeAfter, pos } = $anchor;
-  let link = null;
+  const link = getMarkInSelection('link', view.state)
   let editing = false;
-  if (nodeAfter) {
-    link = nodeAfter.marks.find(mark => {
-      if (mark.type.name === 'link') {
-        return true;
-      }
-    })
-  }
   let url = '';
   if (link) {
     url = link.attrs.href;
-  }
-  if (link) {
     editing = link.attrs.editing;
   }
   let beforePos = selection.from;
@@ -147,25 +118,31 @@ const TooltipComponent = (props: { view: EditorView }) => {
   )
 }
 
-class Tooltip {
+// const tooltipView: PluginView = {
+//   update(view: EditorView, prevState: EditorState) {
+//     render(<TooltipComponent view={view} />, this.tooltip);
+//   },
+//   destroy() {
+//     unmountComponentAtNode(this.tooltip);
+//     document.body.removeChild(this.tooltip);
+//   }
+// }
+
+class Tooltip implements PluginView {
   tooltip: HTMLDivElement
 
   constructor(view: EditorView) {
     this.tooltip = document.createElement('div');
     document.body.appendChild(this.tooltip);
-    this.update(view);
   }
 
-  render(view: EditorView) {
+  // @ts-ignore
+  update(view: EditorView, prevState: EditorState) {
     render(<TooltipComponent view={view} />, this.tooltip);
   }
 
-  update(view: EditorView) {
-    this.render(view);
-  }
-
   destroy() {
-    unmountComponentAtNode(this.tooltip);
+    unmount(this.tooltip);
     document.body.removeChild(this.tooltip);
   }
 }
@@ -173,8 +150,7 @@ class Tooltip {
 export default () => {
   return new Plugin({
     // @ts-ignore
-    view(view) {
-      // @ts-ignore
+    view(view: EditorView) {
       return new Tooltip(view);
     }
   });

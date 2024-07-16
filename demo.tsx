@@ -43,11 +43,12 @@ SmartBlock('#app', {
 });
 
 // JSX version
-// import * as React from 'react';
-// import { render } from 'react-dom';
+// import React from 'react';
+// import { createRoot } from 'react-dom/client';
 // import SmartBlock from './src/components/smartblock';
 
-// render(<>
+// const root = createRoot(document.getElementById('app'));
+// root.render(<>
 //   <SmartBlock
 // 	extensions={extensions}
 // 	html='
@@ -57,6 +58,5 @@ SmartBlock('#app', {
 // 	showTitle={true}
 // 	onChange={({html}) => console.log(html)}
 //   />
-// </>,
-// document.getElementById('app')
+// </>
 // );

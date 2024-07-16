@@ -151,7 +151,7 @@ export default (props: PositionProps) => {
       <div className="smartblock-menu-top">
         {menu.map((item, key) => {
           if (item.customButton) {
-            return item.customButton({ state, dispatch });
+            return React.cloneElement(item.customButton({ state, dispatch }), { key });
           }
           return (
             <Button
