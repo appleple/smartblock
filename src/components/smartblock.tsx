@@ -6,7 +6,7 @@ import { chainCommands } from 'prosemirror-commands';
 import * as scrollTo from 'scroll-to';
 import { EditorState } from 'prosemirror-state';
 import classNames from 'classnames';
-import * as uuid from 'uuid/v4';
+import { v4 as uuid } from 'uuid';
 
 import Editor from './editor';
 import InlineMenu from './inline-menu';
@@ -43,7 +43,7 @@ const getBlockSchemas = (extensions: Extension[]) => {
     }
     return false;
   });
-  const nodes = nodesSchema.reduce((node, curr, index) => {
+  const nodes = nodesSchema.reduce((node, curr) => {
     const newNode = { [curr.name]: { ...curr.schema } };
     return { ...node, ...newNode };
   }, {});
@@ -72,7 +72,7 @@ const getMarks = (extensions: Extension[]) => {
 
 const getMarkSchemas = (extensions: Extension[]) => {
   const marksSchema = getMarks(extensions);
-  const marks = marksSchema.reduce((mark, curr, index) => {
+  const marks = marksSchema.reduce((mark, curr) => {
     const newMark = { [curr.name]: { ...curr.schema } };
     return { ...mark, ...newMark };
   }, {});

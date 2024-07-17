@@ -13,7 +13,7 @@ import {
   tableNodes
 } from 'prosemirror-tables'
 import { setBlockType } from 'prosemirror-commands'
-import * as uuid from 'uuid/v4'
+import { v4 as uuid } from "uuid";
 import { toggleCell } from './util';
 import TableIcon from '../../components/icons/table'
 import LeftInsertIcon from '../../components/icons/left-insert'

@@ -74,7 +74,7 @@ export const useScrolling = (
 ) => {
   const [scrolling, setScrolling] = useState(false);
   useEffect(() => {
-    let debounceTimer: number = null;
+    let debounceTimer: ReturnType<typeof setTimeout>;
     let count = 0;
     if (!element.current) {
       return;

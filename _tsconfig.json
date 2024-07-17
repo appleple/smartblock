@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "./lib",
+    "sourceMap": true,
+    "declaration": true,
+    "strict": false,
+    "jsx": "react",
+    "skipLibCheck": true,
+    "noEmitOnError": false,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "types": ["react", "jest"]
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "**/__tests__/*", "lib"]
+}

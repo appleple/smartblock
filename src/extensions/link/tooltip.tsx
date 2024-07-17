@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { EditorView } from 'prosemirror-view';
 import { Plugin, PluginView, EditorState } from 'prosemirror-state';
-// import { render, unmountComponentAtNode } from 'react-dom';
+import { render, unmountComponentAtNode } from 'react-dom';
 import TooltipReact from './tooltip-react';
-import { render, unmount } from '../../utils/react';
 import { getMarkInSelection, getScrollTop } from '../../utils';
+import { createPortal } from 'react-dom';
 
 const { useRef } = React
 const ARROWOFFSET = 50
@@ -142,7 +142,7 @@ class Tooltip implements PluginView {
   }
 
   destroy() {
-    unmount(this.tooltip);
+    unmountComponentAtNode(this.tooltip);
     document.body.removeChild(this.tooltip);
   }
 }

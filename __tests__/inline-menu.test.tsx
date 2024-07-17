@@ -1,10 +1,16 @@
 import * as React from 'react';
-import * as TestRenderer from 'react-test-renderer'
+import { render, act } from '@testing-library/react';
 import Paragraph from '../src/extensions/paragraph';
 import Strong from '../src/extensions/strong';
 import InlineMenu from '../src/components/inline-menu';
 import { getEditorViewFromExtensions } from './util';
 import { TextSelection } from 'prosemirror-state';
+
+jest.mock('uuid', () => {
+  return {
+    v4: jest.fn(() => `test-key-${Math.random().toString(36).substr(2, 9)}`)
+  };
+});
 
 describe('inline-menu', () => {
   it('should not have any components when not focused', () => {
@@ -18,11 +24,11 @@ describe('inline-menu', () => {
       right: 0,
       bottom: 0
     });
-    const editMenu = TestRenderer.create(<InlineMenu view={view} menu={[strong]} blockMenu={[paragraph]} />);
-    expect(editMenu.root.children.length).toBe(0)
+    const { container } = render(<InlineMenu view={view} menu={[strong]} blockMenu={[paragraph]} />);
+    expect(container.children).toHaveLength(0);
   });
 
-  it('should not have have menu when no menu', () => {
+  it('should not have menu when no menu', () => {
     const paragraph = new Paragraph();
     const strong = new Strong();
     const view = getEditorViewFromExtensions([paragraph, strong]);
@@ -33,8 +39,8 @@ describe('inline-menu', () => {
       right: 0,
       bottom: 0
     });
-    const editMenu = TestRenderer.create(<InlineMenu view={view} menu={[]} blockMenu={[paragraph]} />);
-    expect(editMenu.root.children.length).toBe(0)
+    const { container } = render(<InlineMenu view={view} menu={[]} blockMenu={[paragraph]} />);
+    expect(container.children).toHaveLength(0);
   });
 
   it('should have components when focused', () => {
@@ -48,14 +54,14 @@ describe('inline-menu', () => {
       right: 0,
       bottom: 0
     });
-    const editMenu = TestRenderer.create(<InlineMenu view={view} menu={[strong]} blockMenu={[paragraph]} />);
+    const { container, rerender } = render(<InlineMenu view={view} menu={[strong]} blockMenu={[paragraph]} />);
     const { tr } = view.state;
     tr.setSelection(TextSelection.create(tr.doc, 1, 4)); // select 'test'
     view.dispatch(tr);
-    TestRenderer.act(() => {
-      editMenu.update(<InlineMenu view={view} menu={[strong]} blockMenu={[paragraph]} />);
+    act(() => {
+      rerender(<InlineMenu view={view} menu={[strong]} blockMenu={[paragraph]} />);
     });
-    expect(editMenu.root.children.length).not.toBe(0);
+    expect(container.children).not.toHaveLength(0);
   });
 
   it('should have proper position style', () => {
@@ -69,16 +75,15 @@ describe('inline-menu', () => {
       right: 0,
       bottom: 0
     });
-    const editMenu = TestRenderer.create(<InlineMenu view={view} menu={[strong]} blockMenu={[paragraph]} />);
+    const { container, rerender } = render(<InlineMenu view={view} menu={[strong]} blockMenu={[paragraph]} />);
     const { tr } = view.state;
     tr.setSelection(TextSelection.create(tr.doc, 1, 4)); // select 'test'
     view.dispatch(tr);
-    TestRenderer.act(() => {
-      editMenu.update(<InlineMenu view={view} menu={[strong]} blockMenu={[paragraph]} />);
+    act(() => {
+      rerender(<InlineMenu view={view} menu={[strong]} blockMenu={[paragraph]} />);
     });
-    const item = editMenu.root.findByProps({
-      className: 'smartblock-inline-menu'
-    });
-    expect(item.props.style.top).not.toBe(0);
+    const item = container.querySelector('.smartblock-inline-menu') as HTMLDivElement;
+    expect(item).toBeTruthy();
+    expect(item.style.top).not.toBe('0px');
   });
-})
+});

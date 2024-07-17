@@ -1,27 +1,25 @@
+const { merge } = require('webpack-merge');
+const common = require('./webpack.common.js');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+
 // for not jsx users
-module.exports = {
+module.exports = merge(common, {
   mode: "development",
   devtool: "inline-source-map",
   entry: {
-    main: './demo.tsx'
+    main: './examples/src/index.tsx',
   },
-  resolve: {
-    extensions: ['.ts', '.tsx', '.js'],
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'css'),
+    },
+    host: '0.0.0.0',
   },
-  module: {
-    rules: [{
-      test: /\.tsx?$/,
-      exclude: /node_modules/,
-      loader: 'ts-loader',
-      options: {
-        transpileOnly: true
-      }
-    },{
-      test: /\.css$/,
-      use: ['style-loader', 'css-loader'],
-    },{
-      test: /\.(woff|woff2|eot|ttf|svg)$/,
-      loader: 'file-loader'
-    }]
-  },
-};
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './examples/index.html',
+      filename: 'index.html',
+    }),
+  ]
+});

@@ -4,10 +4,6 @@ import { Extension } from '../types'
 import TrashIcon from '../components/icons/trash'
 import isMobile from 'is-mobile';
 
-type I18n = {
-  remove_block: string;
-}
-
 type Props = {
   i18n?: {
     remove_block: string;

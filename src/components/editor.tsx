@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { EditorState } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
-import { useView, useScrolling } from '../utils/hooks';
+import { useView } from '../utils/hooks';
 
-const { useRef, useEffect } = React;
+const { useEffect } = React;
 
 type EditorProps = {
   onChange(state: EditorState, dispatch: typeof EditorView.prototype.dispatch): any;

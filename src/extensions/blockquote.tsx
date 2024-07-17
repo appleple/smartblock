@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { setBlockType } from 'prosemirror-commands';
-import * as uuid from 'uuid/v4';
+import { v4 as uuid } from 'uuid';
 import BlockQuoteIcon from '../components/icons/blockquote';
 import { Extension, ExtensionProps } from '../types';
 import { blockActive } from '../utils';

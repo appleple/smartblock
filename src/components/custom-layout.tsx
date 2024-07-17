@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { EditorView } from 'prosemirror-view';
-import * as imagesLoaded from 'imagesloaded';
+import imagesLoaded from 'imagesloaded';
 import {
   getParentNodeFromState,
   findNodePosition,
@@ -66,7 +66,7 @@ export default (props: CustomLayoutProps) => {
   const parentPos = findNodePosition(view.state.doc, parentNode);
   const dom = view.nodeDOM(parentPos) as HTMLElement;
   const style = {
-    position: 'absolute' as 'absolute',
+    position: 'absolute' as const,
     zIndex: 10,
     top: pos.top,
     left: 0,

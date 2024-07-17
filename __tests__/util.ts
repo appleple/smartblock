@@ -1,8 +1,7 @@
 import { Extension } from "../src";
-import { Schema, Node } from "prosemirror-model";
+import { Schema, Node , DOMParser } from "prosemirror-model";
 import { EditorView } from "prosemirror-view";
 import { EditorState } from 'prosemirror-state';
-import { DOMParser } from 'prosemirror-model';
 
 const getBlockSchemas = (extensions: Extension[]) => {
   const nodesSchema = extensions.filter(extension => {

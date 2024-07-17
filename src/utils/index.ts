@@ -115,8 +115,8 @@ export const getMarkInSelection = (markName: string, state: EditorState) => {
   if (selection.empty) {
     return null;
   }
-  let from = Math.min(selection.from, selection.to);
-  let to = Math.max(selection.from, selection.to);
+  const from = Math.min(selection.from, selection.to);
+  const to = Math.max(selection.from, selection.to);
   let rangeHasMark = false;
 
   state.doc.nodesBetween(from, to, node => {
