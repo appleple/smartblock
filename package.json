@@ -14,6 +14,66 @@
       "require": "./lib/index.js",
       "types": "./lib/index.d.ts"
     },
+    "./pm/commands": {
+      "import": "./lib/pm/commands/index.js",
+      "require": "./lib/pm/commands/index.js",
+      "types": "./lib/pm/commands/index.d.ts"
+    },
+    "./pm/gapcursor": {
+      "import": "./lib/pm/gapcursor/index.js",
+      "require": "./lib/pm/gapcursor/index.js",
+      "types": "./lib/pm/gapcursor/index.d.ts"
+    },
+    "./pm/history": {
+      "import": "./lib/pm/history/index.js",
+      "require": "./lib/pm/history/index.js",
+      "types": "./lib/pm/history/index.d.ts"
+    },
+    "./pm/inputrules": {
+      "import": "./lib/pm/inputrules/index.js",
+      "require": "./lib/pm/inputrules/index.js",
+      "types": "./lib/pm/inputrules/index.d.ts"
+    },
+    "./pm/keymap": {
+      "import": "./lib/pm/keymap/index.js",
+      "require": "./lib/pm/keymap/index.js",
+      "types": "./lib/pm/keymap/index.d.ts"
+    },
+    "./pm/model": {
+      "import": "./lib/pm/model/index.js",
+      "require": "./lib/pm/model/index.js",
+      "types": "./lib/pm/model/index.d.ts"
+    },
+    "./pm/schema-list": {
+      "import": "./lib/pm/schema-list/index.js",
+      "require": "./lib/pm/schema-list/index.js",
+      "types": "./lib/pm/schema-list/index.d.ts"
+    },
+    "./pm/state": {
+      "import": "./lib/pm/state/index.js",
+      "require": "./lib/pm/state/index.js",
+      "types": "./lib/pm/state/index.d.ts"
+    },
+    "./pm/tables": {
+      "import": "./lib/pm/tables/index.js",
+      "require": "./lib/pm/tables/index.js",
+      "types": "./lib/pm/tables/index.d.ts"
+    },
+    "./pm/transform": {
+      "import": "./lib/pm/transform/index.js",
+      "require": "./lib/pm/transform/index.js",
+      "types": "./lib/pm/transform/index.d.ts"
+    },
+    "./pm/utils": {
+      "import": "./lib/pm/utils/index.js",
+      "require": "./lib/pm/utils/index.js",
+      "types": "./lib/pm/utils/index.d.ts"
+    },
+    "./pm/view": {
+      "import": "./lib/pm/view/index.js",
+      "require": "./lib/pm/view/index.js",
+      "types": "./lib/pm/view/index.d.ts"
+    },
     "./css/smartblock.css": "./css/smartblock.css"
   },
   "types": "lib/index.d.ts",
