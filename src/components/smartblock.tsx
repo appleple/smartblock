@@ -317,9 +317,9 @@ export default function SmartBlock(props: AppProps) {
     }
     const editorOptions = { schema, plugins: getPlugins(extensions, schema), doc };
     setOptions(editorOptions);
-    // schema, realHtmlを依存配列に追加すると無限ループになる
+    // 依存配列に要素を追加すると無限ループになるため、eslint-disable-next-lineで無効化
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [extensions, props.onInit, props.getEditorRef]);
+  }, []);
 
   const [showMenus, setShowMenus] = useState(true);
   const containerId = React.useMemo(() => {

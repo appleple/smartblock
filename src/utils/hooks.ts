@@ -32,7 +32,7 @@ export const useView = (props: EditorProps): EditorView => {
     return view;
     // forceUpdate を依存配列に追加すると無限ループになる
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props]);
+  }, []);
   return instance;
 };
 
@@ -82,6 +82,6 @@ export const useScrolling = (element: React.MutableRefObject<HTMLDivElement>, de
     return () => {
       clearInterval(interval);
     };
-  }, [delay, element, scrolling]);
+  }, []);
   return scrolling;
 };

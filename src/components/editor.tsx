@@ -31,7 +31,9 @@ export default function Editor (props: EditorProps) {
     if (props.autoFocus) {
       view.focus();
     }
-  }, [props.autoFocus, props.editorRef, view]);
+    // 依存配列に要素を追加すると無限ループになるため、eslint-disable-next-lineで無効化
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const editor = <div ref={props.editorRef} />;
   return props.render({
