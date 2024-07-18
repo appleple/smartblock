@@ -19,14 +19,9 @@ import { getScrollTop, getOffset, getViewport, getHtmlFromNode, getParentNodeFro
 import defaultExtensions from '../extensions/base';
 import { Extension, AppProps, Output } from '../types';
 import { useScrolling } from '../utils/hooks';
+import LinkMenu from './link-menu';
 
 const { useState, useEffect, useRef } = React;
-
-interface ProseRender {
-  editor: React.ReactNode;
-  view: EditorView;
-  scrolling: boolean;
-}
 
 type EditorOptions = {
   schema: Schema<any, any>;
@@ -263,7 +258,7 @@ const shouldRenderInlineMenu = (view: EditorView, blocks: Extension[]) => {
   return true;
 };
 
-export default (props: AppProps) => {
+export default function SmartBlock(props: AppProps) {
   const defaultProps = {
     extensions: defaultExtensions,
     offsetTop: 0,
@@ -322,7 +317,9 @@ export default (props: AppProps) => {
     }
     const editorOptions = { schema, plugins: getPlugins(extensions, schema), doc };
     setOptions(editorOptions);
-  }, []);
+    // schema, realHtmlを依存配列に追加すると無限ループになる
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [extensions, props.onInit, props.getEditorRef]);
 
   const [showMenus, setShowMenus] = useState(true);
   const containerId = React.useMemo(() => {
@@ -387,11 +384,15 @@ export default (props: AppProps) => {
                       }, 700);
                     }
                   }}
-                  render={({ editor, view }: ProseRender) => {
+                  render={({
+                    editor,
+                    view,
+                  }: Parameters<React.ComponentPropsWithoutRef<typeof Editor>['render']>[0]) => {
                     return (
                       <>
                         {showMenus && (
                           <>
+                            <LinkMenu view={view} />
                             <Menu view={view} menu={getMenu(blocks)} />
                             <EditMenu view={view} menu={getMenu(edits)} />
                             {shouldRenderInlineMenu(view, blocks) && (
@@ -413,4 +414,4 @@ export default (props: AppProps) => {
       </div>
     </div>
   );
-};
+}

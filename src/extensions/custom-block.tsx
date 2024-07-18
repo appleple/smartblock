@@ -4,10 +4,12 @@ import { v4 as uuid } from 'uuid';
 import AlignLeftIcon from '../components/icons/align-left';
 import AlignCenterIcon from '../components/icons/align-center';
 import AlignRightIcon from '../components/icons/align-right';
-import { Extension, ExtensionProps } from '../types';
+import { Dispatch, Extension, ExtensionProps } from '../types';
 import { blockActive, getParentNodeFromState, getUniqId } from '../utils';
 import Button from '../components/button';
 import { CUSTOM_BLOCK_PRIORITY } from '../constants';
+import { Node } from 'prosemirror-model';
+import { EditorState } from 'prosemirror-state';
 
 export default class CustomBlock extends Extension {
   constructor(props?: ExtensionProps) {
@@ -55,14 +57,14 @@ export default class CustomBlock extends Extension {
         {
           tag,
           priority: CUSTOM_BLOCK_PRIORITY,
-          getAttrs(dom) {
+          getAttrs(dom: HTMLElement) {
             return {
               id: dom.getAttribute('id') || uuid(),
             };
           },
         },
       ],
-      toDOM: (node) => {
+      toDOM: (node: Node) => {
         return [
           tagName,
           {
@@ -81,15 +83,15 @@ export default class CustomBlock extends Extension {
     return this.customIcon;
   }
 
-  active(state) {
+  active(state: EditorState) {
     return blockActive(state.schema.nodes[this.name])(state);
   }
 
-  enable(state) {
+  enable(state: EditorState) {
     return setBlockType(state.schema.nodes[this.name])(state);
   }
 
-  customMenu({ state, dispatch }) {
+  customMenu({ state, dispatch }: { state: EditorState; dispatch: Dispatch }) {
     const node = getParentNodeFromState(state);
     return (
       <>
@@ -130,7 +132,7 @@ export default class CustomBlock extends Extension {
     );
   }
 
-  onClick(state, dispatch) {
+  onClick(state: EditorState, dispatch: Dispatch) {
     setBlockType(state.schema.nodes[this.name])(state, dispatch);
   }
 }

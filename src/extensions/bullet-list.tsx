@@ -9,6 +9,7 @@ import { Dispatch, Extension, ExtensionProps } from '../types';
 import Button from '../components/button';
 import { BASE_PRIORITY } from '../constants';
 import { EditorState } from 'prosemirror-state';
+import { Node } from 'prosemirror-model';
 
 export default class BulletList extends Extension {
   constructor(props?: ExtensionProps) {
@@ -45,14 +46,14 @@ export default class BulletList extends Extension {
         {
           tag: 'ul',
           priority: BASE_PRIORITY,
-          getAttrs(dom) {
+          getAttrs(dom: HTMLElement) {
             return {
               id: dom.getAttribute('id') || uuid(),
             };
           },
         },
       ],
-      toDOM(node) {
+      toDOM(node: Node) {
         return [
           'ul',
           {

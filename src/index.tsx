@@ -1,3 +1,5 @@
+/* eslint react-refresh/only-export-components: 0 */
+
 import { Plugin } from 'prosemirror-state'
 import SmartBlock from './components/smartblock'
 import Button from './components/button'

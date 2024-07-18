@@ -1,12 +1,12 @@
-// import SmartBlock from './src/adapter';
+// import SmartBlock from '../../src/adapter';
 import extensions from '../../src/extensions';
 import Code from '../../src/extensions/code';
 import Image from '../../src/extensions/image';
 import CustomBlock from '../../src/extensions/custom-block';
 import markdown from './sample';
 import * as showdown from 'showdown';
-import React from 'react';
-import { render } from 'react-dom';
+import React, { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 import SmartBlock from '../../src/components/smartblock';
 
 extensions.push(new Code());
@@ -50,9 +50,9 @@ extensions.push(
 //   }
 // });
 
-
-render(
-  <>
+const root = createRoot(document.getElementById('app')!);
+root.render(
+  <StrictMode>
     <SmartBlock
       extensions={extensions}
       showdown={showdown}
@@ -60,6 +60,5 @@ render(
       showTitle={true}
       onChange={({ html }) => console.log(html)}
     />
-  </>,
-  document.getElementById('app')!
+  </StrictMode>
 );

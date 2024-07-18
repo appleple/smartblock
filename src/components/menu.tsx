@@ -115,7 +115,7 @@ const shouldRenderMenu = (props: PositionProps) => {
   return true;
 }
 
-export default (props: PositionProps) => {
+export default function Menu (props: PositionProps) {
   const { menu, view } = props;
   const { state, dispatch } = view;
   const CustomMenu = getActiveMenu(props);

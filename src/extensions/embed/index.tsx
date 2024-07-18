@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { render, unmountComponentAtNode } from 'react-dom'
 import { setBlockType } from 'prosemirror-commands'
-import { Fragment } from 'prosemirror-model'
 import { EditorState } from 'prosemirror-state'
-import { Extension, ExtensionProps } from '../../types'
+import { Node } from 'prosemirror-model'
+import { Dispatch, Extension, ExtensionProps } from '../../types'
 import { blockActive } from '../../utils'
 import LinkIcon from '../../components/icons/link'
 import Popup from './popup'
@@ -51,7 +51,7 @@ export default class Embed extends Extension {
       parseDOM: [
         {
           tag: 'iframe',
-          getAttrs(dom) {
+          getAttrs(dom: HTMLElement) {
             return {
               src: dom.getAttribute('src')
             }
@@ -59,13 +59,13 @@ export default class Embed extends Extension {
         },
         {
           tag: 'div.embed-wrap',
-          getAttrs(dom) {
+          getAttrs(dom: HTMLElement) {
             const a = dom.querySelector('a')
             return { src: a.getAttribute('href') }
           }
         }
       ],
-      toDOM: node => {
+      toDOM: (node: Node) => {
         if (node.attrs.src.indexOf('youtube') !== -1) {
           const { src } = node.attrs
           let youtubeId = ''
@@ -131,17 +131,18 @@ export default class Embed extends Extension {
     return <LinkIcon style={{ width: '24px', height: '24px' }} />
   }
 
-  active(state) {
+  active(state: EditorState) {
     return blockActive(state.schema.nodes.embed)(state)
   }
 
-  enable(state) {
+  enable(state: EditorState) {
     return setBlockType(state.schema.nodes.embed)(state)
   }
 
-  onClick(state: EditorState, dispatch) {
+  onClick(state: EditorState, dispatch: Dispatch) {
     const div = document.createElement('div')
     document.body.appendChild(div)
+    // 互換性を保つために、react-dom の render 関数及び unmountComponentAtNode を使用
     render(
       <Popup
         onClose={() => {

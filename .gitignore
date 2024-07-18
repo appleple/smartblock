@@ -1,6 +1,7 @@
 node_modules/*
 .DS_Store
 dist
+css
 src/extensions/test.tsx
 gatsby/.cache/*
 gatsby/node_modules/*

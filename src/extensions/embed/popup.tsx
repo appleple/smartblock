@@ -5,37 +5,53 @@ import CheckIcon from '../../components/icons/check'
 const { useState, useEffect, useRef } = React
 
 function usePortal() {
-  const rootElemRef = React.useRef(document.createElement('div'))
+  const rootRef = React.useRef<HTMLDivElement | null>(document.createElement('div'))
 
   useEffect(function setupElement() {
+    // let root: HTMLDivElement | null = rootRef.current
     // Look for existing target dom element to append to
-    const parentElem = document.createElement('div')
-    document.body.appendChild(parentElem)
+    const parent = document.createElement('div')
+    document.body.appendChild(parent)
     // Add the detached element to the parent
-    parentElem.appendChild(rootElemRef.current)
+    parent.appendChild(rootRef.current)
     // This function is run on unmount
     return function removeElement() {
-      parentElem.removeChild(rootElemRef.current)
+      document.body.removeChild(parent)
     }
   }, [])
 
-  return rootElemRef.current
+  return rootRef.current
 }
 
-const Modal = props => {
-  const target = usePortal()
-  return createPortal(props.children, target)
+interface ModalProps {
+  children: React.ReactNode
+  container?: HTMLElement
 }
 
-export default props => {
-  const [url, setUrl] = useState(props.url);
-  const input = useRef<HTMLInputElement>();
+const Modal = (props: ModalProps) => {
+  if (!props.container) {
+    return null
+  }
+  return createPortal(props.children, props.container)
+}
+
+interface PopupProps {
+  url?: string
+  onDone?: (url: string) => void
+  onClose?: () => void
+}
+
+export default function Popup(props: PopupProps) {
+  const [url, setUrl] = useState(props.url || '');
+  const input = useRef<HTMLInputElement>(null);
+  const container = usePortal()
 
   useEffect(() => {
-    input.current.focus()
-  })
+    input.current?.focus()
+  }, [])
+
   return (
-    <Modal>
+    <Modal container={container}>
       <div
         className="smartblock-popup"
         id="smartblock-popup"

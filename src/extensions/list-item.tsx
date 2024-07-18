@@ -1,5 +1,5 @@
 import { splitListItem, sinkListItem } from 'prosemirror-schema-list';
-import { Schema } from 'prosemirror-model';
+import { Schema, Node } from 'prosemirror-model';
 import { chainCommands } from 'prosemirror-commands';
 import { Extension, ExtensionProps } from '../types';
 import { liftListItem } from '../utils';
@@ -35,14 +35,14 @@ export default class ListItem extends Extension {
         {
           tag: 'li',
           priority: BASE_PRIORITY,
-          getAttrs(dom) {
+          getAttrs(dom: HTMLElement) {
             return {
               id: dom.getAttribute('id'),
             };
           },
         },
       ],
-      toDOM(node) {
+      toDOM(node: Node) {
         return ['li', 0];
       },
       defining: true,

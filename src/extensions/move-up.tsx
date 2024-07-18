@@ -1,12 +1,14 @@
 import * as React from 'react';
 import { setTextSelection } from 'prosemirror-utils';
 import MoveUpIcon from '../components/icons/go-up';
-import { Extension } from '../types';
+import { Dispatch, Extension } from '../types';
 import {
   findNodePosition,
   getParentNodeIndexFromState,
   getRootNodeWithPosByIndex
 } from '../utils';
+import { EditorState } from 'prosemirror-state';
+import { EditorView } from 'prosemirror-view';
 
 export default class MoveUp implements Extension {
   get name() {
@@ -25,11 +27,11 @@ export default class MoveUp implements Extension {
     return <MoveUpIcon style={{ width: '24px', height: '24px' }} />
   }
 
-  enable(state) {
+  enable(state: EditorState) {
     return getParentNodeIndexFromState(state) >= 1;
   }
 
-  onClick(_state, _dispatch, view) {
+  onClick(_state: EditorState, _dispatch: Dispatch, view: EditorView) {
     const { state } = view;
     const rowNumber = getParentNodeIndexFromState(state);
     const firstNode = getRootNodeWithPosByIndex(state, rowNumber - 1);

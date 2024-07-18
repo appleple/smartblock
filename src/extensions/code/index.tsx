@@ -2,10 +2,12 @@ import * as React from 'react';
 import { setBlockType } from 'prosemirror-commands';
 import { v4 as uuid } from 'uuid';
 import { getParentNodeFromState, blockActive } from '../../utils';
-import { Extension, ExtensionProps } from '../../types';
+import { Dispatch, Extension, ExtensionProps } from '../../types';
 import Plugin from './plugin';
 import Button from '../../components/button';
 import CodeIcon from '../../components/icons/code';
+import { Node } from 'prosemirror-model';
+import { EditorState } from 'prosemirror-state';
 
 type Lang = {
   label: React.ReactNode;
@@ -72,7 +74,7 @@ export default class Code extends Extension {
       parseDOM: [
         {
           tag: 'code',
-          getAttrs(dom) {
+          getAttrs(dom: HTMLElement) {
             dom.innerHTML = dom.innerHTML.replace(/\n/g, '<br/>');
             return {
               id: dom.getAttribute('id') || uuid(),
@@ -81,7 +83,7 @@ export default class Code extends Extension {
           },
         },
       ],
-      toDOM: (node) => {
+      toDOM: (node: Node) => {
         return [
           'pre',
           {
@@ -113,19 +115,19 @@ export default class Code extends Extension {
     return <CodeIcon style={{ width: '24px', height: '24px' }} />;
   }
 
-  active(state) {
+  active(state: EditorState) {
     return blockActive(state.schema.nodes.code)(state);
   }
 
-  enable(state) {
+  enable(state: EditorState) {
     return setBlockType(state.schema.nodes.code)(state);
   }
 
-  onClick(state, dispatch) {
+  onClick(state: EditorState, dispatch: Dispatch) {
     setBlockType(state.schema.nodes.code)(state, dispatch);
   }
 
-  customMenu({ state, dispatch }) {
+  customMenu({ state, dispatch }: { state: EditorState; dispatch: Dispatch }) {
     const node = getParentNodeFromState(state);
     const { langs } = this;
     return (

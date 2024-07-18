@@ -16,15 +16,15 @@ You can add it like below
 import * as React from 'react';
 import { render } from 'react-dom';
 import 'smartblock/css/smartblock.css';
-import { 
-  SmartBlock, 
+import {
+  SmartBlock,
 } from 'smartblock';
 
 render(<>
-  <SmartBlock 
+  <SmartBlock
     extensions={extensions}
     html={'<h2>Hello World</h2><p>hello</p>'}
-    onChange={({ json, html }) => { console.log(json, html);}}  
+    onChange={({ json, html }) => { console.log(json, html);}}
   />
 </>, document.getElementById("app"));
 ```
@@ -40,9 +40,9 @@ You can add it like below
 import * as React from 'react';
 import { render } from 'react-dom';
 import 'smartblock/css/smartblock.css';
-import Base from 'smartblock/lib/extensions/base';
-import { 
-  SmartBlock, 
+import Base from 'smartblock/extensions/base';
+import {
+  SmartBlock,
   Heading1
 } from 'smartblock';
 
@@ -52,10 +52,10 @@ const extensions = [
 ];
 
 render(<>
-  <SmartBlock 
+  <SmartBlock
     extensions={extensions}
     html={'<h1>Hello World</h1><p>hello</p>'}
-    onChange={({ json, html }) => { console.log(json, html);}}  
+    onChange={({ json, html }) => { console.log(json, html);}}
   />
 </>, document.getElementById("app"));
 ```
@@ -71,9 +71,9 @@ You can add it like below
 import * as React from 'react';
 import { render } from 'react-dom';
 import 'smartblock/css/smartblock.css';
-import Base from 'smartblock/lib/extensions/base';
-import { 
-  SmartBlock, 
+import Base from 'smartblock/extensions/base';
+import {
+  SmartBlock,
   BulletList,
   ListItem
 } from 'smartblock';
@@ -85,13 +85,13 @@ const extensions = [
 ];
 
 render(<>
-  <SmartBlock 
+  <SmartBlock
     extensions={extensions}
     html={`<ul>
       <li>list item 1</li>
       <li>list item 2</li>
     </ul>`}
-    onChange={({ json, html }) => { console.log(json, html);}}  
+    onChange={({ json, html }) => { console.log(json, html);}}
   />
 </>, document.getElementById("app"));
 ```
@@ -108,9 +108,9 @@ You can add it like below
 import * as React from 'react';
 import { render } from 'react-dom';
 import 'smartblock/css/smartblock.css';
-import Base from 'smartblock/lib/extensions/base';
-import { 
-  SmartBlock, 
+import Base from 'smartblock/extensions/base';
+import {
+  SmartBlock,
   OrderedList,
   ListItem
 } from 'smartblock';
@@ -122,13 +122,13 @@ const extensions = [
 ];
 
 render(<>
-  <SmartBlock 
+  <SmartBlock
     extensions={extensions}
     html={`<ol>
       <li>list item 1</li>
       <li>list item 2</li>
     </ol>`}
-    onChange={({ json, html }) => { console.log(json, html);}}  
+    onChange={({ json, html }) => { console.log(json, html);}}
   />
 </>, document.getElementById("app"));
 ```
@@ -142,10 +142,10 @@ render(<>
 import * as React from 'react';
 import { render } from 'react-dom';
 import 'smartblock/css/smartblock.css';
-import Base from 'smartblock/lib/extensions/base';
-import { 
+import Base from 'smartblock/extensions/base';
+import {
   ...Base,
-  SmartBlock, 
+  SmartBlock,
   Blockquote
 } from 'smartblock';
 
@@ -154,10 +154,10 @@ const extensions = [
 ];
 
 render(<>
-  <SmartBlock 
+  <SmartBlock
     extensions={extensions}
     html={'<blockquote>quote here!</blockquote>'}
-    onChange={({ json, html }) => { console.log(json, html);}}  
+    onChange={({ json, html }) => { console.log(json, html);}}
   />
 </>, document.getElementById("app"));
 ```
@@ -171,10 +171,10 @@ render(<>
 import * as React from 'react';
 import { render } from 'react-dom';
 import 'smartblock/css/smartblock.css';
-import Base from 'smartblock/lib/extensions/base';
-import { 
+import Base from 'smartblock/extensions/base';
+import {
   ...Base,
-  SmartBlock, 
+  SmartBlock,
   Embed
 } from 'smartblock';
 
@@ -187,10 +187,10 @@ const embedHtml = `<div class="embed-wrap">
 </div>`;
 
 render(<>
-  <SmartBlock 
+  <SmartBlock
     extensions={extensions}
     html={embedHtml}
-    onChange={({ json, html }) => { console.log(json, html);}}  
+    onChange={({ json, html }) => { console.log(json, html);}}
   />
 </>, document.getElementById("app"));
 ```
@@ -203,9 +203,9 @@ render(<>
 import * as React from 'react';
 import { render } from 'react-dom';
 import 'smartblock/css/smartblock.css';
-import Base from 'smartblock/lib/extensions/base';
-import { 
-  SmartBlock, 
+import Base from 'smartblock/extensions/base';
+import {
+  SmartBlock,
   Table
 } from 'smartblock';
 
@@ -226,10 +226,10 @@ const tableHtml = `<table>
 </table>`;
 
 render(<>
-  <SmartBlock 
+  <SmartBlock
     extensions={extensions}
     html={tableHtml}
-    onChange={({ json, html }) => { console.log(json, html);}}  
+    onChange={({ json, html }) => { console.log(json, html);}}
   />
 </>, document.getElementById("app"));
 ```
@@ -242,9 +242,9 @@ render(<>
 import * as React from 'react';
 import { render } from 'react-dom';
 import 'smartblock/css/smartblock.css';
-import Base from 'smartblock/lib/extensions/base';
-import { 
-  SmartBlock, 
+import Base from 'smartblock/extensions/base';
+import {
+  SmartBlock,
   Image
 } from 'smartblock';
 
@@ -256,10 +256,10 @@ const extensions = [
 const codeHTML = `<img src="/path" />`;
 
 render(<>
-  <SmartBlock 
+  <SmartBlock
     extensions={extensions}
     html={codeHtml}
-    onChange={({ json, html }) => { console.log(json, html);}}  
+    onChange={({ json, html }) => { console.log(json, html);}}
   />
 </>, document.getElementById("app"));
 ```
@@ -291,8 +291,8 @@ new Image({
 import * as React from 'react';
 import { render } from 'react-dom';
 import 'smartblock/css/smartblock.css';
-import Base from 'smartblock/lib/extensions/base';
-import { 
+import Base from 'smartblock/extensions/base';
+import {
   SmartBlock,
   Code
 } from 'smartblock';
@@ -306,10 +306,10 @@ const codeHTML = `<code class="js">import * as React from 'react';
 import {render} from 'react-dom';</code>`;
 
 render(<>
-  <SmartBlock 
+  <SmartBlock
     extensions={extensions}
     html={codeHtml}
-    onChange={({ json, html }) => { console.log(json, html);}}  
+    onChange={({ json, html }) => { console.log(json, html);}}
   />
 </>, document.getElementById("app"));
 ```

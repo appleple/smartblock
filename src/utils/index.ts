@@ -132,7 +132,7 @@ export const getMarkInSelection = (markName: string, state: EditorState) => {
   return null;
 };
 
-export const blockActive = (type: MarkType) => (state: EditorState) => {
+export const blockActive = (type: NodeType) => (state: EditorState) => {
   const { selection } = state;
   const { $from, to } = state.selection;
   const { $anchor } = selection;

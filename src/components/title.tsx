@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Schema, DOMParser } from 'prosemirror-model';
+import { EditorState } from 'prosemirror-state';
 import { getHtmlFromNode } from '../utils';
 import { useView } from '../utils/hooks';
 import { placeholderPlugin } from '../extensions/default-plugins';
@@ -31,7 +32,7 @@ type TitleProps = {
   onChange(text: string): void;
 };
 
-export default (props: TitleProps) => {
+export default function Title (props: TitleProps) {
   const defaultProps = {
     defaultValue: '',
     placeholder: 'Type Title here',
@@ -44,7 +45,7 @@ export default (props: TitleProps) => {
   const doc = DOMParser.fromSchema(schema).parse(div);
 
   const config = {
-    onChange(state) {
+    onChange(state: EditorState) {
       if (props.onChange) {
         let title = getHtmlFromNode(state.doc, schema);
         title = title.replace(/<h1>(.*)<\/h1>/, '$1');
@@ -64,9 +65,18 @@ export default (props: TitleProps) => {
 
   const view = useView(config);
   useEffect(() => {
+    let title: HTMLHeadingElement | null = null;
     if (titleRef.current) {
       titleRef.current.appendChild(view.dom);
+      title = titleRef.current;
     }
+    return () => {
+      if (title) {
+        title.removeChild(view.dom);
+      }
+    }
+    // view.dom を依存配列に含めるとタイトルが更新されない
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return <div ref={titleRef} className="smartblock-title" />;

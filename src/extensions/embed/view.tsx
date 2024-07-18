@@ -1,10 +1,18 @@
 import * as React from 'react'
 import Popup from './popup'
 import ExternalLink from '../../components/icons/external-link'
+import { Node } from 'prosemirror-model';
+import { EditorView } from 'prosemirror-view';
 
 const { useState } = React;
 
-export default props => {
+interface ViewProps {
+  node: Node;
+  view: EditorView;
+  pos: number;
+}
+
+export default function View (props: ViewProps) {
   const { node, view, pos } = props;
   const { state, dispatch } = view;
   const [showPopup, setShowPopup] = useState(false);

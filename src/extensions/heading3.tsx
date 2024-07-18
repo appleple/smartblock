@@ -5,10 +5,12 @@ import HeadingIcon from '../components/icons/heading3';
 import AlignLeftIcon from '../components/icons/align-left';
 import AlignCenterIcon from '../components/icons/align-center';
 import AlignRightIcon from '../components/icons/align-right';
-import { Extension, ExtensionProps } from '../types';
+import { Dispatch, Extension, ExtensionProps } from '../types';
 import { blockActive, getParentNodeFromState } from '../utils';
 import Button from '../components/button';
 import { BASE_PRIORITY } from '../constants';
+import { Node } from 'prosemirror-model';
+import { EditorState } from 'prosemirror-state';
 
 export default class Heading3 extends Extension {
   constructor(props?: ExtensionProps) {
@@ -47,14 +49,14 @@ export default class Heading3 extends Extension {
         {
           tag: 'h3',
           priority: BASE_PRIORITY,
-          getAttrs(dom) {
+          getAttrs(dom: HTMLElement) {
             return {
               id: dom.getAttribute('id') || uuid(),
             };
           },
         },
       ],
-      toDOM(node) {
+      toDOM(node: Node) {
         return [
           'h3',
           node.attrs.align
@@ -78,15 +80,15 @@ export default class Heading3 extends Extension {
     return <HeadingIcon style={{ width: '24px', height: '24px' }} />;
   }
 
-  active(state) {
+  active(state: EditorState) {
     return blockActive(state.schema.nodes.heading3)(state);
   }
 
-  enable(state) {
+  enable(state: EditorState) {
     return setBlockType(state.schema.nodes.heading3)(state);
   }
 
-  customMenu({ state, dispatch }) {
+  customMenu({ state, dispatch }: { state: EditorState; dispatch: Dispatch }) {
     const node = getParentNodeFromState(state);
     return (
       <>
@@ -127,7 +129,7 @@ export default class Heading3 extends Extension {
     );
   }
 
-  onClick(state, dispatch) {
+  onClick(state: EditorState, dispatch: Dispatch) {
     setBlockType(state.schema.nodes.heading3)(state, dispatch);
   }
 }

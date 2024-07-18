@@ -55,11 +55,8 @@ const useImagesLoaded = (dom: HTMLElement) => {
   return size;
 }
 
-export default (props: CustomLayoutProps) => {
+export default function CustomLayout (props: CustomLayoutProps) {
   const customLayout = getCustomLayout(props);
-  if (!customLayout) {
-    return null;
-  }
   const { view } = props;
   const pos = calculateStyle(props.view);
   const parentNode = getParentNodeFromState(view.state);
@@ -74,6 +71,10 @@ export default (props: CustomLayoutProps) => {
   }
 
   const size = useImagesLoaded(dom);
+
+  if (!customLayout) {
+    return null;
+  }
 
   if (!size.height) {
     return null

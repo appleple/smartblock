@@ -19,6 +19,7 @@ describe('edit-menu', () => {
     expect(item).toBeTruthy();
   });
 
+  // eslint-disable-next-line jest/no-commented-out-tests
   // it('should have proper position style', () => {
   //   const view = getEditorViewFromExtensions([new Paragraph()]);
 

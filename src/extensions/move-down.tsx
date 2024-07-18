@@ -1,13 +1,15 @@
 import * as React from 'react';
 import { setTextSelection } from 'prosemirror-utils';
 import MoveDownIcon from '../components/icons/go-down';
-import { Extension } from '../types';
+import { Dispatch, Extension } from '../types';
 import {
   findNodePosition,
   getParentNodeIndexFromState,
   getRootNodeWithPosByIndex,
   getRootNodeCountFromState
 } from '../utils';
+import { EditorState } from 'prosemirror-state';
+import { EditorView } from 'prosemirror-view';
 
 export default class MoveDown implements Extension {
   get name() {
@@ -26,13 +28,13 @@ export default class MoveDown implements Extension {
     return <MoveDownIcon style={{ width: '24px', height: '24px' }} />
   }
 
-  enable(state) {
+  enable(state: EditorState) {
     const length = getRootNodeCountFromState(state);
     const rowNumber = getParentNodeIndexFromState(state);
     return rowNumber < length - 1;
   }
 
-  onClick(_state, _dispatch, view) {
+  onClick(_state: EditorState, _dispatch: Dispatch, view: EditorView) {
     const { state } = view;
     const rowNumber = getParentNodeIndexFromState(state);
     const firstNode = getRootNodeWithPosByIndex(state, rowNumber);

@@ -9,6 +9,8 @@ import { Extension, ExtensionProps } from '../types';
 import { blockActive, getParentNodeFromState } from '../utils';
 import Button from '../components/button';
 import { BASE_PRIORITY } from '../constants';
+import { Node } from 'prosemirror-model';
+import { EditorState } from 'prosemirror-state';
 
 export default class Heading1 extends Extension {
   constructor(props?: ExtensionProps) {
@@ -47,14 +49,14 @@ export default class Heading1 extends Extension {
         {
           tag: 'h1',
           priority: BASE_PRIORITY,
-          getAttrs(dom) {
+          getAttrs(dom: HTMLElement) {
             return {
               id: dom.getAttribute('id') || uuid(),
             };
           },
         },
       ],
-      toDOM: (node) => {
+      toDOM: (node: Node) => {
         return [
           'h1',
           node.attrs.align
@@ -78,11 +80,11 @@ export default class Heading1 extends Extension {
     return <HeadingIcon style={{ width: '24px', height: '24px' }} />;
   }
 
-  active(state) {
+  active(state: EditorState) {
     return blockActive(state.schema.nodes.heading1)(state);
   }
 
-  enable(state) {
+  enable(state: EditorState) {
     return setBlockType(state.schema.nodes.heading1)(state);
   }
 

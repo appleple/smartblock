@@ -5,10 +5,12 @@ import ParagraphIcon from '../components/icons/paragraph';
 import AlignLeftIcon from '../components/icons/align-left';
 import AlignCenterIcon from '../components/icons/align-center';
 import AlignRightIcon from '../components/icons/align-right';
-import { Extension, ExtensionProps } from '../types';
+import { Dispatch, Extension, ExtensionProps } from '../types';
 import { blockActive, getParentNodeFromState } from '../utils';
 import Button from '../components/button';
 import { BASE_PRIORITY } from '../constants';
+import { Node } from 'prosemirror-model';
+import { EditorState } from 'prosemirror-state';
 
 export default class Paragraph extends Extension {
   constructor(props?: ExtensionProps) {
@@ -48,7 +50,7 @@ export default class Paragraph extends Extension {
         {
           tag: 'p',
           priority: BASE_PRIORITY,
-          getAttrs(dom) {
+          getAttrs(dom: HTMLElement) {
             return {
               id: dom.getAttribute('id') || uuid(),
               align: dom.style.textAlign,
@@ -56,7 +58,7 @@ export default class Paragraph extends Extension {
           },
         },
       ],
-      toDOM: (node) => {
+      toDOM: (node: Node) => {
         return [
           'p',
           node.attrs.align
@@ -80,15 +82,15 @@ export default class Paragraph extends Extension {
     return <ParagraphIcon style={{ width: '24px', height: '24px' }} />;
   }
 
-  active(state) {
+  active(state: EditorState) {
     return blockActive(state.schema.nodes.paragraph)(state);
   }
 
-  enable(state) {
+  enable(state: EditorState) {
     return setBlockType(state.schema.nodes.paragraph)(state);
   }
 
-  customMenu({ state, dispatch }): JSX.Element | null {
+  customMenu({ state, dispatch }: { state: EditorState; dispatch: Dispatch }): JSX.Element | null {
     const node = getParentNodeFromState(state);
     return (
       <>
@@ -129,7 +131,7 @@ export default class Paragraph extends Extension {
     );
   }
 
-  onClick(state, dispatch) {
+  onClick(state: EditorState, dispatch: Dispatch) {
     setBlockType(state.schema.nodes.paragraph)(state, dispatch);
   }
 }

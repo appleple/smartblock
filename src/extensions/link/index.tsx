@@ -3,8 +3,8 @@ import { toggleMark } from 'prosemirror-commands'
 import LinkIcon from '../../components/icons/link'
 import { Dispatch, Extension, ExtensionProps } from '../../types'
 import { markActive, getMarkInSelection } from '../../utils'
-import tooltip from './tooltip'
 import { EditorState } from 'prosemirror-state'
+import { Node } from 'prosemirror-model'
 
 export default class Link extends Extension {
   constructor(props?: ExtensionProps) {
@@ -43,7 +43,7 @@ export default class Link extends Extension {
       parseDOM: [
         {
           tag: 'a[href]:not(.embed)',
-          getAttrs(dom) {
+          getAttrs(dom: HTMLElement) {
             return {
               href: dom.getAttribute('href'),
               title: dom.getAttribute('title')
@@ -51,7 +51,7 @@ export default class Link extends Extension {
           }
         }
       ],
-      toDOM(node) {
+      toDOM(node: Node) {
         const { href, title } = node.attrs;
         return ['a', { href, title, class: className }, 0];
       }
@@ -61,11 +61,6 @@ export default class Link extends Extension {
   // @ts-ignore
   get icon() {
     return <LinkIcon style={{ width: '24px', height: '24px' }} />
-  }
-
-  // @ts-ignore
-  get plugins() {
-    return [tooltip()]
   }
 
   active(state: EditorState) {

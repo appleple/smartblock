@@ -26,8 +26,10 @@ import RemoveRowIcon from '../../components/icons/remove-row';
 import RemoveColIcon from '../../components/icons/remove-col';
 
 import { createTable, blockActive } from '../../utils'
-import { Extension, ExtensionProps } from '../../types'
+import { Dispatch, Extension, ExtensionProps } from '../../types'
 import Button from '../../components/button'
+import { Node } from 'prosemirror-model';
+import { EditorState } from 'prosemirror-state';
 
 const schemas = tableNodes({
   group: 'block',
@@ -76,14 +78,14 @@ export default class Table extends Extension {
     schemas.table.parseDOM = [
       {
         tag: 'table',
-        getAttrs(dom) {
+        getAttrs(dom: HTMLTableElement) {
           return {
             id: dom.getAttribute('id') || uuid()
           }
         }
       }
     ]
-    schemas.table.toDOM = node => {
+    schemas.table.toDOM = (node: Node) => {
       return [
         'table',
         {
@@ -122,15 +124,15 @@ export default class Table extends Extension {
     ]
   }
 
-  active(state) {
+  active(state: EditorState) {
     return blockActive(state.schema.nodes.table)(state);
   }
 
-  enable(state) {
+  enable(state: EditorState) {
     return setBlockType(state.schema.nodes.table)(state);
   }
 
-  onClick(state, dispatch) {
+  onClick(state: EditorState, dispatch: Dispatch) {
     const table = createTable(state.schema, {
       id: uuid()
     });
@@ -138,7 +140,7 @@ export default class Table extends Extension {
     dispatch(tr);
   }
 
-  customInlineMenu({ state, dispatch }) {
+  customInlineMenu({ state, dispatch }: { state: EditorState; dispatch: Dispatch }) {
     return (<>
       <Button
         type="button"
@@ -179,7 +181,7 @@ export default class Table extends Extension {
     </>)
   }
 
-  customMenu({ state, dispatch }) {
+  customMenu({ state, dispatch }: { state: EditorState; dispatch: Dispatch }) {
     return (
       <>
         <Button

@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { wrapInList, sinkListItem } from 'prosemirror-schema-list';
-import { v4 as uuid } from 'uuid';
 import OrderedListIcon from '../components/icons/ordered-list';
 import IndentIcon from '../components/icons/indent';
 import UndentIcon from '../components/icons/undent';
 import { liftListItem, blockActive, getParentNodeFromState } from '../utils';
-import { Extension, ExtensionProps } from '../types';
+import { Dispatch, Extension, ExtensionProps } from '../types';
 import Button from '../components/button';
 import { BASE_PRIORITY } from '../constants';
+import { Node } from 'prosemirror-model';
+import { EditorState } from 'prosemirror-state';
 
 export default class OrderedList extends Extension {
   constructor(props?: ExtensionProps) {
@@ -41,7 +42,7 @@ export default class OrderedList extends Extension {
         {
           tag: 'ol',
           priority: BASE_PRIORITY,
-          getAttrs(dom) {
+          getAttrs(dom: HTMLElement) {
             return {
               id: dom.getAttribute('id'),
             };
@@ -51,7 +52,7 @@ export default class OrderedList extends Extension {
       attrs: {
         id: { default: '' },
       },
-      toDOM(node) {
+      toDOM(node: Node) {
         return [
           'ol',
           {
@@ -73,11 +74,11 @@ export default class OrderedList extends Extension {
     return true;
   }
 
-  active(state) {
+  active(state: EditorState) {
     return blockActive(state.schema.nodes.ordered_list)(state);
   }
 
-  enable(state) {
+  enable(state: EditorState) {
     const node = getParentNodeFromState(state);
     if (node.type.name !== 'paragraph') {
       return false;
@@ -85,7 +86,7 @@ export default class OrderedList extends Extension {
     return wrapInList(state.schema.nodes.ordered_list)(state);
   }
 
-  onClick(state, dispatch) {
+  onClick(state: EditorState, dispatch: Dispatch) {
     const node = getParentNodeFromState(state);
     if (node.type.name !== 'paragraph') {
       return false;
@@ -93,7 +94,7 @@ export default class OrderedList extends Extension {
     wrapInList(state.schema.nodes.ordered_list)(state, dispatch);
   }
 
-  customMenu({ state, dispatch }) {
+  customMenu({ state, dispatch }: { state: EditorState; dispatch: Dispatch }) {
     return (
       <>
         <Button

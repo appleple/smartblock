@@ -1,10 +1,15 @@
 import * as React from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import SmartBlock from '../components/smartblock';
 import Extensions from '../extensions/';
 
-export default (elementOrSelector: string | HTMLElement, option: React.ComponentPropsWithoutRef<typeof SmartBlock>) => {
+/**
+ * Reactをバンドル配布するためのエントリーポイント（Reactを含めて配布するためReactのバージョンは最新で大丈夫）
+ * @param elementOrSelector
+ * @param option
+ */
+export default function editor (elementOrSelector: string | HTMLElement, option: React.ComponentPropsWithoutRef<typeof SmartBlock>) {
   const element = typeof elementOrSelector === 'string' ? document.querySelector<HTMLElement>(elementOrSelector) : elementOrSelector;
   if (element === null) {
     throw new Error('The element is not found');
@@ -12,10 +17,10 @@ export default (elementOrSelector: string | HTMLElement, option: React.Component
   if (!option.extensions) {
     option.extensions = Extensions;
   }
-  render(
+  const root = createRoot(element);
+  root.render(
     <>
       <SmartBlock {...option} />
-    </>,
-    element
+    </>
   );
 };

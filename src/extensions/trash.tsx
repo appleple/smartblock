@@ -1,8 +1,9 @@
 import * as React from 'react'
 import { findChildren } from 'prosemirror-utils'
-import { Extension } from '../types'
+import { Dispatch, Extension } from '../types'
 import TrashIcon from '../components/icons/trash'
 import isMobile from 'is-mobile';
+import { EditorState } from 'prosemirror-state';
 
 type Props = {
   i18n?: {
@@ -42,7 +43,7 @@ export default class Trash implements Extension {
     return 'black';
   }
 
-  onClick(state, dispatch) {
+  onClick(state: EditorState, dispatch: Dispatch) {
     const { selection } = state;
     const { $anchor } = selection;
     const resolvedPos = state.doc.resolve($anchor.pos) as any;

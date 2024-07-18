@@ -16,10 +16,10 @@ Same as Block Extensions, You can just import and use.
 ```jsx
 import * as React from 'react';
 import { render } from 'react-dom';
-import Base from 'smartblock/lib/extensions/base';
+import Base from 'smartblock/extensions/base';
 import 'smartblock/css/smartblock.css';
-import { 
-  SmartBlock, 
+import {
+  SmartBlock,
   Strong
 } from 'smartblock';
 
@@ -29,10 +29,10 @@ const extensions = [
 ];
 
 render(<>
-  <SmartBlock 
+  <SmartBlock
     extensions={extensions}
     html={'<p>hello <strong>world</strong></p>'}
-    onChange={({ json, html }) => { console.log(json, html);}}  
+    onChange={({ json, html }) => { console.log(json, html);}}
   />
 </>, document.getElementById("app"));
 ```
@@ -73,10 +73,10 @@ new Strong({
 ```jsx
 import * as React from 'react';
 import { render } from 'react-dom';
-import Base from 'smartblock/lib/extensions/base';
+import Base from 'smartblock/extensions/base';
 import 'smartblock/css/smartblock.css';
-import { 
-  SmartBlock, 
+import {
+  SmartBlock,
   Emphasis
 } from 'smartblock';
 
@@ -86,10 +86,10 @@ const extensions = [
 ];
 
 render(<>
-  <SmartBlock 
+  <SmartBlock
     extensions={extensions}
     html={'<p>hello <em>world</em></p>'}
-    onChange={({ json, html }) => { console.log(json, html);}}  
+    onChange={({ json, html }) => { console.log(json, html);}}
   />
 </>, document.getElementById("app"));
 ```
@@ -132,10 +132,10 @@ new Emphasis({
 ```jsx
 import * as React from 'react';
 import { render } from 'react-dom';
-import Base from 'smartblock/lib/extensions/base';
+import Base from 'smartblock/extensions/base';
 import 'smartblock/css/smartblock.css';
-import { 
-  SmartBlock, 
+import {
+  SmartBlock,
   Paragraph,
   Underline
 } from 'smartblock';
@@ -146,10 +146,10 @@ const extensions = [
 ];
 
 render(<>
-  <SmartBlock 
+  <SmartBlock
     extensions={extensions}
     html={'<p>hello <strong>world</strong></p>'}
-    onChange={({ json, html }) => { console.log(json, html);}}  
+    onChange={({ json, html }) => { console.log(json, html);}}
   />
 </>, document.getElementById("app"));
 ```
@@ -192,10 +192,10 @@ new Underline({
 ```jsx
 import * as React from 'react';
 import { render } from 'react-dom';
-import Base from 'smartblock/lib/extensions/base';
+import Base from 'smartblock/extensions/base';
 import 'smartblock/css/smartblock.css';
-import { 
-  SmartBlock, 
+import {
+  SmartBlock,
   Strike
 } from 'smartblock';
 
@@ -205,10 +205,10 @@ const extensions = [
 ];
 
 render(<>
-  <SmartBlock 
+  <SmartBlock
     extensions={extensions}
     html={'<p>hello <strong>world</strong></p>'}
-    onChange={({ json, html }) => { console.log(json, html);}}  
+    onChange={({ json, html }) => { console.log(json, html);}}
   />
 </>, document.getElementById("app"));
 ```
@@ -259,10 +259,10 @@ When you click the button below, input field will appear to enter the URL
 ```jsx
 import * as React from 'react';
 import { render } from 'react-dom';
-import Base from 'smartblock/lib/extensions/base';
+import Base from 'smartblock/extensions/base';
 import 'smartblock/css/smartblock.css';
-import { 
-  SmartBlock, 
+import {
+  SmartBlock,
   Link
 } from 'smartblock';
 
@@ -272,10 +272,10 @@ const extensions = [
 ];
 
 render(<>
-  <SmartBlock 
+  <SmartBlock
     extensions={extensions}
     html={'<p>hello <a href="#">world</a></p>'}
-    onChange={({ json, html }) => { console.log(json, html);}}  
+    onChange={({ json, html }) => { console.log(json, html);}}
   />
 </>, document.getElementById("app"));
 ```

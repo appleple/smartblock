@@ -117,6 +117,7 @@ describe('menu', () => {
     expect(container.querySelector('.smartblock-custom-menu')).toBeNull();
   });
 
+  // eslint-disable-next-line jest/no-commented-out-tests
   // it('should have active menu', () => {
   //   const paragraph = new Paragraph();
   //   const view = getEditorViewFromExtensions([paragraph]);

@@ -14,10 +14,20 @@
       "require": "./dist/umd/index.js",
       "types": "./dist/types/index.d.ts"
     },
+    "./components/smartblock": {
+      "import": "./dist/umd/components/smartblock.js",
+      "require": "./dist/umd/components/smartblock.js",
+      "types": "./dist/types/components/smartblock.d.ts"
+    },
     "./extensions": {
       "import": "./dist/umd/extensions/index.js",
       "require": "./dist/umd/extensions/index.js",
       "types": "./dist/types/extensions/index.d.ts"
+    },
+    "./extensions/base": {
+      "import": "./dist/umd/extensions/base.js",
+      "require": "./dist/umd/extensions/base.js",
+      "types": "./dist/types/extensions/base.d.ts"
     },
     "./extensions/code": {
       "import": "./dist/umd/extensions/code.js",
@@ -190,28 +200,28 @@
       "types": "./dist/types/pm/schema-list/index.d.ts"
     },
     "./pm/state": {
-      "import": "./dist/umd/pm/state/index.js",
-      "require": "./dist/umd/pm/state/index.js",
+      "import": "./dist/umd/pm/state.js",
+      "require": "./dist/umd/pm/state.js",
       "types": "./dist/types/pm/state/index.d.ts"
     },
     "./pm/tables": {
-      "import": "./dist/umd/pm/tables/index.js",
-      "require": "./dist/umd/pm/tables/index.js",
+      "import": "./dist/umd/pm/tables.js",
+      "require": "./dist/umd/pm/tables.js",
       "types": "./dist/types/pm/tables/index.d.ts"
     },
     "./pm/transform": {
-      "import": "./dist/umd/pm/transform/index.js",
-      "require": "./dist/umd/pm/transform/index.js",
+      "import": "./dist/umd/pm/transform.js",
+      "require": "./dist/umd/pm/transform.js",
       "types": "./dist/types/pm/transform/index.d.ts"
     },
     "./pm/utils": {
-      "import": "./dist/umd/pm/utils/index.js",
-      "require": "./dist/umd/pm/utils/index.js",
+      "import": "./dist/umd/pm/utils.js",
+      "require": "./dist/umd/pm/utils.js",
       "types": "./dist/types/pm/utils/index.d.ts"
     },
     "./pm/view": {
-      "import": "./dist/umd/pm/view/index.js",
-      "require": "./dist/umd/pm/view/index.js",
+      "import": "./dist/umd/pm/view.js",
+      "require": "./dist/umd/pm/view.js",
       "types": "./dist/types/pm/view/index.d.ts"
     },
     "./css/smartblock.css": "./css/smartblock.css"
@@ -219,11 +229,11 @@
   "scripts": {
     "test": "jest **/*.test.tsx",
     "dev": "webpack serve --config webpack.dev.js --host 0.0.0.0 --port 3031",
-    "build": "rm -rf dist && tsc -b && webpack --config webpack.prod.js",
-    "build:lib": "rm -rf ./lib && tsc",
+    "build": "npm run build:css && npm run build:js",
+    "build:js": "rm -rf dist && tsc -b && webpack --config webpack.prod.js",
     "np": "np --no-cleanup",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "deploy": "npm-run-all -s build build:lib test np",
+    "deploy": "npm-run-all -s build test np",
     "build:css": "sass --style=expanded --no-source-map ./scss/smartblock.scss ./css/smartblock.css",
     "build:svg": "npx @svgr/cli -d ./src/components/icons ./assets/images/icons --template ./tools/template.js --ext tsx --no-svgo --filename-case kebab"
   },
@@ -244,8 +254,8 @@
     "@babel/preset-typescript": "^7.24.7",
     "@svgr/cli": "^4.3.0",
     "@testing-library/dom": "^10.3.2",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^12.1.5",
+    "@testing-library/jest-dom": "^6.4.6",
+    "@testing-library/react": "^16.0.0",
     "@types/imagesloaded": "^4.1.6",
     "@types/jest": "^29.5.12",
     "@types/prosemirror-commands": "^1.0.1",
@@ -256,9 +266,8 @@
     "@types/prosemirror-tables": "^0.9.1",
     "@types/prosemirror-transform": "^1.1.0",
     "@types/prosemirror-view": "^1.24.0",
-    "@types/react": "^17.0.80",
-    "@types/react-dom": "^17.0.25",
-    "@types/react-test-renderer": "^16.9.1",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
     "@types/uuid": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "^7.16.1",
     "@typescript-eslint/parser": "^7.16.1",
@@ -281,8 +290,8 @@
     "np": "^3.1.0",
     "npm-run-all": "^4.1.5",
     "raf": "^3.4.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "sass": "^1.77.6",
     "showdown": "^1.9.1",
     "style-loader": "^0.23.1",

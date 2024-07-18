@@ -8,7 +8,7 @@ interface Props {
 }
 
 
-export default (props: Props) => {
+export default function BackBtn (props: Props) {
   const { state, dispatch } = props.view;
 
   const depth = undoDepth(state);

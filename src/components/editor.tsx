@@ -5,7 +5,7 @@ import { useView } from '../utils/hooks';
 
 const { useEffect } = React;
 
-type EditorProps = {
+export type EditorProps = {
   onChange(state: EditorState, dispatch: typeof EditorView.prototype.dispatch): any;
   attributes?: any; //todo
   nodeViews?: any; // todo
@@ -13,15 +13,15 @@ type EditorProps = {
   options: any; // todo
   render?({
     editor,
-    view,
+    view
   }: {
     editor: React.ReactNode;
     view: EditorView;
-  }): React.ReactElement;
-  editorRef: React.MutableRefObject<HTMLDivElement | null>;
+  }): React.ReactNode;
+  editorRef?: React.MutableRefObject<HTMLDivElement | null>;
 };
 
-export default (props: EditorProps) => {
+export default function Editor (props: EditorProps) {
   const view = useView(props);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export default (props: EditorProps) => {
     if (props.autoFocus) {
       view.focus();
     }
-  }, []);
+  }, [props.autoFocus, props.editorRef, view]);
 
   const editor = <div ref={props.editorRef} />;
   return props.render({

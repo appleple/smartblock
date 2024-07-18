@@ -71,7 +71,7 @@ const calculateStyle = (props: PositionProps) => {
   }
 }
 
-export default (props: PositionProps) => {
+export default function EditMenu (props: PositionProps) {
   const [style, setState] = useState<React.CSSProperties>({
     right: 20,
     top: 0
