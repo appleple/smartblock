@@ -1,9 +1,16 @@
 import React from "react"
 import "smartblock/css/smartblock.css"
+import Extensions from "smartblock/lib/extensions"
+import Code from "smartblock/lib/extensions/code"
+import Image from "smartblock/lib/extensions/image"
 import { Link, withPrefix } from "gatsby"
 import pkg from "../../../package.json"
-import { Extensions, SmartBlock, Code, Image } from "smartblock"
-
+const SmartBlock =
+  typeof window === "undefined" ? (
+    <div />
+  ) : (
+    React.lazy(() => import("smartblock/lib/components/smartblock"))
+  )
 const html = `<p>SmartBlock is a block styled editor created by JavaScript. Which gives you nice experience of editing contents at touchscreen. On this page you can see it in action. Try to edit this text ! :)</p>
 <h2>Features</h2>
 <ul>
@@ -53,24 +60,26 @@ export default props => {
               <div className="app-frame">
                 <div className="app-frame-inner">
                   {!isSSR && (
-                    <SmartBlock
-                      showTitle
-                      titleText="What is SmartBlock?"
-                      extensions={[
-                        ...Extensions,
-                        new Code(),
-                        new Image({
-                          withCaption: false,
-                          imgFullClassName: "full",
-                          imgClassName: "small",
-                        }),
-                      ]}
-                      html={html}
-                      onChange={({ html, json }) => {
-                        setOutputHTML(html)
-                        setOutputJSON(json)
-                      }}
-                    />
+                    <React.Suspense fallback={<div />}>
+                      <SmartBlock
+                        showTitle
+                        titleText="What is SmartBlock?"
+                        extensions={[
+                          ...Extensions,
+                          new Code(),
+                          new Image({
+                            withCaption: false,
+                            imgFullClassName: "full",
+                            imgClassName: "small",
+                          }),
+                        ]}
+                        html={html}
+                        onChange={({ html, json }) => {
+                          setOutputHTML(html)
+                          setOutputJSON(json)
+                        }}
+                      />
+                    </React.Suspense>
                   )}
                 </div>
               </div>
