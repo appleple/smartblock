@@ -91,7 +91,7 @@ const defaultExportConfig = merge(common, {
   },
   output: {
     library: {
-      name: ['SmartBlock', '[name]'],
+      name: '[name]',
       type: 'umd',
       export: 'default',
     },
