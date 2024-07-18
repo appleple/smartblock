@@ -7,7 +7,7 @@ description: "Installation"
 ### Use CDN
 
 ```html
-<script src="https://unpkg.com/smartblock@latest/dist/umd/standalone/index.js"></script>
+<script src="https://unpkg.com/smartblock@latest/dist/standalone/index.js"></script>
 ```
 
 ### Install From npm

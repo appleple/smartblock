@@ -30,7 +30,7 @@
     "react-dom": "^16.14.0",
     "react-helmet": "^5.2.1",
     "react-typography": "^0.16.23",
-    "smartblock": "^1.3.6",
+    "smartblock": "^1.4.3",
     "tween": "^0.9.0",
     "typeface-merriweather": "0.0.72",
     "typeface-montserrat": "0.0.75",

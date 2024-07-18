@@ -19,7 +19,7 @@ $ npm install smartblock --save
 ### Load JavaScript from CDN
 
 ```html
-<script src="https://unpkg.com/smartblock@1.3.1/dist/smartblock.js"></script>
+<script src="https://unpkg.com/smartblock@latest/dist/standalone/index.js"></script>
 ```
 
 ## Usage
@@ -29,17 +29,17 @@ $ npm install smartblock --save
 In your JavaScript file:
 
 ```jsx
-import * as React from 'react'; 
-import { render } from 'react-dom'; 
+import * as React from 'react';
+import { render } from 'react-dom';
 import 'smartblock/css/smartblock.css';
-import { SmartBlock, Extensions } from 'smartblock'; 
+import { SmartBlock, Extensions } from 'smartblock';
 
 render(<>
   <SmartBlock
     extensions={Extensions}
-    html={'<h2>Hello World</h2><p>hello</p>'} 
-    onChange={({ json, html }) => { console.log(json, html);}} 
-  /> 
+    html={'<h2>Hello World</h2><p>hello</p>'}
+    onChange={({ json, html }) => { console.log(json, html);}}
+  />
   </>, document.getElementById("app")
 );
 ```
@@ -47,9 +47,9 @@ render(<>
 ### As an Native JavaScript
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/smartblock@1.3.2/css/smartblock.css" />
-<script src="https://unpkg.com/smartblock@1.3.2/dist/editor.js"></script>
-<script src="https://unpkg.com/smartblock@1.3.2/dist/extensions.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/smartblock@latest/css/smartblock.css" />
+<script src="https://unpkg.com/smartblock@latest/dist/standalone/index.js"></script>
+<script src="https://unpkg.com/smartblock@latest/dist/standalone/extensions/index.js"></script>
 <!-- You can use smartblock without using JSX -->
 <!-- bundle size is much smaller than the package build with react !-->
 <script>
@@ -67,4 +67,4 @@ SmartBlock.Editor('#app', {
 
 ### Compatibility
 
-IE11, and Edge, iOS Safari, Firefox, Chrome, Safari
+Edge, iOS Safari, Firefox, Chrome, Safari
