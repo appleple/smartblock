@@ -2,6 +2,10 @@
   "name": "smartblock",
   "version": "1.4.3",
   "description": "intuitive block based wysiwyg editor",
+  "browserslist": [
+    "defaults",
+    "safari >= 13"
+  ],
   "files": [
     "dist",
     "css"
