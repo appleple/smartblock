@@ -16,7 +16,7 @@ const getContainerOffset = container => {
   return getOffset(container).top;
 }
 
-const calculateStyle = (props: PositionProps) => {
+const calculateStyle = (props: PositionProps, container: HTMLElement) => {
   const { view } = props;
   const { state } = view;
   const { selection } = state;
@@ -67,11 +67,12 @@ const calculateStyle = (props: PositionProps) => {
   }
   return {
     right: 20,
-    top: elementTop - offsetTop - 40
+    top: elementTop - offsetTop - container.offsetHeight
   }
 }
 
 export default function EditMenu (props: PositionProps) {
+  const ref = React.useRef<HTMLDivElement>(null)
   const [style, setState] = useState<React.CSSProperties>({
     right: 20,
     top: 0
@@ -81,12 +82,14 @@ export default function EditMenu (props: PositionProps) {
   const { state, dispatch } = view;
 
   useEffect(() => {
-    const nextStyle = calculateStyle(props);
-    setState(nextStyle);
+    if (ref.current) {
+      const nextStyle = calculateStyle(props, ref.current);
+      setState(nextStyle);
+    }
   }, [props]);
 
   return (
-    <div style={style} className="smartblock-edit-menu">
+    <div style={style} ref={ref} className="smartblock-edit-menu">
       {menu.map((item, key) => {
         return (
           <Button
