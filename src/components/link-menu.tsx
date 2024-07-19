@@ -23,7 +23,8 @@ const calculateStyle = (view: EditorView) => {
     };
   }
 
-  const coords = view.coordsAtPos(selection.$head.pos);
+  const isSelectionToLeft = selection.$head.pos < selection.$anchor.pos;
+  const coords = view.coordsAtPos(selection.$head.pos, isSelectionToLeft ? 0 : -1);
   const top = coords.top + getScrollTop() + ARROWTOPOFFSET;
   const left = coords.left - ARROWOFFSET;
 

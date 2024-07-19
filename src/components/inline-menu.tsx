@@ -18,8 +18,9 @@ const calculateStyle = (
   container: React.RefObject<HTMLDivElement>
 ) => {
   const { selection } = view.state;
+  const isSelectionToLeft = selection.$head.pos < selection.$anchor.pos;
   const offsetLeft = getOffset(view.dom).left;
-  const coords = view.coordsAtPos(selection.$head.pos);
+  const coords = view.coordsAtPos(selection.$head.pos, isSelectionToLeft ? 0 : -1);
   const offsetTop = getOffset(view.dom).top;
   const top = coords.top + getScrollTop() + ARROWTOPOFFSET - offsetTop;
   const left = coords.left - ARROWOFFSET - offsetLeft;
