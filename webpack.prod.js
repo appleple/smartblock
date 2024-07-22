@@ -105,6 +105,7 @@ const defaultExportConfig = merge(common, {
       }
       return `extensions/${data.chunk.name.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()}.js`;
     },
+    globalObject: 'this',
   },
   externals: {
     react: 'react',
