@@ -136,6 +136,7 @@ const namedExportConfig = merge(common, {
     },
     path: path.resolve(__dirname, 'dist/umd'),
     filename: (data) => `${data.chunk.name.toLowerCase()}.js`,
+    globalObject: 'this',
   },
   externals: {
     react: 'react',
