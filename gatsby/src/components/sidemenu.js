@@ -1,7 +1,7 @@
 import React from 'react';
 import SideMenuInner from './sidemenu-inner';
 
-export default (props) => {
+export default function SideMenu (props) {
 
   return (<div className="sidebar hide-on-small">
     <div className="sidebar-inner">

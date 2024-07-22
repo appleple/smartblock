@@ -7,113 +7,63 @@
 
 import React from "react"
 import PropTypes from "prop-types"
-import Helmet from "react-helmet"
 import { useStaticQuery, graphql, withPrefix } from "gatsby"
 
-function SEO({ description, lang, meta, title }) {
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-          }
+function Seo({ description = "", title = "" }) {
+  const { site } = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          title
+          description
+          author
         }
       }
-    `
-  )
+    }
+  `)
 
   const metaDescription = description || site.siteMetadata.description
 
   return (
-    <Helmet
-      htmlAttributes={{
-        lang,
-      }}
-      title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
-      meta={[
-        {
-          name: `description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:title`,
-          content: title,
-        },
-        {
-          property: `og:description`,
-          content: metaDescription,
-        },
-        {
-          property: 'og:image',
-          content: 'http://appleple.github.io'+withPrefix('/ogp.png')
-        },
-        {
-          property: 'og:image:secure_url',
-          content: 'https://appleple.github.io'+withPrefix('/ogp.png')
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary_large_image`,
-        },
-        {
-          name: 'twitter:image',
-          content: 'https://appleple.github.io'+withPrefix('/ogp.png')
-        },
-        {
-          name: `twitter:creator`,
-          content: site.siteMetadata.author,
-        },
-        {
-          name: `twitter:title`,
-          content: title,
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription,
-        },
-      ].concat(meta)}
-      link={[
-        {
-          rel: "stylesheet",
-          href: "https://unpkg.com/uny@0.2.9/dist/css/uny.min.css"
-        },
-        {
-          rel: "stylesheet",
-          href: "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-        },
-        {
-          rel: "stylesheet",
-          href: withPrefix('/prism.css')
-        },
-        {
-          rel: "stylesheet",
-          href: withPrefix('/layout.css')
-        }
-      ]}
-    >
-    </Helmet>
+    <>
+      <title>{`${title} | ${site.siteMetadata.title}`}</title>
+      <meta name="description" content={metaDescription} />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={metaDescription} />
+      <meta
+        property="og:image"
+        content={`http://appleple.github.io${withPrefix("/ogp.png")}`}
+      />
+      <meta
+        property="og:image:secure_url"
+        content={`https://appleple.github.io${withPrefix("/ogp.png")}`}
+      />
+      <meta property="og:type" content="website" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta
+        name="twitter:image"
+        content={`https://appleple.github.io${withPrefix("/ogp.png")}`}
+      />
+      <meta name="twitter:creator" content={site.siteMetadata.author} />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={metaDescription} />
+      <link
+        rel="stylesheet"
+        href="https://unpkg.com/uny@0.2.9/dist/css/uny.min.css"
+      />
+      <link
+        rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      />
+      <link rel="stylesheet" href={withPrefix("/prism.css")} />
+      <link rel="stylesheet" href={withPrefix("/layout.css")} />
+    </>
   )
 }
 
-SEO.defaultProps = {
-  lang: `en`,
-  meta: [],
-  description: ``,
-}
-
-SEO.propTypes = {
+Seo.propTypes = {
   description: PropTypes.string,
-  lang: PropTypes.string,
-  meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
 }
 
-export default SEO
+export default Seo

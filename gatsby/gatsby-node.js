@@ -8,10 +8,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const result = await graphql(
     `
       {
-        allMarkdownRemark(
-          sort: { fields: [frontmatter___date], order: DESC }
-          limit: 1000
-        ) {
+        allMarkdownRemark(sort: {frontmatter: {date: DESC}}, limit: 1000) {
           edges {
             node {
               fields {
@@ -67,10 +64,10 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
 exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
-    node: {
-      fs: "empty",
-      net: "empty",
-      tls: "empty",
-    },
+    resolve: {
+      fallback: {
+        fs: 'false'
+      }
+    }
   })
 }

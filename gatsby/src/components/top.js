@@ -1,16 +1,8 @@
-import React from "react"
+import React, { lazy, useEffect, useState } from "react"
 import "smartblock/css/smartblock.css"
-import Extensions from "smartblock/lib/extensions"
-import Code from "smartblock/lib/extensions/code"
-import Image from "smartblock/lib/extensions/image"
 import { Link, withPrefix } from "gatsby"
 import pkg from "../../../package.json"
-const SmartBlock =
-  typeof window === "undefined" ? (
-    <div />
-  ) : (
-    React.lazy(() => import("smartblock/lib/components/smartblock"))
-  )
+const SmartBlock = lazy(() => import("smartblock").then(module => ({ default: module.SmartBlock })))
 const html = `<p>SmartBlock is a block styled editor created by JavaScript. Which gives you nice experience of editing contents at touchscreen. On this page you can see it in action. Try to edit this text ! :)</p>
 <h2>Features</h2>
 <ul>
@@ -25,13 +17,32 @@ const html = `<p>SmartBlock is a block styled editor created by JavaScript. Whic
 <img src="${withPrefix("/footer.svg")}" />
 `
 
-export default props => {
+export default function Top (props) {
   const isSSR = typeof window === "undefined"
   const { data } = props
   const { markdownRemark } = data
   const [outputHTML, setOutputHTML] = React.useState("")
   const [outputJSON, setOutputJSON] = React.useState("")
   const [tab, setTab] = React.useState("html")
+
+  const [extensions, setExtensions] = useState([])
+
+  useEffect(() => {
+    if (!isSSR) {
+      import("smartblock").then(module => {
+        const { Extensions, Code, Image } = module
+        setExtensions([
+          ...Extensions,
+          new Code(),
+          new Image({
+            withCaption: false,
+            imgFullClassName: "full",
+            imgClassName: "small",
+          }),
+        ])
+      })
+    }
+  }, [isSSR])
 
   return (
     <>
@@ -64,15 +75,7 @@ export default props => {
                       <SmartBlock
                         showTitle
                         titleText="What is SmartBlock?"
-                        extensions={[
-                          ...Extensions,
-                          new Code(),
-                          new Image({
-                            withCaption: false,
-                            imgFullClassName: "full",
-                            imgClassName: "small",
-                          }),
-                        ]}
+                        extensions={extensions}
                         html={html}
                         onChange={({ html, json }) => {
                           setOutputHTML(html)

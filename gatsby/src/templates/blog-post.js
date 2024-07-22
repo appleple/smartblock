@@ -2,8 +2,8 @@ import React from "react"
 import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
-import SEO from "../components/seo"
-import SideMenu from '../components/sidemenu'
+import Seo from "../components/seo"
+import SideMenu from "../components/sidemenu"
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -12,15 +12,11 @@ class BlogPostTemplate extends React.Component {
 
     return (
       <Layout location={this.props.location} title={siteTitle} post={true}>
-        <SEO
-          title={post.frontmatter.title}
-          description={post.frontmatter.description || post.excerpt}
-        />
-        <main class="main docs">
-          <SideMenu active={post.fields ? post.fields.slug : ''} />
-          <div class="content">
-            <section class="section">
-              <div class="inner is-small">
+        <main className="main docs">
+          <SideMenu active={post.fields ? post.fields.slug : ""} />
+          <div className="content">
+            <section className="section">
+              <div className="inner is-small">
                 <h2>{post.frontmatter.title}</h2>
                 <section dangerouslySetInnerHTML={{ __html: post.html }} />
                 {/* <nav>
@@ -62,17 +58,17 @@ export default BlogPostTemplate
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
-          site {
-          siteMetadata {
-          title
-        }
-        }
-    markdownRemark(fields: {slug: {eq: $slug } }) {
-          id
+    site {
+      siteMetadata {
+        title
+      }
+    }
+    markdownRemark(fields: { slug: { eq: $slug } }) {
+      id
       excerpt(pruneLength: 160)
-        html
+      html
       frontmatter {
-          title
+        title
         date(formatString: "MMMM DD, YYYY")
         description
       }
@@ -80,8 +76,17 @@ export const pageQuery = graphql`
       fields {
         slug
       }
-      
-
     }
   }
 `
+
+export const Head = ({ data }) => {
+  const post = data.markdownRemark
+
+  return (
+    <Seo
+      title={post.frontmatter.title}
+      description={post.frontmatter.description || post.excerpt}
+    />
+  )
+}

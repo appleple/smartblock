@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 
-export default (props) => {
+export default function SideMenuInner(props) {
 
   return (
     <div style={{ marginBottom: '2rem' }}>

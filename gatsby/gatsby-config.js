@@ -46,28 +46,60 @@ module.exports = {
         ],
       },
     },
-    `gatsby-transformer-sharp`,
+    `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: `gatsby-plugin-feed`,
       options: {
-        //trackingId: `ADD YOUR TRACKING ID HERE`,
+        feeds: [
+          {
+            serialize: ({ query: { site, allMarkdownRemark } }) => {
+              return allMarkdownRemark.nodes.map(node => {
+                return Object.assign({}, node.frontmatter, {
+                  description: node.excerpt,
+                  date: node.frontmatter.date,
+                  url: site.siteMetadata.siteUrl + node.fields.slug,
+                  guid: site.siteMetadata.siteUrl + node.fields.slug,
+                  custom_elements: [{ "content:encoded": node.html }],
+                })
+              })
+            },
+            query: `
+              {
+                allMarkdownRemark(sort: {frontmatter: {date: DESC}}) {
+                  nodes {
+                    excerpt
+                    html
+                    fields {
+                      slug
+                    }
+                    frontmatter {
+                      title
+                      date
+                    }
+                  }
+                }
+              }
+            `,
+            output: "/rss.xml",
+            title: "Your Site's RSS Feed",
+          },
+        ],
       },
     },
-    `gatsby-plugin-feed`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `SmartBlock`,
-        short_name: `SmartBlock`,
-        start_url: `/`,
-        background_color: `#ffffff`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `static/favicon.png`,
+          name: `SmartBlock`,
+          short_name: `SmartBlock`,
+          start_url: `/`,
+          background_color: `#ffffff`,
+          theme_color: `#663399`,
+          display: `minimal-ui`,
+          icon: `static/favicon.png`,
       },
     },
-    `gatsby-plugin-react-helmet`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

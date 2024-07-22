@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import Top from '../components/top';
 
 class BlogIndex extends React.Component {
@@ -12,10 +12,6 @@ class BlogIndex extends React.Component {
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
-        <SEO 
-          title="SmartBlock - A Modern Block Based Wysiwyg Editor using React and ProseMirror" 
-          description="SmartBlock - A Modern Block Based Wysiwyg Editor using React and ProseMirror"
-        />
         <Top data={data}/>
       </Layout>
     )
@@ -40,3 +36,10 @@ export const pageQuery = graphql`
     }
   }
 `
+
+export const Head = () => (
+  <Seo
+    title="SmartBlock - A Modern Block Based Wysiwyg Editor using React and ProseMirror"
+    description="SmartBlock - A Modern Block Based Wysiwyg Editor using React and ProseMirror"
+  />
+)

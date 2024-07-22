@@ -4,7 +4,7 @@ import { Link } from 'gatsby';
 import Logo from './footer_logo.svg';
 
 
-export default () => {
+export default function Footer () {
 
   return (<>
     <div className="section-devider">
