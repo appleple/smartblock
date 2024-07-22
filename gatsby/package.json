@@ -29,7 +29,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-typography": "^0.16.23",
-    "smartblock": "^1.4.5",
+    "smartblock": "^1.4.6",
     "tween": "^0.9.0",
     "typeface-merriweather": "1.1.13",
     "typeface-montserrat": "1.1.13",
