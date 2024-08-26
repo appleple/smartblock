@@ -28,6 +28,7 @@ export const useView = (props: EditorProps): EditorView => {
       attributes: props.attributes,
       nodeViews: props.nodeViews,
     });
+    props.onChange(view.state, view.dispatch);
     return view;
     // forceUpdate を依存配列に追加すると無限ループになる
     // eslint-disable-next-line react-hooks/exhaustive-deps
