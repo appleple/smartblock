@@ -36,6 +36,8 @@ export const useView = (props: EditorProps): EditorView => {
   useEffect(() => {
     // 初回表示時にメニューと編集メニューが表示されない問題を解消するために追加
     forceUpdate();
+    // 初回マウント時のみ実行したいため、eslint-disable-next-lineで無効化
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return instance;
 };
@@ -86,6 +88,8 @@ export const useScrolling = (element: React.MutableRefObject<HTMLDivElement>, de
     return () => {
       clearInterval(interval);
     };
+    // 初回マウント時のみ実行したいため、eslint-disable-next-lineで無効化
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return scrolling;
 };
