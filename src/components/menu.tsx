@@ -55,16 +55,10 @@ const calculateStyle = (props: PositionProps): React.CSSProperties => {
     }
   }
 
-  const coords = view.coordsAtPos(firstNode.pos);
   const dom = view.nodeDOM(firstNode.pos) as HTMLElement;
   const elementTop = getOffset(dom).top;
   const offsetTop = getOffset(view.dom).top;
 
-  if (coords.top === 0) {
-    return {
-      top: -1000
-    }
-  }
   if (dom && dom.offsetHeight) {
     return {
       left: 5,

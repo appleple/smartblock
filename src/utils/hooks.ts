@@ -28,10 +28,14 @@ export const useView = (props: EditorProps): EditorView => {
       attributes: props.attributes,
       nodeViews: props.nodeViews,
     });
-    props.onChange(view.state, view.dispatch);
     return view;
     // forceUpdate を依存配列に追加すると無限ループになる
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    // 初回表示時にメニューと編集メニューが表示されない問題を解消するために追加
+    forceUpdate();
   }, []);
   return instance;
 };

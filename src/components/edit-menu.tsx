@@ -55,16 +55,10 @@ const calculateStyle = (props: PositionProps, container: HTMLElement) => {
     }
   }
 
-  const coords = view.coordsAtPos(firstNode.pos);
   const dom = view.nodeDOM(firstNode.pos) as HTMLElement;
   const elementTop = getOffset(dom).top;
   const offsetTop = getContainerOffset(view.dom);
 
-  if (coords.top === 0) {
-    return {
-      top: -1000
-    }
-  }
   return {
     right: 20,
     top: elementTop - offsetTop - container.offsetHeight
