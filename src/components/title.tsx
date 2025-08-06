@@ -66,7 +66,7 @@ export default function Title (props: TitleProps) {
   const view = useView(config);
   useEffect(() => {
     let title: HTMLHeadingElement | null = null;
-    if (titleRef.current) {
+    if (titleRef.current && view !== null) {
       titleRef.current.appendChild(view.dom);
       title = titleRef.current;
     }

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { EditorState } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import { getScrollTop } from '.';
@@ -12,37 +12,47 @@ export const useForceUpdate = () => {
   return update;
 };
 
-export const useView = (props: EditorProps): EditorView => {
+export const useView = (props: EditorProps): EditorView | null => {
   const forceUpdate = useForceUpdate();
-  const instance = useMemo(() => {
+  const instanceRef = useRef<InstanceType<typeof EditorView> | null>(null);
+
+  useEffect(() => {
     const view = new EditorView(null, {
       state: EditorState.create(props.options),
       dispatchTransaction: (transaction) => {
         const { state, transactions } = view.state.applyTransaction(transaction);
         view.updateState(state);
+
         if (transactions.some((tr) => tr.docChanged)) {
           props.onChange(state, view.dispatch);
         }
+
+        // 更新を促す（メニュー等の再レンダリング）
         forceUpdate();
       },
       attributes: props.attributes,
       nodeViews: props.nodeViews,
     });
+
+    // 初期状態でも onChange を呼びたい場合
     props.onChange(view.state, view.dispatch);
-    return view;
-    // forceUpdate を依存配列に追加すると無限ループになる
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
-  useEffect(() => {
-    // 初回表示時にメニューと編集メニューが表示されない問題を解消するために追加
+    instanceRef.current = view;
+
+    // 初回表示時のforceUpdate（メニューやUI表示用）
     forceUpdate();
-    // 初回マウント時のみ実行したいため、eslint-disable-next-lineで無効化
+
+    // アンマウント時に破棄
+    return () => {
+      view.destroy();
+      instanceRef.current = null;
+    };
+    // propsは必要なものだけ依存に含める
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  return instance;
-};
 
+  return instanceRef.current;
+};
 export const useScroll = () => {
   const [scrollTop, setScrollTop] = useState(getScrollTop());
   useEffect(() => {

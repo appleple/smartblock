@@ -25,6 +25,9 @@ export default function Editor (props: EditorProps) {
   const view = useView(props);
 
   useEffect(() => {
+    if (view === null) {
+      return;
+    }
     if (props.editorRef.current) {
       props.editorRef.current.appendChild(view.dom);
     }
@@ -32,8 +35,11 @@ export default function Editor (props: EditorProps) {
       view.focus();
     }
     // 依存配列に要素を追加すると無限ループになるため、eslint-disable-next-lineで無効化
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [view]);
+
+  if (view === null) {
+    return null;
+  }
 
   const editor = <div ref={props.editorRef} />;
   return props.render({
