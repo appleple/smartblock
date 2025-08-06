@@ -57,6 +57,9 @@ const standaloneConfig = merge(common, {
 
 const defaultExportConfig = merge(common, {
   mode: 'production',
+  optimization: {
+    minimize: false,
+  },
   entry: {
     'SmartBlock': './src/components/smartblock.tsx',
     'Extensions': './src/extensions/index.tsx',
@@ -115,6 +118,9 @@ const defaultExportConfig = merge(common, {
 
 const namedExportConfig = merge(common, {
   mode: 'production',
+  optimization: {
+    minimize: false,
+  },
   entry: {
     index: './src/index.tsx',
     'pm/commands': './src/pm/commands/index.ts',
