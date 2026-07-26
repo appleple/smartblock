@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { render, unmountComponentAtNode } from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import { setBlockType } from 'prosemirror-commands'
 import { EditorState } from 'prosemirror-state'
 import { Node } from 'prosemirror-model'
@@ -142,11 +142,12 @@ export default class Embed extends Extension {
   onClick(state: EditorState, dispatch: Dispatch) {
     const div = document.createElement('div')
     document.body.appendChild(div)
-    // 互換性を保つために、react-dom の render 関数及び unmountComponentAtNode を使用
-    render(
+    // React 19 で react-dom の render / unmountComponentAtNode が廃止されたため react-dom/client の createRoot を使用
+    const root = createRoot(div)
+    root.render(
       <Popup
         onClose={() => {
-          unmountComponentAtNode(div)
+          root.unmount()
         }}
         onDone={src => {
           const { pos } = state.selection.$anchor
@@ -158,10 +159,9 @@ export default class Embed extends Extension {
             text
           )
           dispatch(state.tr.insert(pos, node))
-          unmountComponentAtNode(div)
+          root.unmount()
         }}
-      />,
-      div
+      />
     )
   }
 
