@@ -1,0 +1,41 @@
+version: 2
+
+# a-blog cms 本体（Bitbucket）からは submodule として参照されており、依存更新を本体側で
+# まとめて面倒を見るのが難しいため、このリポジトリ自身で自動化する。
+# メジャーを除いているのは、破壊的変更の確認と本体・テーマへの影響評価が必要で、
+# それは人が計画して上げる作業になるため（React 19 の対応がその例）。
+updates:
+  - package-ecosystem: npm
+    directory: '/'
+    schedule:
+      interval: weekly
+      day: monday
+      time: '09:00'
+      timezone: Asia/Tokyo
+    open-pull-requests-limit: 5
+    # パッチとマイナーは 1 本の PR にまとめる。個別に上がると本数が増えるだけで
+    # レビューの単位としては細かすぎるため
+    groups:
+      patch-and-minor:
+        patterns:
+          - '*'
+        update-types:
+          - minor
+          - patch
+    ignore:
+      - dependency-name: '*'
+        update-types:
+          - version-update:semver-major
+    commit-message:
+      prefix: chore
+      include: scope
+
+  # ワークフローが使っている actions も古いままだと CI が動かなくなるため対象に含める
+  - package-ecosystem: github-actions
+    directory: '/'
+    schedule:
+      interval: monthly
+      timezone: Asia/Tokyo
+    open-pull-requests-limit: 3
+    commit-message:
+      prefix: ci
