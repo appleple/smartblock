@@ -259,7 +259,7 @@
     "@svgr/cli": "^8.1.0",
     "@testing-library/dom": "^10.3.2",
     "@testing-library/jest-dom": "^6.4.6",
-    "@testing-library/react": "^16.0.0",
+    "@testing-library/react": "^16.3.2",
     "@types/imagesloaded": "^4.1.6",
     "@types/jest": "^29.5.12",
     "@types/prosemirror-tables": "^0.9.1",
