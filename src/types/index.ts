@@ -1,3 +1,4 @@
+import * as React from 'react'
 import { Node, Schema } from 'prosemirror-model'
 import { Plugin, EditorState, Transaction } from 'prosemirror-state'
 import { EditorView, NodeView } from 'prosemirror-view'
@@ -26,7 +27,7 @@ export type ExtensionProps =
       schema?: ExtensionSchema;
       className?: string;
       tagName?: string;
-      icon?: JSX.Element | string;
+      icon?: React.JSX.Element | string;
       customName?: string;
     } & { [key: string]: any }
   | null
@@ -62,17 +63,17 @@ export abstract class Extension {
 
   className?: string
 
-  customMenu?({ state, dispatch }: { state: EditorState; dispatch: Dispatch }): JSX.Element | null
+  customMenu?({ state, dispatch }: { state: EditorState; dispatch: Dispatch }): React.JSX.Element | null
 
-  customInlineMenu?({ state, dispatch }: { state: EditorState; dispatch: Dispatch }): JSX.Element | null
+  customInlineMenu?({ state, dispatch }: { state: EditorState; dispatch: Dispatch }): React.JSX.Element | null
 
-  customLayout?(props: CustomLayoutProps, dom: HTMLElement): JSX.Element | null
+  customLayout?(props: CustomLayoutProps, dom: HTMLElement): React.JSX.Element | null
 
-  customButton?({ state, dispatch }: { state: EditorState; dispatch: Dispatch }): JSX.Element | null
+  customButton?({ state, dispatch }: { state: EditorState; dispatch: Dispatch }): React.JSX.Element | null
 
-  customIcon?: JSX.Element | string | null
+  customIcon?: React.JSX.Element | string | null
 
-  icon?: JSX.Element | string | null
+  icon?: React.JSX.Element | string | null
 
   plugins?: Plugin<any>[]
 
