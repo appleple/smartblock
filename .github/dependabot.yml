@@ -1,40 +1,23 @@
 version: 2
 
+# npm 依存のバージョン更新（脆弱性に関係のない追随）は行わない。prosemirror 系は更新のたびに
+# 壊れる実績があり、開発ツールも peer の噛み合いで npm ci が解決不能になってグループ PR が
+# 丸ごと止まるため（eslint-plugin-react-refresh 0.5 が eslint 9 以上を要求した例）。
+# 脆弱性への対応は Dependabot security updates が担う（設定ファイルとは独立に動く機能で、
+# production / development の両方を対象にする）。
+#
+# prosemirror 系は package.json で実バージョンに固定してあるので、レンジによる暗黙の
+# 引き上げも起きない。上げるときは人が意図して外す。
 updates:
-  - package-ecosystem: npm
-    directory: '/'
-    schedule:
-      interval: weekly
-      day: monday
-      time: '09:00'
-      timezone: Asia/Tokyo
-    open-pull-requests-limit: 5
-    # 配布物に入る依存だけを対象にする。開発ツール（eslint / jest / webpack 系）は
-    # 更新しても配布物に影響しない一方、peer の噛み合いが崩れて npm ci が解決不能になり
-    # （実例: eslint-plugin-react-refresh 0.5 が eslint 9 以上を要求）、グループ PR 全体が
-    # 止まる。開発ツールの脆弱性は Dependabot security updates 側で拾われる
-    allow:
-      - dependency-type: production
-    groups:
-      patch-and-minor:
-        patterns:
-          - '*'
-        update-types:
-          - minor
-          - patch
-    ignore:
-      - dependency-name: '*'
-        update-types:
-          - version-update:semver-major
-    commit-message:
-      prefix: chore
-      include: scope
-
   - package-ecosystem: github-actions
     directory: '/'
     schedule:
       interval: monthly
       timezone: Asia/Tokyo
     open-pull-requests-limit: 3
+    ignore:
+      - dependency-name: '*'
+        update-types:
+          - version-update:semver-major
     commit-message:
       prefix: ci
