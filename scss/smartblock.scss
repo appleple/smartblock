@@ -846,7 +846,7 @@
     font-weight: bold;
   }
 
-  @media screen and (-ms-high-contrast: active) {
+  @media screen and (forced-colors: active) {
 
     .hljs-addition,
     .hljs-attribute,
