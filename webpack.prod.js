@@ -113,6 +113,7 @@ const defaultExportConfig = merge(common, {
   externals: {
     react: 'react',
     'react-dom': 'react-dom',
+    'react-dom/client': 'react-dom',
   },
 });
 
@@ -148,6 +149,7 @@ const namedExportConfig = merge(common, {
   externals: {
     react: 'react',
     'react-dom': 'react-dom',
+    'react-dom/client': 'react-dom',
   },
 });
 
