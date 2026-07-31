@@ -9,7 +9,7 @@ export default function Offcanvas (props) {
   return (<div className={props.isOpen ? 'offcanvas is-active' : 'offcanvas'}>
     <div className="offcanvas-overlay offcanvas-close"></div>
     <div className="offcanvas-content">
-      <button className="button is-close offcanvas-close" onClick={() => {
+      <button className="button is-close offcanvas-close" aria-label="Close menu" onClick={() => {
         props.onClose();
       }}>
         <span></span>

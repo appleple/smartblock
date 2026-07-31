@@ -26,6 +26,7 @@ export default function Header (props) {
       </nav>
       <button
         className="button is-burger hide-on-medium hide-on-large offcanvas-open"
+        aria-label="Open menu"
         onClick={() => {
           setIsOpen(true);
         }}
