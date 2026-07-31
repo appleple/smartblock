@@ -18,17 +18,21 @@ const html = `<p>SmartBlock is a block styled editor created by JavaScript. Whic
 `
 
 export default function Top (props) {
-  const isSSR = typeof window === "undefined"
   const { data } = props
   const { markdownRemark } = data
   const [outputHTML, setOutputHTML] = React.useState("")
   const [outputJSON, setOutputJSON] = React.useState("")
   const [tab, setTab] = React.useState("html")
 
+  const [isMounted, setIsMounted] = useState(false)
   const [extensions, setExtensions] = useState([])
 
   useEffect(() => {
-    if (!isSSR) {
+    setIsMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (isMounted) {
       import("smartblock").then(module => {
         const { Extensions, Code, Image } = module
         setExtensions([
@@ -42,7 +46,7 @@ export default function Top (props) {
         ])
       })
     }
-  }, [isSSR])
+  }, [isMounted])
 
   return (
     <>
@@ -70,7 +74,7 @@ export default function Top (props) {
             <div className="inner is-small">
               <div className="app-frame">
                 <div className="app-frame-inner">
-                  {!isSSR && (
+                  {isMounted && (
                     <React.Suspense fallback={<div />}>
                       <SmartBlock
                         showTitle
