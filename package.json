@@ -238,6 +238,9 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preversion": "npm run build && npm test",
     "postversion": "git push && git push --tags",
+    "release:major": "npm version major",
+    "release:minor": "npm version minor",
+    "release:patch": "npm version patch",
     "build:css": "sass --style=expanded --no-source-map ./scss/smartblock.scss ./css/smartblock.css",
     "build:svg": "npx @svgr/cli -d ./src/components/icons ./assets/images/icons --template ./tools/template.js --ext tsx --no-svgo --filename-case kebab"
   },
