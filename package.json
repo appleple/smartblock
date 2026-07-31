@@ -247,8 +247,8 @@
   },
   "homepage": "https://appleple.github.io/smartblock/",
   "author": {
-    "name": "steelydylan",
-    "email": "hori@appleple.com"
+    "name": "appleple",
+    "email": "info@appleple.com"
   },
   "license": "MIT",
   "devDependencies": {

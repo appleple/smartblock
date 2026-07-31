@@ -2,7 +2,7 @@ module.exports = {
   pathPrefix: "/smartblock",
   siteMetadata: {
     title: `SmartBlock`,
-    author: `steelydylan`,
+    author: `appleple`,
     description: `SmartBlock - A Modern Block Based Wysiwyg Editor using React and ProseMirror`,
     siteUrl: `https://appleple.github.io/smartblock/`,
     social: {

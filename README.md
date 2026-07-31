@@ -1,4 +1,4 @@
-# SmartBlock 
+# SmartBlock
 
 ![](https://github.com/appleple/smartblock/workflows/Node%20CI/badge.svg)
 [![npm version](https://badge.fury.io/js/smartblock.svg)](https://badge.fury.io/js/smartblock)
@@ -10,8 +10,8 @@
 
 SmartBlock.js is a JavaScript block based editor which enables you to write contents easily on websites even with **SmartPhone**.
 
-| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE11 / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari-ios/safari-ios_48x48.png" alt="iOS Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>iOS Safari | 
-| --------- | --------- | --------- | --------- | --------- | 
+| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE11 / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari-ios/safari-ios_48x48.png" alt="iOS Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>iOS Safari |
+| --------- | --------- | --------- | --------- | --------- |
 
 ## ScreenShot
 
@@ -41,10 +41,10 @@ import 'smartblock/css/smartblock.css';
 import { SmartBlock, Extensions } from 'smartblock';
 
 render(<>
-  <SmartBlock 
+  <SmartBlock
     extensions={Extensions}
     html={'<h2>Hello World</h2><p>hello</p>'}
-    onChange={({ json, html }) => { console.log(json, html);}}  
+    onChange={({ json, html }) => { console.log(json, html);}}
   />
 </>, document.getElementById("app"));
 ```
@@ -62,17 +62,17 @@ You can add custom block like this
 ```js
 import * as React from 'react';
 import { Extensions, CustomBlock, CustomMark } from 'smartblock';
-Extensions.push(new CustomBlock({  
+Extensions.push(new CustomBlock({
   tagName: 'div',
   className: '.alert',
   icon: <SomeIconComponent />
 });
 
 render(<>
-  <SmartBlock 
+  <SmartBlock
     extensions={Extensions}
     html={'<h2>Hello World</h2><p>hello</p>'}
-    onChange={({ json, html }) => { console.log(json, html);}}  
+    onChange={({ json, html }) => { console.log(json, html);}}
   />
 </>, document.getElementById("app"));
 ```
@@ -83,17 +83,17 @@ You can add custom inline element like this
 import * as React from 'react';
 import { Extension, CustomBlock, CustomMark } from 'smartblock';
 import 'smartblock/css/smartblock.css';
-Extension.push(new CustomMark({  
+Extension.push(new CustomMark({
   tagName: 'span',
   className: '.small',
   icon: <SomeIconComponent />
 });
 
 render(<>
-  <SmartBlock 
+  <SmartBlock
     extensions={Extensions}
     html={'<h2>Hello World</h2><p><small>hello</small></p>'}
-    onChange={({ json, html }) => { console.log(json, html);}}  
+    onChange={({ json, html }) => { console.log(json, html);}}
   />
 </>, document.getElementById("app"));
 ```
@@ -116,9 +116,6 @@ render(<>
 
 ## Github
 [https://github.com/appleple/smartblock](https://github.com/appleple/smartblock)
-
-## Contributor
-[@steelydylan](https://github.com/steelydylan)
 
 ## License
 Code and documentation copyright 2020 by appleple, Inc. Code released under the [MIT License](https://github.com/appleple/smartblock/blob/master/LICENSE).
