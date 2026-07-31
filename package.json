@@ -1,6 +1,6 @@
 {
   "name": "smartblock",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "intuitive block based wysiwyg editor",
   "browserslist": [
     "defaults",
