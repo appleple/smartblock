@@ -18,7 +18,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v7
         with:
-          node-version-file: '.node-version'
+          node-version: '24.15.0'
           registry-url: 'https://registry.npmjs.org'
       - name: Install, build, and test
         run: |
@@ -28,7 +28,7 @@ jobs:
         env:
           CI: true
       - name: Publish to npm
-        run: npm publish
+        run: npm publish --tag legacy
       - name: Create GitHub Release
         run: |
           gh release create "${GITHUB_REF_NAME}" \
